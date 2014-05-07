@@ -1,0 +1,34 @@
+#! /bin/sh
+#
+# Further reading unconditionally incurs a 4D10 sanity loss.
+#
+
+
+rm -f /tmp/foo-test-test*
+
+echo $1 $2 "|$3|"
+(
+	echo "module foo-test-test"
+	echo "imports lib"       
+	echo "strategies"
+	echo "main = "
+) > /tmp/foo-test-test.str
+
+sed \
+	-e 's/;;/;/g' \
+	-e 's/; *$//' \
+	< $1 >> /tmp/foo-test-test.str
+
+tafname="$(echo $3 | sed 's/ /_/g')"
+
+if [ ! -f src/${tafname}.str ] ; then 
+  echo "must make ${tafname}"
+
+#  (
+#	~/.nix-profile/bin/strc \
+#	--keep 2 -i /tmp/foo-test-test.str \
+#	&& pp-aterm -i /tmp/foo-test-test.sci.opt16 > data/${tafname}.rtree
+#  ) &&
+#  cp /tmp/foo-test-test.str src/${tafname}.str
+  
+fi
