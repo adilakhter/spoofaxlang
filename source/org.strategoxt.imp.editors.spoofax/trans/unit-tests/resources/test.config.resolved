@@ -1,0 +1,16 @@
+Spoofax-lang|Configuration  - C:/work/spoofax/workspaces/spoofax-source/spoofax_imp_new/trunk/org.strategoxt.imp.editors.spoofax/spx.config
+
+Resolved Source Directories:  
+	[("C:/work/spoofax/workspaces/spoofax-source/spoofax_imp_new/trunk/org.strategoxt.imp.editors.spoofax/trans/unit-tests/resources",All),("C:/work/spoofax/workspaces/spoofax-source/spoofax_imp_new/trunk/org.strategoxt.imp.editors.spoofax/test",All)] 
+
+Ignored Subdirectories : 
+	[".svn"]
+
+Output Directory : [".shawdowdir"]
+
+STR Output Strategy: [CTree]
+
+Debug Options : []
+
+TemplateLang enable/disabled Option: TemplatelangDisabled
+

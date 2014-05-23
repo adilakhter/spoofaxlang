@@ -1,0 +1,187 @@
+module context/declare
+
+imports
+	context/sdf/declare
+	context/str/-
+	context/esv/declare
+	context/template/declare
+	context/sdf/declare-signature
+	context/-
+	normalize/signatures
+imports
+	include/SpoofaxLang
+	lib/editor-common.generated
+imports
+	utils/annotations
+	utils/debug
+	utils/contract
+	config
+	common
+	codegen/main
+
+rules 
+	// initiaze name analysis. be default, it adds default signatures and template options
+	init-declarations = 
+		init-record-signatures;
+		init-template-options
+    
+rules
+	
+  declare-spx-global-symbols =
+		debug-compiler(!$[----Declaring global Symbols for: [<print-as-string>]]);
+		list-loop(
+				{| GetEnclosingModuleName
+				 : 	
+				 		declare-current-module-scope ;
+				 	  where(<debug(!"declare-global-symbols for following scope:  ")><get-current-scope>);
+			 			with-spxverify(
+							get-desugared-module-ast;
+							declare-internal(declare-global-symbols)
+				  	)
+				|}	
+		)
+
+	delcare-spx-scoped-symbols = declare-internal(declare-local-symbols)
+
+	declare-internal(declare-symbols) =  
+		? desugared-module-def
+		; origin-track-forced(declare-spxmodules-all(declare-symbols)) => annotated-moduleDef
+		; !annotated-moduleDef => Module(attrb* , modname , section*)  // updating module definitions
+		; with-spxverify(
+			 		<get-annotation(get-package-annotation)>modname => Package( package-qname)
+			  ; mId := <get-module-typed-qname>(package-qname, modname)
+				; <index-update-existing-module-definition>(mId  ,  annotated-moduleDef)
+  	  )
+  	
+  	    
+rules 
+	
+	declare-spxmodules-all(s):
+		Module(attrb* , modname , section*) -> Module(attrb* , modname , m-sections*)
+		where	<alltd(s)>section* => m-sections*
+
+	declare-local-symbols:
+		SDFSection(definition*) -> SDFSection(declared-definition*)
+		where <declare-sdf-usage-main>definition* => declared-definition*  
+	
+	declare-local-symbols:
+		KeywordSection(definition*,words*,restriction) -> KeywordSection(declared-definition*, words*,restriction)
+		where <declare-sdf-usage-main>definition* => declared-definition*
+		  
+	
+				 
+	declare-local-symbols:
+		SDFSectionEH(s,definition*) -> SDFSectionEH(s,declared-definition*)
+		where <declare-sdf-usage-main>definition* => declared-definition*
+
+	declare-local-symbols:
+	  STRSection(def*) -> STRSection(m-definition*)
+    where	<declare-str-local-definition-main>def* => m-definition*
+       
+  declare-local-symbols: ESVSection(def*) -> <id>
+
+  declare-local-symbols:
+    TemplateSection(definition*) -> TemplateSection(declared-definition*)
+    where with-spxverify(<declare-template-definition-main> definition* => declared-definition*) 
+
+  // FIXME: move to spoofax.configuration?
+  declare-local-symbols:
+  	TemplateOptions(option*) -> TemplateOptions(declared-option*)
+  	where with-spxverify(<declare-template-options-main> option* => declared-option*) 
+
+rules
+
+	declare-global-symbols: 
+		SDFSection(def*) ->SDFSection(declared-definition*)
+		where	<declare-sdf-definition-main>def* => declared-definition*  
+
+	declare-global-symbols: 
+		SDFSectionEH(s,def*) -> SDFSectionEH(s,declared-def*)
+		where	<declare-sdf-definition-main>def* => declared-def*  
+	
+
+	declare-global-symbols: 
+		s@STRSection(def*) -> STRSection(m-definition*)
+		where m-definition* := <declare-stratego-globals-top>def*
+	
+	
+	declare-global-symbols: 
+		ESVSection(def*) -> ESVSection(declared-definition*)
+		where declared-definition* := <declare-esv-globals-top>def*;
+					current-package-name := <GetEnclosingPackageName>;
+					
+					// storing all the esv sections in index 
+					// so that when packed esv file is generated, it can get 
+					// all the sections and just work on it. 
+					// This is added due to allowing seperate  compilation to work.
+					// during seperate compilation , only the modules that have been 
+					// changed are taken into account.
+					with-spxverify(
+						<index-symbol-definition>(current-package-name,  ESVSection() ,  declared-definition*) 
+						, !$[Failed to index esv section of [current-package-name]]
+					) 
+			 
+  // TemplateLang
+  declare-global-symbols: TemplateSection(def*) -> <id>
+
+  // TemplateLang
+  declare-global-symbols: TemplateOptions(opt*) -> <id>
+
+rules
+
+	// Declaring current scope for further analyze
+	declare-current-scope(| package-typed-qname , module-typed-qname) =
+		with-spxverify(
+		    <declare-current-package-scope>package-typed-qname;
+		    <declare-current-module-scope>module-typed-qname 
+    )
+
+	declare-current-package-scope :
+		package-typed-qname -> <id>
+		where
+      with-spxverify(
+        rules(GetEnclosingPackageName := package-typed-qname )
+        , !"Failed to declare-current-package-scope"
+      )
+
+	declare-current-module-scope:
+		module-typed-qname -> <id>
+		where
+			with-spxverify(
+		 		rules( GetEnclosingModuleName := module-typed-qname)   
+				, !"Failed to declare-current-module-scope"
+			) 
+			
+
+rules
+	declare-legacy-artifact(|resolved-path) : 
+		legacy-content -> legacy-content
+		where
+		   < has-extension(|"sdf") 
+			 + has-extension(|"def")
+			 > resolved-path ;
+		    <declare-legacy-sdf-imports> legacy-content
+
+	declare-legacy-artifact(|resolved-path) : 
+		legacy-content -> legacy-content
+		where
+			 < has-extension(|"str") 
+			 + has-extension(|"rtree")
+			 > resolved-path
+		   ; <declare-legacy-str-imports> legacy-content
+		     
+rules 
+	
+	rename-id(|namespace) = 
+		?x;
+		namespace-qname-string := <package-qname-to-string> namespace;
+	 	<concat-strings>["__internal" , "_", namespace-qname-string  , "_" , <print-as-string>x] 
+	
+	newDefData:	
+		(scope@Package(QName(_)) , type, x) -> DefData(scope,  type, Internal() , x , x)
+		
+	newDefData(rename): 
+ 	(scope@Package(QName(_)) , type, x) -> defData   
+	 where	x'  := <rename(|scope)>x;
+	 				defData  := DefData(scope,  type, Internal() , x , x')
+		     

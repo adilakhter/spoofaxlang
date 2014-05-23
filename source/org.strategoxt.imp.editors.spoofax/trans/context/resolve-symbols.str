@@ -1,0 +1,66 @@
+module context/resolve-symbols
+
+imports
+	include/SpoofaxLang
+	lib/editor-common.generated
+imports
+	context/signatures
+	context/store-imports
+	context/scope-tree
+	context/resolve-declarations
+	normalize/signatures
+	codegen/compile
+imports
+	common
+	config
+	utils/annotations
+	utils/path
+	utils/debug
+	context/declare 
+
+rules
+	get_internal_module_qtname =
+		?package-qt-name;
+		where(!package-qt-name => Package(QName(package-name-part*)));
+		!Module(QName([package-name-part*| [<internal_module_name_string>]]))
+
+rules
+	// Add scopes for the symbol
+	to-global-symbol =
+		!(Globals(), <id>)
+	<+
+		dbg-symboltable(! $[Type| FAIL | Failed to convert it to Global symbol. <symbol> [<print-as-string>]] | "to-global-symbol" , "Warning") 
+		;fail
+
+	to-intenal-scoped-symbol =
+		!(<GetEnclosingPackageName> , <GetEnclosingPackageName;get_internal_module_qtname> , <id>)
+		<+
+		to-global-symbol //if enclosing scope is not declared, then considering the namespace of the Symbol to be global
+		<+
+		dbg-symboltable(! $[Type| Failed to convert it to scoped symbol.
+										<enclosing package> [<print-as-string><GetEnclosingPackageName>] <enclosing module>[<print-as-string><GetEnclosingModuleName>] <symbol> [<print-as-string>]] | "to-intenal-scoped-symbol" , "Warning")
+		;fail
+
+
+	to-scoped-symbol =
+		!(<GetEnclosingPackageName> , <GetEnclosingModuleName> , <id>)
+	<+
+		to-global-symbol //if enclosing scope is not declared, then considering the namespace of the Symbol to be global
+	<+
+		dbg-symboltable(! $[Type| Failed to convert it to scoped symbol.
+										<enclosing package> [<print-as-string><GetEnclosingPackageName>] <enclosing module>[<print-as-string><GetEnclosingModuleName>] <symbol> [<print-as-string>]] | "to-scoped-symbol" , "Warning")
+		;fail
+
+  to-package-scoped-symbol =
+    !(<GetEnclosingPackageName> , <id>)
+  <+
+    to-global-symbol //if enclosing scope is not declared, then considering the namespace of the Symbol to be global
+  <+
+    dbg-symboltable(!  $[Type| FAIL | Failed to convert it to scoped symbol.
+                    <enclosing package> [<print-as-string><GetEnclosingPackageName>] <symbol> [<print-as-string>]] | "to-package-scoped-symbol" , "Warning") 
+    ;fail
+
+	// Strip Scope and retuns the symbol
+	remove-scope-from-symbol = ?(Package(_), Module(_), <id>) + ?(Globals(), <id>) <+ id
+  
+  get-scope-from-symbol = ?(_,<id>,_) + ?(<id> ,_)  

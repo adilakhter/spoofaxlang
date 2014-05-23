@@ -1,0 +1,104 @@
+module utils/cache
+imports 
+	common 
+	lib/editor-common.generated 
+	utils/path
+	utils/debug
+	context/signatures
+	context/scope-tree
+	config
+	utils/contract
+	
+rules
+	
+	open-spx-compilation-unit(precompile|cache-path): 
+		(spx-compilation-unit , path) -> <id>
+		where 
+		  <precompile <+ throw-precompile-exception>( spx-compilation-unit, path);
+      if <file-exists>path then
+          <WriteToBinaryFile> (cache-path, spx-compilation-unit); // updating cache on filesystem (e.g., ignore libstratego-lib)
+          debug-compiler(!$[Updating cache for following CompilationUnit: [<print-as-string>path]]| "cache" , <debug-level-INFO>)
+      end
+     
+	
+  	//TODO : Take the following whole logic in indexing structure based on cached path and actual path.
+		//For example  - 
+  	//if <verify-indexing-needed> (cache-path, path) then
+  	//   ast := read it from file
+  	//   index-compilation-init ( path , ast) 
+  	//   <precompile> ast
+  	//else
+  	//   ast : = get-compilation-unit 
+  	//end     
+	open-spx-compilation-unit(resolve-spx-path, resolve-cache-path, parse-file, precompile):
+    path -> <id>
+    where is-string
+    where with-spxverify(
+    				full-path := <resolve-spx-path>path;
+    				cache-path := <resolve-cache-path> full-path;
+    				path' := <get-normalized-path> full-path
+  				)
+  	where with-spxverify(
+		  if <is-newer> (cache-path, path) ; not(<get-currently-analyzing-ast-from-cache> full-path)then
+      	debug-compiler(! $[Already updated . Hence, doing nothing] | "cache" , <debug-level-INFO>) 
+      else
+      	//1. getting the cached AST to precompile it due to the recent changes.
+        if not(spx-compilation-unit:=  <get-currently-analyzing-ast-from-cache>full-path) then
+          debug-compiler(! $[Parsing Actual source!] |"cache" , <debug-level-INFO>) ;
+          spx-compilation-unit := <parse-file> full-path
+        end;
+        
+        debug-compiler(! $[Precompiling [path']]| "cache" , <debug-level-INFO>);
+				<open-spx-compilation-unit( precompile | cache-path)>(spx-compilation-unit, path')
+    	end
+  	)		
+
+    
+rules 
+	lib-exists-in-cache  = where(spx-lib-cache-path ; file-exists)
+	 
+	get-spxcompilation-unit: 
+		file-path -> ast
+		where 
+			cached-path := <spx-precompiled-cache-path>file-path;
+			ast := <ReadFromFile> cached-path
+		<+
+			ast :=  <parse-file> file-path
+			
+	
+	get-cached-lib-ast(read-lib) : 
+		name -> ast
+		where 
+			<spx-lib-cache-path> name => cache-path;
+			if <file-exists> cache-path then
+		 	 	<ReadFromFile> cache-path => ast ;
+		 		debug-compiler(! $[Caching | Found ast [name].] |"get-cached-lib-ast","info")
+			else
+				<read-lib>name => ast ;
+				<WriteToBinaryFile> (cache-path, ast) ;
+				debug-compiler(! $[Caching | Not Found in Cache. Caching & processing [name] legacy artifact.] |"get-cached-lib-ast","info") 
+			end
+		<+
+			// Gracefully failing this strategy if it is not found in cache and in the library. 
+			// It is considered as invalid import during error analysis.
+			debug-compiler(! $[Caching | Failed to get (& read) [name].] |"get-cached-lib-ast",<debug-level-WARNING>) ;
+			fail
+			     
+signature constructors 
+	CachedParseAstDef : Def
+	ModifiedCompilationUnit: Def
+	
+rules
+	// caching currently analyzing AST so that we don't have to read it again from the file and to use it later on. 
+	store-currently-analyzing-ast = 
+		where((?(path, compilation-unit-ast) <+ throw-invalid-argument-exception(|"utils.cache.cache-currently-analyzing-ast")); 
+		path' := <get-normalized-path>path;
+		cached-path := <spx-precompiled-cache-path>path;
+		with-spxverify(
+				<store-declared(|CachedParseAstDef())>(path' ,compilation-unit-ast) ;
+				<WriteToBinaryFile> (cached-path, compilation-unit-ast)
+			, !"Failed to store store-currently-analyzing-ast to cache"
+			)
+	  )
+	
+	get-currently-analyzing-ast-from-cache = get-normalized-path ; get-declared(|CachedParseAstDef())

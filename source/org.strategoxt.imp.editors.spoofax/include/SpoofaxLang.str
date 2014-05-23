@@ -1,0 +1,638 @@
+module SpoofaxLang
+
+signature
+  constructors
+    Conc                       : ListStarOfTemplateLine20 * ListPlusOfTemplateLine20 -> ListPlusOfTemplateLine20
+    Conc                       : ListPlusOfTemplateLine20 * ListStarOfTemplateLine20 -> ListPlusOfTemplateLine20
+    Conc                       : ListPlusOfTemplateLine20 * ListPlusOfTemplateLine20 -> ListPlusOfTemplateLine20
+                               : TemplateLine2 -> ListPlusOfTemplateLine20
+    Conc                       : ListStarOfTemplateLine10 * ListPlusOfTemplateLine10 -> ListPlusOfTemplateLine10
+    Conc                       : ListPlusOfTemplateLine10 * ListStarOfTemplateLine10 -> ListPlusOfTemplateLine10
+    Conc                       : ListPlusOfTemplateLine10 * ListPlusOfTemplateLine10 -> ListPlusOfTemplateLine10
+                               : TemplateLine1 -> ListPlusOfTemplateLine10
+    FollowRestriction          : Lookaheads_SDF -> KeywordRestriction
+    Keywords                   : List(ID) -> Keywords
+    KeywordSymbols             : List(Symbol_SDF) -> KeywordSymbols
+    QualifiedSort              : QName * Sort_SDF -> QualifiedSort
+                               : StrCon_SDF -> Constructor
+    ImportPackageWithAlias     : QName * ID -> ImportedModule
+    ImportPackage              : QName -> ImportedModule
+    ImportSpxModule            : QName * SPXModuleName -> ImportedModule
+    ImportLegacyArtifact       : LegacyImportName -> ImportedModule
+    Unimports                  : List(Import) -> ImportSection
+    Imports                    : List(Import) -> ImportSection
+    SPXModuleName              : ID -> SPXModuleName
+    Name                       : QID -> LegacyImportName
+    Name                       : ID -> QName
+    QName                      : List(ID) -> QName
+    ParamName                  : QID * Symbols_SDF -> QName
+    Hiddens                    : ExportsOrHiddens
+    Exports                    : ExportsOrHiddens
+    Module                     : Option(MainID) * SPXModuleName * List(Section) -> Module
+    Package                    : QName * List(Module) -> PackageDefinition
+    CompilationUnit            : List(Module) -> Start
+    CompilationUnit            : List(ImportSection) * List(PackageDefinition) -> Start
+                               : String -> QIDWithDots
+                               : String -> QID
+    definition                 : Definition_SDF -> SDF_SDF
+                               : List(Alias_SDF) -> Aliases_SDF
+    alias                      : Symbol_SDF * Symbol_SDF -> Alias_SDF
+                               : List(Restriction_SDF) -> Restrictions_SDF
+    follow                     : Symbols_SDF * Lookaheads_SDF -> Restriction_SDF
+    list                       : List(Lookahead_SDF) -> Lookaheads_SDF
+    alt                        : Lookaheads_SDF * Lookaheads_SDF -> Lookaheads_SDF
+    single                     : Lookahead_SDF -> Lookaheads_SDF
+    seq                        : CharClass_SDF * Lookaheads_SDF -> Lookahead_SDF
+    char-class                 : CharClass_SDF -> Lookahead_SDF
+    unquoted                   : IdCon_SDF -> Label_SDF
+    quoted                     : StrCon_SDF -> Label_SDF
+    quoted-fun                 : StrCon_SDF -> FunctionName_SDF
+    unquoted-fun               : IdCon_SDF -> FunctionName_SDF
+                               : String -> SingleQuotedStrCon_SDF
+                               : String -> Sort_SDF
+    union                      : CharClass_SDF * CharClass_SDF -> CharClass_SDF
+    isect                      : CharClass_SDF * CharClass_SDF -> CharClass_SDF
+    diff                       : CharClass_SDF * CharClass_SDF -> CharClass_SDF
+    comp                       : CharClass_SDF -> CharClass_SDF
+    simple-charclass           : OptCharRanges_SDF -> CharClass_SDF
+    present                    : CharRanges_SDF -> OptCharRanges_SDF
+    absent                     : OptCharRanges_SDF
+    conc                       : CharRanges_SDF * CharRanges_SDF -> CharRanges_SDF
+                               : CharRange_SDF -> CharRanges_SDF
+    range                      : Character_SDF * Character_SDF -> CharRange_SDF
+                               : Character_SDF -> CharRange_SDF
+    label_start                : Character_SDF
+    bot                        : Character_SDF
+    eof                        : Character_SDF
+    top                        : Character_SDF
+    short                      : ShortChar_SDF -> Character_SDF
+    numeric                    : NumChar_SDF -> Character_SDF
+                               : String -> ShortChar_SDF
+                               : String -> NumChar_SDF
+                               : List(Priority_SDF) -> Priorities_SDF
+    assoc                      : Group_SDF * Associativity_SDF * Group_SDF -> Priority_SDF
+    chain                      : List(Group_SDF) -> Priority_SDF
+    default                    : List(NatCon_SDF) -> ArgumentIndicator_SDF
+    assoc                      : Associativity_SDF
+    non-assoc                  : Associativity_SDF
+    right                      : Associativity_SDF
+    left                       : Associativity_SDF
+    NamespaceImport            : QIDWithDots -> Import
+                               : ImportedModule -> Import
+                               : Import_SDF -> Import
+    renamed-module             : ModuleName_SDF * Renamings_SDF -> Import_SDF
+    'module                    : ModuleName_SDF -> Import_SDF
+    parameterized              : ModuleId_SDF * Symbols_SDF -> ModuleName_SDF
+    unparameterized            : ModuleId_SDF -> ModuleName_SDF
+                               : ListStarOfModule_SDF0 -> Definition_SDF
+                               : String -> ModuleId_SDF
+    production                 : Production_SDF * Production_SDF -> Renaming_SDF
+    symbol                     : Symbol_SDF * Symbol_SDF -> Renaming_SDF
+    renamings                  : List(Renaming_SDF) -> Renamings_SDF
+                               : List(Production_SDF) -> Productions_SDF
+    prefix-fun                 : FunctionName_SDF * List(Symbol_SDF) * Symbol_SDF * Attributes_SDF -> Production_SDF
+    prod                       : Symbols_SDF * Symbol_SDF * Attributes_SDF -> Production_SDF
+    no-attrs                   : Attributes_SDF
+    attrs                      : List(Attribute_SDF) -> Attributes_SDF
+    Constructor                : Constructor -> Attribute_SDF
+    avoid                      : Attribute_SDF
+    prefer                     : Attribute_SDF
+    reject                     : Attribute_SDF
+    assoc                      : Associativity_SDF -> Attribute_SDF
+    bracket                    : Attribute_SDF
+    'id                        : ModuleName_SDF -> Attribute_SDF
+    term                       : ATermAttribute_SDF -> Attribute_SDF
+    default                    : ATerm_SDF -> ATermAttribute_SDF
+                               : List(Symbol_SDF) -> Symbols_SDF
+    default                    : List(ATerm_SDF) -> Annotation_SDF
+    annotated                  : ATerm_SDF * Annotation_SDF -> ATerm_SDF
+    list                       : List(ATerm_SDF) -> ATerm_SDF
+    placeholder                : ATerm_SDF -> ATerm_SDF
+    appl                       : AFun_SDF * List(ATerm_SDF) -> ATerm_SDF
+    fun                        : AFun_SDF -> ATerm_SDF
+    real                       : RealCon_SDF -> ATerm_SDF
+    int                        : IntCon_SDF -> ATerm_SDF
+    unquoted                   : IdCon_SDF -> AFun_SDF
+    quoted                     : StrCon_SDF -> AFun_SDF
+                               : String -> IdCon_SDF
+                               : String -> StrCon_SDF
+    real-con                   : IntCon_SDF * NatCon_SDF * OptExp_SDF -> RealCon_SDF
+    absent                     : OptExp_SDF
+    present                    : IntCon_SDF -> OptExp_SDF
+    negative                   : NatCon_SDF -> IntCon_SDF
+    positive                   : NatCon_SDF -> IntCon_SDF
+    natural                    : NatCon_SDF -> IntCon_SDF
+                               : String -> NatCon_SDF
+    With                       : Strategy_STR -> Where_STR
+    Where                      : Strategy_STR -> Where_STR
+    APDefTerm                  : Pattern_STR * OptDotChild_STR * Term_STR * List(Where_STR) -> PatternDefBlockDef_STR
+    APDefTerm                  : Pattern_STR * OptDotChild_STR * ResultTerm_STR * ListStarOfNoWhere_STR0 -> PatternDefBlockDef_STR
+    ADefStrategy               : ChildDot_STR * AttributeDef_STR * Strategy_STR -> NameDefBlockDef_STR
+    ADefTerm                   : ChildDot_STR * AttributeDef_STR * Term_STR * List(Where_STR) -> NameDefBlockDef_STR
+    Root                       : Pattern_STR
+                               : Term_STR -> Pattern_STR
+    NoSort                     : NoSortDot_STR
+    NoSort                     : OptSortDot_STR
+    Sort                       : Sort_STR -> OptSortDot_STR
+    NoChild                    : OptDotChild_STR
+                               : DotChild_STR -> OptDotChild_STR
+    NoChild                    : OptChildDot_STR
+                               : ChildDot_STR -> OptChildDot_STR
+    DotIdChild                 : DotChild_STR
+    DotChild                   : Id_STR -> DotChild_STR
+    IdChild                    : ChildDot_STR
+    Child                      : Id_STR -> ChildDot_STR
+    Decorator                  : DefType_STR
+    Def                        : DefType_STR
+    Eq                         : DefType_STR
+    ADefTerm                   : OptChildDot_STR * AttributeDef_STR * Term_STR * List(Where_STR) -> AttributeNameValue_STR
+    ADefStrategy               : OptChildDot_STR * AttributeDef_STR * Strategy_STR -> AttributeNameValue_STR
+    Type                       : DefType_STR * List(DecoratorRef_STR) * NoSortDot_STR -> AttributeTypeNoSort_STR
+    Type                       : DefType_STR * List(DecoratorRef_STR) * OptSortDot_STR -> AttributeType_STR
+    AnonymousRewriteRule       : Pattern_STR * Term_STR * List(Where_STR) -> ADef_STR
+    PatternDefBlock            : AttributeType_STR * AttributeDef_STR * List(PatternDefBlockDef_STR) -> ADef_STR
+    NameDefBlock               : AttributeType_STR * Pattern_STR * List(NameDefBlockDef_STR) -> ADef_STR
+    ADefNoPattern              : AttributeTypeNoSort_STR * AttributeNameValue_STR -> ADef_STR
+    ADef                       : AttributeTypeNoSort_STR * Pattern_STR * AttributeNameValue_STR -> ADef_STR
+    ADecl                      : AttributeType_STR * List(AttributeDecl_STR) -> ADef_STR
+                               : Term_STR -> AttributeCallLHS_STR
+    AttributeRef               : AttributeCallLHS_STR * AttributeRef_STR -> AttributeCall_STR
+    DecoratorNoArgs            : DecoratorId_STR -> DecoratorRefNoArgs_STR
+                               : DecoratorRefNoArgs_STR -> DecoratorRef_STR
+    DecoratorNoTerms           : DecoratorId_STR * List(Strategy_STR) -> DecoratorRef_STR
+    Decorator                  : DecoratorId_STR * List(Strategy_STR) * List(Term_STR) -> DecoratorRef_STR
+    AttributeNoArgs            : AttributeId_STR -> AttributeRef_STR
+    AttributeNoTerms           : AttributeId_STR * List(Strategy_STR) -> AttributeRef_STR
+    Attribute                  : AttributeId_STR * List(Strategy_STR) * List(Term_STR) -> AttributeRef_STR
+    AttributeNoArgs            : AttributeId_STR -> AttributeDef_STR
+    AttributeNoTerms           : AttributeId_STR * List(Typedid_STR) -> AttributeDef_STR
+    Attribute                  : AttributeId_STR * List(Typedid_STR) * List(Term_STR) -> AttributeDef_STR
+    AttributeNoArgs            : AttributeDeclId_STR -> AttributeDecl_STR
+    AttributeNoTerms           : AttributeDeclId_STR * List(Typedid_STR) -> AttributeDecl_STR
+    Attribute                  : AttributeDeclId_STR * List(Typedid_STR) * List(Term_STR) -> AttributeDecl_STR
+                               : AttributeId_STR -> DecoratorId_STR
+                               : AttributeId_STR -> AttributeDeclId_STR
+                               : Id_STR -> AttributeId_STR
+                               : String -> AttributeId_STR
+                               : Term_STR -> TermNoApp_STR
+                               : TermNoApp_STR -> ResultTerm_STR
+    RuleNames                  : Term_STR -> RuleNames_STR
+                               : List(Id_STR) -> RuleNames_STR
+    RDecT                      : Id_STR * List(Typedid_STR) * List(Typedid_STR) -> RuleDec_STR
+    RDec                       : Id_STR * List(Typedid_STR) -> RuleDec_STR
+    RDecNoArgs                 : Id_STR -> RuleDec_STR
+    DynRuleScopeId             : Id_STR -> DynRuleScopeId_STR
+    LabeledDynRuleScopeId      : Id_STR * Term_STR -> DynRuleScopeId_STR
+    DynRuleId                  : RuleDec_STR -> DynRuleId_STR
+    AddLabelDynRuleId          : RuleDec_STR * Term_STR -> DynRuleId_STR
+    LabeledDynRuleId           : RuleDec_STR * Term_STR -> DynRuleId_STR
+    SetDynRuleDepends          : DynRuleId_STR * Rule_STR * Term_STR -> DynRuleDef_STR
+    DynRuleAssignAdd           : DynRuleId_STR * Term_STR -> DynRuleDef_STR
+    DynRuleAssign              : DynRuleId_STR * Term_STR -> DynRuleDef_STR
+    SetDynRuleMatch            : DynRuleId_STR * Term_STR -> DynRuleDef_STR
+    AddDynRule                 : DynRuleId_STR * Rule_STR -> DynRuleDef_STR
+    SetDynRule                 : DynRuleId_STR * Rule_STR -> DynRuleDef_STR
+    UndefineDynRule            : DynRuleId_STR * Term_STR -> DynRuleDef_STR
+    AddScopeLabel              : Id_STR * Term_STR -> DynRuleDef_STR
+    ScopeLabels                : Term_STR -> ScopeLabels_STR
+                               : List(DynRuleScopeId_STR) -> ScopeLabels_STR
+    WithClause                 : Strategy_STR -> RuleCond_STR
+    WhereClause                : Strategy_STR -> RuleCond_STR
+    Rule                       : Term_STR * Term_STR * List(RuleCond_STR) -> Rule_STR
+    Rule                       : Term_STR * Term_STR * Strategy_STR -> Rule_STR
+    RuleNoCond                 : Term_STR * Term_STR -> Rule_STR
+    RDefT                      : Id_STR * List(Typedid_STR) * List(Typedid_STR) * Rule_STR -> RuleDef_STR
+    RDef                       : Id_STR * List(Typedid_STR) * Rule_STR -> RuleDef_STR
+    RDefNoArgs                 : Id_STR * Rule_STR -> RuleDef_STR
+    Overlay                    : Id_STR * List(Id_STR) * Term_STR -> Overlay_STR
+    OverlayNoArgs              : Id_STR * Term_STR -> Overlay_STR
+    SwitchCase                 : Strategy_STR * Strategy_STR -> SwitchCase_STR
+    StrategyCurly              : Strategy_STR -> StrategyCurly_STR
+    ListVar                    : LId_STR -> LID_STR
+    InternalRules              : List(Def_STR) -> Decl_STR
+    InternalStrategies         : List(Def_STR) -> Decl_STR
+    Decorators                 : List(ADef_STR) -> Decl_STR
+    Attributes                 : List(ADef_STR) -> Decl_STR
+    Overlays                   : List(Overlay_STR) -> Decl_STR
+    Rules                      : List(Def_STR) -> Decl_STR
+    Signature                  : List(Sdecl_STR) -> Decl_STR
+    Strategies                 : List(Def_STR) -> Decl_STR
+                               : Strategy_STR -> StrategyMid_STR
+    ParenStrat                 : Strategy_STR -> StrategyParen_STR
+    DefaultVarDec              : ID_STR -> Typedid_STR
+    VarDec                     : ID_STR * Type_STR -> Typedid_STR
+    Internal                   : Anno_STR
+    Override                   : Anno_STR
+    Extend                     : Anno_STR
+                               : String -> EmptyId_STR
+    SDef                       : Id_STR * List(Typedid_STR) * Strategy_STR -> StrategyDef_STR
+    SDefNoArgs                 : Id_STR * Strategy_STR -> StrategyDef_STR
+    ExtSDef                    : EmptyId_STR * List(Typedid_STR) * List(Typedid_STR) -> StrategyDef_STR
+    ExtSDef                    : Id_STR * List(Typedid_STR) * List(Typedid_STR) -> StrategyDef_STR
+    ExtSDefInl                 : Id_STR * List(Typedid_STR) * List(Typedid_STR) * Strategy_STR -> StrategyDef_STR
+    SDefT                      : Id_STR * List(Typedid_STR) * List(Typedid_STR) * Strategy_STR -> StrategyDef_STR
+                               : AttributeCall_STR -> Strategy_STR
+    DynRuleIntersectUnion      : Strategy_STR * RuleNames_STR * RuleNames_STR * Strategy_STR -> Strategy_STR
+    DynRuleUnion               : Strategy_STR * RuleNames_STR * Strategy_STR -> Strategy_STR
+    DynRuleIntersect           : Strategy_STR * RuleNames_STR * Strategy_STR -> Strategy_STR
+    DynRuleIntersectUnionFix   : RuleNames_STR * RuleNames_STR * Strategy_STR -> Strategy_STR
+    DynRuleUnionFix            : RuleNames_STR * Strategy_STR -> Strategy_STR
+    DynRuleIntersectFix        : RuleNames_STR * Strategy_STR -> Strategy_STR
+    GenDynRules                : List(DynRuleDef_STR) -> Strategy_STR
+    DynRuleScope               : ScopeLabels_STR * Strategy_STR -> Strategy_STR
+    Assign                     : Term_STR * Term_STR -> Strategy_STR
+    AM                         : Strategy_STR * Term_STR -> Strategy_STR
+    SwitchChoice               : Strategy_STR * List(SwitchCase_STR) * Strategy_STR -> Strategy_STR
+    SwitchChoiceNoOtherwise    : Strategy_STR * List(SwitchCase_STR) -> Strategy_STR
+    IfThen                     : Strategy_STR * Strategy_STR -> Strategy_STR
+    CondChoice                 : Strategy_STR * Strategy_STR * Strategy_STR -> Strategy_STR
+    Proceed                    : List(Strategy_STR) -> Strategy_STR
+    RChoice                    : Strategy_STR * Strategy_STR -> Strategy_STR
+    Choice                     : Strategy_STR * Strategy_STR -> Strategy_STR
+    SRule                      : Rule_STR -> Strategy_STR
+    LRule                      : Rule_STR -> Strategy_STR
+    CallNoArgs                 : SVar_STR -> Strategy_STR
+    ExplodeCong                : Strategy_STR * StrategyParen_STR -> Strategy_STR
+    ListCong                   : List(Strategy_STR) * Strategy_STR -> Strategy_STR
+    ListCongNoTail             : List(Strategy_STR) -> Strategy_STR
+    TupleCong                  : Strategy_STR * List(Strategy_STR) -> Strategy_STR
+    EmptyTupleCong             : Strategy_STR
+    AnnoCong                   : Strategy_STR * StrategyCurly_STR -> Strategy_STR
+    CongQ                      : String_STR * List(Strategy_STR) -> Strategy_STR
+    CharCong                   : Char_STR -> Strategy_STR
+    RealCong                   : Real_STR -> Strategy_STR
+    IntCong                    : Int_STR -> Strategy_STR
+    StrCong                    : String_STR -> Strategy_STR
+    Prim                       : String_STR * List(Term_STR) -> Strategy_STR
+    PrimNoArgs                 : String_STR -> Strategy_STR
+    Test                       : Strategy_STR -> Strategy_STR
+    With                       : Strategy_STR -> Strategy_STR
+    Where                      : Strategy_STR -> Strategy_STR
+    Not                        : Strategy_STR -> Strategy_STR
+    Rec                        : Id_STR * Strategy_STR -> Strategy_STR
+    LChoice                    : Strategy_STR * Strategy_STR -> Strategy_STR
+    ScopeDefault               : Strategy_STR -> Strategy_STR
+    Call                       : SVar_STR * List(Strategy_STR) -> Strategy_STR
+    ImportTerm                 : ModName_STR -> Strategy_STR
+    All                        : Strategy_STR -> Strategy_STR
+    One                        : Strategy_STR -> Strategy_STR
+    Some                       : Strategy_STR -> Strategy_STR
+    PrimT                      : String_STR * List(Strategy_STR) * List(Term_STR) -> Strategy_STR
+    GuardedLChoice             : Strategy_STR * StrategyMid_STR * Strategy_STR -> Strategy_STR
+    Seq                        : Strategy_STR * Strategy_STR -> Strategy_STR
+    Scope                      : List(ID_STR) * Strategy_STR -> Strategy_STR
+    Build                      : Term_STR -> Strategy_STR
+    Match                      : Term_STR -> Strategy_STR
+    ProceedNoArgs              : Strategy_STR
+    ProceedT                   : List(Strategy_STR) * List(Term_STR) -> Strategy_STR
+    Id                         : Strategy_STR
+    Fail                       : Strategy_STR
+    CallDynamic                : Term_STR * List(Strategy_STR) * List(Term_STR) -> Strategy_STR
+    CallT                      : SVar_STR * List(Strategy_STR) * List(Term_STR) -> Strategy_STR
+    Let                        : List(Def_STR) * Strategy_STR -> Strategy_STR
+    QualifiedSVar              : QName * Id_STR -> SVar_STR
+    SVar                       : Id_STR -> SVar_STR
+                               : RuleDef_STR -> Def_STR
+    AnnoDef                    : List(Anno_STR) * RuleDef_STR -> Def_STR
+    AnnoDef                    : List(Anno_STR) * StrategyDef_STR -> Def_STR
+                               : StrategyDef_STR -> Def_STR
+                               : ConstType_STR -> Type_STR
+                               : FunType_STR -> Type_STR
+                               : Type_STR -> RetType_STR
+                               : ConstType_STR -> ArgType_STR
+    FunType                    : List(ArgType_STR) * RetType_STR -> FunType_STR
+    ConstType                  : Sort_STR -> ConstType_STR
+    ExtOpDeclInj               : Type_STR -> Opdecl_STR
+    ExtOpDeclQ                 : String_STR * Type_STR -> Opdecl_STR
+    ExtOpDecl                  : Id_STR * Type_STR -> Opdecl_STR
+    OpDeclInj                  : Type_STR -> Opdecl_STR
+    OpDeclQ                    : String_STR * Type_STR -> Opdecl_STR
+    OpDecl                     : Id_STR * Type_STR -> Opdecl_STR
+    SortTuple                  : List(Sort_STR) -> Sort_STR
+    SortListTl                 : List(Sort_STR) * Sort_STR -> Sort_STR
+    SortList                   : List(Sort_STR) -> Sort_STR
+    Sort                       : Id_STR * List(Sort_STR) -> Sort_STR
+    SortNoArgs                 : UCID_STR -> Sort_STR
+    SortVar                    : LCID_STR -> Sort_STR
+    Constructors               : List(Opdecl_STR) -> Sdecl_STR
+    Sorts                      : List(Sort_STR) -> Sdecl_STR
+    Wld                        : Wld_STR
+    FailTerm                   : Term_STR
+    App                        : Strategy_STR * Term_STR -> Term_STR
+    NoAnnoList                 : PreTerm_STR -> Term_STR
+    AnnoList                   : PreTerm_STR * List(Term_STR) -> Term_STR
+    BuildDefault               : Term_STR -> Term_STR
+    As                         : Var_STR * Term_STR -> Term_STR
+    Anno                       : PreTerm_STR * PreTerm_STR -> Term_STR
+                               : Wld_STR -> Term_STR
+                               : Var_STR -> Term_STR
+                               : LID_STR -> ID_STR
+                               : Id_STR -> ID_STR
+    VarWithType                : Var_STR * ID -> Var_STR
+    Var                        : LID_STR -> Var_STR
+    Var                        : Id_STR -> Var_STR
+                               : String -> Char_STR
+                               : String -> Padding_STR
+    QBr                        : String -> StringQuotedPart4_STR
+    QDollar                    : String -> StringQuotedPart4_STR
+    QStr                       : String -> StringQuotedPart4_STR
+    StringEscape4              : Padding_STR * Term_STR -> StringQuotedPart4_STR
+    QBr                        : String -> StringQuotedPart3_STR
+    QDollar                    : String -> StringQuotedPart3_STR
+    QStr                       : String -> StringQuotedPart3_STR
+    StringEscape3              : Padding_STR * Term_STR -> StringQuotedPart3_STR
+    QBr                        : String -> StringQuotedPart2_STR
+    QDollar                    : String -> StringQuotedPart2_STR
+    QStr                       : String -> StringQuotedPart2_STR
+    StringEscape2              : Padding_STR * Term_STR -> StringQuotedPart2_STR
+    QBr                        : String -> StringQuotedPart1_STR
+    QDollar                    : String -> StringQuotedPart1_STR
+    QStr                       : String -> StringQuotedPart1_STR
+    StringEscape1              : Padding_STR * Term_STR -> StringQuotedPart1_STR
+    StringQuotation4           : Padding_STR * List(StringQuotedPart4_STR) -> StringQuotation_STR
+    StringQuotation3           : Padding_STR * List(StringQuotedPart3_STR) -> StringQuotation_STR
+    StringQuotation2           : Padding_STR * List(StringQuotedPart2_STR) -> StringQuotation_STR
+    StringQuotation1           : Padding_STR * List(StringQuotedPart1_STR) -> StringQuotation_STR
+    IdTerm                     : PreTerm_STR
+    AttributeTerm              : AttributeCall_STR -> PreTerm_STR
+    ListTail                   : List(Term_STR) * Term_STR -> PreTerm_STR
+    List                       : List(Term_STR) -> PreTerm_STR
+    Tuple                      : List(Term_STR) -> PreTerm_STR
+    App                        : Strategy_STR * Term_STR -> PreTerm_STR
+    Char                       : Char_STR -> PreTerm_STR
+    BuildDefaultPT             : PreTerm_STR -> PreTerm_STR
+    As                         : Var_STR * PreTerm_STR -> PreTerm_STR
+    Explode                    : Term_STR * Term_STR -> PreTerm_STR
+    OpQ                        : String_STR * List(Term_STR) -> PreTerm_STR
+    Op                         : Id_STR * List(Term_STR) -> PreTerm_STR
+    Str                        : String_STR -> PreTerm_STR
+    Real                       : Real_STR -> PreTerm_STR
+    Int                        : Int_STR -> PreTerm_STR
+                               : Wld_STR -> PreTerm_STR
+                               : Var_STR -> PreTerm_STR
+                               : StringQuotation_STR -> PreTerm_STR
+                               : String -> String_STR
+                               : String -> Real_STR
+                               : String -> Int_STR
+                               : String -> UCID_STR
+                               : String -> LCID_STR
+                               : String -> LId_STR
+                               : String -> Id_STR
+                               : String -> ModName_STR
+    Source                     : BuilderOption_ESV
+    Cursor                     : BuilderOption_ESV
+    Meta                       : BuilderOption_ESV
+    Persistent                 : BuilderOption_ESV
+    RealTime                   : BuilderOption_ESV
+    OpenEditor                 : BuilderOption_ESV
+    Linked                     : CompletionAnno_ESV
+    Blank                      : CompletionAnno_ESV
+    Disable                    : CompletionAnno_ESV
+                               : CompletionAnno_ESV -> OptCompletionAnno
+    None                       : OptCompletionAnno
+    PlaceholderWithSort        : PlaceholderWithSortPrefix * Id_ESV -> CompletionPart_ESV
+    Cursor                     : CompletionPart_ESV
+    Placeholder                : Placeholder_ESV -> CompletionPart_ESV
+                               : String_ESV -> CompletionPart_ESV
+    CompletionPrefix           : String_ESV -> CompletionPrefix
+    NoCompletionPrefix         : CompletionPrefix
+                               : String -> Placeholder_ESV
+                               : String -> PlaceholderWithSortPrefix
+                               : String_ESV -> AttributeId_ESV
+                               : Id_ESV -> AttributeId_ESV
+                               : NoColor_ESV -> MaybeColor_ESV
+                               : Color_ESV -> MaybeColor_ESV
+    NoColor                    : NoColor_ESV
+    ColorRGB                   : Int_ESV * Int_ESV * Int_ESV -> Color_ESV
+    ColorDefault               : Color_ESV
+    BOLD_ITALIC                : Font_ESV
+    ITALIC                     : Font_ESV
+    BOLD                       : Font_ESV
+    NORMAL                     : Font_ESV
+    TK_UNKNOWN                 : TokenKindName_ESV
+    TK_ERROR                   : TokenKindName_ESV
+    TK_VAR                     : TokenKindName_ESV
+    TK_OPERATOR                : TokenKindName_ESV
+    TK_KEYWORD                 : TokenKindName_ESV
+    TK_STRING                  : TokenKindName_ESV
+    TK_LAYOUT                  : TokenKindName_ESV
+    TK_NUMBER                  : TokenKindName_ESV
+    TK_IDENTIFIER              : TokenKindName_ESV
+    Literal                    : Id_ESV -> ColorNode_ESV
+    Token                      : TokenKindName_ESV -> ColorNode_ESV
+                               : Node_ESV -> ColorNode_ESV
+    AttributeRef               : AttributeId_ESV -> Attribute_ESV
+    Attribute                  : Color_ESV * MaybeColor_ESV * Font_ESV -> Attribute_ESV
+    ColorDef                   : AttributeId_ESV * Attribute_ESV -> ColorRule_ESV
+    ColorRuleNamed             : ColorNode_ESV * String_ESV * Attribute_ESV -> ColorRule_ESV
+    ColorRuleAllNamed          : ColorNode_ESV * String_ESV * Attribute_ESV -> ColorRule_ESV
+    ColorRule                  : ColorNode_ESV * Attribute_ESV -> ColorRule_ESV
+    ColorRuleAll               : ColorNode_ESV * Attribute_ESV -> ColorRule_ESV
+    OutlineRule                : Node_ESV -> OutlineRule_ESV
+    None                       : FoldingAnno_ESV
+    Folded                     : FoldingAnno_ESV
+    Disable                    : FoldingAnno_ESV
+    FoldRuleAll                : Node_ESV * FoldingAnno_ESV -> FoldingRule_ESV
+    FoldRule                   : Node_ESV * FoldingAnno_ESV -> FoldingRule_ESV
+    IndentDef                  : PropertyValue_ESV -> IndentDef_ESV
+    FenceDef                   : PropertyValue_ESV * PropertyValue_ESV -> FenceDef_ESV
+    NoContinuation             : NoContinuation_ESV
+    BlockCommentDef            : PropertyValue_ESV * NoContinuation_ESV * PropertyValue_ESV -> BlockCommentDef_ESV
+    BlockCommentDef            : PropertyValue_ESV * PropertyValue_ESV * PropertyValue_ESV -> BlockCommentDef_ESV
+    IdentifierLexical          : PropertyValue_ESV -> LanguageProperty_ESV
+    IndentDefs                 : List(IndentDef_ESV) -> LanguageProperty_ESV
+    FenceDefs                  : List(FenceDef_ESV) -> LanguageProperty_ESV
+    BlockCommentDefs           : BlockCommentDef_ESV -> LanguageProperty_ESV
+    LineCommentPrefix          : PropertyValue_ESV -> LanguageProperty_ESV
+    Disambiguator              : StrategoCall_ESV -> LanguageProperty_ESV
+    UnmanagedTablePrefix       : Id_ESV -> LanguageProperty_ESV
+    Aliases                    : PropertyValues_ESV -> LanguageProperty_ESV
+    Extends                    : PropertyValues_ESV -> LanguageProperty_ESV
+    URL                        : URL_ESV -> LanguageProperty_ESV
+    StartSymbols               : PropertyValues_ESV -> LanguageProperty_ESV
+    StartSymbols               : List(Sort_ESV) -> LanguageProperty_ESV
+    TableProvider              : StrategoCall_ESV -> LanguageProperty_ESV
+    Table                      : PropertyValue_ESV -> LanguageProperty_ESV
+    Description                : PropertyValue_ESV -> LanguageProperty_ESV
+    Extensions                 : PropertyValues_ESV -> LanguageProperty_ESV
+    LanguageId                 : PropertyValue_ESV -> LanguageProperty_ESV
+    LanguageName               : PropertyValue_ESV -> LanguageProperty_ESV
+    Values                     : List(PropertyValue_ESV) -> PropertyValues_ESV
+                               : String -> URL_ESV
+                               : String_ESV -> PropertyValue_ESV
+                               : String -> PropertyValue_ESV
+    Refactorings               : String * List(SemanticRule_ESV) -> Section_ESV
+    Builders                   : String * List(SemanticRule_ESV) -> Section_ESV
+    Completions                : String * List(SemanticRule_ESV) -> Section_ESV
+    References                 : String * List(SemanticRule_ESV) -> Section_ESV
+    Colorer                    : String * List(ColorRule_ESV) -> Section_ESV
+    Outliner                   : String * List(OutlineRule_ESV) -> Section_ESV
+    Folding                    : String * List(FoldingRule_ESV) -> Section_ESV
+    Language                   : String * List(LanguageProperty_ESV) -> Section_ESV
+    None                       : OnSaveAnno_ESV
+    Attribute                  : StrategoId_ESV -> StrategoCall_ESV
+    Strategy                   : StrategoId_ESV -> StrategoCall_ESV
+    Refactoring                : List(SemanticNode_ESV) * String_ESV * StrategoCall_ESV * List(BuilderOption_ESV) -> SemanticRule_ESV
+    PrettyPrint                : StrategoCall_ESV -> SemanticRule_ESV
+    PPTable                    : StrategoCall_ESV -> SemanticRule_ESV
+    BuilderCaption             : PropertyValue_ESV -> SemanticRule_ESV
+    Builder                    : String_ESV * StrategoCall_ESV * List(BuilderOption_ESV) -> SemanticRule_ESV
+    SemanticObserver           : StrategoCall_ESV -> SemanticRule_ESV
+    CompletionTemplateEx       : List(Sort_ESV) * CompletionPrefix * List(CompletionPart_ESV) * List(CompletionAnno_ESV) -> SemanticRule_ESV
+    CompletionTrigger          : PropertyValue_ESV * OptCompletionAnno -> SemanticRule_ESV
+    CompletionTemplateEx       : List(Sort_ESV) * PropertyValue_ESV * List(CompletionPart_ESV) * List(CompletionAnno_ESV) -> SemanticRule_ESV
+    CompletionTemplateWithSort : Sort_ESV * CompletionPart_ESV * List(CompletionPart_ESV) * OptCompletionAnno -> SemanticRule_ESV
+    CompletionTemplate         : Id_ESV * List(CompletionPart_ESV) * OptCompletionAnno -> SemanticRule_ESV
+    CompletionKeyword          : PropertyValue_ESV * OptCompletionAnno -> SemanticRule_ESV
+    IdentifierLexical          : PropertyValue_ESV -> SemanticRule_ESV
+    CompletionProposer         : StrategoCall_ESV -> SemanticRule_ESV
+    OccurrenceRule             : SemanticNode_ESV * StrategoCall_ESV -> SemanticRule_ESV
+    HoverRule                  : SemanticNode_ESV * StrategoCall_ESV -> SemanticRule_ESV
+    ReferenceRule              : SemanticNode_ESV * StrategoCall_ESV -> SemanticRule_ESV
+    ReferenceHoverRule         : SemanticNode_ESV * StrategoCall_ESV * StrategoCall_ESV -> SemanticRule_ESV
+    OnSave                     : StrategoCall_ESV * OnSaveAnno_ESV -> SemanticRule_ESV
+    SemanticProvider           : PropertyValue_ESV -> SemanticRule_ESV
+                               : Node_ESV -> SemanticNode_ESV
+                               : String -> SemanticNode_ESV
+                               : String -> StrategoId_ESV
+    SortAndConstructor         : Sort_ESV * ConstructorId_ESV -> Node_ESV
+                               : Constructor_ESV -> Node_ESV
+                               : Sort_ESV -> Node_ESV
+    Constructor                : Id_ESV -> ConstructorId_ESV
+    ConstructorOnly            : ConstructorId_ESV -> Constructor_ESV
+    String                     : STRING_ESV -> String_ESV
+    ListSort                   : Id_ESV -> Sort_ESV
+    Sort                       : Id_ESV -> Sort_ESV
+                               : String -> STRING_ESV
+                               : String -> Int_ESV
+                               : String -> Id_ESV
+    Layout                     : String -> TemplatePartQ
+    Escape                     : String -> TemplatePartQ
+    String                     : String -> TemplatePartQ
+    Line                       : List(TemplatePart2) -> TemplateLine2
+    Line                       : List(TemplatePart1) -> TemplateLine1
+    SingleLineTemplate         : List(TemplatePartQ) -> Template
+    Template                   : ListPlusOfTemplateLine20 -> Template
+    Template                   : ListPlusOfTemplateLine10 -> Template
+    Option                     : PlaceholderSuffix
+    Plus                       : PlaceholderSuffix
+    Star                       : PlaceholderSuffix
+    None                       : PlaceholderSuffix
+    sort                       : ID -> PlaceholderSort
+    Placeholder                : PlaceholderSort * PlaceholderSuffix * PlaceholderOptions -> Placeholder
+    Layout                     : String -> TemplatePart2
+    Escape                     : String -> TemplatePart2
+    String                     : String -> TemplatePart2
+                               : Placeholder -> TemplatePart2
+    Layout                     : String -> TemplatePart1
+    Escape                     : String -> TemplatePart1
+    String                     : String -> TemplatePart1
+                               : Placeholder -> TemplatePart1
+    SortCons                   : ID * ID -> SortCons
+    SdfProductionWithCons      : SortCons * Symbols_SDF * Attributes_SDF -> SdfProduction
+    SdfProduction              : ID * Symbols_SDF * Attributes_SDF -> SdfProduction
+    context-free-restrictions  : Restrictions_SDF -> Grammar_SDF
+    lexical-restrictions       : Restrictions_SDF -> Grammar_SDF
+    context-free-priorities    : Priorities_SDF -> Grammar_SDF
+    lexical-priorities         : Priorities_SDF -> Grammar_SDF
+    aliases                    : Aliases_SDF -> Grammar_SDF
+    restrictions               : Restrictions_SDF -> Grammar_SDF
+    context-free-start-symbols : Symbols_SDF -> Grammar_SDF
+    lexical-start-symbols      : Symbols_SDF -> Grammar_SDF
+    kernel-start-symbols       : Symbols_SDF -> Grammar_SDF
+    'sorts                     : Symbols_SDF -> Grammar_SDF
+    priorities                 : Priorities_SDF -> Grammar_SDF
+    lexical-variables          : Productions_SDF -> Grammar_SDF
+    variables                  : Productions_SDF -> Grammar_SDF
+    context-free-syntax        : Productions_SDF -> Grammar_SDF
+    lexical-syntax             : Productions_SDF -> Grammar_SDF
+    syntax                     : Productions_SDF -> Grammar_SDF
+    empty-grammar              : Grammar_SDF
+    context-free-syntax        : List(SdfProduction) -> Grammar_SDF
+    lexical-syntax             : List(SdfProduction) -> Grammar_SDF
+    assoc-group                : Associativity_SDF * Productions_SDF -> Group_SDF
+    prods-group                : Productions_SDF -> Group_SDF
+    simple-group               : Production_SDF -> Group_SDF
+    non-transitive             : Group_SDF -> Group_SDF
+    with-arguments             : Group_SDF * ArgumentIndicator_SDF -> Group_SDF
+    assoc-ref-group            : Associativity_SDF * List(SortCons) -> Group_SDF
+    prods-ref-group            : List(SortCons) -> Group_SDF
+    simple-ref-group           : SortCons -> Group_SDF
+    Separating                 : NewlineOptionValue
+    Trailing                   : NewlineOptionValue
+    Leading                    : NewlineOptionValue
+    None                       : NewlineOptionValue
+    KeywordFollowRestriction   : Lookaheads_SDF -> TemplateOption
+    Newlines                   : NewlineOptionValue -> TemplateOption
+    KeywordSection             : KeywordSymbols * Keywords * Option(KeywordRestriction) -> Section
+    SDFSectionEH               : ExportsOrHiddens * Grammar_SDF -> Section
+                               : ConceptSection -> Section
+                               : ImportSection -> Section
+    ESVSection                 : Section_ESV -> Section
+    STRSection                 : Decl_STR -> Section
+    SDFSection                 : Grammar_SDF -> Section
+    TemplateSection            : List(TemplateProduction) -> Section
+    TemplateOptions            : List(TemplateOption) -> Section
+    Options                    : List(PlaceholderOption) -> PlaceholderOptions
+    NoOptions                  : PlaceholderOptions
+    WATER                      : CONTENTCOMPLETE -> PlaceholderOptions
+    Text                       : STRING -> PlaceholderOption
+    Separator                  : STRING -> PlaceholderOption
+    Anchor                     : PlaceholderOption
+    Wrap                       : PlaceholderOption
+    Hide                       : PlaceholderOption
+    WATER                      : CONTENTCOMPLETE -> PlaceholderOption
+    TemplateProductionWithCons : SortCons * Template * Attributes_SDF -> TemplateProduction
+    TemplateProduction         : ID * Template * Attributes_SDF -> TemplateProduction
+    WATER                      : CONTENTCOMPLETE -> TemplateProduction
+                               : IdCon_SDF -> Namespace
+                               : QualifiedSort -> Symbol_SDF
+    file-start                 : Symbol_SDF
+    start                      : Symbol_SDF
+    label                      : Label_SDF * Symbol_SDF -> Symbol_SDF
+    ci-lit                     : SingleQuotedStrCon_SDF -> Symbol_SDF
+    lit                        : StrCon_SDF -> Symbol_SDF
+    parameterized-sort         : Sort_SDF * List(Symbol_SDF) -> Symbol_SDF
+    sort                       : Sort_SDF -> Symbol_SDF
+    char-class                 : CharClass_SDF -> Symbol_SDF
+    lifting                    : Symbol_SDF -> Symbol_SDF
+    strategy                   : Symbol_SDF * Symbol_SDF -> Symbol_SDF
+    alt                        : Symbol_SDF * Symbol_SDF -> Symbol_SDF
+    func                       : Symbols_SDF * Symbol_SDF -> Symbol_SDF
+    tuple                      : Symbol_SDF * List(Symbol_SDF) -> Symbol_SDF
+    iter-star-sep              : Symbol_SDF * Symbol_SDF -> Symbol_SDF
+    iter-sep                   : Symbol_SDF * Symbol_SDF -> Symbol_SDF
+    iter-star                  : Symbol_SDF -> Symbol_SDF
+    iter                       : Symbol_SDF -> Symbol_SDF
+    opt                        : Symbol_SDF -> Symbol_SDF
+    seq                        : Symbol_SDF * List(Symbol_SDF) -> Symbol_SDF
+    empty                      : Symbol_SDF
+    layout                     : Symbol_SDF
+    varsym                     : Symbol_SDF -> Symbol_SDF
+    lex                        : Symbol_SDF -> Symbol_SDF
+    cf                         : Symbol_SDF -> Symbol_SDF
+    namespaceref2              : Namespace * Symbol_SDF -> Symbol_SDF
+    namespaceref               : Namespace -> Symbol_SDF
+    namespacedef               : Namespace * Symbol_SDF -> Symbol_SDF
+    Rule2                      : ID * ID -> Rule
+    Rule1                      : ID -> Rule
+    RuleDef                    : Rule * List(ID) -> ConceptDef
+    ConceptDef                 : ID * Rule -> ConceptDef
+    Concepts                   : List(ConceptDef) -> ConceptSection
+    Main                       : MainID
+                               : String -> STRING
+                               : String -> ID
+                               : String -> CONTENTCOMPLETE
+
+
+signature
+  constructors
+    Some : a -> Option(a)
+    None : Option(a)
+
+
+signature
+  constructors
+    Cons : a * List(a) -> List(a)
+    Nil  : List(a)
+    Conc : List(a) * List(a) -> List(a)

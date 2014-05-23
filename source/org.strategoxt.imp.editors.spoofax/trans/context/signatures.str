@@ -1,0 +1,97 @@
+module context/signatures
+ 
+signature constructors
+	
+	
+	Public	 :	 Visibility
+	Internal :  Visibility	
+  Local		 :  Visibility
+
+	InternalScope : ScopeType
+	GlobalScope   : ScopeType
+	PublicScope   : ScopeType
+	
+	
+	DefData : Package * Type* Visibility * ID * InternalID  -> DefData 
+	
+	RefData : ID * Type * List(Term)  * Namepace -> RefData  // RefData( ID , Type = STR| DYNSTR | OP , RESOLVED_SIGNATURE , ORIGIN_NAMESPACE) 
+	
+	InternalID : ID
+
+		
+signature constructors
+	Modules										: ScopedSymbol
+	Packages			 						: ScopedSymbol
+	Globals										: ScopedSymbol
+	
+	ScopeSymbol								: Symbol 
+	
+	STRSection								: Symbol
+	ESVSection								: Symbol
+	SDFSection								: Symbol
+	
+	Unresolved								: Symbol
+	Resolved								  : Symbol
+
+
+signature constructors 
+
+  OperationSignature   : Type 
+  OperationDeclaration : Type 
+    
+ 
+signature constructors
+	DeclaredEnclosedModuleQName : Type
+ 	ImportedPackageAlias : Type    
+signature constructors 
+	// symbol types
+		
+	ModuleType				: Type
+	PackageType				: Type
+	SDFType				  	: Type
+	
+	STRDef                    : Type
+	RenamedSDefT              : Type
+	STRCookie                 : Type
+	STRSignature              : Type
+	SortDeclaration           : Type
+
+	SDFDeclaration            : Type  
+	NamespaceSortDeclaration  : Type
+	SDFUsage 									:	Type
+	
+	//templatelang 
+	TemplateOptions   : Type
+	CanNotBeBlankFlag : Type   
+
+
+signature constructors 
+	
+	VisibilityType : Visibility -> MetaAnno 
+	SymbolType     : Type       -> MetaAnno
+	
+signature constructors 
+		
+	BooleanType : Type
+	True : BooleanType
+	False : BooleanType
+	
+	
+signature constructors 
+
+	Flag : Type  
+
+	CompileFlag : Flag 
+	
+	CurrentlyCompilingFlag : CompileFlag
+	
+	CompiledModuleFlag : CompileFlag 
+	
+	AnalyzedPackageFlag : CompileFlag
+	
+	AnalyzedModuleFlag : CompileFlag
+	
+	ReinitCompileSessionFlage : CompileFlag
+	
+	ResolvedExternalArtifactFlag : Namespace ->  CompileFlag 		 
+		

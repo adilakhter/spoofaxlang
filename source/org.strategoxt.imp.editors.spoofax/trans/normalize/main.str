@@ -1,0 +1,195 @@
+module normalize/main
+imports
+  libstratego-lib
+  libstrc
+  lib/editor-common.generated
+imports
+	normalize/stratego
+	normalize/signatures
+	normalize/templatelang
+imports
+	include/SpoofaxLang
+imports
+	utils/annotations
+	utils/debug
+	utils/cache
+imports 
+	common 
+	config
+imports
+	context/-
+	utils/contract
+	utils/path
+	context/signatures
+	
+
+signature constructors
+	ImportDeclarations: Flag 
+
+rules 
+	store-import-declaration: 
+		(cu-location , i) -> <id>
+		where <is-string>cu-location
+		where <get-normalized-path>cu-location => cu-location' 
+		where <store-declared(| ImportDeclarations() )> ( cu-location' , i)
+	
+	store-import-declaration: 
+		(Module(QName(_)) , i) -> <id>
+		where store-declared(| ImportDeclarations() )
+	
+	get-all-declared-import-declarations: 
+		p ->  i*
+		where (is-string + ?Module(QName(_)) )
+		where get-all-declared(|ImportDeclarations()) =>i* 
+		
+rules  
+	normalize:
+   	(selected, position, ast, path, project-path) -> (filename, result)
+		with 
+    	current-spx-file-path := <concat-strings> [project-path , "/" , path];
+    	filename := <guarantee-extension(|"aterm.desugared")> path;
+    	result   := <normalize-all>(ast, current-spx-file-path) // returning desugared AST
+    	
+strategies 	 
+	normalize-all =
+		?(spx-compilation-unit, current-spx-file-path );
+ 	  <origin-track-forced(desugar-spx(|current-spx-file-path))>spx-compilation-unit              
+      
+strategies 
+	
+	desugar-spx(| cu-location):
+		CompilationUnit(moduledef*) -> 	<desugar-spx(|cu-location)>CompilationUnit([] , [appended-default-package-declaration])
+		where  appended-default-package-declaration :=  Package(Name(<default_package_name>) , moduledef*)
+
+	desugar-spx(| cu-location):
+		c@CompilationUnit(import* , package*)	-> 	CompilationUnit( import* , modified-packages)
+		where	with-spxverify( <index-compilation-unit>(cu-location, c),	!" Failed to index compilation unit"	)
+		where	<alltd(origin-track-forced(desugar-spx(|cu-location)))> import*;
+					<alltd(origin-track-forced(desugar-spx(|cu-location)))> package* => modified-packages
+	
+	desugar-spx(|namespace):
+		i@Imports(import*) -> i	where	<store-import-declaration>(namespace, i)
+								
+rules
+	desugar-spx(|cu-location):
+		Package(Name(package-name) , modules* ) -> normalized-package-definition
+		where	debug-compiler(!$[Desugaring Packages [<print-as-string>package-name]])
+		where	!QName([package-name]) => package-qname;
+					<desugar-spx(|cu-location)>Package(package-qname, modules*) => normalized-package-definition
+
+	desugar-spx(|cu-location):
+		p@Package(package-qname , modules* ) -> modifiedPackageDescription
+		where	!package-qname => QName(_)
+		where debug-compiler(!$[Desugaring Packages [<print-as-string>package-qname]])
+		where with-spxverify(
+						<index-package-declaration>(Package(package-qname) , cu-location)
+						, !"Indexing Package Declaration failed"
+					)			
+		where	{| GetEnclosingPackageName:
+						 	<declare-current-package-scope>Package(package-qname);
+			   			<alltd(origin-track-forced(desugar-spx(|cu-location)))> modules*  => desugared-modules*
+					|}
+		where	!Package( package-qname , desugared-modules*) => modifiedPackageDescription
+	  
+rules
+
+	desugar-spx( |cu-location):
+		mDec@Module(attrb* , m@SPXModuleName(mName) , section*) -> modifiedModuleDescription
+		where
+			debug-compiler(!$[Desugaring Module [<print-as-string>m]])
+		where
+			with-spxverify(
+				GetEnclosingPackageName      						=>  package;
+				<add-annotation(|package)>m							=> modname-with-annotation 					      
+				, !"Failed to initialize desugar-spx at Module level"
+		  )
+		where 
+			{|	GetEnclosingModuleName
+			 :		enclosing-module-qname  := <get-module-typed-qname> ( package , mName); 	
+						with-spxverify(
+				 				<declare-current-module-scope> enclosing-module-qname
+						 		, !"Failed to create GetEnclosingModuleName rule"
+						)
+						//-----------------------
+						// TODO FIX : obsolete :
+						//; sections' := <conc>(<reverse><bagof-PackageCommonImports>, <alltd( origin-track-forced(desugar-spx))>section*)
+						; sections' := <alltd( origin-track-forced(desugar-spx + desugar-spx(|enclosing-module-qname)))>section*
+						; dbg-symboltable(! $[ Storing enclosing namespace : [<print-as-string>enclosing-module-qname]] | "desugar-spx" , "Info")
+						; with-spxverify(
+								!Module(attrb* , modname-with-annotation , sections') => modifiedModuleDescription
+								; <index-module-definition>(
+										enclosing-module-qname, 
+										cu-location,
+										package,
+										mDec,
+										modifiedModuleDescription
+									)
+									, !"Indexing Module Declaration failed . " 		
+								)
+				  	; with-spxverify(<index-enclosed-modules>(package , enclosing-module-qname), !" Failed to index enclosed moduled")   
+			|}
+				
+rules
+
+	// Desugaring SDF Sections
+	desugar-spx : 
+		SDFSection ( sectionDef ) -> <add-annotation(|<GetEnclosingModuleName>)> SDFSection( sectionDef' )
+		where
+			<templatelang-desugar-sdf-top> sectionDef => sectionDef'
+	
+		
+  // TODO: Maybe SDFSectionEH can be desugared into SDFSection.
+	desugar-spx : 
+		SDFSectionEH ( eh, sectionDef ) -> <add-annotation(|<GetEnclosingModuleName>)> SDFSectionEH( eh, sectionDef' )
+		where
+    	<templatelang-desugar-sdf-top> sectionDef => sectionDef'
+  
+  desugar-spx: 
+  	KeywordSection(s* , w* , None()) -> 
+  	KeywordSection( 
+  		s*
+  	, w* 
+  	, Some(
+		    FollowRestriction(
+		      single(
+		        char-class(
+		          simple-charclass(
+		            present(
+		              conc(
+		                range(short("a"), short("z"))
+		              , conc(
+		                  range(short("A"), short("Z"))
+		                , range(short("0"), short("9"))
+		                )
+		              )
+		            )
+		          )
+		        )
+		      )
+		    )
+  		)
+		) 
+		
+rules
+	//Desugaring STR sections
+	desugar-spx : 
+		STRSection ( sectionDef ) -> <add-annotation(|<GetEnclosingModuleName>)> STRSection ( sectionDef' )
+		where
+			<basic-stratego-desugar-top> sectionDef => sectionDef'
+				
+rules
+	desugar-spx:	ESVSection ( sectionDef ) -> <add-annotation(|<GetEnclosingModuleName>)> <id>
+	
+		
+rules
+	//Desugaring template sections
+  desugar-spx : 
+  	TemplateSection( sectionDef ) -> <add-annotation(|<GetEnclosingModuleName>)> TemplateSection( sectionDef' )
+  	where
+  		<templatelang-desugar-top> sectionDef => sectionDef'
+  		
+rules 
+	basic-sdf-desugar-top = topdown(try(origin-track-forced(basic-sdf-desugar)))
+	
+	basic-sdf-desugar : QualifiedSort(Name(x), t2) -> QualifiedSort(QName([x]), t2)
+	  

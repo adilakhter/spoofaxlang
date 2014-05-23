@@ -1,0 +1,9 @@
+prod(
+  [lit("\"~*\""), sort("E2")]
+, iter-sep(sort("Type"), lit("\"*\""))
+, attrs(
+    [term(
+       default(appl(unquoted("cons"), [fun(quoted("\"FromTerm\""))]))
+     )]
+  )
+)

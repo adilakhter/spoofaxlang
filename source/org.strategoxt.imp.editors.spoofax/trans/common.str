@@ -1,0 +1,88 @@
+module common
+
+imports 
+  libstratego-lib
+  libstratego-sdf
+  libstratego-sglr
+  libstratego-gpp
+  libstratego-aterm
+  libstrc
+  lib/editor-common.generated
+  lib/sdf-desugar
+  lib/sdf-parenthesize
+imports 
+	include/SpoofaxLang
+	normalize/signatures
+imports 
+	utils/debug
+	utils/path
+	utils/contract
+	codegen/main
+	codegen/compile
+	context/symboltable
+	config
+	editor/main
+
+
+rules
+	
+	enable-origin-tracking  = prim("SSL_EXT_enable_origins")
+	
+rules 
+  //several events regarding the current compiler session. 
+  with-spxverify(s) = with-verify(s ,  compile-unload )  
+  
+  //with-spxverify(s, get-msg) = with-verify( s ,compile-unload<+ fail|msg )
+  
+  with-spxverify(s , msg) = with-verify( s , compile-unload ,  msg)
+	
+rules 
+	get-project-path = (ProjectPath <+ project-path)
+
+	get-project-name = get-project-path ;  base-filename
+	
+	package-qname-to-string : Package(untyped-qname) ->  <convert-qname(|".");string-replace(|"-", ".")> 	untyped-qname
+	
+	
+rules 
+	
+	ppterm = pp-aterm-box ; box2text-string(|100)
+
+	print-as-string = is-string <+ write-to-string
+
+rules
+		/*internal*/ require(s) = not(s)
+
+rules 
+	equal-strings = 
+		?(str1 , str2); 
+		where( 
+			exploded-str1 := <explode-string>str1;
+			exploded-str2 := <explode-string>str2;
+			expected-ret-value := 0
+		);	
+		where(	
+			<strcmp>(exploded-str1 , exploded-str2);
+			?expected-ret-value
+		) 
+		 
+rules	
+	//After ensuring result is unique i.e. list contains only one element, it returns the unique result
+	ensure-is-unique = ?[<id>] <+ dbg-symboltable(!$[SymbolTable| Failed to resolve unique declaration.] | "ensure-is-unique" , "Info");fail
+	
+	// Verifies that the current term is not a empty list 
+	is-not-empty-list = ?[_|_] 
+	
+	save-to-file:(fileName, fileContent) -> None()  
+  	where
+    	not(<eq>("", fileContent))
+    where
+    	debug-compiler(!$[Writing to the following file : [fileName] the following content: 
+      							[<print-as-string>fileContent] 
+    	])
+    with
+    	filedescr := <fopen> (fileName, "w+")
+      ;<fputs>(fileContent , filedescr)
+      ;<fclose>filedescr	
+       
+ 

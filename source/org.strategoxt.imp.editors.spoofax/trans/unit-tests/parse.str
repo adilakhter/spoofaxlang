@@ -1,0 +1,80 @@
+module parse
+
+
+imports
+	common
+	context/parse-adapter
+	lib/editor-common.generated
+	
+rules 
+	
+	parse-legacy-artifacts-tests: 
+		project-path -> project-path
+		where debug 
+		where
+			<try(parse-sdf-test)>project-path;
+			<try(parse-str-test)>project-path;
+			<try(parse-def-test)>project-path;
+			<try(parse-rtree-test)>project-path
+			
+		
+	parse-sdf-test:
+		 project-path -> None()
+		with 
+			file-path := <concat-strings> [project-path , "/trans/" , "unit-tests/resources/test.sdf"] 
+		where 
+			<debug>$[Running Test | parse-sdf-test ];
+			actual :=  <parse-legacy-artifact>file-path
+		where
+			<debug> $[Verifying Expectaions .... ];
+			not(!actual => "");
+			<debug>$[SUCCESS.... ParsedContent : [<print-as-string>actual]]
+		<+ 
+			<debug>$[FAILED...]
+			
+	parse-str-test:
+		project-path -> None()
+		with 
+			file-path := <concat-strings> [project-path , "/trans/" , "unit-tests/resources/test.str"]
+		where 
+			<debug>$[Running Test | parse-str-test];
+			actual :=  <parse-legacy-artifact>file-path
+		where
+			<debug> $[Verifying Expectaions .... ];
+			not(!actual => "");
+			<debug>$[SUCCESS.... ParsedContent : [<print-as-string>actual]]
+		<+ 
+			<debug>$[FAILED...]		
+				
+	
+	parse-def-test:
+		project-path -> None()
+		with 
+			file-path := <concat-strings> [project-path , "/trans/" , "unit-tests/resources/SDF.def"]
+		where 
+			<debug>$[Running Test | parse-def-test];
+			actual :=  <parse-legacy-artifact>file-path
+		where
+			<debug> $[Verifying Expectaions .... ];
+			not(!actual => "");
+			<debug>$[SUCCESS.... ParsedContent : [<print-as-string>actual]]
+		<+ 
+			<debug>$[FAILED...]		
+			
+	parse-rtree-test:
+		project-path -> None()
+		with 
+			file-path := <concat-strings> [project-path , "/trans/" , "unit-tests/resources/test.rtree"]
+		where 
+			<debug>$[Running Test | parse-def-test];
+			actual :=  <parse-legacy-artifact>file-path
+		where
+			<debug> $[Verifying Expectaions .... ];
+			not(!actual => "");
+			<debug>$[SUCCESS.... ParsedContent : [<print-as-string>actual]]
+		<+ 
+			<debug>$[FAILED...]			
+
+
+	
+//C:/work/projects/spoofax/spx-imp/source-codes/trunk/org.strategoxt.imp.editors.spoofax/test2/Concepts.sdf

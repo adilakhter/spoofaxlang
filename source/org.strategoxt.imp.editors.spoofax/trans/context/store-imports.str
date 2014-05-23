@@ -1,0 +1,184 @@
+module context/store-imports 
+imports
+	include/SpoofaxLang 
+	lib/editor-common.generated
+imports 
+	context/-
+	normalize/signatures
+	codegen/compile
+imports 	
+	common
+	utils/annotations
+	utils/path
+	utils/debug  
+	utils/contract
+	normalize/main
+
+rules 			
+	
+	// constructing a dependency graph for each package  
+	compute-dependency-graph =
+			where (is-list);
+			list-loop(compute-dependency-graph) 
+
+	compute-dependency-graph: 
+		p@Package(QName(_)) -> p
+		where with-spxverify(
+						{|	GetEnclosingPackageName
+					 	 :			<declare-current-package-scope> p
+									;	debug-compiler(!$[resolve-package-references |  current package : [<print-as-string>]])
+									;	get-enclosed-dirty-modules  // only getting the modules that has been ideantified to be changed during this analysis session
+								 	;	with-spxverify(
+											map(compute-module-dependencies)
+				  						, !$[compute-dependency-graph failed for :  [ <print-as-string> p]]
+			  						)
+						|}
+					 	, !$[Failed compute-dependency-graph: [<print-as-string> p]]	
+					)
+		where get-all-usings;
+				 	list-loop(
+				 		!(p, <id>)
+						;	(get-imported-package-alias <+ store-imported-package-alias)
+				 	)
+	
+	
+	store-imported-package-alias:
+		(p@Package(QName(_)) , i@Package(q@QName(_))) -> <id>
+		where	<?QName(<id>)>q;
+					map(explode-string;	Hd;to-upper;![<id>]; implode-string); 
+					concat-strings; 
+					newname => n
+ 		where 
+			<debug(!"storing alias : ~")>(i , ImportedPackageAlias() , n);
+			activate-scope(
+				<index-unique-symbol-definition> ( i , ImportedPackageAlias() , n)
+				|p
+			)
+			
+	get-imported-package-alias: 
+		(p@Package(QName(_)) , i@Package(QName(_))) -> alias
+		where activate-scope(
+						alias :=	<resolve-all-symbol-definitions(
+												project-from-symboldef-to-symbol
+												|(LookupAllScope(), <ONLY_ONE>)
+											)>(i,  ImportedPackageAlias())
+						|p
+					)
+		where !alias
+					;	ensure-is-unique  
+						 			 			
+rules
+  
+  compute-module-dependencies: 
+    m@Module(QName(_)) -> <id>
+		where dbg-symboltable(! $[store-module-import-references | Resolving import references for module : [<print-as-string>]] |"Index" , <debug-level-INFO>) 
+		where	{|	GetEnclosingModuleName
+		 			 :	with-spxverify(
+		 							module-qaulified-id := m
+								;	<declare-current-module-scope> module-qaulified-id
+								;	<get-module-uri; dirname> module-qaulified-id  => current-source-directory
+							);
+							common-imports* := <get-all-declared-import-declarations><get-module-uri;get-normalized-path>module-qaulified-id;
+							module-imports* := <get-all-declared-import-declarations>module-qaulified-id;
+							import-sections* := <conc>( common-imports* , module-imports*);
+							<alltd(store-import-declaration(|<GetEnclosingPackageName>, current-source-directory))> import-sections*
+					|}
+			
+rules			
+	
+	
+	store-import-declaration(|enclosing-namespace-qname,current-source-directory): 
+		i@ImportPackage(qname@QName(package-qname-parts*)) -> annotated-import-decl
+		where dbg-symboltable(!$[store-import-declaration| store-import-declaration|storing package reference :[<print-as-string>]] | "Index" , <debug-level-INFO> )
+		where if <get-package-declaration> qname then
+							<store-spx-import-declaration(|enclosing-namespace-qname,current-source-directory)> Package(qname)
+						;	annotated-import-decl:= i
+					else
+							annotated-import-decl:= <add-annotation(|Unresolved())>i
+						;	dbg-symboltable(!$[store-import-declaration|Failed to resolve following import : [<print-as-string>]] | "Index" , <debug-level-WARNING> )
+					end
+	
+	store-import-declaration(|enclosing-namespace-qname,current-source-directory) :
+		ImportSpxModule(Name(package-name), SPXModuleName(modname)) -> <store-import-declaration(|enclosing-namespace-qname,current-source-directory)>ImportSpxModule(QName([package-name]), SPXModuleName(modname)) 
+	
+		 
+		// Store import references in the 2nd pass of the traversals
+	store-import-declaration(|enclosing-namespace-qname,current-source-directory):
+		i@ImportPackage(Name(package-name)) -> annotated-import-decl
+		where	dbg-symboltable(! $[store-import-declaration| store-import-declaration|storing reference : [<print-as-string>]] |"Index" , <debug-level-INFO>)
+		where	
+					<get-package-declaration> QName([package-name])
+				;	<store-spx-import-declaration(|enclosing-namespace-qname,current-source-directory)> Package(QName([package-name]))
+				;	annotated-import-decl:= i 			
+		<+
+					// It seems like package-name is not declared as a SPX package 
+					// Hence, looking for it in the file system as any external/legacy
+					// artifact.   
+					annotated-decl:= <store-import-declaration(|enclosing-namespace-qname,current-source-directory)>ImportLegacyArtifact(Name(package-name))
+	 			;	if not(<get-annotation(get-unresolved-symbol-annotation)>annotated-decl) then
+						//import is resolved as legacy artifact and found in local file system 
+						annotated-import-decl:= annotated-decl
+					else
+						//Not found in the file system. Hence, just ignoring it and annotating it.
+						//and marking it as Unresolved()		
+						annotated-import-decl:= <add-annotation(|Unresolved())>i
+					end	  
+
+  // All the legacy imports are scoped to pacakge level . With one exception for libstratego-lib which is included in global level. I.e. 
+  // all the packaged in the current project can use it without even importing it . 
+  // To specify more such global imports , mention it in compile-legacy-artifacts in compile.str
+  // Todo : plan is to make it configurable in config file so that user can also configure it. 
+  store-import-declaration(|enclosing-namespace,current-source-directory):
+		i@ImportLegacyArtifact(Name(modulename))  -> annotated-import-decl 
+		where	dbg-symboltable(! $[store-import-declaration| store-import-declaration|storing leagacy/external artifact reference : [<print-as-string>]] |"Index" , <debug-level-INFO>)
+		where	resolved-path := <resolve-legacy-import-path(|current-source-directory)>modulename
+		where get-annotated-import-declaration(|enclosing-namespace,current-source-directory , resolved-path) => (ctx, annotated-import-decl)
+				; with-spxverify(
+		  			<index-import>(ctx,[(ctx, Module(Name(modulename)), resolved-path)])
+			  		; dbg-symboltable(! $[store-import-declaration| storing enclosing imports reference| <UsingLegacyArtifacts>: [<print-as-string>enclosing-namespace]-> [<print-as-string>(Globals(), Module(Name(modulename)), resolved-path)]] |"Index" , <debug-level-INFO>)
+    			)
+ 
+ 	get-annotated-import-declaration(|enclosing-namespace, current-source-directory, resolved-path):
+		i@ImportLegacyArtifact(Name(modulename))  -> (ns, annotated-import-decl) 
+		where	!resolved-path => Unresolved()
+		where	dbg-symboltable(! $[SymbolTable|storing enclosing imports reference| FAIL <UsingLegacyArtifacts>: [<print-as-string>i]] |"Index" , <debug-level-WARNING>)
+	  		; annotated-import-decl :=  <add-annotation(|Unresolved())>i
+				; ns := enclosing-namespace  
+			 
+	get-annotated-import-declaration(|enclosing-namespace, current-source-directory, resolved-path):
+		i@ImportLegacyArtifact(Name(modulename))  -> annotated-import-decl 
+		where	not(!resolved-path => Unresolved())
+		where	dbg-symboltable(! $[SymbolTable|storing enclosing imports reference| FAIL <UsingLegacyArtifacts>: [<print-as-string>i]] |"Index" , <debug-level-WARNING>)
+	  		;	ns := enclosing-namespace 
+				; annotated-import-decl :=  i  
+			    	
+	store-spx-import-declaration(|enclosing-namespace-qname,current-source-directory): 
+		imported-typed-namespace -> imported-typed-namespace
+		where	<?Package(QName(_))>enclosing-namespace-qname
+		where ns := <GetEnclosingModuleName> 
+		  		;	<index-import>(ns, [imported-typed-namespace]) // index  import declaration in symbol table 
+		where	dbg-symboltable(! $[store-import-declaration| storing enclosing imports reference| <Using>: ([<print-as-string>enclosing-namespace-qname] , [<print-as-string><GetEnclosingModuleName>])-> [<print-as-string>]]|"Index" , <debug-level-INFO>)
+		
+rules		
+	
+	//FIXME : Obsolete , not supported anymore. Remove related codes 		 
+	store-import-declaration(|enclosing-namespace-qname,current-source-directory) :
+		i@ImportSpxModule(QName(package-qname-parts), SPXModuleName(modname)) -> annotated-import-decl 
+		where	dbg-symboltable(!$[store-import-declaration|storing module reference : [<print-as-string>]] | "Index" , <debug-level-INFO> )
+				; with-spxverify(
+						moduleId:= <get-module-typed-qname> (package-qname-parts , modname)
+				 		, "failed to get the module id @store-import-declaration"
+		 			)
+		where	if <get-module-uri>moduleId then
+				     //------------------------------------------------------------------------------
+				     // DESIGN ISSUE : initial designed to support more finer grained imports 
+				     // so that language composition conflicts is reduced. But current implementation
+				     // so far does not support it due to simplification of the analysis phase.   
+				     //-----------------------------------------------------------------------------
+							<store-spx-import-declaration(|enclosing-namespace-qname,current-source-directory)> moduleId
+							;	annotated-import-decl:= i
+					else
+							annotated-import-decl:= <add-annotation(|Unresolved())>i
+							; dbg-symboltable(! $[Store-import-declaration| Warning | Failed to resolve following import : [<print-as-string>]] |"Index" , <debug-level-WARNING>)	
+				 	end		
+			

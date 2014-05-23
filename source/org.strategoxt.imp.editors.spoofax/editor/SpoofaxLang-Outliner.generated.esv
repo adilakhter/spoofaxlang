@@ -1,0 +1,72 @@
+module SpoofaxLang-Outliner.generated
+
+outliner Default outliner        
+  
+  
+  // Outliner rules indicate which syntactic constructs should be shown in the outline
+  // and quick outline views, and take one of the following forms:
+  //
+  //   <sort>.<constructor>
+  //
+  //   <sort>._
+  //
+  //   _.<constructor>
+  
+  ModuleName_SDF.parameterized
+  Symbol_SDF.parameterized-sort
+  QName.ParamName
+  Import_SDF.renamed-module
+  Production_SDF.prod
+  ATerm_SDF.appl
+  Production_SDF.prefix-fun
+  PackageDefinition.Package
+  Module.Module
+  TemplateProduction.TemplateProduction
+  SdfProduction.SdfProduction
+  Restriction_SDF.follow
+  StrategyDef_STR.SDefT
+  FunType_STR.FunType
+  Sort_STR.Sort
+  Strategy_STR.CallT
+  StringQuotation_STR.StringQuotation1
+  StringQuotation_STR.StringQuotation2
+  StringQuotation_STR.StringQuotation3
+  StringQuotation_STR.StringQuotation4
+  PreTerm_STR.Op
+  PreTerm_STR.OpQ
+  PreTerm_STR.ListTail
+  AttributeRef_STR.Attribute
+  AttributeRef_STR.AttributeNoTerms
+  Term_STR.AnnoList
+  Strategy_STR.CallDynamic
+  Strategy_STR.PrimT
+  Strategy_STR.Call
+  Strategy_STR.Prim
+  Strategy_STR.CongQ
+  Rule_STR.Rule
+  RuleDec_STR.RDec
+  RuleDec_STR.RDecT
+  StrategyDef_STR.ExtSDefInl
+  StrategyDef_STR.ExtSDef
+  StrategyDef_STR.ExtSDef
+  StrategyDef_STR.SDef
+  RuleDef_STR.RDef
+  RuleDef_STR.RDefT
+  Overlay_STR.Overlay
+  AttributeType_STR.Type
+  DecoratorRef_STR.Decorator
+  DecoratorRef_STR.DecoratorNoTerms
+  AttributeDecl_STR.Attribute
+  AttributeDecl_STR.AttributeNoTerms
+  AttributeDef_STR.Attribute
+  AttributeDef_STR.AttributeNoTerms
+  AttributeNameValue_STR.ADefTerm
+  ADef_STR.NameDefBlock
+  NameDefBlockDef_STR.ADefTerm
+  ADef_STR.PatternDefBlock
+  PatternDefBlockDef_STR.APDefTerm
+  PatternDefBlockDef_STR.APDefTerm
+  ADef_STR.AnonymousRewriteRule
+  ConceptDef.RuleDef
+  Section.KeywordSection
+  Module.Module

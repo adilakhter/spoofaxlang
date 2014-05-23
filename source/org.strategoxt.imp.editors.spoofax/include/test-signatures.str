@@ -1,0 +1,11 @@
+module test-signatures 
+imports 
+	.shawdowdir/languages/entitylang/Semantic-Analyzer-signature
+	.shawdowdir/languages/entitylang/Type-System-signature
+	.shawdowdir/languages/entitylang/Language-Constructs-Main-signature
+	.shawdowdir/languages/entitylang/Entitylang-Descriptor-signature
+	
+imports 
+	.shawdowdir/languages/entitylang/__internal-signature
+imports 
+	.shawdowdir/Globals/Signatures	 	 	

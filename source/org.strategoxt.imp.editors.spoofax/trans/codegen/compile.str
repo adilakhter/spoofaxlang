@@ -1,0 +1,325 @@
+module codegen/compile
+
+imports
+	normalize/-
+	utils/debug
+	utils/cache
+	utils/path
+	analyze/-
+	context/-
+	context/str/-
+	context/symboltable
+	context/scope-tree
+	context/esv/declare
+	codegen/-
+	utils/contract
+imports
+	common
+	config
+imports
+	include/SpoofaxLang
+imports
+	analyze/main
+	lib/editor-common.generated
+
+rules				
+	
+	// Compiler initialization
+	compile-init =
+		?initialize-for ;
+		where ( index-init	<+ debug(! $[Failed to initialize SemanticIndex for [<get-project-path>] at this moment."])	);
+		on-init-index-updating; 		//event to perform oninit activities related to index-updating
+		if !initialize-for ; not(?(_,_)) then 
+				get-all-spx-sources 
+			; list-loop(parse-spx-sources) //Iterating all the configured source directory
+		else
+			<normalize-all>initialize-for // (ast, filepath)
+		end ;	
+		init-declarations;					//Initializes global symbols / default primitives
+		on-index-updating-completed //event to perform oncompleted activities related to index-updating 
+	
+	compile-save-state = index-save // save state of current compile session
+	  
+	compile-clean-symboltable = index-clearall 
+	
+	//closes any underlying connection 
+	compile-unload = debug-time (index-close | "Saving Index" ) //closes and saves current state of symbol table.
+
+	
+
+rules 
+	// Creating a new compilation session. 
+	// First  it initializes environment for the current compilation session. 
+	// Then, it invokes strategy S passed as argument to perform compilation.
+	new-compile-session(s) =
+  	 {| GetSemanticProblems, Declared 
+		  : debug-compiler(!$[-----------------::new-compile-session::-----------------]);
+				with-spxverify(
+						where(compile-init)
+					; s
+					//; debug-time(compile-unload | "Index Saving State: ")
+					, !" new compile session failed unexpectedly. "  
+        )  
+	   |}
+
+rules
+	
+	// compiling all the packages available in the current project  
+	// current project can also specify other project as reference
+	// hence, it imports those and consider them during the compilation process
+	compile-all =
+		 debug-time( 
+		 new-compile-session(
+		  		get-package-list  
+		  	;	compile-main
+				; <get-all-analyzed-modules-locations>()
+				; mark-issues-of-files
+			)
+			| "compile-all"
+			)
+
+	// compiles all the packages stored at the filepath specified
+	compile-packages-of = compile-packages-of(id)
+	
+	compile-packages-of(exec-generate-code): (ast, file-abs-path) 	-> (ast', issues*)
+		where new-compile-session(
+						debug-time (
+						 		<get-declared-packages-qname> file-abs-path => list-of-package-qname 
+							; debug-time(<compile-main> list-of-package-qname  | "compile-main")// Compiling
+						  ; <get-semantic-problmes-by-file>file-abs-path => issues* // getting list of errors of current file
+						  ; if not(<fail-if-has-errors>issues*) then
+							  	set-has-errors // checking whether there are errors 
+						  	end
+							; get-all-analyzed-packages	
+							; get-related-files-of-packages
+							; filter(not(is-equal-path(| file-abs-path)))
+							; mark-issues-of-files
+							; <exec-generate-code> list-of-package-qname // only generating codes for the changed packages  		 
+						  ; <get-analyzed-ast >ast => ast'  // returing currenly analyzed AST
+						  | "compile-package-of"
+					  )    
+		 		 )	
+			     
+rules
+	
+  compile-main:
+  	list-of-package-qname* -> list-of-package-qname*
+		where debug-compiler(!$[Now compiling following packages : [<separate-by(|" , ");concat-strings><map(?Package(<id>);convert-qname(|"."))>list-of-package-qname*]])
+		where	compile-default-legacy-artifacts
+		where compile-spx-packages 
+		where compile-spx-modules
+	 	where analyze-main 
+
+rules 	
+	
+	compile-spx-packages =  
+		where (is-list);
+		list-loop(compile-spx-packages)
+		
+	compile-spx-packages:
+		package-typed-qname@Package(untyped-qname) -> <id>
+		where not(should-compile-this-package)
+		where debug-compiler(!$[--Compiling SPX Packages-- ignored as already processed by compiler : [<print-as-string>]])  
+	
+	compile-spx-packages:
+		package-typed-qname@Package(untyped-qname) -> <id>
+		where should-compile-this-package
+		where	debug-compiler(!$[--Compiling SPX Package-- [<print-as-string>package-typed-qname] ----------------
+					])
+		where	with-spxverify(	<add-to-compile-queue> package-typed-qname , ! "Error : Failed to add package in Compile Queue"	)
+		where compute-dependency-graph // computing dependecy graph for the current packate
+		where compile-depending-spx-artefacts
+		where {|	GetEnclosingPackageName 
+			  	 :			<declare-current-package-scope>    package-typed-qname
+			  	 			; <compile-package-legacy-artifacts> package-typed-qname
+			  	 			// Now, since all the depending-on artifacts are compiled
+								// start compiling the enclosing modules of this package.
+								// Note: currently we are not considering any nested packages.
+								; modules-to-compile* := <get-enclosed-dirty-modules>package-typed-qname
+								; if <is-not-empty-list> modules-to-compile* then 
+											debug-compiler(!$[----Name Analysis-Global Symbols----  [<separate-by(|",");concat-strings><map(?Module(<id>);convert-qname(|"."))>modules-to-compile*]])  
+									end
+								// declaring all the global symbols for all the dirty modules of this package 
+								; <declare-spx-global-symbols>modules-to-compile*
+					|}
+					; debug-compiler(!$[--Compiling SPX Package-- done global analyses for [<print-as-string>package-typed-qname] ---------------- 
+			  		])		  
+
+rules 		  
+	compile-depending-spx-artefacts: 	// Compiles imported spx packages/modules 
+		p@Package(QName(_))-> p
+		where with-spxverify(
+							get-all-usings 
+						; debug-compiler(!$[--Compiling SPX Package-- List of dependending-on packages/modules : [<print-as-string>]  ])
+						;	list-loop(compile-depending-spx(|p))
+						,	!" Error : Failed to compile imported packages."
+					)
+	
+	compile-depending-spx(|usedby):
+		p@Package(QName(_))-> p
+		where	debug-compiler(! $[----Compiling Depending SPX---- Compiling spx package [<print-as-string>] used by [<print-as-string>usedby]])
+		where	compile-spx-packages
+		
+	compile-depending-spx(|usedby):
+		m@Module(QName(_))-> m
+		where	debug-compiler(! $[----Compiling Depending SPX---- Compiling spx package [<print-as-string>] used by [<print-as-string>usedby]])
+		where	
+			// Even when only a module is imported using ImportSpxModule(_,_),
+			// The whole package is compiled to check consistency , and find
+			// semantic errors.
+			// In later step , when look up is performed, any symbol other than
+			// symbols that consist in this particular module are marked/realized
+			// as private symbols.
+			enclosing-package-typed-qname := <get-enclosing-package-qname>m;
+			<compile-spx-packages>enclosing-package-typed-qname
+
+rules 			
+		
+	compile-spx-modules =  
+		where (is-list)
+		; get-all-compiled-packages
+		;	mapconcat(get-enclosed-dirty-modules) 	
+		; list-loop(compile-spx-modules) // name analysis - local symbols  
+	
+	compile-spx-modules:
+		module-typed-qname@Module(untyped-qname) -> <id>
+		where <is-a-compiled-module>module-typed-qname
+		where debug-compiler(!$[----Compiling module:: Ignored as already in the queue : [<print-as-string>]]) //this package is not compiled before
+		
+	compile-spx-modules:
+		module-typed-qname@Module(untyped-qname) -> <id>
+		where not(<is-a-compiled-module>module-typed-qname) 
+		where	debug-compiler(!$[----Compiling module:: [<print-as-string>]])
+		where {|	GetEnclosingModuleName
+					 :	<declare-current-package-scope> <get-enclosing-package-qname> module-typed-qname;
+							<declare-current-module-scope> module-typed-qname;
+							<get-module-definition-with-location>module-typed-qname => (module-decl,location) ;
+							<delcare-spx-scoped-symbols>module-decl
+					|}
+					; with-spxverify(
+				  		<add-to-compiled-modules>(module-typed-qname,location)
+			  	  	// Indexing langauge descriptor for this package if it does exists 
+        			; try(<index-language-descriptor><get-declared-language-definition>module-typed-qname)
+  		  		)
+rules
+	compile-default-legacy-artifacts =
+		activate-global-scope(
+			<compile-legacy-artifact>(Globals() , Module(Name("libstratego-lib")) ,Unresolved())
+	  )  
+		//TODO : Make it configurable which lib to include by default. Hence remove following hardcoding.
+
+	//Compile  a particular legacy SDF + STR Artifacts . Currently it only supports STR legacy artifacts . TODO  : add others
+	compile-package-legacy-artifacts: 
+	  p@Package(qname) -> p
+	  where	debug-compiler(! $[compile-legacy-artifact-package| Current Package: [<print-as-string>]])
+	  where  with-spxverify( <get-all-enclosed-legacy-artifacts> p => legacy-artifact-details* )
+					; debug-compiler(!$[compile-legacy-artifact-package| Artifact List:[<print-as-string>legacy-artifact-details*]])
+					; with-spxverify(
+							!legacy-artifact-details* 
+							; list-loop(
+						  	{
+						  		verify(?(Package(QName(_)) , Module(_) ,_) 
+												|<id> ,"Illegal Argument ::compile-legacy-artifact-package. Expected : ?(Package(QName(_)) , Module(_) ,_) ")
+							
+									; compile-legacy-artifact
+								<+
+									debug-compiler(!$[compile-legacy-artifact-package:: Failed to resolve legacy artifact [<print-as-string>]]) 
+								})
+			 			)	
+rules
+	
+	compile-legacy-artifact:
+		legacy-artifact-details@(namespace, m@Module(Name(modulename)) , resolving-path) -> legacy-artifact-details
+		where <is-legacy-artifact-resolved>(namespace, modulename, resolving-path) 
+	
+	compile-legacy-artifact:
+		legacy-artifact-details@(namespace, m@Module(Name(modulename)) , resolving-path) -> legacy-artifact-details
+		where not(!resolving-path => Unresolved())
+		where not( <is-legacy-artifact-resolved>(namespace, modulename, resolving-path)) // check to see if already taken care off.
+		where	debug-compiler(!$[compile-legacy-artifact| planning to compile following legacy artifact: [<print-as-string>]]);
+					with-spxverify(
+						<is-string>resolving-path // Verify that the resource has a known extension.
+						;	<has-known-extensions>resolving-path 
+						; {| GetEnclosingModuleName 
+					  	 : 		internal-module-qualified-name := <get_internal_module_qtname><GetEnclosingPackageName>;
+    								<declare-current-module-scope>internal-module-qualified-name ;
+										// Known Extension found. Handling it.
+										// Parsing the legacy content.
+										// Recoding the declarations for further analysis.
+										debug-compiler(!$[compile-legacy-artifact:: Compiling following legacy artifacts : [<print-as-string>resolving-path] for package:[<GetEnclosingPackageName;print-as-string>]]);
+										<declare-legacy-artifact(|resolving-path)><parse-legacy-artifact>resolving-path;
+										<add-legacy-artifact-as-resolved> (namespace, modulename,resolving-path)
+	 							|}
+		 				<+ 	debug-compiler(!$[compile-legacy-artifact:: Error occured in handling [<print-as-string>resolving-path]. Hence, it is ignored.])
+					)
+					
+	compile-legacy-artifact:
+		legacy-artifact-details@(namespace, m@Module(Name(modulename)) , Unresolved()) -> <id>
+		where	debug-compiler(!$[compile-legacy-artifact| planning to compile following legacy artifact: [<print-as-string>]])
+		where	not( <is-legacy-artifact-resolved>(namespace, modulename, Unresolved())) // check to see if already taken care off. 
+		where		
+			// we are only supporting legacy STR lib at this moment which are not located in the file system .
+	    // Hence, it is unresolved , we are giving it a try to resolve it as a lib and store its symbols 
+	    // in global namespace so that it can be used by all  other packages in the project.
+      // checking whether lib exists in cache. If it is , that means it is there in symbol-table. 
+      // hence, it is not required to read and declare all the symbols again.
+          
+		  //Design Decision : Symbols of legacy str libs are stored in the global namespace. It is decided to increase 
+		  // performance of indexing. Since, legacy STR libs do not changes frequently, if we store it in global-cache
+		  // it could be reused for a long time.   
+	    if not(<lib-exists-in-cache>modulename) then
+		  	// checking whether lib exists in global namespace. if it is, then doing nothing. 
+		  	// invalidate global cache is possible via clearing whole index or calling invalidate primitive
+		    // hence, if lib changes which is quite unlikely, clearing index will re-read it back  
+		    	if not(<is-lib-exists-in-global-cache>modulename ) then 
+	        	<get-cached-lib-ast(read-stratego-signatures); declare-legacy-str-imports>modulename; // storing legacy import declaration
+				 		<index-lib-in-global-cache> modulename // update that import is resolved  
+					end
+  		end 
+	  	;	if (not(!namespace => Globals())) then  
+  				<record-legacy-global-import-is-resolved>(namespace , modulename) // Setting flag to denote that lib with modulename is resolved
+				end
+			; <add-legacy-artifact-as-resolved> (namespace, modulename,Unresolved())
+		<+
+			debug-compiler(!$[compile-legacy-artifact::  Error :  failed to resolve folloiwng Import: [<print-as-string>legacy-artifact-details]])
+			
+rules 
+			  
+	mark-issues-of-files =
+		where (is-list); 
+		list-loop(
+		{	?file-path
+			;	(e, w, n) := <get-semantic-problmes-by-file>file-path	
+			;	if <is-not-empty-list> e then   
+					set-has-errors;
+					debug-compiler(!$[----FileName : [<base-filename>file-path] --- Errors : [<print-as-string>(e, w, n)]])  
+				end
+			;	<queue-mark-errors>(file-path,e, w, n)
+		})	
+		
+	// FIXME: MISSING IMPLODER ATTACHMENT WHEN COMPILED FROM ANT SCRIPT
+	// It could not find origin or term attachment while setting up the markers 
+	//-------------------------------------------------------------------- 
+	
+	queue-mark-errors:  
+		(file-path , errors*, warnings*, notes*) -> <id>
+		where is-in-command-line-mode // do nothing 
+		
+	queue-mark-errors: 
+		(file-path , errors*, warnings*, notes*) -> <id>
+		where not(is-in-command-line-mode)
+		where !(file-path , errors*, warnings*, notes*) ;
+			 		queue-strategy(|"mark-issues" , $[marking issues of [<print-as-string>file-path]])
+
+	mark-issues: 
+		(file-path,  errors*, warnings*, notes*) -> <id>
+		where spx-compilation-unit-ast :=		<get-spxcompilation-unit>file-path
+		where <set-spoofax-markers(|file-path)>(spx-compilation-unit-ast,  errors*, warnings*, notes*)	<+	
+					<debug(!"Failed to set Error Markers for ")>file-path
+	 				; fail
+	
+	// FIXME : disable command line mode. fix why origin tracking is not working. 	
+	// Set markers for a given spoofax file
+  // Current term: (ast-desugared, errors, warnings, notes) tuple
+  // file-path: path of the spoofax compilation unit
+  set-spoofax-markers(|file-path) =  is-in-command-line-mode < id + prim("SSL_EXT_set_markers", file-path)

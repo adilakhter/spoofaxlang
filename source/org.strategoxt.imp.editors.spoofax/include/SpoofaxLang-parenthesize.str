@@ -1,0 +1,549 @@
+module include/SpoofaxLang-parenthesize
+
+imports
+  libstratego-lib
+  include/SpoofaxLang
+
+
+strategies
+  io-SpoofaxLang-parenthesize =
+    io-wrap(parenthesize-SpoofaxLang)
+
+  parenthesize-SpoofaxLang =
+    innermost(SpoofaxLangParenthesize)
+
+
+rules
+
+  SpoofaxLangParenthesize :
+    Match(t_0) -> Match(Parenthetical(t_0))
+    where <(?DynRuleIntersectUnion(_, _, _, _)
+            + ?DynRuleUnion(_, _, _)
+            + ?DynRuleIntersect(_, _, _)
+            + ?DynRuleIntersectFix(_, _)
+            + ?DynRuleIntersectUnionFix(_, _, _)
+            + ?DynRuleUnionFix(_, _)
+            + ?AM(_, _)
+            + ?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?BA(_, _)
+            + ?Seq(_, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    Build(t_0) -> Build(Parenthetical(t_0))
+    where <(?DynRuleIntersectUnion(_, _, _, _)
+            + ?DynRuleUnion(_, _, _)
+            + ?DynRuleIntersect(_, _, _)
+            + ?DynRuleIntersectFix(_, _)
+            + ?DynRuleIntersectUnionFix(_, _, _)
+            + ?DynRuleUnionFix(_, _)
+            + ?AM(_, _)
+            + ?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?BA(_, _)
+            + ?Seq(_, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    ExplodeCong(t_0, t_1) -> ExplodeCong(Parenthetical(t_0), t_1)
+    where <(?DynRuleIntersectUnion(_, _, _, _)
+            + ?DynRuleUnion(_, _, _)
+            + ?DynRuleIntersect(_, _, _)
+            + ?DynRuleIntersectFix(_, _)
+            + ?DynRuleIntersectUnionFix(_, _, _)
+            + ?DynRuleUnionFix(_, _)
+            + ?AM(_, _)
+            + ?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?BA(_, _)
+            + ?Seq(_, _)
+            + ?Match(_)
+            + ?Build(_)
+            + ?Assign(_, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    ExplodeCong(t_0, t_1) -> ExplodeCong(t_0, Parenthetical(t_1))
+    where <(?DynRuleIntersectUnion(_, _, _, _)
+            + ?DynRuleUnion(_, _, _)
+            + ?DynRuleIntersect(_, _, _)
+            + ?DynRuleIntersectFix(_, _)
+            + ?DynRuleIntersectUnionFix(_, _, _)
+            + ?DynRuleUnionFix(_, _)
+            + ?AM(_, _)
+            + ?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?BA(_, _)
+            + ?Seq(_, _)
+            + ?Match(_)
+            + ?Build(_)
+            + ?Assign(_, _)
+            + fail)> t_1
+
+  SpoofaxLangParenthesize :
+    AnnoCong(t_0, t_1) -> AnnoCong(Parenthetical(t_0), t_1)
+    where <(?DynRuleIntersectUnion(_, _, _, _)
+            + ?DynRuleUnion(_, _, _)
+            + ?DynRuleIntersect(_, _, _)
+            + ?DynRuleIntersectFix(_, _)
+            + ?DynRuleIntersectUnionFix(_, _, _)
+            + ?DynRuleUnionFix(_, _)
+            + ?AM(_, _)
+            + ?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?BA(_, _)
+            + ?Seq(_, _)
+            + ?Match(_)
+            + ?Build(_)
+            + ?Assign(_, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    AnnoCong(t_0, t_1) -> AnnoCong(t_0, Parenthetical(t_1))
+    where <(?DynRuleIntersectUnion(_, _, _, _)
+            + ?DynRuleUnion(_, _, _)
+            + ?DynRuleIntersect(_, _, _)
+            + ?DynRuleIntersectFix(_, _)
+            + ?DynRuleIntersectUnionFix(_, _, _)
+            + ?DynRuleUnionFix(_, _)
+            + ?AM(_, _)
+            + ?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?BA(_, _)
+            + ?Seq(_, _)
+            + ?Match(_)
+            + ?Build(_)
+            + ?Assign(_, _)
+            + fail)> t_1
+
+  SpoofaxLangParenthesize :
+    comp(t_0) -> comp(Parenthetical(t_0))
+    where <(?union(_, _)
+            + ?isect(_, _)
+            + ?diff(_, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    DynRuleUnion(t_0, t_1, t_2) -> DynRuleUnion(Parenthetical(t_0), t_1, t_2)
+    where <(?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?Seq(_, _)
+            + ?DynRuleIntersectUnion(_, _, _, _)
+            + ?DynRuleUnion(_, _, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    DynRuleUnion(t_0, t_1, t_2) -> DynRuleUnion(t_0, Parenthetical(t_1), t_2)
+    where <(?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?Seq(_, _)
+            + ?DynRuleIntersectUnion(_, _, _, _)
+            + fail)> t_1
+
+  SpoofaxLangParenthesize :
+    DynRuleUnion(t_0, t_1, t_2) -> DynRuleUnion(t_0, t_1, Parenthetical(t_2))
+    where <(?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?Seq(_, _)
+            + ?DynRuleIntersectUnion(_, _, _, _)
+            + fail)> t_2
+
+  SpoofaxLangParenthesize :
+    DynRuleIntersect(t_0, t_1, t_2) -> DynRuleIntersect(Parenthetical(t_0), t_1, t_2)
+    where <(?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?Seq(_, _)
+            + ?DynRuleIntersectUnion(_, _, _, _)
+            + ?DynRuleUnion(_, _, _)
+            + ?DynRuleIntersect(_, _, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    DynRuleIntersect(t_0, t_1, t_2) -> DynRuleIntersect(t_0, Parenthetical(t_1), t_2)
+    where <(?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?Seq(_, _)
+            + ?DynRuleIntersectUnion(_, _, _, _)
+            + ?DynRuleUnion(_, _, _)
+            + fail)> t_1
+
+  SpoofaxLangParenthesize :
+    DynRuleIntersect(t_0, t_1, t_2) -> DynRuleIntersect(t_0, t_1, Parenthetical(t_2))
+    where <(?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?Seq(_, _)
+            + ?DynRuleIntersectUnion(_, _, _, _)
+            + ?DynRuleUnion(_, _, _)
+            + fail)> t_2
+
+  SpoofaxLangParenthesize :
+    AM(t_0, t_1) -> AM(Parenthetical(t_0), t_1)
+    where <(?DynRuleIntersectUnion(_, _, _, _)
+            + ?DynRuleUnion(_, _, _)
+            + ?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?DynRuleIntersect(_, _, _)
+            + ?Seq(_, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    AM(t_0, t_1) -> AM(t_0, Parenthetical(t_1))
+    where <(?DynRuleIntersectUnion(_, _, _, _)
+            + ?DynRuleUnion(_, _, _)
+            + ?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?DynRuleIntersect(_, _, _)
+            + ?Seq(_, _)
+            + fail)> t_1
+
+  SpoofaxLangParenthesize :
+    DynRuleIntersectFix(t_0, t_1) -> DynRuleIntersectFix(Parenthetical(t_0), t_1)
+    where <(?DynRuleIntersectUnion(_, _, _, _)
+            + ?DynRuleUnion(_, _, _)
+            + ?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?DynRuleIntersect(_, _, _)
+            + ?Seq(_, _)
+            + ?AM(_, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    DynRuleIntersectFix(t_0, t_1) -> DynRuleIntersectFix(t_0, Parenthetical(t_1))
+    where <(?DynRuleIntersectUnion(_, _, _, _)
+            + ?DynRuleUnion(_, _, _)
+            + ?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?DynRuleIntersect(_, _, _)
+            + ?Seq(_, _)
+            + ?AM(_, _)
+            + fail)> t_1
+
+  SpoofaxLangParenthesize :
+    DynRuleIntersectUnionFix(t_0, t_1, t_2) -> DynRuleIntersectUnionFix(Parenthetical(t_0), t_1, t_2)
+    where <(?DynRuleIntersectUnion(_, _, _, _)
+            + ?DynRuleUnion(_, _, _)
+            + ?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?DynRuleIntersect(_, _, _)
+            + ?Seq(_, _)
+            + ?AM(_, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    DynRuleIntersectUnionFix(t_0, t_1, t_2) -> DynRuleIntersectUnionFix(t_0, Parenthetical(t_1), t_2)
+    where <(?DynRuleIntersectUnion(_, _, _, _)
+            + ?DynRuleUnion(_, _, _)
+            + ?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?DynRuleIntersect(_, _, _)
+            + ?Seq(_, _)
+            + ?AM(_, _)
+            + fail)> t_1
+
+  SpoofaxLangParenthesize :
+    DynRuleIntersectUnionFix(t_0, t_1, t_2) -> DynRuleIntersectUnionFix(t_0, t_1, Parenthetical(t_2))
+    where <(?DynRuleIntersectUnion(_, _, _, _)
+            + ?DynRuleUnion(_, _, _)
+            + ?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?DynRuleIntersect(_, _, _)
+            + ?Seq(_, _)
+            + ?AM(_, _)
+            + fail)> t_2
+
+  SpoofaxLangParenthesize :
+    DynRuleUnionFix(t_0, t_1) -> DynRuleUnionFix(Parenthetical(t_0), t_1)
+    where <(?DynRuleIntersectUnion(_, _, _, _)
+            + ?DynRuleUnion(_, _, _)
+            + ?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?DynRuleIntersect(_, _, _)
+            + ?Seq(_, _)
+            + ?AM(_, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    DynRuleUnionFix(t_0, t_1) -> DynRuleUnionFix(t_0, Parenthetical(t_1))
+    where <(?DynRuleIntersectUnion(_, _, _, _)
+            + ?DynRuleUnion(_, _, _)
+            + ?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?DynRuleIntersect(_, _, _)
+            + ?Seq(_, _)
+            + ?AM(_, _)
+            + fail)> t_1
+
+  SpoofaxLangParenthesize :
+    BA(t_0, t_1) -> BA(Parenthetical(t_0), t_1)
+    where <(?DynRuleIntersectUnion(_, _, _, _)
+            + ?DynRuleUnion(_, _, _)
+            + ?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?DynRuleIntersect(_, _, _)
+            + ?Seq(_, _)
+            + ?DynRuleIntersectFix(_, _)
+            + ?DynRuleIntersectUnionFix(_, _, _)
+            + ?DynRuleUnionFix(_, _)
+            + ?AM(_, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    BA(t_0, t_1) -> BA(t_0, Parenthetical(t_1))
+    where <(?DynRuleIntersectUnion(_, _, _, _)
+            + ?DynRuleUnion(_, _, _)
+            + ?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?DynRuleIntersect(_, _, _)
+            + ?Seq(_, _)
+            + ?DynRuleIntersectFix(_, _)
+            + ?DynRuleIntersectUnionFix(_, _, _)
+            + ?DynRuleUnionFix(_, _)
+            + ?AM(_, _)
+            + fail)> t_1
+
+  SpoofaxLangParenthesize :
+    diff(t_0, t_1) -> diff(Parenthetical(t_0), t_1)
+    where <(?union(_, _)
+            + ?isect(_, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    diff(t_0, t_1) -> diff(t_0, Parenthetical(t_1))
+    where <(?union(_, _)
+            + ?isect(_, _)
+            + ?diff(_, _)
+            + fail)> t_1
+
+  SpoofaxLangParenthesize :
+    iter(t_0) -> iter(Parenthetical(t_0))
+    where <(?label(_, _)
+            + ?alt(_, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    iter-star(t_0) -> iter-star(Parenthetical(t_0))
+    where <(?label(_, _)
+            + ?alt(_, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    opt(t_0) -> opt(Parenthetical(t_0))
+    where <(?label(_, _)
+            + ?namespacedef(_, _)
+            + ?alt(_, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    DynRuleIntersectUnion(t_0, t_1, t_2, t_3) -> DynRuleIntersectUnion(Parenthetical(t_0), t_1, t_2, t_3)
+    where <(?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?Seq(_, _)
+            + ?DynRuleIntersectUnion(_, _, _, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    DynRuleIntersectUnion(t_0, t_1, t_2, t_3) -> DynRuleIntersectUnion(t_0, Parenthetical(t_1), t_2, t_3)
+    where <(?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?Seq(_, _)
+            + fail)> t_1
+
+  SpoofaxLangParenthesize :
+    DynRuleIntersectUnion(t_0, t_1, t_2, t_3) -> DynRuleIntersectUnion(t_0, t_1, Parenthetical(t_2), t_3)
+    where <(?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?Seq(_, _)
+            + fail)> t_2
+
+  SpoofaxLangParenthesize :
+    DynRuleIntersectUnion(t_0, t_1, t_2, t_3) -> DynRuleIntersectUnion(t_0, t_1, t_2, Parenthetical(t_3))
+    where <(?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?Seq(_, _)
+            + fail)> t_3
+
+  SpoofaxLangParenthesize :
+    alt(t_0, t_1) -> alt(Parenthetical(t_0), t_1)
+    where <(?label(_, _)
+            + ?alt(_, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    alt(t_0, t_1) -> alt(t_0, Parenthetical(t_1))
+    where <(?label(_, _) + fail)> t_1
+
+  SpoofaxLangParenthesize :
+    seq(t_0, t_1) -> seq(Parenthetical(t_0), t_1)
+    where <(?alt(_, _) + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    seq(t_0, t_1) -> seq(t_0, Parenthetical(t_1))
+    where <(?alt(_, _) + fail)> t_1
+
+  SpoofaxLangParenthesize :
+    isect(t_0, t_1) -> isect(Parenthetical(t_0), t_1)
+    where <(?union(_, _) + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    isect(t_0, t_1) -> isect(t_0, Parenthetical(t_1))
+    where <(?union(_, _)
+            + ?isect(_, _)
+            + fail)> t_1
+
+  SpoofaxLangParenthesize :
+    Seq(t_0, t_1) -> Seq(Parenthetical(t_0), t_1)
+    where <(?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?Seq(_, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    Seq(t_0, t_1) -> Seq(t_0, Parenthetical(t_1))
+    where <(?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + fail)> t_1
+
+  SpoofaxLangParenthesize :
+    AnnoList(t_0, t_1) -> AnnoList(Parenthetical(t_0), t_1)
+    where <(?As(_, _) + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    AnnoList(t_0, t_1) -> AnnoList(t_0, Parenthetical(t_1))
+    where <(?As(_, _) + fail)> t_1
+
+  SpoofaxLangParenthesize :
+    Explode(t_0, t_1) -> Explode(Parenthetical(t_0), t_1)
+    where <(?AnnoList(_, _)
+            + ?As(_, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    Explode(t_0, t_1) -> Explode(t_0, Parenthetical(t_1))
+    where <(?AnnoList(_, _)
+            + ?As(_, _)
+            + fail)> t_1
+
+  SpoofaxLangParenthesize :
+    GuardedLChoice(t_0, t_1, t_2) -> GuardedLChoice(Parenthetical(t_0), t_1, t_2)
+    where <(?GuardedLChoice(_, _, _)
+            + ?RChoice(_, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    SDFSectionEH(t_0, t_1) -> SDFSectionEH(Parenthetical(t_0), t_1)
+    where <(?SDFSectionEH(_, _) + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    SDFSectionEH(t_0, t_1) -> SDFSectionEH(t_0, Parenthetical(t_1))
+    where <(?SDFSectionEH(_, _) + fail)> t_1
+
+  SpoofaxLangParenthesize :
+    union(t_0, t_1) -> union(t_0, Parenthetical(t_1))
+    where <(?union(_, _) + fail)> t_1
+
+  SpoofaxLangParenthesize :
+    conc(t_0, t_1) -> conc(Parenthetical(t_0), t_1)
+    where <(?conc(_, _) + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    non-transitive(t_0) -> non-transitive(Parenthetical(t_0))
+    where <(?non-transitive(_) + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    with-arguments(t_0, t_1) -> with-arguments(Parenthetical(t_0), t_1)
+    where <(?with-arguments(_, _) + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    with-arguments(t_0, t_1) -> with-arguments(t_0, Parenthetical(t_1))
+    where <(?with-arguments(_, _) + fail)> t_1
+
+  SpoofaxLangParenthesize :
+    RChoice(t_0, t_1) -> RChoice(Parenthetical(t_0), t_1)
+    where <(?RChoice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?LChoice(_, _)
+            + ?Choice(_, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    Choice(t_0, t_1) -> Choice(Parenthetical(t_0), t_1)
+    where <(?Choice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?RChoice(_, _)
+            + ?LChoice(_, _)
+            + fail)> t_0
+
+  SpoofaxLangParenthesize :
+    LChoice(t_0, t_1) -> LChoice(Parenthetical(t_0), t_1)
+    where <(?LChoice(_, _)
+            + ?GuardedLChoice(_, _, _)
+            + ?RChoice(_, _)
+            + ?Choice(_, _)
+            + fail)> t_0
+
+
+signature
+  constructors
+    Parenthetical : Unknown -> Unknown
+
