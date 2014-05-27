@@ -1,0 +1,58 @@
+package languages.Entitylang 
+
+module generate-dblang 
+
+imports languages.DatabaseLang
+
+rules  
+	to-dblang: Module(x, d* ) ->DatabaseSchema( x ,  <to-dblang>d*)
+    	 
+	to-dblang:
+    Entity(x, p* ) -> TableDef ( x , p'*)
+    with 
+    	i  := <unique-key-column-def> ;
+    	p' := <to-dblang> p* ;
+    	p'* := <conc;flatten-list>(i , p')
+
+
+	to-dblang:  
+  	Property(x, Type(t)) ->   
+  		[ ColumnDef(x , UuidDBType()) ,                
+  			ConstraintDef(fk-name , fk-definition)
+  		]
+  	with 
+  		fk-name :=  <foreign-key-name>( x , t);
+  		fk-definition := <foeirgn-key-constraint-def>( x , t)   
+  		
+	to-dblang: 
+		Property(x , t) -> ColumnDef(x , <to-db-type>t)     
+   	where
+    	not(!t => Type(_))
+ 
+	to-dblang:  t* -> <map(to-dblang)> t*
+
+
+rules 
+	// Converts type to DBType
+  	to-db-type: StringType() -> StringDBType() 
+	
+  	to-db-type: IntegerType() -> IntegerDBType()
+
+  	to-db-type: DateType() -> DateTimeDBType()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	 

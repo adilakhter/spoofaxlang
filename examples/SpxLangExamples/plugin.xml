@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.imp.runtime.languageDescription">
+      <language
+            extensions="ent"
+            description="SpxLangExamples"
+            language="SpxLangExamples"
+            derivedFrom="DynamicRoot"
+            validator="SpxLangExamples.SpxLangExamplesValidator"
+            validatorClass="SpxLangExamples.SpxLangExamplesValidator"
+      ></language>
+   </extension>
+   <extension
+         id="SpxLangExamples.parser"
+         name="SpxLangExamples Parser"
+         point="org.eclipse.imp.runtime.parser">
+      <parser
+            class="SpxLangExamples.SpxLangExamplesParseController"
+            language="SpxLangExamples">
+      </parser>
+   </extension>    
+</plugin>

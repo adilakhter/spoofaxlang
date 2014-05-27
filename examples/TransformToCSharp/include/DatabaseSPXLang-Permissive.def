@@ -1,0 +1,163 @@
+definition
+
+module languages/DatabaseLang/Common
+exports
+  sorts WATER WATERTOKEN WATERTOKENSTART WATERTOKENSEPARATOR WATERTOKENSTAR
+
+  lexical syntax
+    ~[A-Za-z0-9\_]                 -> WATERTOKENSTART     {recover, avoid}
+    WATERTOKENSTART [A-Za-z0-9\_]* -> WATERTOKEN          
+    ~[A-Za-z0-9\_\ \t\12\r\n\*]    -> WATERTOKENSEPARATOR {recover, avoid}
+    "*"                            -> WATERTOKENSTAR      {recover, avoid}
+    WATERTOKEN                     -> WATER               
+    WATERTOKENSEPARATOR            -> WATER               
+    WATERTOKENSTAR                 -> WATER               
+                                   -> WATEREOF            
+
+  lexical restrictions
+    WATERTOKEN -/- [A-Za-z0-9\_]
+    WATERTOKENSTAR -/- [\/]
+
+  context-free syntax
+    WATER -> LAYOUT {cons("WATER")}
+
+  (
+
+  sorts WATEREOF
+
+  lexical restrictions
+    WATEREOF -/- ~[]
+
+  lexical syntax
+    %% Lexical insertion recovery rules                              
+    "\""                                          -> INSERTOPENQUOTE {recover}
+    INSERTOPENQUOTE StringChar* "\n"              -> STRING          {cons("INSERTEND")}
+    INSERTOPENQUOTE StringChar* WATEREOF          -> STRING          {cons("INSERTEND")}
+    "/*"                                          -> INSERTSTART     {recover}
+    INSERTSTART ( ~[\*] | CommentChar )* WATEREOF -> LAYOUT          {cons("INSERTEND")}
+                                                  -> "SCHEMA"        {recover, cons("INSERTION")}
+                                                  -> ";"             {recover, cons("INSERTION")}
+                                                  -> "CREATE"        {recover, cons("INSERTION")}
+                                                  -> ","             {recover, cons("INSERTION")}
+                                                  -> "CONSTRAINT"    {recover, cons("INSERTION")}
+                                                  -> "PRIMARY"       {recover, cons("INSERTION")}
+                                                  -> ")"             {recover, cons("INSERTION")}
+                                                  -> "FOREIGN"       {recover, cons("INSERTION")}
+
+  syntax
+    %% Kernel syntax insertion recovery rules   
+
+  )
+
+  (
+
+  lexical syntax
+    [a-zA-Z\_] [a-zA-Z0-9\_]*          -> ID            
+    "-"? [0-9]+                        -> INT           
+    "\"" StringChar* "\""              -> STRING        
+    ~[\"\n]                            -> StringChar    
+    "\\\""                             -> StringChar    
+    BackSlashChar                      -> StringChar    
+    "\\"                               -> BackSlashChar 
+    [\ \t\n\r]                         -> LAYOUT        
+    [\*]                               -> CommentChar   
+    "/*" ( ~[\*] | CommentChar )* "*/" -> LAYOUT        
+    "//" ~[\n\r]* [\n\r] | EOF         -> LAYOUT        
+                                       -> EOF           
+
+  (
+
+  lexical syntax
+    "KEY"              -> RESERVED 
+    "FOREIGN"          -> RESERVED 
+    "PRIMARY"          -> RESERVED 
+    "REFERENCES"       -> RESERVED 
+    "CONSTRAINT"       -> RESERVED 
+    "TABLE"            -> RESERVED 
+    "SCHEMA"           -> RESERVED 
+    "int"              -> RESERVED 
+    "uniqueidentifier" -> RESERVED 
+    "datetime"         -> RESERVED 
+    RESERVED           -> ID       {reject}
+
+  (
+
+  lexical restrictions
+    CommentChar -/- [\/]
+    INT -/- [0-9]
+    ID -/- [a-zA-Z0-9\_]
+    "SCHEMA" -/- [a-zA-Z0-9\_]
+    EOF -/- ~[]
+    BackSlashChar -/- [\"]
+
+  context-free restrictions
+    LAYOUT? -/- [\ \t\n\r]
+    LAYOUT? -/- [\/] . [\/]
+    LAYOUT? -/- [\/] . [\*]
+
+  )
+
+  )
+
+  )
+
+module languages-Entitylang-generated-Mix[Ctx20]
+
+
+module languages/DatabaseLang/dataDef
+imports languages-Entitylang-generated-Mix[LEG1]
+
+exports
+  context-free start-symbols
+    Start
+
+  (
+
+  context-free syntax
+    "SCHEMA" ID TableDef*                                 -> Start         {cons("DatabaseSchema")}
+    "CREATE" "TABLE" ID "(" {TableProperty ","}* ")" ";"  -> TableDef      {cons("TableDef")}
+    ID DBType                                             -> TableProperty {cons("ColumnDef")}
+    "CONSTRAINT" ID RefConstraint                         -> TableProperty {cons("ConstraintDef")}
+    "PRIMARY" "KEY" "(" ID ")"                            -> RefConstraint {cons("PKConstraint")}
+    "FOREIGN" "KEY" "(" ID ")" "REFERENCES" ID "(" ID ")" -> RefConstraint {cons("FKConstraint")}
+
+  context-free syntax
+    "int"              -> DBType {cons("IntegerDBType"), prefer}
+    "varchar"          -> DBType {cons("StringDBType"), prefer}
+    "datetime"         -> DBType {cons("DateTimeDBType"), prefer}
+    "uniqueidentifier" -> DBType {cons("UuidDBType"), prefer}
+
+  )
+
+module languages/DatabaseLang/languagebuilders
+
+
+module languages/DatabaseLang/prettyprinter
+
+
+module languages/DatabaseLang/adapter
+
+
+module languages-lib-generated-Mix[Ctx18]
+
+
+module languages/DatabaseLang/languagedescription
+imports languages-lib-generated-Mix[LLG1]
+
+module languages/DatabaseLang/codecompletion
+
+
+module languages/DatabaseLang/commonsyntax
+
+
+module languages/DatabaseLang/colordescription
+
+
+module DatabaseSPXLang
+imports languages/DatabaseLang/colordescription
+        languages/DatabaseLang/commonsyntax
+        languages/DatabaseLang/codecompletion
+        languages/DatabaseLang/languagedescription
+        languages/DatabaseLang/adapter languages/DatabaseLang/prettyprinter
+        languages/DatabaseLang/languagebuilders languages/DatabaseLang/dataDef
+        languages/DatabaseLang/Common

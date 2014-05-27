@@ -1,0 +1,29 @@
+Module(
+  "example"
+, [ Entity(
+      "User"
+    , [ Property("name", StringType())
+      , Property("password", StringType())
+      , PropertyExt(
+          "homepage"
+        , Type("URL")
+        , CsharpExpression(
+            QueryExpression(
+              From("url", "URL")
+            , Body([FieldRef("url", "location")])
+            )
+          )
+        )
+      , Property("ID", StringType())
+      ]
+    )
+  , Entity(
+      "BlogPosting"
+    , [Property("poster", Type("User")), Property("body", StringType())]
+    )
+  , Entity(
+      "URL"
+    , [PropertyExt("location", StringType(), JavaExpression(StringValue("\"http://www.website.com\"")))]
+    )
+  ]
+)

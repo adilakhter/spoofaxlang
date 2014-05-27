@@ -1,0 +1,19 @@
+package languages.Entitylang   
+	
+concept LangDescriptor
+	 		
+imports 
+	languages.lib.generated    
+	languages.Entitylang.generated
+	languages.entitylang.transform   		
+
+language General properties 
+                  
+  name          : SpxLangExamples
+  extends       : Root
+                  
+  description   : "Spoofax/IMP-generated(using spoofaxlang) editor for the SpxLangExamples language "
+  url           : http://strategoxt.org
+                  
+  extensions    : ent
+  start symbols : Start   

@@ -28,7 +28,7 @@
 	    	   	category="org.strategoxt.imp.editors.spoofax.category.views"
        			class="org.strategoxt.imp.editors.spoofax.ui.views.SpoofaxPackageExplorerView"
        			id="org.strategoxt.imp.editors.spoofax.ui.views.SpoofaxPackageExplorerView"
-       			name="Spoofaxlang Package Explorer"
+       			name="Spoofaxlang Projects"
        			icon="icons/obj16/package.gif"
        			restorable="true">
 	 				</view>

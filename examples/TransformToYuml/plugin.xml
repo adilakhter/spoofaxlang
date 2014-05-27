@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.imp.runtime.languageDescription">
+      <language
+            extensions="cs"
+            description="TransformToYuml"
+            language="TransformToYuml"
+            derivedFrom="DynamicRoot"
+            validator="languages.transformation.toYUml.TransformToYumlValidator"
+            validatorClass="languages.transformation.toYUml.TransformToYumlValidator"
+      ></language>
+   </extension>
+   <extension
+         id="languages.transformation.toYUml.parser"
+         name="TransformToYuml Parser"
+         point="org.eclipse.imp.runtime.parser">
+      <parser
+            class="languages.transformation.toYUml.TransformToYumlParseController"
+            language="TransformToYuml">
+      </parser>
+   </extension>    
+</plugin>

@@ -1,0 +1,29 @@
+package languages.DatabaseLang
+
+module languagedescription
+
+imports languages.lib.generated
+
+rules 
+	editor-complete:
+		(node, position, ast, path, project-path) ->["varchar", "int" , "datetime" , "uniqueidentifier"]
+		
+	editor-analyze:
+		(ast, path, project-path) -> (ast, [], [], [])
+				
+language General properties
+    
+	name          : DatabaseSPXLang 
+  	extends       : Root
+                  
+  	description   : "Spoofax/IMP-generated editor for the DatabaseSPXLang language"
+  	url           : http://strategoxt.org
+                  
+  	extensions    : sdb
+	start symbols : Start           
+    
+
+	builders
+	    builder  : "Show abstract syntax (for selection)" = generate-aterm    (openeditor) (realtime) (meta) (source)
+ 		builder  : "Show concrete syntax (for selection)" = prettyprint-aterm (openeditor) (realtime) (meta) (source) 
+		observer : editor-analyze   

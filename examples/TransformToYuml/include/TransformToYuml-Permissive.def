@@ -1,0 +1,177 @@
+definition
+
+module languages/transformation/toYUml/TransformToYuml-MainAdapters
+
+
+module languages/transformation/toYUml/Builders
+
+
+module languages/transformation/toYUml/Reference-Resolver
+
+
+module languages/transformation/toYUml/SemanticCompletion
+imports languages/transformation/toYUml/generated/Syntax-Generated
+        languages/transformation/toYUml/generated/ContentCompletion-Generated
+        languages/transformation/toYUml/generated/Colorer-Generated
+        languages/transformation/toYUml/generated/Folding-Generated
+        languages/transformation/toYUml/generated/Outliner-Generated
+        languages/transformation/toYUml/generated/References-Generated
+        languages/transformation/toYUml/generated/Builders
+        languages/transformation/toYUml/generated/CommonStrategies
+
+module languages/transformation/toYUml/TransformToYuml-MainConstructs
+imports languages/transformation/toYUml/generated/Syntax-Generated
+        languages/transformation/toYUml/generated/ContentCompletion-Generated
+        languages/transformation/toYUml/generated/Colorer-Generated
+        languages/transformation/toYUml/generated/Folding-Generated
+        languages/transformation/toYUml/generated/Outliner-Generated
+        languages/transformation/toYUml/generated/References-Generated
+        languages/transformation/toYUml/generated/Builders
+        languages/transformation/toYUml/generated/CommonStrategies
+
+exports
+  context-free syntax
+    "module" ID Definition*       -> Start      {cons("Module")}
+    "entity" ID "{" Property* "}" -> Definition {cons("Entity")}
+    ID ":" Type                   -> Property   {cons("Property")}
+
+module languages/transformation/toYUml/Type-System
+exports
+  context-free syntax
+    ID       -> Type {cons("Type")}
+    "Int"    -> Type {cons("IntegerType"), prefer}
+    "String" -> Type {cons("StringType"), prefer}
+
+module languages/transformation/toYUml/Semantic-Analyzer
+imports languages/transformation/toYUml/generated/Syntax-Generated
+        languages/transformation/toYUml/generated/ContentCompletion-Generated
+        languages/transformation/toYUml/generated/Colorer-Generated
+        languages/transformation/toYUml/generated/Folding-Generated
+        languages/transformation/toYUml/generated/Outliner-Generated
+        languages/transformation/toYUml/generated/References-Generated
+        languages/transformation/toYUml/generated/Builders
+        languages/transformation/toYUml/generated/CommonStrategies
+
+module languages/transformation/toYUml/generated/CommonStrategies
+imports 
+
+module languages/transformation/toYUml/generated/Builders
+
+
+module languages/transformation/toYUml/generated/References-Generated
+
+
+module languages/transformation/toYUml/generated/Outliner-Generated
+
+
+module languages/transformation/toYUml/generated/Folding-Generated
+
+
+module languages/transformation/toYUml/generated/Colorer-Generated
+
+
+module languages/transformation/toYUml/generated/ContentCompletion-Generated
+
+
+module languages/transformation/toYUml/generated/Syntax-Generated
+
+
+module languages/transformation/toYUml/TransformToYuml-Descriptor
+imports languages/transformation/toYUml/generated/Syntax-Generated
+        languages/transformation/toYUml/generated/ContentCompletion-Generated
+        languages/transformation/toYUml/generated/Colorer-Generated
+        languages/transformation/toYUml/generated/Folding-Generated
+        languages/transformation/toYUml/generated/Outliner-Generated
+        languages/transformation/toYUml/generated/References-Generated
+        languages/transformation/toYUml/generated/Builders
+        languages/transformation/toYUml/generated/CommonStrategies
+
+module languages/transformation/toYUml/Outliner
+
+
+module languages/transformation/toYUml/Folding
+
+
+module languages/transformation/toYUml/Colorer
+
+
+module languages/transformation/toYUml/ContentCompletion
+
+
+module languages/transformation/toYUml/Syntax
+
+
+module languages/transformation/toYUml/Identifier
+exports
+  lexical syntax
+    [a-zA-Z] [a-zA-Z0-9]* -> ID 
+
+module languages/transformation/toYUml/Literals
+exports
+  lexical syntax
+    "-"? [0-9]+           -> INT           
+    "\"" StringChar* "\"" -> STRING        
+    ~[\"\n]               -> StringChar    
+    "\\\""                -> StringChar    
+    BackSlashChar         -> StringChar    
+    "\\"                  -> BackSlashChar 
+
+  lexical restrictions
+    CommentChar -/- [\/]
+    INT -/- [0-9]
+    ID -/- [a-zA-Z0-9\_]
+    BackSlashChar -/- [\"]
+
+module languages/transformation/toYUml/Keywords
+exports
+  lexical syntax
+    "Int"    -> RESERVED 
+    "String" -> RESERVED 
+    RESERVED -> ID       {reject}
+
+  lexical restrictions
+    "Int" "String" -/- [A-Za-z0-9\_]
+
+module languages/transformation/toYUml/Layout
+exports
+  lexical syntax
+    [\ \t\n\r]                         -> LAYOUT      
+    [\*]                               -> CommentChar 
+    "/*" ( ~[\*] | CommentChar )* "*/" -> LAYOUT      
+    "//" ~[\n\r]* [\n\r] | EOF         -> LAYOUT      
+                                       -> EOF         
+
+  (
+
+  lexical restrictions
+    EOF -/- ~[]
+
+  context-free restrictions
+    LAYOUT? -/- [\ \t\n\r]
+    LAYOUT? -/- [\/] . [\/]
+    LAYOUT? -/- [\/] . [\*]
+
+  )
+
+module TransformToYuml
+imports languages/transformation/toYUml/Layout
+        languages/transformation/toYUml/Keywords
+        languages/transformation/toYUml/Literals
+        languages/transformation/toYUml/Identifier
+        languages/transformation/toYUml/Syntax
+        languages/transformation/toYUml/ContentCompletion
+        languages/transformation/toYUml/Colorer
+        languages/transformation/toYUml/Folding
+        languages/transformation/toYUml/Outliner
+        languages/transformation/toYUml/TransformToYuml-Descriptor
+        languages/transformation/toYUml/Semantic-Analyzer
+        languages/transformation/toYUml/Type-System
+        languages/transformation/toYUml/TransformToYuml-MainConstructs
+        languages/transformation/toYUml/SemanticCompletion
+        languages/transformation/toYUml/Reference-Resolver
+        languages/transformation/toYUml/Builders
+        languages/transformation/toYUml/TransformToYuml-MainAdapters
+
+exports
+  context-free start-symbols
+    Start

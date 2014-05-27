@@ -1,0 +1,22 @@
+SCHEMA Blogging  
+CREATE TABLE User(  
+   _ID uniqueidentifier
+   ,CONSTRAINT PK__ID PRIMARY KEY (_ID)
+   ,name varchar
+   ,password varchar
+   ,homepage uniqueidentifier
+   ,CONSTRAINT FK_homepage_URL__ID FOREIGN KEY (homepage) REFERENCES URL(_ID)
+    );
+CREATE TABLE BlogPosting(  
+   _ID uniqueidentifier
+   ,CONSTRAINT PK__ID PRIMARY KEY (_ID)
+   ,poster uniqueidentifier
+   ,CONSTRAINT FK_poster_User__ID FOREIGN KEY (poster) REFERENCES User(_ID)
+   ,body varchar
+    );
+CREATE TABLE URL(  
+   _ID uniqueidentifier
+   ,CONSTRAINT PK__ID PRIMARY KEY (_ID)
+   ,location2 varchar
+    );
+

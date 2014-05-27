@@ -1,0 +1,17 @@
+module BloggingWithJavaExpression
+
+entity User {
+  name     : String
+  password : String
+  homepage : URL 
+  ID : String default(from url in URL select url.location)
+}
+
+entity BlogPosting {
+  poster : User
+  body   : String 
+}
+
+entity URL {
+  location : String default("http://www.website.com")
+} 

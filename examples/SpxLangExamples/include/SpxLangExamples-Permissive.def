@@ -1,0 +1,236 @@
+definition
+
+module languages-entitylang-transform-Mix[Ctx10]
+
+
+module languages-lib-generated-Mix[Ctx12]
+
+
+module languages/Entitylang/LangDescriptor
+imports languages-lib-generated-Mix[LLG2]
+        languages-Entitylang-generated-Mix[LEG3]
+        languages-entitylang-transform-Mix[LET1]
+
+module languages/Entitylang/MainAdapters
+
+
+module languages/Entitylang/Builders
+
+
+module languages/Entitylang/Reference-Resolver
+
+
+module languages/Entitylang/SemanticCompletion
+
+
+module languages/Entitylang/ConvertToDbLang
+
+
+module languages/Entitylang/Outliner
+
+
+module languages/Entitylang/Folding
+
+
+module languages/Entitylang/Colorer
+
+
+module languages/Entitylang/ContentCompletion
+
+
+module languages/Entitylang/Syntax
+
+
+module languages/Entitylang/generate-dblang
+imports languages-DatabaseLang-Mix[LD1]
+
+module languages/Entitylang/Identifier
+exports
+  lexical syntax
+    [a-zA-Z] [a-zA-Z0-9]* -> ID 
+
+module languages/Entitylang/Literals
+exports
+  lexical syntax
+    "-"? [0-9]+           -> INT           
+    "\"" StringChar* "\"" -> STRING        
+    ~[\"\n]               -> StringChar    
+    "\\\""                -> StringChar    
+    BackSlashChar         -> StringChar    
+    "\\"                  -> BackSlashChar 
+
+  lexical restrictions
+    CommentChar -/- [\/]
+    INT -/- [0-9]
+    ID -/- [a-zA-Z0-9\_]
+    BackSlashChar -/- [\"]
+
+module languages/Entitylang/Keywords
+exports
+  lexical restrictions
+    "Int" "String" -/- [A-Za-z0-9\_]
+
+  (
+
+  lexical syntax
+    "Int"    -> ID {reject}
+    "String" -> ID {reject}
+
+  lexical syntax
+    "Int"    -> INT {reject}
+    "String" -> INT {reject}
+
+  )
+
+module languages/Entitylang/Layout
+exports
+  lexical syntax
+    [\ \t\n\r]                         -> LAYOUT      
+    [\*]                               -> CommentChar 
+    "/*" ( ~[\*] | CommentChar )* "*/" -> LAYOUT      
+    "//" ~[\n\r]* [\n\r] | EOF         -> LAYOUT      
+                                       -> EOF         
+
+  (
+
+  lexical restrictions
+    EOF -/- ~[]
+
+  context-free restrictions
+    LAYOUT? -/- [\ \t\n\r]
+    LAYOUT? -/- [\/] . [\/]
+    LAYOUT? -/- [\/] . [\*]
+
+  )
+
+module languages/DatabaseLang/Common
+exports
+  lexical syntax
+    [a-zA-Z\_] [a-zA-Z0-9\_]*          -> ID            
+    "-"? [0-9]+                        -> INT           
+    "\"" StringChar* "\""              -> STRING        
+    ~[\"\n]                            -> StringChar    
+    "\\\""                             -> StringChar    
+    BackSlashChar                      -> StringChar    
+    "\\"                               -> BackSlashChar 
+    [\ \t\n\r]                         -> LAYOUT        
+    [\*]                               -> CommentChar   
+    "/*" ( ~[\*] | CommentChar )* "*/" -> LAYOUT        
+    "//" ~[\n\r]* [\n\r] | EOF         -> LAYOUT        
+                                       -> EOF           
+
+  (
+
+  lexical syntax
+    "KEY"              -> RESERVED 
+    "FOREIGN"          -> RESERVED 
+    "PRIMARY"          -> RESERVED 
+    "REFERENCES"       -> RESERVED 
+    "CONSTRAINT"       -> RESERVED 
+    "TABLE"            -> RESERVED 
+    "SCHEMA"           -> RESERVED 
+    "int"              -> RESERVED 
+    "uniqueidentifier" -> RESERVED 
+    "datetime"         -> RESERVED 
+    RESERVED           -> ID       {reject}
+
+  (
+
+  lexical restrictions
+    CommentChar -/- [\/]
+    INT -/- [0-9]
+    ID -/- [a-zA-Z0-9\_]
+    "SCHEMA" -/- [a-zA-Z0-9\_]
+    EOF -/- ~[]
+    BackSlashChar -/- [\"]
+
+  context-free restrictions
+    LAYOUT? -/- [\ \t\n\r]
+    LAYOUT? -/- [\/] . [\/]
+    LAYOUT? -/- [\/] . [\*]
+
+  )
+
+  )
+
+module languages-Entitylang-generated-Mix[Ctx14]
+
+
+module languages/DatabaseLang/dataDef
+imports languages-Entitylang-generated-Mix[LEG3]
+
+exports
+  context-free start-symbols
+    Start
+
+  (
+
+  context-free syntax
+    "SCHEMA" ID TableDef*                                 -> Start         {cons("DatabaseSchema")}
+    "CREATE" "TABLE" ID "(" {TableProperty ","}* ")" ";"  -> TableDef      {cons("TableDef")}
+    ID DBType                                             -> TableProperty {cons("ColumnDef")}
+    "CONSTRAINT" ID RefConstraint                         -> TableProperty {cons("ConstraintDef")}
+    "PRIMARY" "KEY" "(" ID ")"                            -> RefConstraint {cons("PKConstraint")}
+    "FOREIGN" "KEY" "(" ID ")" "REFERENCES" ID "(" ID ")" -> RefConstraint {cons("FKConstraint")}
+
+  context-free syntax
+    "int"              -> DBType {cons("IntegerDBType"), prefer}
+    "varchar"          -> DBType {cons("StringDBType"), prefer}
+    "datetime"         -> DBType {cons("DateTimeDBType"), prefer}
+    "uniqueidentifier" -> DBType {cons("UuidDBType"), prefer}
+
+  )
+
+module languages-DatabaseLang-Mix[Ctx11]
+imports languages/DatabaseLang/dataDef
+          [ Start         => Start[[Ctx11]]
+            TableDef      => TableDef[[Ctx11]]
+            TableProperty => TableProperty[[Ctx11]]
+            RefConstraint => RefConstraint[[Ctx11]]
+            DBType        => DBType[[Ctx11]] ]
+
+imports languages/DatabaseLang/Common
+          [ CommentChar   => CommentChar[[Ctx11]]
+            INT           => INT[[Ctx11]]
+            EOF           => EOF[[Ctx11]]
+            BackSlashChar => BackSlashChar[[Ctx11]]
+            STRING        => STRING[[Ctx11]]
+            StringChar    => StringChar[[Ctx11]]
+            ID            => ID[[Ctx11]]
+            RESERVED      => RESERVED[[Ctx11]] ]
+
+module languages/Entitylang/mainDef
+imports languages-DatabaseLang-Mix[LD1]
+
+exports
+  context-free syntax
+    "module" ID Definition*       -> Start      {cons("Module"), ignored}
+    "entity" ID "{" Property* "}" -> Definition {cons("Entity")}
+    ID ":" Type                   -> Property   {cons("Property")}
+
+module languages/Entitylang/Type-System
+exports
+  context-free syntax
+    ID       -> Type {cons("Type")}
+    "Int"    -> Type {cons("IntegerType"), prefer}
+    "String" -> Type {cons("StringType"), prefer}
+    "date"   -> Type {cons("DateType"), prefer}
+
+module languages/Entitylang/Semantic-Analyzer
+
+
+module SpxLangExamples
+imports languages/Entitylang/Semantic-Analyzer languages/Entitylang/Type-System
+        languages/Entitylang/mainDef languages/Entitylang/Layout
+        languages/Entitylang/Keywords languages/Entitylang/Literals
+        languages/Entitylang/Identifier languages/Entitylang/generate-dblang
+        languages/Entitylang/Syntax languages/Entitylang/ContentCompletion
+        languages/Entitylang/Colorer languages/Entitylang/Folding
+        languages/Entitylang/Outliner languages/Entitylang/ConvertToDbLang
+        languages/Entitylang/SemanticCompletion
+        languages/Entitylang/Reference-Resolver languages/Entitylang/Builders
+        languages/Entitylang/MainAdapters languages/Entitylang/LangDescriptor
+
+exports
+  context-free start-symbols
+    Start

@@ -1,0 +1,24 @@
+module EntityLangExtend-signatures 
+imports 
+	.shadowdir/EntityLangExtend/semanticAnalyzer-signature
+	.shadowdir/EntityLangExtend/typeSystem-signature
+	.shadowdir/EntityLangExtend/languageConcepts-signature
+	.shadowdir/EntityLangExtend/syntaxConfiguration-signature
+	.shadowdir/EntityLangExtend/completionDescriptor-signature
+	.shadowdir/EntityLangExtend/colorDescriptor-signature
+	.shadowdir/EntityLangExtend/foldingDescriptor-signature
+	.shadowdir/EntityLangExtend/outlineDescriptor-signature
+	.shadowdir/EntityLangExtend/contentAssistant-signature
+	.shadowdir/EntityLangExtend/referenceResolver-signature
+	.shadowdir/EntityLangExtend/builderDefinition-signature
+	.shadowdir/EntityLangExtend/builderDescriptor-signature
+	.shadowdir/EntityLangExtend/mainDescriptor-signature
+	.shadowdir/EntityLangExtend/layout-signature
+	.shadowdir/EntityLangExtend/keywordDefinition-signature
+	.shadowdir/EntityLangExtend/literals-signature
+	.shadowdir/EntityLangExtend/identifierDefinition-signature
+	
+imports 
+	.shadowdir/EntityLangExtend/__internal-signature
+imports 
+	.shadowdir/Globals/Signatures	 	 	

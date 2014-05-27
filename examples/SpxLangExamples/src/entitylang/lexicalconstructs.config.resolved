@@ -1,0 +1,16 @@
+Spoofax-lang|Configuration  - C:/spoofaxlang-mysvn/examplelangs/SpxLangExamples/spx.config
+
+Resolved Source Directories:  
+	[("C:/spoofaxlang-mysvn/examplelangs/SpxLangExamples/src",All),("C:/spoofaxlang-mysvn/examplelangs/TransformToCSharp/src",All)] 
+
+Ignored Subdirectories : 
+	[".svn"]
+
+Output Directory : [".shadowdir"]
+
+STR Output Strategy: [CTree]
+
+Debug Options : []
+
+TemplateLang enable/disabled Option: TemplatelangDisabled
+

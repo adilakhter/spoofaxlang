@@ -1,0 +1,24 @@
+module TransformToYuml-signatures 
+imports 
+	.shadowdir/languages/transformation/toYUml/Layout-signature
+	.shadowdir/languages/transformation/toYUml/Keywords-signature
+	.shadowdir/languages/transformation/toYUml/Literals-signature
+	.shadowdir/languages/transformation/toYUml/Identifier-signature
+	.shadowdir/languages/transformation/toYUml/Syntax-signature
+	.shadowdir/languages/transformation/toYUml/ContentCompletion-signature
+	.shadowdir/languages/transformation/toYUml/Colorer-signature
+	.shadowdir/languages/transformation/toYUml/Folding-signature
+	.shadowdir/languages/transformation/toYUml/Outliner-signature
+	.shadowdir/languages/transformation/toYUml/TransformToYuml-Descriptor-signature
+	.shadowdir/languages/transformation/toYUml/Semantic-Analyzer-signature
+	.shadowdir/languages/transformation/toYUml/Type-System-signature
+	.shadowdir/languages/transformation/toYUml/TransformToYuml-MainConstructs-signature
+	.shadowdir/languages/transformation/toYUml/SemanticCompletion-signature
+	.shadowdir/languages/transformation/toYUml/Reference-Resolver-signature
+	.shadowdir/languages/transformation/toYUml/Builders-signature
+	.shadowdir/languages/transformation/toYUml/TransformToYuml-MainAdapters-signature
+	
+imports 
+	.shadowdir/languages/transformation/toYUml/__internal-signature
+imports 
+	.shadowdir/Globals/Signatures	 	 	

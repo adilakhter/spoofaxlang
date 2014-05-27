@@ -1,0 +1,24 @@
+module MiniLinqQuery-signatures 
+imports 
+	.shadowdir/MiniLinqQuery/mainDescriptor-signature
+	.shadowdir/MiniLinqQuery/layout-signature
+	.shadowdir/MiniLinqQuery/keywordDefinition-signature
+	.shadowdir/MiniLinqQuery/literals-signature
+	.shadowdir/MiniLinqQuery/identifierDefinition-signature
+	.shadowdir/MiniLinqQuery/syntaxConfiguration-signature
+	.shadowdir/MiniLinqQuery/completionDescriptor-signature
+	.shadowdir/MiniLinqQuery/colorDescriptor-signature
+	.shadowdir/MiniLinqQuery/foldingDescriptor-signature
+	.shadowdir/MiniLinqQuery/outlineDescriptor-signature
+	.shadowdir/MiniLinqQuery/semanticAnalyzer-signature
+	.shadowdir/MiniLinqQuery/typeSystem-signature
+	.shadowdir/MiniLinqQuery/languageConcepts-signature
+	.shadowdir/MiniLinqQuery/contentAssistant-signature
+	.shadowdir/MiniLinqQuery/referenceResolver-signature
+	.shadowdir/MiniLinqQuery/builderDefinition-signature
+	.shadowdir/MiniLinqQuery/builderDescriptor-signature
+	
+imports 
+	.shadowdir/MiniLinqQuery/__internal-signature
+imports 
+	.shadowdir/Globals/Signatures	 	 	

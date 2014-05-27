@@ -1,0 +1,129 @@
+definition
+
+module MiniLinqQuery/builderDescriptor
+
+
+module MiniLinqQuery/builderDefinition
+
+
+module MiniLinqQuery/referenceResolver
+
+
+module MiniLinqQuery/contentAssistant
+
+
+module MiniLinqQuery/languageConcepts
+exports
+  context-free syntax
+    Expression                    -> Start             {cons("Module")}
+    QueryExpression               -> Expression        {cons("CsharpExpression")}
+    FromClause QueryBody          -> QueryExpression   {cons("QueryExpression")}
+    "from" ID "in" SubExpr        -> FromClause        {cons("From")}
+    "select" {SubExpr ","}+       -> QueryBody         {cons("Body")}
+    VariableReference             -> SubExpr           {avoid}
+    VariableReference "." ID      -> SubExpr           {cons("FieldRef")}
+    ID                            -> VariableReference 
+    "module" ID Definition*       -> Start             {cons("Module")}
+    "entity" ID "{" Property* "}" -> Definition        {cons("Entity")}
+    ID ":" Type                   -> Property          {cons("Property")}
+
+module MiniLinqQuery/typeSystem
+exports
+  context-free syntax
+    ID       -> Type {cons("Type")}
+    "Int"    -> Type {cons("IntegerType"), prefer}
+    "String" -> Type {cons("StringType"), prefer}
+
+module MiniLinqQuery/semanticAnalyzer
+imports MiniLinqQuery-generated-Mix[MG0]
+
+module MiniLinqQuery/outlineDescriptor
+
+
+module MiniLinqQuery/foldingDescriptor
+
+
+module MiniLinqQuery/colorDescriptor
+
+
+module MiniLinqQuery/completionDescriptor
+
+
+module MiniLinqQuery/syntaxConfiguration
+
+
+module MiniLinqQuery/identifierDefinition
+exports
+  lexical syntax
+    [a-zA-Z] [a-zA-Z0-9]* -> ID 
+
+module MiniLinqQuery/literals
+exports
+  lexical syntax
+    "-"? [0-9]+           -> INT           
+    "\"" StringChar* "\"" -> STRING        
+    ~[\"\n]               -> StringChar    
+    "\\\""                -> StringChar    
+    BackSlashChar         -> StringChar    
+    "\\"                  -> BackSlashChar 
+
+  lexical restrictions
+    CommentChar -/- [\/]
+    INT -/- [0-9]
+    ID -/- [a-zA-Z0-9\_]
+    BackSlashChar -/- [\"]
+
+module MiniLinqQuery/keywordDefinition
+exports
+  lexical syntax
+    "Int"    -> RESERVED 
+    "String" -> RESERVED 
+    "in"     -> RESERVED 
+    "select" -> RESERVED 
+    "from"   -> RESERVED 
+    RESERVED -> ID       {reject}
+
+  lexical restrictions
+    "Int" "String" "in" "select" "from" -/- [A-Za-z0-9\_]
+
+module MiniLinqQuery/layout
+exports
+  lexical syntax
+    [\ \t\n\r]                         -> LAYOUT      
+    [\*]                               -> CommentChar 
+    "/*" ( ~[\*] | CommentChar )* "*/" -> LAYOUT      
+    "//" ~[\n\r]* [\n\r] | EOF         -> LAYOUT      
+                                       -> EOF         
+
+  (
+
+  lexical restrictions
+    EOF -/- ~[]
+
+  context-free restrictions
+    LAYOUT? -/- [\ \t\n\r]
+    LAYOUT? -/- [\/] . [\/]
+    LAYOUT? -/- [\/] . [\*]
+
+  )
+
+module MiniLinqQuery-generated-Mix[Ctx9]
+
+
+module MiniLinqQuery/mainDescriptor
+imports MiniLinqQuery-generated-Mix[MG0]
+
+module MiniLinqQuery
+imports MiniLinqQuery/mainDescriptor MiniLinqQuery/layout
+        MiniLinqQuery/keywordDefinition MiniLinqQuery/literals
+        MiniLinqQuery/identifierDefinition MiniLinqQuery/syntaxConfiguration
+        MiniLinqQuery/completionDescriptor MiniLinqQuery/colorDescriptor
+        MiniLinqQuery/foldingDescriptor MiniLinqQuery/outlineDescriptor
+        MiniLinqQuery/semanticAnalyzer MiniLinqQuery/typeSystem
+        MiniLinqQuery/languageConcepts MiniLinqQuery/contentAssistant
+        MiniLinqQuery/referenceResolver MiniLinqQuery/builderDefinition
+        MiniLinqQuery/builderDescriptor
+
+exports
+  context-free start-symbols
+    Start

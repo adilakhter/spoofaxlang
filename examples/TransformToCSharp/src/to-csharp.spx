@@ -1,0 +1,41 @@
+package languages.entitylang.transform
+
+module tocsharp
+	imports languages.Entitylang
+	imports languages.Entitylang.generated
+	
+rules 
+	to-csharp: Module(x, d*) ->
+$[namespace [x]
+{
+    [d'*]
+}
+]
+    with
+      d'* := <to-csharp> d*
+  
+	to-csharp: 
+		Entity(x, p*) -> 
+$[class [x] 
+{
+ [p'*]
+}
+
+]
+    with
+		p'* := <to-csharp> p*
+
+	to-csharp: Property(x, type) -> 
+$[public [<to-csharp>type]  [x]{ get; set; }
+]     
+  	
+	to-csharp: t* -> <map(to-csharp)> t* 
+	
+rules
+	// Transforming SpxLangExamples types to java types  
+	to-csharp: Type(t) -> t
+ 
+	to-csharp: IntegerType() -> "int"
+    
+	to-csharp: StringType() -> "string"  
+

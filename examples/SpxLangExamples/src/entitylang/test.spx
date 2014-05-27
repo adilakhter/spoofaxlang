@@ -1,0 +1,8 @@
+package Test.NewLang
+
+module scope-problem
+	imports languages.Entitylang
+	
+	context-free syntax 
+			ID  ":" Type               		    -> Property2{"Property"}
+			ID  ":" Type               		    -> Property3{"Property"}                

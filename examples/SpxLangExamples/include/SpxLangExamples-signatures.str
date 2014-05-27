@@ -1,0 +1,26 @@
+module SpxLangExamples-signatures 
+imports 
+	.shadowdir/languages/Entitylang/Semantic-Analyzer-signature
+	.shadowdir/languages/Entitylang/Type-System-signature
+	.shadowdir/languages/Entitylang/mainDef-signature
+	.shadowdir/languages/Entitylang/Layout-signature
+	.shadowdir/languages/Entitylang/Keywords-signature
+	.shadowdir/languages/Entitylang/Literals-signature
+	.shadowdir/languages/Entitylang/Identifier-signature
+	.shadowdir/languages/Entitylang/generate-dblang-signature
+	.shadowdir/languages/Entitylang/Syntax-signature
+	.shadowdir/languages/Entitylang/ContentCompletion-signature
+	.shadowdir/languages/Entitylang/Colorer-signature
+	.shadowdir/languages/Entitylang/Folding-signature
+	.shadowdir/languages/Entitylang/Outliner-signature
+	.shadowdir/languages/Entitylang/ConvertToDbLang-signature
+	.shadowdir/languages/Entitylang/SemanticCompletion-signature
+	.shadowdir/languages/Entitylang/Reference-Resolver-signature
+	.shadowdir/languages/Entitylang/Builders-signature
+	.shadowdir/languages/Entitylang/MainAdapters-signature
+	.shadowdir/languages/Entitylang/LangDescriptor-signature
+	
+imports 
+	.shadowdir/languages/Entitylang/__internal-signature
+imports 
+	.shadowdir/Globals/Signatures	 	 	

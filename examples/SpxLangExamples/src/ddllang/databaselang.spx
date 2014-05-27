@@ -1,0 +1,106 @@
+package languages.DatabaseLang         
+
+module dataDef
+	imports languages.Entitylang.generated
+	
+  context-free start-symbols  
+    Start     
+
+  context-free syntax
+    "SCHEMA"  ID TableDef*			                          -> Start {"DatabaseSchema"}
+    "CREATE" "TABLE"  ID "(" {TableProperty ","}* ")" ";"	   -> TableDef {"TableDef"}
+    ID   DBType							         			  -> TableProperty{"ColumnDef"}
+    "CONSTRAINT"  ID  RefConstraint							  -> TableProperty{"ConstraintDef"}
+    "PRIMARY" "KEY" "(" ID ")"	 							  -> RefConstraint{"PKConstraint"}
+    "FOREIGN" "KEY"  "(" ID ")" "REFERENCES"	ID "(" ID ")"     -> RefConstraint{"FKConstraint"}
+            
+   context-free syntax 
+		"int"			   -> DBType{"IntegerDBType",prefer}
+		"varchar" 		   -> DBType{"StringDBType",  prefer}
+		"datetime" 		   -> DBType{"DateTimeDBType",prefer} 
+		"uniqueidentifier" -> DBType{"UuidDBType",    prefer}	          	  
+
+
+module languagebuilders             
+
+	
+
+rules
+	// Prints the abstract syntax ATerm of a selection.
+  	generate-aterm:
+    	(selected, position, ast, path, project-path) -> (filename, result)
+    	with
+			filename := <guarantee-extension(|"aterm")> path;
+  			result   := selected // we just return the input term
+      		
+			// Prints the abstract syntax ATerm of a selection.
+	prettyprint-aterm:
+		(selected, position, ast, path, project-path) -> (filename, result)
+		with
+	  		filename := <guarantee-extension(|"pp.sdb")> path;
+      		result   := <pp-dblang>selected // we just return the input term
+
+module  prettyprinter
+	
+	rules	
+		pp-dblang: 
+			DatabaseSchema(x, td*) ->
+			$[SCHEMA [x]  
+  		  [<pp-dblang> td*]
+			 ]	
+			
+		pp-dblang: 
+				TableDef(x, c*) -> 
+  			$[CREATE TABLE [x](  
+  			     [<pp-dblang;separate-by(|","); concat-strings> c*] );
+  			]
+  		
+		pp-dblang : 
+				ColumnDef(x, t) -> 
+				$[[x] [<pp-db-type>t]
+    		]
+		pp-dblang:
+				ConstraintDef(x , refconstraint) -> 
+    		$[CONSTRAINT [x] [<pp-dblang>refconstraint]
+    		]
+			
+		pp-dblang:
+			FKConstraint(x, tName, cName) ->  
+			$[FOREIGN KEY ([x]) REFERENCES [tName]([cName])]
+			
+		pp-dblang: 
+			PKConstraint(cName) ->   
+			$[PRIMARY KEY ([cName])]
+		
+		pp-dblang : 
+			t* -> <map(pp-dblang)>t*
+			
+
+	rules 
+		pp-db-type: StringDBType() -> "varchar"
+
+		pp-db-type: IntegerDBType() -> "int"
+
+		pp-db-type: DateTimeDBType() -> "datetime"
+  	
+		pp-db-type: UuidDBType()-> "uniqueidentifier"
+
+			
+
+module adapter  
+
+	rules
+		unique-column-name = !"_ID"
+		
+		primary-key-name = is-string ; ! $[PK_[<id>]]
+		
+		foreign-key-name  = ?(cname , tablename) ; ! $[FK_[cname]_[tablename]_[<unique-column-name>]]
+		
+		foeirgn-key-constraint-def : 
+			(cname , tablename) ->  FKConstraint( cname , tablename , <unique-column-name>)
+			
+		unique-key-column-def = 
+			![ColumnDef(<unique-column-name>  , UuidDBType()), 
+				ConstraintDef(<unique-column-name;primary-key-name>, PKConstraint(<unique-column-name> ))
+			 ]
+			 	

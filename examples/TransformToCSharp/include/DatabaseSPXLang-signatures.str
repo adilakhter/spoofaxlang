@@ -1,0 +1,16 @@
+module DatabaseSPXLang-signatures 
+imports 
+	.shadowdir/languages/DatabaseLang/colordescription-signature
+	.shadowdir/languages/DatabaseLang/commonsyntax-signature
+	.shadowdir/languages/DatabaseLang/codecompletion-signature
+	.shadowdir/languages/DatabaseLang/languagedescription-signature
+	.shadowdir/languages/DatabaseLang/adapter-signature
+	.shadowdir/languages/DatabaseLang/prettyprinter-signature
+	.shadowdir/languages/DatabaseLang/languagebuilders-signature
+	.shadowdir/languages/DatabaseLang/dataDef-signature
+	.shadowdir/languages/DatabaseLang/Common-signature
+	
+imports 
+	.shadowdir/languages/DatabaseLang/__internal-signature
+imports 
+	.shadowdir/Globals/Signatures	 	 	

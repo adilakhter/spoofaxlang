@@ -1,0 +1,8 @@
+Module(
+  CsharpExpression(
+    QueryExpression(
+      From("s", "S1")
+    , Body([FieldRef("s", "ID")])
+    )
+  )
+)

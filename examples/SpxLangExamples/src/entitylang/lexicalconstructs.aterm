@@ -1,0 +1,23 @@
+KeywordSection(
+  KeywordSymbols([sort("ID"), sort("INT")])
+, Keywords(["Int", "String"])
+, Some(
+    FollowRestriction(
+      single(
+        char-class(
+          simple-charclass(
+            present(
+              conc(
+                range(short("A"), short("Z"))
+              , conc(
+                  range(short("a"), short("z"))
+                , conc(range(short("0"), short("9")), short("\\_"))
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+)

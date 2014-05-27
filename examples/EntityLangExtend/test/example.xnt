@@ -1,0 +1,19 @@
+module example
+
+// Example "EntityLangExtend" program (see src/EntityLangExtend -Definitions.spx for the language definition)
+
+entity User {
+  name     : String
+  password : String
+  homepage : URL 
+  ID : String 
+}
+
+entity BlogPosting {
+  poster : User
+  body   : String 
+}
+
+entity URL {
+  location : String 
+} 

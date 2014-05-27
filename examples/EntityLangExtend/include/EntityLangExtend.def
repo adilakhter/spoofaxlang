@@ -1,0 +1,344 @@
+definition
+module EntityLangExtend/builderDescriptor
+
+
+module EntityLangExtend/builderDefinition
+
+
+module EntityLangExtend/referenceResolver
+
+
+module EntityLangExtend/contentAssistant
+
+
+module org/lang/csharp/ExprDef
+exports
+  context-free syntax
+    QueryExpression          -> Expression        {cons("CsharpExpression")}
+    FromClause QueryBody     -> QueryExpression   {cons("QueryExpression")}
+    "from" ID "in" SubExpr   -> FromClause        {cons("From")}
+    "select" {SubExpr ","}+  -> QueryBody         {cons("Body")}
+    VariableReference        -> SubExpr           {avoid}
+    VariableReference "." ID -> SubExpr           {cons("FieldRef")}
+    ID                       -> VariableReference 
+
+module org/lang/csharp/identifierDefinition
+exports
+  lexical syntax
+    [a-zA-Z] [a-zA-Z0-9]* -> ID 
+
+module org/lang/csharp/literals
+exports
+  lexical syntax
+    "-"? [0-9]+           -> INT           
+    "\"" StringChar* "\"" -> STRING        
+    ~[\"\n]               -> StringChar    
+    "\\\""                -> StringChar    
+    BackSlashChar         -> StringChar    
+    "\\"                  -> BackSlashChar 
+
+  lexical restrictions
+    CommentChar -/- [\/]
+    INT -/- [0-9]
+    ID -/- [a-zA-Z0-9\_]
+    BackSlashChar -/- [\"]
+
+module org/lang/csharp/keywordDefinition
+exports
+  lexical syntax
+    "Int"    -> RESERVED 
+    "String" -> RESERVED 
+    "in"     -> RESERVED 
+    "select" -> RESERVED 
+    "from"   -> RESERVED 
+    RESERVED -> ID       {reject}
+
+  lexical restrictions
+    "Int" "String" "in" "select" "from" -/- [A-Za-z0-9\_]
+
+module org/lang/csharp/layout
+exports
+  lexical syntax
+    [\ \t\n\r]                         -> LAYOUT      
+    [\*]                               -> CommentChar 
+    "/*" ( ~[\*] | CommentChar )* "*/" -> LAYOUT      
+    "//" ~[\n\r]* [\n\r] | EOF         -> LAYOUT      
+                                       -> EOF         
+
+  (
+
+  lexical restrictions
+    EOF -/- ~[]
+
+  context-free restrictions
+    LAYOUT? -/- [\ \t\n\r]
+    LAYOUT? -/- [\/] . [\/]
+    LAYOUT? -/- [\/] . [\*]
+
+  )
+
+module org-lang-csharp-Mix[Ctx3]
+imports org/lang/csharp/layout
+
+          [ EOF         => EOF[[Ctx3]]
+            CommentChar => CommentChar[[Ctx3]] ]
+
+imports org/lang/csharp/keywordDefinition
+
+          [ ID       => ID[[Ctx3]]
+            RESERVED => RESERVED[[Ctx3]] ]
+
+imports org/lang/csharp/literals
+
+          [ STRING        => STRING[[Ctx3]]
+            BackSlashChar => BackSlashChar[[Ctx3]]
+            StringChar    => StringChar[[Ctx3]]
+            INT           => INT[[Ctx3]] ]
+
+imports org/lang/csharp/identifierDefinition
+
+          [ ID => ID[[Ctx3]] ]
+
+imports org/lang/csharp/ExprDef
+
+          [ VariableReference => VariableReference[[Ctx3]]
+            FromClause        => FromClause[[Ctx3]]
+            SubExpr           => SubExpr[[Ctx3]]
+            Expression        => Expression[[Ctx3]]
+            QueryBody         => QueryBody[[Ctx3]]
+            QueryExpression   => QueryExpression[[Ctx3]] ]
+
+module org/lang/java/ExprDef
+exports
+  context-free syntax
+    JExpression                  -> Expression        {cons("JavaExpression")}
+    JExpression "+" JExpression  -> JExpression       {left, cons("Add")}
+    JExpression "-" JExpression  -> JExpression       {left, cons("Sub")}
+    JExpression "*" JExpression  -> JExpression       {left, cons("Mul")}
+    JExpression "<" JExpression  -> JExpression       {left, cons("Lt")}
+    JExpression "&&" JExpression -> JExpression       {left, cons("And")}
+    "(" JExpression ")"          -> JExpression       {bracket}
+    VariableReference            -> JExpression       {avoid}
+    ID                           -> VariableReference 
+    INT                          -> JExpression       {cons("IntValue")}
+    STRING                       -> JExpression       {cons("StringValue")}
+    "true"                       -> JExpression       {cons("True")}
+    "false"                      -> JExpression       {cons("False")}
+
+  context-free priorities
+    {left:
+      Exp "*" Exp -> Exp 
+    } >
+    {left:
+      Exp "+" Exp -> Exp 
+      Exp "-" Exp -> Exp 
+    } >
+    {left:
+      Exp "<" Exp -> Exp 
+    } >
+    {left:
+      Exp "&&" Exp -> Exp 
+    }
+
+module org/lang/java/identifierDefinition
+exports
+  lexical syntax
+    [a-zA-Z] [a-zA-Z0-9]* -> ID 
+
+module org/lang/java/literals
+exports
+  lexical syntax
+    "-"? [0-9]+           -> INT           
+    "\"" StringChar* "\"" -> STRING        
+    ~[\"\n]               -> StringChar    
+    "\\\""                -> StringChar    
+    BackSlashChar         -> StringChar    
+    "\\"                  -> BackSlashChar 
+
+  lexical restrictions
+    CommentChar -/- [\/]
+    INT -/- [0-9]
+    ID -/- [a-zA-Z0-9\_]
+    BackSlashChar -/- [\"]
+
+module org/lang/java/keywordDefinition
+exports
+  lexical syntax
+    "Int"    -> RESERVED 
+    "String" -> RESERVED 
+    RESERVED -> ID       {reject}
+
+  lexical restrictions
+    "Int" "String" -/- [A-Za-z0-9\_]
+
+module org/lang/java/layout
+exports
+  lexical syntax
+    [\ \t\n\r]                         -> LAYOUT      
+    [\*]                               -> CommentChar 
+    "/*" ( ~[\*] | CommentChar )* "*/" -> LAYOUT      
+    "//" ~[\n\r]* [\n\r] | EOF         -> LAYOUT      
+                                       -> EOF         
+
+  (
+
+  lexical restrictions
+    EOF -/- ~[]
+
+  context-free restrictions
+    LAYOUT? -/- [\ \t\n\r]
+    LAYOUT? -/- [\/] . [\/]
+    LAYOUT? -/- [\/] . [\*]
+
+  )
+
+module org-lang-java-Mix[Ctx0]
+imports org/lang/java/layout
+
+          [ CommentChar => CommentChar[[Ctx0]]
+            EOF         => EOF[[Ctx0]] ]
+
+imports org/lang/java/keywordDefinition
+
+          [ RESERVED => RESERVED[[Ctx0]]
+            ID       => ID[[Ctx0]] ]
+
+imports org/lang/java/literals
+
+          [ INT           => INT[[Ctx0]]
+            BackSlashChar => BackSlashChar[[Ctx0]]
+            StringChar    => StringChar[[Ctx0]]
+            STRING        => STRING[[Ctx0]] ]
+
+imports org/lang/java/identifierDefinition
+
+          [ ID => ID[[Ctx0]] ]
+
+imports org/lang/java/ExprDef
+
+          [ Exp               => Exp[[Ctx0]]
+            JExpression       => JExpression[[Ctx0]]
+            VariableReference => VariableReference[[Ctx0]]
+            Expression        => Expression[[Ctx0]] ]
+
+module EntityLangExtend/languageConcepts
+imports org-lang-java-Mix[OLJ0] org-lang-csharp-Mix[OLC0]
+
+exports
+  context-free syntax
+    "module" ID Definition*                          -> Start      {cons("Module")}
+    "entity" ID "{" Property* "}"                    -> Definition {cons("Entity")}
+    ID ":" Type                                      -> Property   {cons("Property")}
+    ID ":" Type "default" "(" Expression[[OLJ0]] ")" -> Property   {cons("PropertyExt")}
+    ID ":" Type "default" "(" Expression[[OLC0]] ")" -> Property   {cons("PropertyExt")}
+
+module EntityLangExtend/typeSystem
+exports
+  context-free syntax
+    ID       -> Type {cons("Type")}
+    "Int"    -> Type {cons("IntegerType"), prefer}
+    "String" -> Type {cons("StringType"), prefer}
+
+module EntityLangExtend/semanticAnalyzer
+imports EntityLangExtend-generated-Mix[EG0]
+
+module EntityLangExtend/outlineDescriptor
+
+
+module EntityLangExtend/foldingDescriptor
+
+
+module EntityLangExtend/colorDescriptor
+
+
+module EntityLangExtend/completionDescriptor
+
+
+module EntityLangExtend/syntaxConfiguration
+
+
+module EntityLangExtend/identifierDefinition
+exports
+  lexical syntax
+    [a-zA-Z] [a-zA-Z0-9]* -> ID 
+
+module EntityLangExtend/literals
+exports
+  lexical syntax
+    "-"? [0-9]+           -> INT           
+    "\"" StringChar* "\"" -> STRING        
+    ~[\"\n]               -> StringChar    
+    "\\\""                -> StringChar    
+    BackSlashChar         -> StringChar    
+    "\\"                  -> BackSlashChar 
+
+  lexical restrictions
+    CommentChar -/- [\/]
+    INT -/- [0-9]
+    ID -/- [a-zA-Z0-9\_]
+    BackSlashChar -/- [\"]
+
+module EntityLangExtend/keywordDefinition
+exports
+  lexical syntax
+    "Int"      -> RESERVED 
+    "String"   -> RESERVED 
+    "in"       -> RESERVED 
+    "select"   -> RESERVED 
+    "from"     -> RESERVED 
+    "defautlt" -> RESERVED 
+    RESERVED   -> ID       {reject}
+
+  lexical restrictions
+    "Int" "String" "in" "select" "from" "defautlt" -/- [A-Za-z0-9\_]
+
+module EntityLangExtend/layout
+exports
+  lexical syntax
+    [\ \t\n\r]                         -> LAYOUT      
+    [\*]                               -> CommentChar 
+    "/*" ( ~[\*] | CommentChar )* "*/" -> LAYOUT      
+    "//" ~[\n\r]* [\n\r] | EOF         -> LAYOUT      
+                                       -> EOF         
+
+  (
+
+  lexical restrictions
+    EOF -/- ~[]
+
+  context-free restrictions
+    LAYOUT? -/- [\ \t\n\r]
+    LAYOUT? -/- [\/] . [\/]
+    LAYOUT? -/- [\/] . [\*]
+
+  )
+
+module EntityLangExtend-generated-Mix[Ctx2]
+
+
+module EntityLangExtend/mainDescriptor
+imports EntityLangExtend-generated-Mix[EG0]
+
+module EntityLangExtend
+imports EntityLangExtend/mainDescriptor
+ EntityLangExtend/layout
+ EntityLangExtend/keywordDefinition
+ EntityLangExtend/literals
+ EntityLangExtend/identifierDefinition
+ EntityLangExtend/syntaxConfiguration
+ EntityLangExtend/completionDescriptor
+ EntityLangExtend/colorDescriptor
+ EntityLangExtend/foldingDescriptor
+ EntityLangExtend/outlineDescriptor
+ EntityLangExtend/semanticAnalyzer
+ EntityLangExtend/typeSystem
+ EntityLangExtend/languageConcepts
+ EntityLangExtend/contentAssistant
+ EntityLangExtend/referenceResolver
+ EntityLangExtend/builderDefinition
+ EntityLangExtend/builderDescriptor
+
+
+exports
+  context-free start-symbols
+    Start

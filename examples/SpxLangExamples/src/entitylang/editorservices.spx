@@ -1,0 +1,67 @@
+package languages.Entitylang   
+	 		
+module Outliner
+		 	
+outliner
+  
+  // This file can be used for custom outliner rules.
+  //
+  // See the imported file for a brief introduction and examples.
+	Start.Module
+	Definition.Entity
+
+	 		
+module Folding    
+		 	
+folding
+  
+  // This file can be used for custom folding rules.
+  //
+  // See the imported file for a brief introduction and examples.
+	Start.Module
+	Definition.Entity
+
+	 			
+module Colorer
+	      
+colorer
+                                                                      
+  // This file can be used for custom colorer rules.                  
+  //                                                                  
+  // See the imported file for a brief introduction and examples.     
+colorer   
+                          
+  Type : 66 92 217 bold    	
+
+	 		
+module ContentCompletion
+	 	
+completions
+                                                                   
+  // This module is used to define content completion.             
+  //                                                               
+  // See the imported file for a brief introduction and examples.  
+                                                                   
+completions
+                                             
+  // Syntax completion:                      
+                                             
+  completion template Start :
+    "module " <m> (blank)  
+                                             
+  completion template Definition :
+    "entity " <e> " {" (cursor) "}" (blank)  
+                                             
+  completion template Property : "property" =
+    <x> " : " <T> (blank)         
+	 			
+module Syntax
+	 
+	 
+	 	
+	language                                                           
+	                                                                   
+	  // This file can be used for custom syntax rules.                
+	  //                                                               
+	  // See the imported file for a brief introduction and examples.  
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.imp.runtime.languageDescription">
+      <language
+            extensions="tra"
+            description="TransformToCSharp"
+            language="TransformToCSharp"
+            derivedFrom="DynamicRoot"
+            validator="languages.EntityLang.transform.tocsharp.TransformToCSharpValidator"
+            validatorClass="languages.EntityLang.transform.tocsharp.TransformToCSharpValidator"
+      ></language>
+   </extension>
+   <extension
+         id="languages.EntityLang.transform.tocsharp.parser"
+         name="TransformToCSharp Parser"
+         point="org.eclipse.imp.runtime.parser">
+      <parser
+            class="languages.EntityLang.transform.tocsharp.TransformToCSharpParseController"
+            language="TransformToCSharp">
+      </parser>
+   </extension>    
+</plugin>

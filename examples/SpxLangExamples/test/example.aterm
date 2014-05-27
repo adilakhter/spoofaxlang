@@ -1,0 +1,16 @@
+Module(
+  "Blogging"
+, [ Entity(
+      "User"
+    , [ Property("name", StringType())
+      , Property("password", StringType())
+      , Property("homepage", Type("URL"))
+      ]
+    )
+  , Entity(
+      "BlogPosting"
+    , [Property("poster", Type("User")), Property("body", StringType())]
+    )
+  , Entity("URL", [Property("location2", StringType())])
+  ]
+)
