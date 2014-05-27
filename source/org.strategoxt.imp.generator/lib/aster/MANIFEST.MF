@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: org.strategoxt.aster.Main
+Class-Path: strategoxt.jar
+

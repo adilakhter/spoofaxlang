@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Class-Path: strategoxt.jar
+Created-By: 1.6.0_22 (Apple Inc.)
+Main-Class: org.strategoxt.aster.Main
+

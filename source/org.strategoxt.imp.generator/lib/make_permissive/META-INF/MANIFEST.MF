@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Class-Path: strategoxt.jar
+Created-By: 1.6.0_26 (Apple Inc.)
+Main-Class: org.strategoxt.permissivegrammars.make_permissive
+

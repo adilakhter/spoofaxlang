@@ -1,0 +1,824 @@
+module Stratego-Java-EditorService
+
+signature
+  constructors
+    Some                       : TypeArgs_JavaObject -> OptTypeArgs_JavaObject0
+    None                       : OptTypeArgs_JavaObject0
+                               : TypeArgs_JavaObject -> OptTypeArgs_JavaObject0
+                               : InterfaceMod_JavaObject -> Anno_JavaObject_InterfaceMod_JavaObject0
+                               : Anno_JavaObject -> Anno_JavaObject_InterfaceMod_JavaObject0
+                               : AbstractMethodMod_JavaObject -> Anno_JavaObject_AbstractMethodMod_JavaObject0
+                               : Anno_JavaObject -> Anno_JavaObject_AbstractMethodMod_JavaObject0
+                               : ConstantMod_JavaObject -> Anno_JavaObject_ConstantMod_JavaObject0
+                               : Anno_JavaObject -> Anno_JavaObject_ConstantMod_JavaObject0
+    None                       : OptEnumConstArgs_JavaObject0
+    Conc                       : ListStarOfCharClass1 * ListPlusOfCharClass1 -> ListPlusOfCharClass1
+    Conc                       : ListPlusOfCharClass1 * ListStarOfCharClass1 -> ListPlusOfCharClass1
+    Conc                       : ListPlusOfCharClass1 * ListPlusOfCharClass1 -> ListPlusOfCharClass1
+    Cons                       : Int * ListStarOfCharClass1 -> ListPlusOfCharClass1
+                               : FieldMod_JavaObject -> Anno_JavaObject_FieldMod_JavaObject0
+                               : Anno_JavaObject -> Anno_JavaObject_FieldMod_JavaObject0
+                               : VarMod_JavaObject -> Anno_JavaObject_VarMod_JavaObject0
+                               : Anno_JavaObject -> Anno_JavaObject_VarMod_JavaObject0
+                               : ConstrMod_JavaObject -> Anno_JavaObject_ConstrMod_JavaObject0
+                               : Anno_JavaObject -> Anno_JavaObject_ConstrMod_JavaObject0
+                               : ClassMod_JavaObject -> Anno_JavaObject_ClassMod_JavaObject0
+                               : Anno_JavaObject -> Anno_JavaObject_ClassMod_JavaObject0
+                               : MethodMod_JavaObject -> Anno_JavaObject_MethodMod_JavaObject0
+                               : Anno_JavaObject -> Anno_JavaObject_MethodMod_JavaObject0
+                               : Term_StrategoHost -> QuotedTerms
+    App                        : Strategy_StrategoHost * Term_StrategoHost -> QuotedTerm
+                               : Term_StrategoHost -> QuotedTerm
+    ImportRenamed              : ModuleName * Id -> Import
+    Import                     : ModuleName -> Import
+    NoImports                  : Imports
+    Imports                    : List(Import) -> Imports
+    Module                     : ModuleName * Imports * List(Section) -> Module
+    FromMetaExpr               : QuotedTerm -> ModuleName
+                               : String -> ModuleName
+    Source                     : BuilderOption
+    Cursor                     : BuilderOption
+    Meta                       : BuilderOption
+    Persistent                 : BuilderOption
+    RealTime                   : BuilderOption
+    OpenEditor                 : BuilderOption
+    Linked                     : CompletionAnno
+    Blank                      : CompletionAnno
+    Disable                    : CompletionAnno
+                               : CompletionAnno -> OptCompletionAnno
+    None                       : OptCompletionAnno
+    PlaceholderWithSort        : PlaceholderWithSortPrefix * Id -> CompletionPart
+    Cursor                     : CompletionPart
+    Placeholder                : Placeholder -> CompletionPart
+                               : String -> CompletionPart
+    CompletionPrefix           : String -> CompletionPrefix
+    NoCompletionPrefix         : CompletionPrefix
+                               : String -> Placeholder
+                               : String -> PlaceholderWithSortPrefix
+                               : String -> AttributeId
+                               : Id -> AttributeId
+                               : NoColor -> MaybeColor
+                               : Color -> MaybeColor
+    NoColor                    : NoColor
+    FromMetaExpr               : QuotedTerm -> Color
+    ColorRGB                   : Int * Int * Int -> Color
+    ColorDefault               : Color
+    FromMetaExpr               : QuotedTerm -> Font
+    BOLD_ITALIC                : Font
+    ITALIC                     : Font
+    BOLD                       : Font
+    NORMAL                     : Font
+    TK_UNKNOWN                 : TokenKindName
+    TK_ERROR                   : TokenKindName
+    TK_VAR                     : TokenKindName
+    TK_OPERATOR                : TokenKindName
+    TK_KEYWORD                 : TokenKindName
+    TK_STRING                  : TokenKindName
+    TK_LAYOUT                  : TokenKindName
+    TK_NUMBER                  : TokenKindName
+    TK_IDENTIFIER              : TokenKindName
+    Literal                    : Id -> ColorNode
+    Token                      : TokenKindName -> ColorNode
+                               : Node -> ColorNode
+    AttributeRef               : AttributeId -> Attribute
+    Attribute                  : Color * MaybeColor * Font -> Attribute
+    EmptyLine                  : ColorRule
+    CommentLine                : String -> ColorRule
+    ColorDef                   : AttributeId * Attribute -> ColorRule
+    ColorRuleNamed             : ColorNode * String * Attribute -> ColorRule
+    ColorRuleAllNamed          : ColorNode * String * Attribute -> ColorRule
+    ColorRule                  : ColorNode * Attribute -> ColorRule
+    ColorRuleAll               : ColorNode * Attribute -> ColorRule
+    EmptyLine                  : OutlineRule
+    CommentLine                : String -> OutlineRule
+    OutlineRule                : Node -> OutlineRule
+    None                       : FoldingAnno
+    Folded                     : FoldingAnno
+    Disable                    : FoldingAnno
+    EmptyLine                  : FoldingRule
+    CommentLine                : String -> FoldingRule
+    FoldRuleAll                : Node * FoldingAnno -> FoldingRule
+    FoldRule                   : Node * FoldingAnno -> FoldingRule
+    IndentDef                  : PropertyValue -> IndentDef
+    FenceDef                   : PropertyValue * PropertyValue -> FenceDef
+    NoContinuation             : NoContinuation
+    BlockCommentDef            : PropertyValue * NoContinuation * PropertyValue -> BlockCommentDef
+    BlockCommentDef            : PropertyValue * PropertyValue * PropertyValue -> BlockCommentDef
+    EmptyLine                  : LanguageProperty
+    CommentLine                : String -> LanguageProperty
+    IdentifierLexical          : PropertyValue -> LanguageProperty
+    IndentDefs                 : List(IndentDef) -> LanguageProperty
+    FenceDefs                  : List(FenceDef) -> LanguageProperty
+    BlockCommentDefs           : BlockCommentDef -> LanguageProperty
+    LineCommentPrefix          : PropertyValue -> LanguageProperty
+    Disambiguator              : StrategoCall -> LanguageProperty
+    UnmanagedTablePrefix       : Id -> LanguageProperty
+    Aliases                    : PropertyValues -> LanguageProperty
+    Extends                    : PropertyValues -> LanguageProperty
+    URL                        : URL -> LanguageProperty
+    StartSymbols               : PropertyValues -> LanguageProperty
+    StartSymbols               : List(Sort) -> LanguageProperty
+    TableProvider              : StrategoCall -> LanguageProperty
+    Table                      : PropertyValue -> LanguageProperty
+    Description                : PropertyValue -> LanguageProperty
+    Extensions                 : PropertyValues -> LanguageProperty
+    LanguageId                 : PropertyValue -> LanguageProperty
+    LanguageName               : PropertyValue -> LanguageProperty
+    FromMetaExpr               : QuotedTerms -> PropertyValues
+    Values                     : List(PropertyValue) -> PropertyValues
+    FromMetaExpr               : QuotedTerm -> URL
+                               : String -> URL
+    FromMetaExpr               : QuotedTerm -> PropertyValue
+                               : String -> PropertyValue
+                               : String -> PropertyValue
+    Refactorings               : String * List(SemanticRule) -> Section
+    Builders                   : String * List(SemanticRule) -> Section
+    Completions                : String * List(SemanticRule) -> Section
+    References                 : String * List(SemanticRule) -> Section
+    Colorer                    : String * List(ColorRule) -> Section
+    Outliner                   : String * List(OutlineRule) -> Section
+    Folding                    : String * List(FoldingRule) -> Section
+    Language                   : String * List(LanguageProperty) -> Section
+    None                       : OnSaveAnno
+    Attribute                  : StrategoId -> StrategoCall
+    Strategy                   : StrategoId -> StrategoCall
+    FromMetaExpr               : QuotedTerm -> SemanticRule
+    EmptyLine                  : SemanticRule
+    CommentLine                : String -> SemanticRule
+    Refactoring                : List(SemanticNode) * String * StrategoCall * List(BuilderOption) -> SemanticRule
+    PrettyPrint                : StrategoCall -> SemanticRule
+    PPTable                    : StrategoCall -> SemanticRule
+    BuilderCaption             : PropertyValue -> SemanticRule
+    Builder                    : String * StrategoCall * List(BuilderOption) -> SemanticRule
+    SemanticObserver           : StrategoCall -> SemanticRule
+    CompletionTemplateEx       : List(Sort) * CompletionPrefix * List(CompletionPart) * List(CompletionAnno) -> SemanticRule
+    CompletionTrigger          : PropertyValue * OptCompletionAnno -> SemanticRule
+    CompletionTemplateEx       : List(Sort) * PropertyValue * List(CompletionPart) * List(CompletionAnno) -> SemanticRule
+    CompletionTemplateWithSort : Sort * CompletionPart * List(CompletionPart) * OptCompletionAnno -> SemanticRule
+    CompletionTemplate         : Id * List(CompletionPart) * OptCompletionAnno -> SemanticRule
+    CompletionKeyword          : PropertyValue * OptCompletionAnno -> SemanticRule
+    IdentifierLexical          : PropertyValue -> SemanticRule
+    CompletionProposer         : StrategoCall -> SemanticRule
+    OccurrenceRule             : SemanticNode * StrategoCall -> SemanticRule
+    HoverRule                  : SemanticNode * StrategoCall -> SemanticRule
+    ReferenceRule              : SemanticNode * StrategoCall -> SemanticRule
+    ReferenceHoverRule         : SemanticNode * StrategoCall * StrategoCall -> SemanticRule
+    OnSave                     : StrategoCall * OnSaveAnno -> SemanticRule
+    SemanticProvider           : PropertyValue -> SemanticRule
+                               : Node -> SemanticNode
+                               : String -> SemanticNode
+                               : String -> StrategoId
+    SortAndConstructor         : Sort * ConstructorId -> Node
+                               : Constructor -> Node
+                               : Sort -> Node
+    Constructor                : Id -> ConstructorId
+    ConstructorOnly            : ConstructorId -> Constructor
+    String                     : STRING -> String
+    FromMetaExpr               : Term_StrategoHost -> Sort
+    ListSort                   : Id -> Sort
+    Sort                       : Id -> Sort
+                               : String -> STRING
+                               : String -> Int
+    FromMetaExpr               : QuotedTerm -> Id
+                               : String -> Id
+    Conc                       : ListStarOfTypeParam_JavaObject0 * ListPlusOfTypeParam_JavaObject0 -> ListPlusOfTypeParam_JavaObject0
+    Conc                       : ListPlusOfTypeParam_JavaObject0 * ListStarOfTypeParam_JavaObject0 -> ListPlusOfTypeParam_JavaObject0
+    Conc                       : ListPlusOfTypeParam_JavaObject0 * ListPlusOfTypeParam_JavaObject0 -> ListPlusOfTypeParam_JavaObject0
+    Cons                       : TypeParam_JavaObject * ListStarOfTypeParam_JavaObject0 -> ListPlusOfTypeParam_JavaObject0
+    FromMetaExpr               : Term_StrategoHost -> ListPlusOfTypeParam_JavaObject0
+    Some                       : PackageDec_JavaObject -> OptPackageDec_JavaObject0
+    None                       : OptPackageDec_JavaObject0
+    FromMetaExpr               : Term_StrategoHost -> OptPackageDec_JavaObject0
+    Conc                       : ListStarOfVarDec_JavaObject0 * ListPlusOfVarDec_JavaObject0 -> ListPlusOfVarDec_JavaObject0
+    Conc                       : ListPlusOfVarDec_JavaObject0 * ListStarOfVarDec_JavaObject0 -> ListPlusOfVarDec_JavaObject0
+    Conc                       : ListPlusOfVarDec_JavaObject0 * ListPlusOfVarDec_JavaObject0 -> ListPlusOfVarDec_JavaObject0
+    Cons                       : VarDec_JavaObject * ListStarOfVarDec_JavaObject0 -> ListPlusOfVarDec_JavaObject0
+    meta-var                   : String -> ListPlusOfVarDec_JavaObject0
+    CompilationUnit            : OptPackageDec_JavaObject0 * List(ImportDec_JavaObject) * List(TypeDec_JavaObject) -> CompilationUnit_JavaObject
+    FromMetaExpr               : Term_StrategoHost -> TypeDec_JavaObject
+    Semicolon                  : TypeDec_JavaObject
+                               : InterfaceDec_JavaObject -> TypeDec_JavaObject
+                               : ClassDec_JavaObject -> TypeDec_JavaObject
+    FromMetaExpr               : Term_StrategoHost -> ImportDec_JavaObject
+    StaticImportOnDemandDec    : TypeName_JavaObject -> ImportDec_JavaObject
+    StaticImportDec            : TypeName_JavaObject * Id_JavaObject -> ImportDec_JavaObject
+    TypeImportOnDemandDec      : PackageName_JavaObject -> ImportDec_JavaObject
+    TypeImportDec              : TypeName_JavaObject -> ImportDec_JavaObject
+    FromMetaExpr               : Term_StrategoHost -> PackageDec_JavaObject
+    PackageDec                 : List(Anno_JavaObject) * PackageName_JavaObject -> PackageDec_JavaObject
+    ElemValArrayInit           : List(ElemVal_JavaObject) -> ElemVal_JavaObject
+                               : Anno_JavaObject -> ElemVal_JavaObject
+                               : Expr_JavaObject -> ElemVal_JavaObject
+    ElemValPair                : Id_JavaObject * ElemVal_JavaObject -> ElemValPair_JavaObject
+    MarkerAnno                 : TypeName_JavaObject -> Anno_JavaObject
+    SingleElemAnno             : TypeName_JavaObject * ElemVal_JavaObject -> Anno_JavaObject
+    Anno                       : TypeName_JavaObject * List(ElemValPair_JavaObject) -> Anno_JavaObject
+    meta-var                   : String -> LHS_JavaObject
+                               : FieldAccess_JavaObject -> LHS_JavaObject
+                               : ExprName_JavaObject -> LHS_JavaObject
+    GenericMethod              : AmbName_JavaObject * TypeArgs_JavaObject * Id_JavaObject -> MethodSpec_JavaObject
+    QSuperMethod               : TypeName_JavaObject * OptTypeArgs_JavaObject0 * Id_JavaObject -> MethodSpec_JavaObject
+    SuperMethod                : OptTypeArgs_JavaObject0 * Id_JavaObject -> MethodSpec_JavaObject
+    Method                     : Expr_JavaObject * OptTypeArgs_JavaObject0 * Id_JavaObject -> MethodSpec_JavaObject
+    Method                     : MethodName_JavaObject -> MethodSpec_JavaObject
+    QSuperField                : TypeName_JavaObject * Id_JavaObject -> FieldAccess_JavaObject
+    SuperField                 : Id_JavaObject -> FieldAccess_JavaObject
+    Field                      : Expr_JavaObject * Id_JavaObject -> FieldAccess_JavaObject
+    Dim                        : Expr_JavaObject -> DimExpr_JavaObject
+    UnboundWld                 : TypeName_JavaObject -> ArrayBaseType_JavaObject
+                               : TypeName_JavaObject -> ArrayBaseType_JavaObject
+                               : PrimType_JavaObject -> ArrayBaseType_JavaObject
+    NewArray                   : ArrayBaseType_JavaObject * List(Dim_JavaObject) * ArrayInit_JavaObject -> ArrayCreationExpr_JavaObject
+    NewArray                   : ArrayBaseType_JavaObject * List(DimExpr_JavaObject) * List(Dim_JavaObject) -> ArrayCreationExpr_JavaObject
+    Semicolon                  : ClassMemberDec_JavaObject
+                               : InterfaceDec_JavaObject -> ClassMemberDec_JavaObject
+                               : ClassDec_JavaObject -> ClassMemberDec_JavaObject
+                               : MethodDec_JavaObject -> ClassMemberDec_JavaObject
+                               : FieldDec_JavaObject -> ClassMemberDec_JavaObject
+    FromMetaExpr               : Term_StrategoHost -> ClassBodyDec_JavaObject
+                               : ConstrDec_JavaObject -> ClassBodyDec_JavaObject
+                               : StaticInit_JavaObject -> ClassBodyDec_JavaObject
+                               : InstanceInit_JavaObject -> ClassBodyDec_JavaObject
+                               : ClassMemberDec_JavaObject -> ClassBodyDec_JavaObject
+    ImplementsDec              : List(InterfaceType_JavaObject) -> Interfaces_JavaObject
+    SuperDec                   : ClassType_JavaObject -> Super_JavaObject
+    meta-var                   : String -> ClassMod_JavaObject
+                               : StrictFP_JavaObject -> ClassMod_JavaObject
+                               : Final_JavaObject -> ClassMod_JavaObject
+                               : Static_JavaObject -> ClassMod_JavaObject
+                               : Private_JavaObject -> ClassMod_JavaObject
+                               : Protected_JavaObject -> ClassMod_JavaObject
+                               : Public_JavaObject -> ClassMod_JavaObject
+                               : Abstract_JavaObject -> ClassMod_JavaObject
+    ClassDecHead               : List(Anno_JavaObject_ClassMod_JavaObject0) * Id_JavaObject * Option(TypeParams_JavaObject) * Option(Super_JavaObject) * Option(Interfaces_JavaObject) -> ClassDecHead_JavaObject
+    ClassBody                  : List(ClassBodyDec_JavaObject) -> ClassBody_JavaObject
+    ClassDec                   : ClassDecHead_JavaObject * ClassBody_JavaObject -> ClassDec_JavaObject
+                               : EnumDec_JavaObject -> ClassDec_JavaObject
+                               : StrictFP_JavaObject -> InterfaceMod_JavaObject
+                               : Static_JavaObject -> InterfaceMod_JavaObject
+                               : Abstract_JavaObject -> InterfaceMod_JavaObject
+                               : Private_JavaObject -> InterfaceMod_JavaObject
+                               : Protected_JavaObject -> InterfaceMod_JavaObject
+                               : Public_JavaObject -> InterfaceMod_JavaObject
+    FromMetaExpr               : Term_StrategoHost -> InterfaceMemberDec_JavaObject
+    Semicolon                  : InterfaceMemberDec_JavaObject
+                               : InterfaceDec_JavaObject -> InterfaceMemberDec_JavaObject
+                               : ClassDec_JavaObject -> InterfaceMemberDec_JavaObject
+                               : AbstractMethodDec_JavaObject -> InterfaceMemberDec_JavaObject
+                               : ConstantDec_JavaObject -> InterfaceMemberDec_JavaObject
+    ExtendsInterfaces          : List(InterfaceType_JavaObject) -> ExtendsInterfaces_JavaObject
+    InterfaceDecHead           : List(Anno_JavaObject_InterfaceMod_JavaObject0) * Id_JavaObject * Option(TypeParams_JavaObject) * Option(ExtendsInterfaces_JavaObject) -> InterfaceDecHead_JavaObject
+    InterfaceDec               : InterfaceDecHead_JavaObject * List(InterfaceMemberDec_JavaObject) -> InterfaceDec_JavaObject
+                               : AnnoDec_JavaObject -> InterfaceDec_JavaObject
+    DefaultVal                 : ElemVal_JavaObject -> DefaultVal_JavaObject
+    Semicolon                  : AnnoElemDec_JavaObject
+                               : AnnoDec_JavaObject -> AnnoElemDec_JavaObject
+                               : EnumDec_JavaObject -> AnnoElemDec_JavaObject
+                               : InterfaceDec_JavaObject -> AnnoElemDec_JavaObject
+                               : ClassDec_JavaObject -> AnnoElemDec_JavaObject
+                               : ConstantDec_JavaObject -> AnnoElemDec_JavaObject
+    AnnoMethodDec              : List(AbstractMethodMod_JavaObject) * Type_JavaObject * Id_JavaObject * Option(DefaultVal_JavaObject) -> AnnoElemDec_JavaObject
+    AnnoDecHead                : List(Anno_JavaObject_InterfaceMod_JavaObject0) * Id_JavaObject -> AnnoDecHead_JavaObject
+    AnnoDec                    : AnnoDecHead_JavaObject * List(AnnoElemDec_JavaObject) -> AnnoDec_JavaObject
+                               : Abstract_JavaObject -> AbstractMethodMod_JavaObject
+                               : Public_JavaObject -> AbstractMethodMod_JavaObject
+    DeprAbstractMethodDec      : List(Anno_JavaObject_AbstractMethodMod_JavaObject0) * Option(TypeParams_JavaObject) * ResultType_JavaObject * Id_JavaObject * List(FormalParam_JavaObject) * List(Dim_JavaObject) * Option(Throws_JavaObject) -> AbstractMethodDec_JavaObject
+    AbstractMethodDec          : List(Anno_JavaObject_AbstractMethodMod_JavaObject0) * Option(TypeParams_JavaObject) * ResultType_JavaObject * Id_JavaObject * List(FormalParam_JavaObject) * Option(Throws_JavaObject) -> AbstractMethodDec_JavaObject
+                               : Final_JavaObject -> ConstantMod_JavaObject
+                               : Static_JavaObject -> ConstantMod_JavaObject
+                               : Public_JavaObject -> ConstantMod_JavaObject
+    ConstantDec                : List(Anno_JavaObject_ConstantMod_JavaObject0) * Type_JavaObject * ListPlusOfVarDec_JavaObject0 -> ConstantDec_JavaObject
+    EnumBodyDecs               : List(ClassBodyDec_JavaObject) -> EnumBodyDecs_JavaObject
+    EnumConst                  : Id_JavaObject * OptEnumConstArgs_JavaObject0 * Option(ClassBody_JavaObject) -> EnumConst_JavaObject
+    EnumBody                   : List(EnumConst_JavaObject) * Option(EnumBodyDecs_JavaObject) -> EnumBody_JavaObject
+    EnumDecHead                : List(Anno_JavaObject_ClassMod_JavaObject0) * Id_JavaObject * Option(Interfaces_JavaObject) -> EnumDecHead_JavaObject
+    EnumDec                    : EnumDecHead_JavaObject * EnumBody_JavaObject -> EnumDec_JavaObject
+    meta-var                   : String -> ConstrMod_JavaObject
+                               : Private_JavaObject -> ConstrMod_JavaObject
+                               : Protected_JavaObject -> ConstrMod_JavaObject
+                               : Public_JavaObject -> ConstrMod_JavaObject
+    QSuperConstrInv            : Expr_JavaObject * OptTypeArgs_JavaObject0 * List(Expr_JavaObject) -> ConstrInv_JavaObject
+    SuperConstrInv             : OptTypeArgs_JavaObject0 * List(Expr_JavaObject) -> ConstrInv_JavaObject
+    AltConstrInv               : OptTypeArgs_JavaObject0 * List(Expr_JavaObject) -> ConstrInv_JavaObject
+    ConstrBody                 : Option(ConstrInv_JavaObject) * List(BlockStm_JavaObject) -> ConstrBody_JavaObject
+    ConstrDecHead              : List(Anno_JavaObject_ConstrMod_JavaObject0) * Option(TypeParams_JavaObject) * Id_JavaObject * List(FormalParam_JavaObject) * Option(Throws_JavaObject) -> ConstrHead_JavaObject
+    ConstrDec                  : ConstrHead_JavaObject * ConstrBody_JavaObject -> ConstrDec_JavaObject
+    StaticInit                 : Block_JavaObject -> StaticInit_JavaObject
+    InstanceInit               : Block_JavaObject -> InstanceInit_JavaObject
+    NoMethodBody               : MethodBody_JavaObject
+                               : Block_JavaObject -> MethodBody_JavaObject
+                               : ClassType_JavaObject -> ExceptionType_JavaObject
+    ThrowsDec                  : List(ExceptionType_JavaObject) -> Throws_JavaObject
+    meta-var                   : String -> MethodMod_JavaObject
+                               : StrictFP_JavaObject -> MethodMod_JavaObject
+                               : Native_JavaObject -> MethodMod_JavaObject
+                               : Synchronized_JavaObject -> MethodMod_JavaObject
+                               : Final_JavaObject -> MethodMod_JavaObject
+                               : Static_JavaObject -> MethodMod_JavaObject
+                               : Abstract_JavaObject -> MethodMod_JavaObject
+                               : Private_JavaObject -> MethodMod_JavaObject
+                               : Protected_JavaObject -> MethodMod_JavaObject
+                               : Public_JavaObject -> MethodMod_JavaObject
+    meta-var                   : String -> VarMod_JavaObject
+                               : Final_JavaObject -> VarMod_JavaObject
+    meta-var                   : String -> FormalParam_JavaObject
+    FromMetaExpr               : Term_StrategoHost -> FormalParam_JavaObject
+    VarArityParam              : List(Anno_JavaObject_VarMod_JavaObject0) * Type_JavaObject * VarDecId_JavaObject -> FormalParam_JavaObject
+    Param                      : List(Anno_JavaObject_VarMod_JavaObject0) * Type_JavaObject * VarDecId_JavaObject -> FormalParam_JavaObject
+    Void                       : ResultType_JavaObject
+                               : Type_JavaObject -> ResultType_JavaObject
+    DeprMethodDecHead          : List(Anno_JavaObject_MethodMod_JavaObject0) * Option(TypeParams_JavaObject) * ResultType_JavaObject * Id_JavaObject * List(FormalParam_JavaObject) * List(Dim_JavaObject) * Option(Throws_JavaObject) -> MethodDecHead_JavaObject
+    MethodDecHead              : List(Anno_JavaObject_MethodMod_JavaObject0) * Option(TypeParams_JavaObject) * ResultType_JavaObject * Id_JavaObject * List(FormalParam_JavaObject) * Option(Throws_JavaObject) -> MethodDecHead_JavaObject
+    MethodDec                  : MethodDecHead_JavaObject * MethodBody_JavaObject -> MethodDec_JavaObject
+    InnerBlock                 : List(BlockStm_JavaObject) -> BlockStm_JavaObject
+    meta-var                   : String -> BlockStm_JavaObject
+    FromMetaExpr               : Term_StrategoHost -> BlockStm_JavaObject
+                               : Stm_JavaObject -> BlockStm_JavaObject
+    ClassDecStm                : ClassDec_JavaObject -> BlockStm_JavaObject
+                               : LocalVarDecStm_JavaObject -> BlockStm_JavaObject
+    Block                      : List(BlockStm_JavaObject) -> Block_JavaObject
+    Catch                      : FormalParam_JavaObject * Block_JavaObject -> CatchClause_JavaObject
+    Default                    : SwitchLabel_JavaObject
+    Case                       : Expr_JavaObject -> SwitchLabel_JavaObject
+    FromMetaExpr               : Term_StrategoHost -> SwitchGroup_JavaObject
+    SwitchGroup                : List(SwitchLabel_JavaObject) * List(BlockStm_JavaObject) -> SwitchGroup_JavaObject
+    SwitchBlock                : List(SwitchGroup_JavaObject) * List(SwitchLabel_JavaObject) -> SwitchBlock_JavaObject
+    meta-var                   : String -> Stm_JavaObject
+    FromMetaExpr               : Term_StrategoHost -> Stm_JavaObject
+    Try                        : Block_JavaObject * List(CatchClause_JavaObject) * Block_JavaObject -> Stm_JavaObject
+    Try                        : Block_JavaObject * List(CatchClause_JavaObject) -> Stm_JavaObject
+    Synchronized               : Expr_JavaObject * Block_JavaObject -> Stm_JavaObject
+    Throw                      : Expr_JavaObject -> Stm_JavaObject
+    Return                     : Option(Expr_JavaObject) -> Stm_JavaObject
+    Continue                   : Option(Id_JavaObject) -> Stm_JavaObject
+    Break                      : Option(Id_JavaObject) -> Stm_JavaObject
+    ForEach                    : FormalParam_JavaObject * Expr_JavaObject * Stm_JavaObject -> Stm_JavaObject
+    For                        : List(Expr_JavaObject) * Option(Expr_JavaObject) * List(Expr_JavaObject) * Stm_JavaObject -> Stm_JavaObject
+    For                        : LocalVarDec_JavaObject * Option(Expr_JavaObject) * List(Expr_JavaObject) * Stm_JavaObject -> Stm_JavaObject
+    DoWhile                    : Stm_JavaObject * Expr_JavaObject -> Stm_JavaObject
+    While                      : Expr_JavaObject * Stm_JavaObject -> Stm_JavaObject
+    Switch                     : Expr_JavaObject * SwitchBlock_JavaObject -> Stm_JavaObject
+    AssertStm                  : Expr_JavaObject * Expr_JavaObject -> Stm_JavaObject
+    AssertStm                  : Expr_JavaObject -> Stm_JavaObject
+    If                         : Expr_JavaObject * Stm_JavaObject * Stm_JavaObject -> Stm_JavaObject
+    If                         : Expr_JavaObject * Stm_JavaObject -> Stm_JavaObject
+    ExprStm                    : Expr_JavaObject -> Stm_JavaObject
+    Labeled                    : Id_JavaObject * Stm_JavaObject -> Stm_JavaObject
+    Empty                      : Stm_JavaObject
+                               : Block_JavaObject -> Stm_JavaObject
+    meta-var                   : String -> LocalVarDec_JavaObject
+    LocalVarDec                : List(Anno_JavaObject_VarMod_JavaObject0) * Type_JavaObject * ListPlusOfVarDec_JavaObject0 -> LocalVarDec_JavaObject
+    LocalVarDecStm             : LocalVarDec_JavaObject -> LocalVarDecStm_JavaObject
+    meta-var                   : String -> FieldMod_JavaObject
+                               : Volatile_JavaObject -> FieldMod_JavaObject
+                               : Transient_JavaObject -> FieldMod_JavaObject
+                               : Final_JavaObject -> FieldMod_JavaObject
+                               : Static_JavaObject -> FieldMod_JavaObject
+                               : Private_JavaObject -> FieldMod_JavaObject
+                               : Protected_JavaObject -> FieldMod_JavaObject
+                               : Public_JavaObject -> FieldMod_JavaObject
+                               : ArrayInit_JavaObject -> VarInit_JavaObject
+                               : Expr_JavaObject -> VarInit_JavaObject
+    Dim                        : Dim_JavaObject
+    ArrayVarDecId              : Id_JavaObject * List(Dim_JavaObject) -> VarDecId_JavaObject
+                               : Id_JavaObject -> VarDecId_JavaObject
+    meta-var                   : String -> VarDec_JavaObject
+    VarDec                     : VarDecId_JavaObject * VarInit_JavaObject -> VarDec_JavaObject
+    VarDec                     : VarDecId_JavaObject -> VarDec_JavaObject
+    FieldDec                   : List(Anno_JavaObject_FieldMod_JavaObject0) * Type_JavaObject * ListPlusOfVarDec_JavaObject0 -> FieldDec_JavaObject
+    ArrayInit                  : List(VarInit_JavaObject) -> ArrayInit_JavaObject
+    VoidClass                  : ClassLiteral_JavaObject
+    Class                      : Type_JavaObject -> ClassLiteral_JavaObject
+                               : ClassLiteral_JavaObject -> Literal_JavaObject
+                               : NullLiteral_JavaObject -> Literal_JavaObject
+                               : StringLiteral_JavaObject -> Literal_JavaObject
+                               : CharLiteral_JavaObject -> Literal_JavaObject
+                               : BoolLiteral_JavaObject -> Literal_JavaObject
+                               : FloatLiteral_JavaObject -> Literal_JavaObject
+                               : IntLiteral_JavaObject -> Literal_JavaObject
+    PrePostEBlock              : List(BlockStm_JavaObject) * Expr_JavaObject * List(BlockStm_JavaObject) -> Expr_JavaObject
+    PostEBlock                 : Expr_JavaObject * List(BlockStm_JavaObject) -> Expr_JavaObject
+    PreEBlock                  : List(BlockStm_JavaObject) * Expr_JavaObject -> Expr_JavaObject
+    FromMetaExpr               : Term_StrategoHost -> Expr_JavaObject
+    meta-var                   : String -> Expr_JavaObject
+    AssignOr                   : LHS_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    AssignExcOr                : LHS_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    AssignAnd                  : LHS_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    AssignURightShift          : LHS_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    AssignRightShift           : LHS_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    AssignLeftShift            : LHS_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    AssignMinus                : LHS_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    AssignPlus                 : LHS_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    AssignRemain               : LHS_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    AssignDiv                  : LHS_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    AssignMul                  : LHS_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    Assign                     : LHS_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    Or                         : Expr_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    ExcOr                      : Expr_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    And                        : Expr_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    LazyOr                     : Expr_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    LazyAnd                    : Expr_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    NotEq                      : Expr_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    Eq                         : Expr_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    GtEq                       : Expr_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    LtEq                       : Expr_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    Gt                         : Expr_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    Lt                         : Expr_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    URightShift                : Expr_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    RightShift                 : Expr_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    LeftShift                  : Expr_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    Minus                      : Expr_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    Plus                       : Expr_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    Remain                     : Expr_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    Div                        : Expr_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    Mul                        : Expr_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    InstanceOf                 : Expr_JavaObject * RefType_JavaObject -> Expr_JavaObject
+    CastRef                    : RefType_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    CastPrim                   : PrimType_JavaObject * Expr_JavaObject -> Expr_JavaObject
+    Not                        : Expr_JavaObject -> Expr_JavaObject
+    Complement                 : Expr_JavaObject -> Expr_JavaObject
+    PreDecr                    : Expr_JavaObject -> Expr_JavaObject
+    PreIncr                    : Expr_JavaObject -> Expr_JavaObject
+    Minus                      : Expr_JavaObject -> Expr_JavaObject
+    Plus                       : Expr_JavaObject -> Expr_JavaObject
+    PostDecr                   : Expr_JavaObject -> Expr_JavaObject
+    PostIncr                   : Expr_JavaObject -> Expr_JavaObject
+                               : ExprName_JavaObject -> Expr_JavaObject
+    Invoke                     : MethodSpec_JavaObject * List(Expr_JavaObject) -> Expr_JavaObject
+                               : FieldAccess_JavaObject -> Expr_JavaObject
+                               : ArrayCreationExpr_JavaObject -> Expr_JavaObject
+    QNewInstance               : Expr_JavaObject * OptTypeArgs_JavaObject0 * Id_JavaObject * OptTypeArgs_JavaObject0 * List(Expr_JavaObject) * Option(ClassBody_JavaObject) -> Expr_JavaObject
+    NewInstance                : OptTypeArgs_JavaObject0 * ClassOrInterfaceType_JavaObject * List(Expr_JavaObject) * Option(ClassBody_JavaObject) -> Expr_JavaObject
+    QThis                      : TypeName_JavaObject -> Expr_JavaObject
+    This                       : Expr_JavaObject
+    Lit                        : Literal_JavaObject -> Expr_JavaObject
+    FromMetaExpr               : Term_StrategoHost -> Type_JavaObject
+    meta-var                   : String -> Type_JavaObject
+                               : RefType_JavaObject -> Type_JavaObject
+                               : PrimType_JavaObject -> Type_JavaObject
+    ArrayType                  : Type_JavaObject -> ArrayType_JavaObject
+    Member                     : TypeDecSpec_JavaObject * TypeArgs_JavaObject * Id_JavaObject -> TypeDecSpec_JavaObject
+                               : TypeName_JavaObject -> TypeDecSpec_JavaObject
+    InterfaceType              : TypeDecSpec_JavaObject * OptTypeArgs_JavaObject0 -> InterfaceType_JavaObject
+    ClassType                  : TypeDecSpec_JavaObject * OptTypeArgs_JavaObject0 -> ClassType_JavaObject
+    ClassOrInterfaceType       : TypeDecSpec_JavaObject * OptTypeArgs_JavaObject0 -> ClassOrInterfaceType_JavaObject
+    meta-var                   : String -> RefType_JavaObject
+                               : ArrayType_JavaObject -> RefType_JavaObject
+                               : ClassOrInterfaceType_JavaObject -> RefType_JavaObject
+                               : Id_JavaObject -> TypeVarId_JavaObject
+    TypeParams                 : ListPlusOfTypeParam_JavaObject0 -> TypeParams_JavaObject
+    TypeBound                  : List(ClassOrInterfaceType_JavaObject) -> TypeBound_JavaObject
+    FromMetaExpr               : Term_StrategoHost -> TypeParam_JavaObject
+    TypeParam                  : TypeVarId_JavaObject * Option(TypeBound_JavaObject) -> TypeParam_JavaObject
+    WildcardLowerBound         : RefType_JavaObject -> WildcardBound_JavaObject
+    WildcardUpperBound         : RefType_JavaObject -> WildcardBound_JavaObject
+    Wildcard                   : Option(WildcardBound_JavaObject) -> ActualTypeArg_JavaObject
+                               : Type_JavaObject -> ActualTypeArg_JavaObject
+    TypeArgs                   : List(ActualTypeArg_JavaObject) -> TypeArgs_JavaObject
+    meta-var                   : String -> PackageOrTypeName_JavaObject
+    PackageOrTypeName          : PackageOrTypeName_JavaObject * Id_JavaObject -> PackageOrTypeName_JavaObject
+    PackageOrTypeName          : Id_JavaObject -> PackageOrTypeName_JavaObject
+    meta-var                   : String -> MethodName_JavaObject
+    MethodName                 : AmbName_JavaObject * Id_JavaObject -> MethodName_JavaObject
+    MethodName                 : Id_JavaObject -> MethodName_JavaObject
+    meta-var                   : String -> ExprName_JavaObject
+    ExprName                   : AmbName_JavaObject * Id_JavaObject -> ExprName_JavaObject
+    ExprName                   : Id_JavaObject -> ExprName_JavaObject
+    meta-var                   : String -> TypeName_JavaObject
+    TypeName                   : PackageOrTypeName_JavaObject * Id_JavaObject -> TypeName_JavaObject
+    TypeName                   : Id_JavaObject -> TypeName_JavaObject
+    meta-var                   : String -> AmbName_JavaObject
+    AmbName                    : AmbName_JavaObject * Id_JavaObject -> AmbName_JavaObject
+    AmbName                    : Id_JavaObject -> AmbName_JavaObject
+    meta-var                   : String -> PackageName_JavaObject
+    PackageName                : List(Id_JavaObject) -> PackageName_JavaObject
+    Double                     : FloatType_JavaObject
+    Float                      : FloatType_JavaObject
+    Char                       : IntType_JavaObject
+    Long                       : IntType_JavaObject
+    Int                        : IntType_JavaObject
+    Short                      : IntType_JavaObject
+    Byte                       : IntType_JavaObject
+                               : FloatType_JavaObject -> NumType_JavaObject
+                               : IntType_JavaObject -> NumType_JavaObject
+    meta-var                   : String -> PrimType_JavaObject
+    Boolean                    : PrimType_JavaObject
+                               : NumType_JavaObject -> PrimType_JavaObject
+    Null                       : NullLiteral_JavaObject
+    FromMetaExpr               : Term_StrategoHost -> StringChars_JavaObject
+                               : String -> StringChars_JavaObject
+                               : EscapeSeq_JavaObject -> StringPart_JavaObject
+                               : UnicodeEscape -> StringPart_JavaObject
+    Chars                      : StringChars_JavaObject -> StringPart_JavaObject
+    FromMetaExpr               : Term_StrategoHost -> StringLiteral_JavaObject
+    String                     : List(StringPart_JavaObject) -> StringLiteral_JavaObject
+    FromMetaExpr               : Term_StrategoHost -> SingleChar_JavaObject
+                               : Int -> SingleChar_JavaObject
+                               : EscapeSeq_JavaObject -> CharContent_JavaObject
+                               : UnicodeEscape -> CharContent_JavaObject
+    Single                     : SingleChar_JavaObject -> CharContent_JavaObject
+    FromMetaExpr               : Term_StrategoHost -> CharLiteral_JavaObject
+    Char                       : CharContent_JavaObject -> CharLiteral_JavaObject
+                               : Int -> LastOcta_JavaObject
+    OctaEscape3                : Int * Int * Int -> OctaEscape_JavaObject
+    OctaEscape2                : Int * Int -> OctaEscape_JavaObject
+    OctaEscape2                : Int * LastOcta_JavaObject -> OctaEscape_JavaObject
+    OctaEscape1                : LastOcta_JavaObject -> OctaEscape_JavaObject
+    NamedEscape                : Int -> NamedEscape_JavaObject
+                               : NamedEscape_JavaObject -> EscapeSeq_JavaObject
+                               : OctaEscape_JavaObject -> EscapeSeq_JavaObject
+    False                      : Bool_JavaObject
+    True                       : Bool_JavaObject
+    Bool                       : Bool_JavaObject -> BoolLiteral_JavaObject
+    FromMetaExpr               : Term_StrategoHost -> FloatLiteral_JavaObject
+    Float                      : HexaFloatLiteral_JavaObject -> FloatLiteral_JavaObject
+    Float                      : DeciFloatLiteral_JavaObject -> FloatLiteral_JavaObject
+                               : String -> HexaFloatLiteral_JavaObject
+                               : String -> DeciFloatLiteral_JavaObject
+    Octa                       : OctaLiteral_JavaObject -> IntLiteral_JavaObject
+    Hexa                       : HexaLiteral_JavaObject -> IntLiteral_JavaObject
+    Deci                       : DeciLiteral_JavaObject -> IntLiteral_JavaObject
+    FromMetaExpr               : Term_StrategoHost -> OctaLiteral_JavaObject
+                               : String -> OctaLiteral_JavaObject
+    FromMetaExpr               : Term_StrategoHost -> HexaLiteral_JavaObject
+                               : String -> HexaLiteral_JavaObject
+    FromMetaExpr               : Term_StrategoHost -> DeciLiteral_JavaObject
+    meta-var                   : String -> DeciLiteral_JavaObject
+                               : String -> DeciLiteral_JavaObject
+                               : StrictFP_JavaObject -> Modifier_JavaObject
+                               : Synchronized_JavaObject -> Modifier_JavaObject
+                               : Volatile_JavaObject -> Modifier_JavaObject
+                               : Transient_JavaObject -> Modifier_JavaObject
+                               : Native_JavaObject -> Modifier_JavaObject
+                               : Static_JavaObject -> Modifier_JavaObject
+                               : Final_JavaObject -> Modifier_JavaObject
+                               : Abstract_JavaObject -> Modifier_JavaObject
+                               : Protected_JavaObject -> Modifier_JavaObject
+                               : Private_JavaObject -> Modifier_JavaObject
+                               : Public_JavaObject -> Modifier_JavaObject
+    StrictFP                   : StrictFP_JavaObject
+    Synchronized               : Synchronized_JavaObject
+    Volatile                   : Volatile_JavaObject
+    Transient                  : Transient_JavaObject
+    Native                     : Native_JavaObject
+    Static                     : Static_JavaObject
+    Final                      : Final_JavaObject
+    Abstract                   : Abstract_JavaObject
+    Protected                  : Protected_JavaObject
+    Private                    : Private_JavaObject
+    Public                     : Public_JavaObject
+    FromMetaExpr               : Term_StrategoHost -> Id_JavaObject
+    Id                         : ID_JavaObject -> Id_JavaObject
+    ConcatIds                  : List(ID_JavaObject) -> ID_JavaObject
+    FromMetaExpr               : Term_StrategoHost -> ID_JavaObject
+    meta-var                   : String -> ID_JavaObject
+                               : String -> ID_JavaObject
+                               : String -> UnicodeEscape
+    UnicodeEscape              : ListPlusOfCharClass1 * Int * Int * Int * Int -> UnicodeEscape
+    RuleNames                  : Term_StrategoHost -> RuleNames_StrategoHost
+                               : List(Id_StrategoHost) -> RuleNames_StrategoHost
+    RDecT                      : Id_StrategoHost * List(Typedid_StrategoHost) * List(Typedid_StrategoHost) -> RuleDec_StrategoHost
+    RDec                       : Id_StrategoHost * List(Typedid_StrategoHost) -> RuleDec_StrategoHost
+    RDecNoArgs                 : Id_StrategoHost -> RuleDec_StrategoHost
+    DynRuleScopeId             : Id_StrategoHost -> DynRuleScopeId_StrategoHost
+    LabeledDynRuleScopeId      : Id_StrategoHost * Term_StrategoHost -> DynRuleScopeId_StrategoHost
+    DynRuleId                  : RuleDec_StrategoHost -> DynRuleId_StrategoHost
+    AddLabelDynRuleId          : RuleDec_StrategoHost * Term_StrategoHost -> DynRuleId_StrategoHost
+    LabeledDynRuleId           : RuleDec_StrategoHost * Term_StrategoHost -> DynRuleId_StrategoHost
+    SetDynRuleDepends          : DynRuleId_StrategoHost * Rule_StrategoHost * Term_StrategoHost -> DynRuleDef_StrategoHost
+    DynRuleAssignAdd           : DynRuleId_StrategoHost * Term_StrategoHost -> DynRuleDef_StrategoHost
+    DynRuleAssign              : DynRuleId_StrategoHost * Term_StrategoHost -> DynRuleDef_StrategoHost
+    SetDynRuleMatch            : DynRuleId_StrategoHost * Term_StrategoHost -> DynRuleDef_StrategoHost
+    AddDynRule                 : DynRuleId_StrategoHost * Rule_StrategoHost -> DynRuleDef_StrategoHost
+    SetDynRule                 : DynRuleId_StrategoHost * Rule_StrategoHost -> DynRuleDef_StrategoHost
+    UndefineDynRule            : DynRuleId_StrategoHost * Term_StrategoHost -> DynRuleDef_StrategoHost
+    AddScopeLabel              : Id_StrategoHost * Term_StrategoHost -> DynRuleDef_StrategoHost
+    ScopeLabels                : Term_StrategoHost -> ScopeLabels_StrategoHost
+                               : List(DynRuleScopeId_StrategoHost) -> ScopeLabels_StrategoHost
+    WithClause                 : Strategy_StrategoHost -> RuleCond_StrategoHost
+    WhereClause                : Strategy_StrategoHost -> RuleCond_StrategoHost
+    Rule                       : Term_StrategoHost * Term_StrategoHost * List(RuleCond_StrategoHost) -> Rule_StrategoHost
+    Rule                       : Term_StrategoHost * Term_StrategoHost * Strategy_StrategoHost -> Rule_StrategoHost
+    RuleNoCond                 : Term_StrategoHost * Term_StrategoHost -> Rule_StrategoHost
+    RDefT                      : Id_StrategoHost * List(Typedid_StrategoHost) * List(Typedid_StrategoHost) * Rule_StrategoHost -> RuleDef_StrategoHost
+    RDef                       : Id_StrategoHost * List(Typedid_StrategoHost) * Rule_StrategoHost -> RuleDef_StrategoHost
+    RDefNoArgs                 : Id_StrategoHost * Rule_StrategoHost -> RuleDef_StrategoHost
+    Overlay                    : Id_StrategoHost * List(Id_StrategoHost) * Term_StrategoHost -> Overlay_StrategoHost
+    OverlayNoArgs              : Id_StrategoHost * Term_StrategoHost -> Overlay_StrategoHost
+    SwitchCase                 : Strategy_StrategoHost * Strategy_StrategoHost -> SwitchCase_StrategoHost
+    StrategyCurly              : Strategy_StrategoHost -> StrategyCurly_StrategoHost
+    ListVar                    : LId_StrategoHost -> LID_StrategoHost
+    ImportWildcard             : ModName_StrategoHost -> ImportModName_StrategoHost
+    Import                     : ModName_StrategoHost -> ImportModName_StrategoHost
+    Overlays                   : List(Overlay_StrategoHost) -> Decl_StrategoHost
+    Rules                      : List(Def_StrategoHost) -> Decl_StrategoHost
+    Signature                  : List(Sdecl_StrategoHost) -> Decl_StrategoHost
+    Strategies                 : List(Def_StrategoHost) -> Decl_StrategoHost
+    Imports                    : List(ImportModName_StrategoHost) -> Decl_StrategoHost
+    Specification              : List(Decl_StrategoHost) -> Module_StrategoHost
+    Module                     : ModName_StrategoHost * List(Decl_StrategoHost) -> Module_StrategoHost
+                               : Strategy_StrategoHost -> StrategyMid_StrategoHost
+    ParenStrat                 : Strategy_StrategoHost -> StrategyParen_StrategoHost
+    DefaultVarDec              : ID_StrategoHost -> Typedid_StrategoHost
+    VarDec                     : ID_StrategoHost * Type_StrategoHost -> Typedid_StrategoHost
+    Internal                   : Anno_StrategoHost
+    Override                   : Anno_StrategoHost
+    Extend                     : Anno_StrategoHost
+                               : String -> EmptyId_StrategoHost
+    SDef                       : Id_StrategoHost * List(Typedid_StrategoHost) * Strategy_StrategoHost -> StrategyDef_StrategoHost
+    SDefNoArgs                 : Id_StrategoHost * Strategy_StrategoHost -> StrategyDef_StrategoHost
+    ExtSDef                    : EmptyId_StrategoHost * List(Typedid_StrategoHost) * List(Typedid_StrategoHost) -> StrategyDef_StrategoHost
+    ExtSDef                    : Id_StrategoHost * List(Typedid_StrategoHost) * List(Typedid_StrategoHost) -> StrategyDef_StrategoHost
+    ExtSDefInl                 : Id_StrategoHost * List(Typedid_StrategoHost) * List(Typedid_StrategoHost) * Strategy_StrategoHost -> StrategyDef_StrategoHost
+    SDefT                      : Id_StrategoHost * List(Typedid_StrategoHost) * List(Typedid_StrategoHost) * Strategy_StrategoHost -> StrategyDef_StrategoHost
+    DynRuleIntersectUnion      : Strategy_StrategoHost * RuleNames_StrategoHost * RuleNames_StrategoHost * Strategy_StrategoHost -> Strategy_StrategoHost
+    DynRuleUnion               : Strategy_StrategoHost * RuleNames_StrategoHost * Strategy_StrategoHost -> Strategy_StrategoHost
+    DynRuleIntersect           : Strategy_StrategoHost * RuleNames_StrategoHost * Strategy_StrategoHost -> Strategy_StrategoHost
+    DynRuleIntersectUnionFix   : RuleNames_StrategoHost * RuleNames_StrategoHost * Strategy_StrategoHost -> Strategy_StrategoHost
+    DynRuleUnionFix            : RuleNames_StrategoHost * Strategy_StrategoHost -> Strategy_StrategoHost
+    DynRuleIntersectFix        : RuleNames_StrategoHost * Strategy_StrategoHost -> Strategy_StrategoHost
+    GenDynRules                : List(DynRuleDef_StrategoHost) -> Strategy_StrategoHost
+    DynRuleScope               : ScopeLabels_StrategoHost * Strategy_StrategoHost -> Strategy_StrategoHost
+    Assign                     : Term_StrategoHost * Term_StrategoHost -> Strategy_StrategoHost
+    AM                         : Strategy_StrategoHost * Term_StrategoHost -> Strategy_StrategoHost
+    SwitchChoice               : Strategy_StrategoHost * List(SwitchCase_StrategoHost) * Strategy_StrategoHost -> Strategy_StrategoHost
+    SwitchChoiceNoOtherwise    : Strategy_StrategoHost * List(SwitchCase_StrategoHost) -> Strategy_StrategoHost
+    IfThen                     : Strategy_StrategoHost * Strategy_StrategoHost -> Strategy_StrategoHost
+    CondChoice                 : Strategy_StrategoHost * Strategy_StrategoHost * Strategy_StrategoHost -> Strategy_StrategoHost
+    Proceed                    : List(Strategy_StrategoHost) -> Strategy_StrategoHost
+    RChoice                    : Strategy_StrategoHost * Strategy_StrategoHost -> Strategy_StrategoHost
+    Choice                     : Strategy_StrategoHost * Strategy_StrategoHost -> Strategy_StrategoHost
+    SRule                      : Rule_StrategoHost -> Strategy_StrategoHost
+    LRule                      : Rule_StrategoHost -> Strategy_StrategoHost
+    CallNoArgs                 : SVar_StrategoHost -> Strategy_StrategoHost
+    ExplodeCong                : Strategy_StrategoHost * StrategyParen_StrategoHost -> Strategy_StrategoHost
+    ListCong                   : List(Strategy_StrategoHost) * Strategy_StrategoHost -> Strategy_StrategoHost
+    ListCongNoTail             : List(Strategy_StrategoHost) -> Strategy_StrategoHost
+    TupleCong                  : Strategy_StrategoHost * List(Strategy_StrategoHost) -> Strategy_StrategoHost
+    EmptyTupleCong             : Strategy_StrategoHost
+    AnnoCong                   : Strategy_StrategoHost * StrategyCurly_StrategoHost -> Strategy_StrategoHost
+    CongQ                      : String_StrategoHost * List(Strategy_StrategoHost) -> Strategy_StrategoHost
+    CharCong                   : Char_StrategoHost -> Strategy_StrategoHost
+    RealCong                   : Real_StrategoHost -> Strategy_StrategoHost
+    IntCong                    : Int_StrategoHost -> Strategy_StrategoHost
+    StrCong                    : String_StrategoHost -> Strategy_StrategoHost
+    Prim                       : String_StrategoHost * List(Term_StrategoHost) -> Strategy_StrategoHost
+    PrimNoArgs                 : String_StrategoHost -> Strategy_StrategoHost
+    Test                       : Strategy_StrategoHost -> Strategy_StrategoHost
+    With                       : Strategy_StrategoHost -> Strategy_StrategoHost
+    Where                      : Strategy_StrategoHost -> Strategy_StrategoHost
+    Not                        : Strategy_StrategoHost -> Strategy_StrategoHost
+    Rec                        : Id_StrategoHost * Strategy_StrategoHost -> Strategy_StrategoHost
+    LChoice                    : Strategy_StrategoHost * Strategy_StrategoHost -> Strategy_StrategoHost
+    ScopeDefault               : Strategy_StrategoHost -> Strategy_StrategoHost
+    Call                       : SVar_StrategoHost * List(Strategy_StrategoHost) -> Strategy_StrategoHost
+    ImportTerm                 : ModName_StrategoHost -> Strategy_StrategoHost
+    All                        : Strategy_StrategoHost -> Strategy_StrategoHost
+    One                        : Strategy_StrategoHost -> Strategy_StrategoHost
+    Some                       : Strategy_StrategoHost -> Strategy_StrategoHost
+    PrimT                      : String_StrategoHost * List(Strategy_StrategoHost) * List(Term_StrategoHost) -> Strategy_StrategoHost
+    GuardedLChoice             : Strategy_StrategoHost * StrategyMid_StrategoHost * Strategy_StrategoHost -> Strategy_StrategoHost
+    Seq                        : Strategy_StrategoHost * Strategy_StrategoHost -> Strategy_StrategoHost
+    Scope                      : List(ID_StrategoHost) * Strategy_StrategoHost -> Strategy_StrategoHost
+    Build                      : Term_StrategoHost -> Strategy_StrategoHost
+    Match                      : Term_StrategoHost -> Strategy_StrategoHost
+    ProceedNoArgs              : Strategy_StrategoHost
+    ProceedT                   : List(Strategy_StrategoHost) * List(Term_StrategoHost) -> Strategy_StrategoHost
+    Id                         : Strategy_StrategoHost
+    Fail                       : Strategy_StrategoHost
+    CallDynamic                : Term_StrategoHost * List(Strategy_StrategoHost) * List(Term_StrategoHost) -> Strategy_StrategoHost
+    CallT                      : SVar_StrategoHost * List(Strategy_StrategoHost) * List(Term_StrategoHost) -> Strategy_StrategoHost
+    Let                        : List(Def_StrategoHost) * Strategy_StrategoHost -> Strategy_StrategoHost
+    SVar                       : Id_StrategoHost -> SVar_StrategoHost
+                               : RuleDef_StrategoHost -> Def_StrategoHost
+    AnnoDef                    : List(Anno_StrategoHost) * RuleDef_StrategoHost -> Def_StrategoHost
+    AnnoDef                    : List(Anno_StrategoHost) * StrategyDef_StrategoHost -> Def_StrategoHost
+                               : StrategyDef_StrategoHost -> Def_StrategoHost
+                               : ConstType_StrategoHost -> Type_StrategoHost
+                               : FunType_StrategoHost -> Type_StrategoHost
+                               : Type_StrategoHost -> RetType_StrategoHost
+                               : ConstType_StrategoHost -> ArgType_StrategoHost
+    FunType                    : List(ArgType_StrategoHost) * RetType_StrategoHost -> FunType_StrategoHost
+    ConstType                  : Sort_StrategoHost -> ConstType_StrategoHost
+    ExtOpDeclInj               : Type_StrategoHost -> Opdecl_StrategoHost
+    ExtOpDeclQ                 : String_StrategoHost * Type_StrategoHost -> Opdecl_StrategoHost
+    ExtOpDecl                  : Id_StrategoHost * Type_StrategoHost -> Opdecl_StrategoHost
+    OpDeclInj                  : Type_StrategoHost -> Opdecl_StrategoHost
+    OpDeclQ                    : String_StrategoHost * Type_StrategoHost -> Opdecl_StrategoHost
+    OpDecl                     : Id_StrategoHost * Type_StrategoHost -> Opdecl_StrategoHost
+    SortTuple                  : List(Sort_StrategoHost) -> Sort_StrategoHost
+    SortListTl                 : List(Sort_StrategoHost) * Sort_StrategoHost -> Sort_StrategoHost
+    SortList                   : List(Sort_StrategoHost) -> Sort_StrategoHost
+    Sort                       : Id_StrategoHost * List(Sort_StrategoHost) -> Sort_StrategoHost
+    SortNoArgs                 : UCID_StrategoHost -> Sort_StrategoHost
+    SortVar                    : LCID_StrategoHost -> Sort_StrategoHost
+    Constructors               : List(Opdecl_StrategoHost) -> Sdecl_StrategoHost
+    Sorts                      : List(Sort_StrategoHost) -> Sdecl_StrategoHost
+    Wld                        : Wld_StrategoHost
+    ToMetaExpr                 : SemanticRule -> Term_StrategoHost
+    ToMetaExpr                 : FoldingRule -> Term_StrategoHost
+    ToMetaExpr                 : ColorRule -> Term_StrategoHost
+    ToMetaExpr                 : OutlineRule -> Term_StrategoHost
+    ToMetaExpr                 : Module -> Term_StrategoHost
+    ToMetaExpr                 : List(AbstractMethodDec_JavaObject) -> Term_StrategoHost
+    ToMetaExpr                 : AbstractMethodDec_JavaObject -> Term_StrategoHost
+    ToMetaListExpr             : List(ClassBodyDec_JavaObject) -> Term_StrategoHost
+    ToMetaExpr                 : List(ClassBodyDec_JavaObject) -> Term_StrategoHost
+    ToMetaExpr                 : ConstantDec_JavaObject -> Term_StrategoHost
+    ToMetaExpr                 : InterfaceMemberDec_JavaObject -> Term_StrategoHost
+    ToMetaExpr                 : ClassBodyDec_JavaObject -> Term_StrategoHost
+    ToMetaExpr                 : TypeDec_JavaObject -> Term_StrategoHost
+    ToMetaExpr                 : CompilationUnit_JavaObject -> Term_StrategoHost
+    ToMetaListExpr             : List(ImportDec_JavaObject) -> Term_StrategoHost
+    ToMetaExpr                 : ImportDec_JavaObject -> Term_StrategoHost
+    ToMetaExpr                 : OptPackageDec_JavaObject0 -> Term_StrategoHost
+    ToMetaExpr                 : PackageDec_JavaObject -> Term_StrategoHost
+    ToMetaExpr                 : List(FormalParam_JavaObject) -> Term_StrategoHost
+    ToMetaExpr                 : FormalParam_JavaObject -> Term_StrategoHost
+    ToMetaExpr                 : Anno_JavaObject -> Term_StrategoHost
+    ToMetaExpr                 : Modifier_JavaObject -> Term_StrategoHost
+    ToMetaExpr                 : PackageOrTypeName_JavaObject -> Term_StrategoHost
+    ToMetaExpr                 : TypeName_JavaObject -> Term_StrategoHost
+    ToMetaExpr                 : MethodName_JavaObject -> Term_StrategoHost
+    ToMetaExpr                 : ExprName_JavaObject -> Term_StrategoHost
+    ToMetaExpr                 : AmbName_JavaObject -> Term_StrategoHost
+    ToMetaExpr                 : Type_JavaObject -> Term_StrategoHost
+    ToMetaExpr                 : VarDec_JavaObject -> Term_StrategoHost
+    ToMetaExpr                 : LocalVarDec_JavaObject -> Term_StrategoHost
+    ToMetaListExpr             : SwitchGroup_JavaObject -> Term_StrategoHost
+    ToMetaExpr                 : Stm_JavaObject -> Term_StrategoHost
+    ToMetaListExpr             : List(BlockStm_JavaObject) -> Term_StrategoHost
+    ToMetaExpr                 : BlockStm_JavaObject -> Term_StrategoHost
+    ToMetaExpr                 : VarInit_JavaObject -> Term_StrategoHost
+    ToMetaExpr                 : Expr_JavaObject -> Term_StrategoHost
+    App                        : Strategy_StrategoHost * Term_StrategoHost -> Term_StrategoHost
+    NoAnnoList                 : PreTerm_StrategoHost -> Term_StrategoHost
+    AnnoList                   : PreTerm_StrategoHost * List(Term_StrategoHost) -> Term_StrategoHost
+    BuildDefault               : Term_StrategoHost -> Term_StrategoHost
+    As                         : Var_StrategoHost * Term_StrategoHost -> Term_StrategoHost
+    Anno                       : PreTerm_StrategoHost * PreTerm_StrategoHost -> Term_StrategoHost
+                               : Wld_StrategoHost -> Term_StrategoHost
+                               : Var_StrategoHost -> Term_StrategoHost
+                               : LID_StrategoHost -> ID_StrategoHost
+                               : Id_StrategoHost -> ID_StrategoHost
+    Var                        : LID_StrategoHost -> Var_StrategoHost
+    Var                        : Id_StrategoHost -> Var_StrategoHost
+                               : String -> Char_StrategoHost
+                               : String -> Padding_StrategoHost
+    QBr                        : String -> StringQuotedPart4_StrategoHost
+    QDollar                    : String -> StringQuotedPart4_StrategoHost
+    QStr                       : String -> StringQuotedPart4_StrategoHost
+    StringEscape4              : Padding_StrategoHost * Term_StrategoHost -> StringQuotedPart4_StrategoHost
+    QBr                        : String -> StringQuotedPart3_StrategoHost
+    QDollar                    : String -> StringQuotedPart3_StrategoHost
+    QStr                       : String -> StringQuotedPart3_StrategoHost
+    StringEscape3              : Padding_StrategoHost * Term_StrategoHost -> StringQuotedPart3_StrategoHost
+    QBr                        : String -> StringQuotedPart2_StrategoHost
+    QDollar                    : String -> StringQuotedPart2_StrategoHost
+    QStr                       : String -> StringQuotedPart2_StrategoHost
+    StringEscape2              : Padding_StrategoHost * Term_StrategoHost -> StringQuotedPart2_StrategoHost
+    QBr                        : String -> StringQuotedPart1_StrategoHost
+    QDollar                    : String -> StringQuotedPart1_StrategoHost
+    QStr                       : String -> StringQuotedPart1_StrategoHost
+    StringEscape1              : Padding_StrategoHost * Term_StrategoHost -> StringQuotedPart1_StrategoHost
+    StringQuotation4           : Padding_StrategoHost * List(StringQuotedPart4_StrategoHost) -> StringQuotation_StrategoHost
+    StringQuotation3           : Padding_StrategoHost * List(StringQuotedPart3_StrategoHost) -> StringQuotation_StrategoHost
+    StringQuotation2           : Padding_StrategoHost * List(StringQuotedPart2_StrategoHost) -> StringQuotation_StrategoHost
+    StringQuotation1           : Padding_StrategoHost * List(StringQuotedPart1_StrategoHost) -> StringQuotation_StrategoHost
+    ListTail                   : List(Term_StrategoHost) * Term_StrategoHost -> PreTerm_StrategoHost
+    List                       : List(Term_StrategoHost) -> PreTerm_StrategoHost
+    Tuple                      : List(Term_StrategoHost) -> PreTerm_StrategoHost
+    App                        : Strategy_StrategoHost * Term_StrategoHost -> PreTerm_StrategoHost
+    Char                       : Char_StrategoHost -> PreTerm_StrategoHost
+    BuildDefaultPT             : PreTerm_StrategoHost -> PreTerm_StrategoHost
+    As                         : Var_StrategoHost * PreTerm_StrategoHost -> PreTerm_StrategoHost
+    Explode                    : Term_StrategoHost * Term_StrategoHost -> PreTerm_StrategoHost
+    OpQ                        : String_StrategoHost * List(Term_StrategoHost) -> PreTerm_StrategoHost
+    Op                         : Id_StrategoHost * List(Term_StrategoHost) -> PreTerm_StrategoHost
+    Str                        : String_StrategoHost -> PreTerm_StrategoHost
+    Real                       : Real_StrategoHost -> PreTerm_StrategoHost
+    Int                        : Int_StrategoHost -> PreTerm_StrategoHost
+                               : Wld_StrategoHost -> PreTerm_StrategoHost
+                               : Var_StrategoHost -> PreTerm_StrategoHost
+                               : StringQuotation_StrategoHost -> PreTerm_StrategoHost
+                               : String -> String_StrategoHost
+                               : String -> Real_StrategoHost
+                               : String -> Int_StrategoHost
+                               : String -> UCID_StrategoHost
+                               : String -> LCID_StrategoHost
+                               : String -> LId_StrategoHost
+                               : String -> Id_StrategoHost
+                               : String -> ModName_StrategoHost
+
+
+signature
+  constructors
+    Some : a -> Option(a)
+    None : Option(a)
+
+
+signature
+  constructors
+    Cons : a * List(a) -> List(a)
+    Nil  : List(a)
+    Conc : List(a) * List(a) -> List(a)

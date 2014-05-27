@@ -1,0 +1,62 @@
+module sdf2imp/project/create-example-file
+    
+imports
+  sdf2imp/util/-
+
+strategies
+
+  create-example-file =
+    not(NoExistingDescriptor)
+  <+
+    with(
+      name       := <get-sdf-main-module>;
+      extensions := <require-option(EditorExtensions |"File extensions (-e)")>;
+      extension  := <string-tokenize(|[',']); Hd> extensions
+    );
+    
+    <output-text-file(|["test"], <add-extension> ("example", extension))>
+$[/**
+ * Example [name] program.
+ */  
+module example
+
+entity User {
+  name     : String
+  password : String
+  homepage : URL
+}
+
+entity BlogPosting {
+  poster : User
+  body   : String
+}
+
+entity URL {
+  location : String
+}
+];
+    
+    <output-text-file(|["test"], <add-extension> ("test-example", "spt"))>
+$</**
+ * Unit tests for the <name> language.
+ */
+module test-example
+
+language <name>
+
+setup Common [[
+  module example
+]]
+
+test Simple entity [[
+  entity User {
+    name : String
+  }
+]] 0 errors
+
+test Entity with reference to non-existing entity [[
+  entity User {
+    name : Strin
+  }
+]] 1 error
+>

@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: org.strategoxt.imp.generator.sdf2imp
+Class-Path: strategoxt.jar
+

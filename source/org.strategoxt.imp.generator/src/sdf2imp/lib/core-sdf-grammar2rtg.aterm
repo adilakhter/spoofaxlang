@@ -1,0 +1,12 @@
+GuardedLChoice(
+  Where(
+    Assign(
+      Var("y")
+    , App(CallT(SVar("get-cnstr-name"), [], []), Var("attrs"))
+    )
+  )
+, Build(
+    ToTerm([Var("A"), Var("y"), Var("t*")])
+  )
+, Build(NoAnnoList(List([])))
+)

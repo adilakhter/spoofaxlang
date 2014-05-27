@@ -1,0 +1,66 @@
+module RefactoringsService
+
+imports
+  SemanticServices
+  BuildersService
+
+exports
+  
+  syntax
+  
+    "refactorings" <SectionName-LEX> <LAYOUT?-CF> <SemanticRule*-CF> -> <Section-CF> {cons("Refactorings")}
+
+    "refactorings" -> <ReservedName-CF>
+  
+  context-free syntax
+  	
+  	"pp-table" ":" StrategoCall     -> SemanticRule {cons("PPTable"), deprecated("use 'pretty-print' instead")}
+  	"pretty-print" ":" StrategoCall -> SemanticRule {cons("PrettyPrint")}
+ 	"parenthesize" ":" StrategoCall -> SemanticRule {cons("Parenthesize")}
+ 	"override" "reconstruction" ":" StrategoCall -> SemanticRule {cons("OverrideReconstruction")}
+ 	"resugar" ":" StrategoCall -> SemanticRule {cons("Resugar")}
+
+    "refactoring" SemanticNode* ":" String "=" StrategoCall BuilderOption* UIOption* 
+    								-> SemanticRule {cons("Refactoring")}
+    
+    "shortcut" ":" KeyBinding -> UIOption {cons("Shortcut")}
+    RefactoringKeyBinding -> KeyBinding {cons("KeyBinding")}
+    "shortcut" ":" InteractionId -> UIOption {cons("Shortcut")}
+    String -> InteractionId {cons("InteractionId")}
+          
+    "input" InputField+ -> UIOption {cons("UserInput")}
+    
+    %% identifier input field [= text field + validation] 
+    "identifier" ":" String                  -> InputField {cons("IdInputField")}
+    "identifier" ":" String "=" String       -> InputField {cons("IdInputField")}
+    "identifier" ":" String "=" StrategoCall -> InputField {cons("IdInputField")}
+    
+    %% text input field 
+    "text" ":" String                  -> InputField {ast("TextInputField(<1>, \"\")")}
+    "text" ":" String "=" String       -> InputField {cons("TextInputField")}
+    "text" ":" String "=" StrategoCall -> InputField {cons("TextInputField")}
+
+    %% boolean input field 
+    %% choice input field 
+    %% list input field
+  
+     %% Avoid ambiguities with semantic nodes
+     "pp-table"  -> SemanticNode {reject}
+     "pretty-print"  -> SemanticNode {reject}
+     "refactoring"  -> SemanticNode {reject}
+
+lexical syntax
+	
+     %% Predefined Keybindings
+     "Shift+Alt+R"  -> RefactoringKeyBinding  %% Rename
+     "Shift+Alt+I"  -> RefactoringKeyBinding  %% Inline
+     "Shift+Alt+M"  -> RefactoringKeyBinding  %% Extract
+     "Shift+Alt+V"  -> RefactoringKeyBinding  %% Move
+     "Shift+Alt+C"  -> RefactoringKeyBinding  %% Change Signature
+     "Shift+Alt+L"  -> RefactoringKeyBinding  %% Extract Local Variabele
+     "Shift+Ctrl+F" -> RefactoringKeyBinding  %% Format
+     "Ctrl+I"       -> RefactoringKeyBinding  %% Correct Indentation
+     "Shift+Ctrl+C" -> RefactoringKeyBinding  %% Toggle Comment
+     "Shift+Alt+J"  -> RefactoringKeyBinding  %% Generate Element Comment
+     "Shift+Ctrl+M" -> RefactoringKeyBinding  %% Add Import
+     "Shift+Ctrl+O" -> RefactoringKeyBinding  %% Organize Imports
