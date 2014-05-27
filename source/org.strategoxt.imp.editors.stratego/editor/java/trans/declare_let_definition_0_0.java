@@ -24,81 +24,81 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("declare_let_definition_0_0");
-    Fail23195:
+    Fail21719:
     { 
-      TermReference c_4802 = new TermReference();
-      TermReference d_4802 = new TermReference();
-      TermReference e_4802 = new TermReference();
-      TermReference f_4802 = new TermReference();
-      TermReference g_4802 = new TermReference();
-      TermReference h_4802 = new TermReference();
-      TermReference i_4802 = new TermReference();
-      TermReference j_4802 = new TermReference();
-      IStrategoTerm m_4802 = null;
+      TermReference k_4248 = new TermReference();
+      TermReference l_4248 = new TermReference();
+      TermReference m_4248 = new TermReference();
+      TermReference n_4248 = new TermReference();
+      TermReference o_4248 = new TermReference();
+      TermReference p_4248 = new TermReference();
+      TermReference q_4248 = new TermReference();
+      TermReference r_4248 = new TermReference();
+      IStrategoTerm u_4248 = null;
       if(term.getTermType() != IStrategoTerm.APPL || Main._consSDefT_4 != ((IStrategoAppl)term).getConstructor())
-        break Fail23195;
-      if(c_4802.value == null)
-        c_4802.value = term.getSubterm(0);
+        break Fail21719;
+      if(k_4248.value == null)
+        k_4248.value = term.getSubterm(0);
       else
-        if(c_4802.value != term.getSubterm(0) && !c_4802.value.match(term.getSubterm(0)))
-          break Fail23195;
-      if(e_4802.value == null)
-        e_4802.value = term.getSubterm(1);
+        if(k_4248.value != term.getSubterm(0) && !k_4248.value.match(term.getSubterm(0)))
+          break Fail21719;
+      if(m_4248.value == null)
+        m_4248.value = term.getSubterm(1);
       else
-        if(e_4802.value != term.getSubterm(1) && !e_4802.value.match(term.getSubterm(1)))
-          break Fail23195;
-      if(g_4802.value == null)
-        g_4802.value = term.getSubterm(2);
+        if(m_4248.value != term.getSubterm(1) && !m_4248.value.match(term.getSubterm(1)))
+          break Fail21719;
+      if(o_4248.value == null)
+        o_4248.value = term.getSubterm(2);
       else
-        if(g_4802.value != term.getSubterm(2) && !g_4802.value.match(term.getSubterm(2)))
-          break Fail23195;
-      if(i_4802.value == null)
-        i_4802.value = term.getSubterm(3);
+        if(o_4248.value != term.getSubterm(2) && !o_4248.value.match(term.getSubterm(2)))
+          break Fail21719;
+      if(q_4248.value == null)
+        q_4248.value = term.getSubterm(3);
       else
-        if(i_4802.value != term.getSubterm(3) && !i_4802.value.match(term.getSubterm(3)))
-          break Fail23195;
-      m_4802 = term;
-      IStrategoTerm term12524 = term;
-      Success12426:
+        if(q_4248.value != term.getSubterm(3) && !q_4248.value.match(term.getSubterm(3)))
+          break Fail21719;
+      u_4248 = term;
+      IStrategoTerm term11815 = term;
+      Success11717:
       { 
-        Fail23196:
+        Fail21720:
         { 
-          lifted6898 lifted68980 = new lifted6898();
-          lifted6897 lifted68970 = new lifted6897();
-          lifted68980.c_4802 = c_4802;
-          lifted68980.d_4802 = d_4802;
-          lifted68980.e_4802 = e_4802;
-          lifted68980.f_4802 = f_4802;
-          lifted68980.g_4802 = g_4802;
-          lifted68980.h_4802 = h_4802;
-          lifted68980.i_4802 = i_4802;
-          lifted68980.j_4802 = j_4802;
-          lifted68970.e_4802 = e_4802;
-          lifted68970.g_4802 = g_4802;
-          term = dr_scope_declare_cookies_2_0.instance.invoke(context, term, lifted68970, lifted68980);
+          lifted6627 lifted66270 = new lifted6627();
+          lifted6626 lifted66260 = new lifted6626();
+          lifted66270.k_4248 = k_4248;
+          lifted66270.l_4248 = l_4248;
+          lifted66270.m_4248 = m_4248;
+          lifted66270.n_4248 = n_4248;
+          lifted66270.o_4248 = o_4248;
+          lifted66270.p_4248 = p_4248;
+          lifted66270.q_4248 = q_4248;
+          lifted66270.r_4248 = r_4248;
+          lifted66260.m_4248 = m_4248;
+          lifted66260.o_4248 = o_4248;
+          term = dr_scope_declare_cookies_2_0.instance.invoke(context, term, lifted66260, lifted66270);
           if(term == null)
-            break Fail23196;
+            break Fail21720;
           if(true)
-            break Success12426;
+            break Success11717;
         }
-        term = term12524;
-        IStrategoTerm k_4802 = null;
-        IStrategoTerm l_4802 = null;
-        IStrategoTerm q_4802 = null;
-        k_4802 = term;
+        term = term11815;
+        IStrategoTerm s_4248 = null;
+        IStrategoTerm t_4248 = null;
+        IStrategoTerm y_4248 = null;
+        s_4248 = term;
         term = context.invokePrimitive("SSL_stacktrace_get_all_frame_names", term, NO_STRATEGIES, NO_TERMS);
         if(term == null)
-          break Fail23195;
-        l_4802 = term;
-        q_4802 = k_4802;
-        term = report_with_failure_0_2.instance.invoke(context, q_4802, trans.const4603, l_4802);
+          break Fail21719;
+        t_4248 = term;
+        y_4248 = s_4248;
+        term = report_with_failure_0_2.instance.invoke(context, y_4248, trans.const4393, t_4248);
         if(term == null)
-          break Fail23195;
+          break Fail21719;
       }
-      term = m_4802;
-      if(d_4802.value == null || (f_4802.value == null || (h_4802.value == null || j_4802.value == null)))
-        break Fail23195;
-      term = termFactory.makeAppl(Main._consSDefT_4, new IStrategoTerm[]{d_4802.value, f_4802.value, h_4802.value, j_4802.value});
+      term = u_4248;
+      if(l_4248.value == null || (n_4248.value == null || (p_4248.value == null || r_4248.value == null)))
+        break Fail21719;
+      term = termFactory.makeAppl(Main._consSDefT_4, new IStrategoTerm[]{l_4248.value, n_4248.value, p_4248.value, r_4248.value});
       context.popOnSuccess();
       if(true)
         return term;

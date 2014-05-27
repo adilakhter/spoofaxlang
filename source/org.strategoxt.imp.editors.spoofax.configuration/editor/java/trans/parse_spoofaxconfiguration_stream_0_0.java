@@ -22,15 +22,15 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("parse_spoofaxconfiguration_stream_0_0");
-    Fail87646:
+    Fail22838:
     { 
-      IStrategoTerm p_17563 = null;
-      IStrategoTerm q_17563 = null;
-      p_17563 = term;
-      q_17563 = trans.constSpoofaxConfigurationTbl1;
-      term = parse_stream_1_1.instance.invoke(context, p_17563, strsglr_report_parse_error_0_0.instance, q_17563);
+      IStrategoTerm s_4619 = null;
+      IStrategoTerm t_4619 = null;
+      s_4619 = term;
+      t_4619 = trans.constSpoofaxConfigurationTbl1;
+      term = parse_stream_1_1.instance.invoke(context, s_4619, strsglr_report_parse_error_0_0.instance, t_4619);
       if(term == null)
-        break Fail87646;
+        break Fail22838;
       context.popOnSuccess();
       if(true)
         return term;

@@ -24,23 +24,23 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("errors_recursion_0_0");
-    Fail22780:
+    Fail21304:
     { 
-      IStrategoTerm j_4725 = null;
-      j_4725 = term;
+      IStrategoTerm r_4171 = null;
+      r_4171 = term;
       if(term.getTermType() != IStrategoTerm.APPL || Main._consSDefT_4 != ((IStrategoAppl)term).getConstructor())
-        break Fail22780;
-      IStrategoTerm arg8059 = term.getSubterm(0);
-      IStrategoList annos693 = arg8059.getAnnotations();
-      if(annos693.getTermType() != IStrategoTerm.LIST || ((IStrategoList)annos693).isEmpty())
-        break Fail22780;
-      IStrategoTerm arg8060 = ((IStrategoList)annos693).tail();
-      if(arg8060.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg8060).isEmpty())
-        break Fail22780;
-      term = is_recursive_declaration_0_0.instance.invoke(context, j_4725);
+        break Fail21304;
+      IStrategoTerm arg7592 = term.getSubterm(0);
+      IStrategoList annos665 = arg7592.getAnnotations();
+      if(annos665.getTermType() != IStrategoTerm.LIST || ((IStrategoList)annos665).isEmpty())
+        break Fail21304;
+      IStrategoTerm arg7593 = ((IStrategoList)annos665).tail();
+      if(arg7593.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg7593).isEmpty())
+        break Fail21304;
+      term = is_recursive_declaration_0_0.instance.invoke(context, r_4171);
       if(term == null)
-        break Fail22780;
-      term = (IStrategoTerm)termFactory.makeListCons(termFactory.makeTuple(j_4725, trans.const4456), (IStrategoList)trans.constNil4);
+        break Fail21304;
+      term = (IStrategoTerm)termFactory.makeListCons(termFactory.makeTuple(r_4171, trans.const4246), (IStrategoList)trans.constNil3);
       context.popOnSuccess();
       if(true)
         return term;

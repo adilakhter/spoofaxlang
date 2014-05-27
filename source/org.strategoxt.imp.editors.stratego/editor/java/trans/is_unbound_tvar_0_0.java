@@ -23,33 +23,33 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("is_unbound_tvar_0_0");
-    Fail22767:
+    Fail21291:
     { 
-      IStrategoTerm u_4723 = null;
-      IStrategoTerm v_4723 = null;
-      u_4723 = term;
+      IStrategoTerm c_4170 = null;
+      IStrategoTerm d_4170 = null;
+      c_4170 = term;
       if(term.getTermType() != IStrategoTerm.APPL || Main._consVar_1 != ((IStrategoAppl)term).getConstructor())
-        break Fail22767;
-      v_4723 = term.getSubterm(0);
-      term = v_4723;
-      IStrategoTerm term12152 = term;
-      Success12151:
+        break Fail21291;
+      d_4170 = term.getSubterm(0);
+      term = d_4170;
+      IStrategoTerm term11443 = term;
+      Success11442:
       { 
-        Fail22768:
+        Fail21292:
         { 
           term = has_annos_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail22768;
+            break Fail21292;
           { 
             if(true)
-              break Fail22767;
+              break Fail21291;
             if(true)
-              break Success12151;
+              break Success11442;
           }
         }
-        term = term12152;
+        term = term11443;
       }
-      term = u_4723;
+      term = c_4170;
       context.popOnSuccess();
       if(true)
         return term;

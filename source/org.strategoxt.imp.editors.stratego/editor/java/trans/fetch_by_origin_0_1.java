@@ -20,28 +20,28 @@ import java.lang.ref.WeakReference;
 { 
   public static fetch_by_origin_0_1 instance = new fetch_by_origin_0_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm k_4898)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm s_4344)
   { 
     context.push("fetch_by_origin_0_1");
-    Fail22714:
+    Fail21238:
     { 
-      IStrategoTerm term12121 = term;
-      Success12121:
+      IStrategoTerm term11412 = term;
+      Success11412:
       { 
-        Fail22715:
+        Fail21239:
         { 
-          term = fetch_by_origin_1_1.instance.invoke(context, term, _Id.instance, k_4898);
+          term = fetch_by_origin_1_1.instance.invoke(context, term, _Id.instance, s_4344);
           if(term == null)
-            break Fail22715;
+            break Fail21239;
           if(true)
-            break Success12121;
+            break Success11412;
         }
-        term = term12121;
-        IStrategoTerm h_4716 = null;
-        h_4716 = term;
-        term = fetch_by_origin_1_1.instance.invoke(context, h_4716, _Id.instance, k_4898);
+        term = term11412;
+        IStrategoTerm p_4162 = null;
+        p_4162 = term;
+        term = fetch_by_origin_1_1.instance.invoke(context, p_4162, _Id.instance, s_4344);
         if(term == null)
-          break Fail22714;
+          break Fail21238;
       }
       context.popOnSuccess();
       if(true)

@@ -25,59 +25,59 @@ import java.lang.ref.WeakReference;
 
   private static boolean isIniting;
 
-  protected static IStrategoTerm const17893;
+  protected static IStrategoTerm const4506;
 
-  protected static IStrategoTerm const17892;
+  protected static IStrategoTerm const4505;
 
-  protected static IStrategoTerm const17891;
+  protected static IStrategoTerm const4504;
 
-  protected static IStrategoTerm const17890;
+  protected static IStrategoTerm const4503;
 
-  protected static IStrategoTerm const17889;
+  protected static IStrategoTerm const4502;
 
-  protected static IStrategoTerm const17888;
+  protected static IStrategoTerm const4501;
 
-  protected static IStrategoTerm const17887;
+  protected static IStrategoTerm const4500;
 
-  protected static IStrategoTerm const17886;
+  protected static IStrategoTerm const4499;
 
-  protected static IStrategoTerm constCons8531;
+  protected static IStrategoTerm constCons2050;
 
   protected static IStrategoTerm constMARKER0;
 
-  protected static IStrategoTerm const17885;
+  protected static IStrategoTerm const4498;
 
-  protected static IStrategoTerm const17884;
+  protected static IStrategoTerm const4497;
 
-  protected static IStrategoTerm constCons8530;
+  protected static IStrategoTerm constCons2049;
 
-  protected static IStrategoTerm const17883;
+  protected static IStrategoTerm const4496;
 
-  protected static IStrategoTerm const17882;
+  protected static IStrategoTerm const4495;
 
-  protected static IStrategoTerm const17881;
+  protected static IStrategoTerm const4494;
 
-  protected static IStrategoTerm const17880;
+  protected static IStrategoTerm const4493;
 
-  protected static IStrategoTerm constCons8529;
+  protected static IStrategoTerm constCons2048;
 
-  protected static IStrategoTerm const17879;
+  protected static IStrategoTerm const4492;
 
-  protected static IStrategoTerm const17878;
+  protected static IStrategoTerm const4491;
 
-  protected static IStrategoTerm const17877;
+  protected static IStrategoTerm const4490;
 
-  protected static IStrategoTerm const17876;
+  protected static IStrategoTerm const4489;
 
-  protected static IStrategoTerm const17875;
+  protected static IStrategoTerm const4488;
 
-  protected static IStrategoTerm const17874;
+  protected static IStrategoTerm const4487;
 
-  protected static IStrategoTerm const17873;
+  protected static IStrategoTerm const4486;
 
-  protected static IStrategoTerm const17872;
+  protected static IStrategoTerm const4485;
 
-  protected static IStrategoTerm const17871;
+  protected static IStrategoTerm const4484;
 
   public static IStrategoTerm getSpoofaxConfigurationPpAf()
   { 
@@ -114,73 +114,73 @@ import java.lang.ref.WeakReference;
 
   protected static ImportTerm constSpoofaxConfigurationTbl;
 
-  protected static IStrategoTerm const17870;
+  protected static IStrategoTerm const4483;
 
-  protected static IStrategoTerm constCons8528;
+  protected static IStrategoTerm constCons2047;
 
   protected static IStrategoTerm constDR_DUMMY0;
 
-  protected static IStrategoTerm const17869;
+  protected static IStrategoTerm const4482;
 
-  protected static IStrategoTerm const17868;
+  protected static IStrategoTerm const4481;
 
-  protected static IStrategoTerm const17867;
+  protected static IStrategoTerm const4480;
 
-  protected static IStrategoTerm constCons8527;
+  protected static IStrategoTerm constCons2046;
 
-  protected static IStrategoTerm const17866;
+  protected static IStrategoTerm const4479;
 
-  protected static IStrategoTerm const17865;
+  protected static IStrategoTerm const4478;
 
-  protected static IStrategoTerm const17864;
+  protected static IStrategoTerm const4477;
 
-  protected static IStrategoTerm const17863;
+  protected static IStrategoTerm const4476;
 
-  protected static IStrategoTerm const17862;
+  protected static IStrategoTerm const4475;
 
-  protected static IStrategoTerm const17861;
+  protected static IStrategoTerm const4474;
 
-  protected static IStrategoTerm constCons8526;
+  protected static IStrategoTerm constCons2045;
 
-  protected static IStrategoTerm const17860;
+  protected static IStrategoTerm const4473;
 
-  protected static IStrategoTerm const17859;
+  protected static IStrategoTerm const4472;
 
-  protected static IStrategoTerm const17858;
+  protected static IStrategoTerm const4471;
 
-  protected static IStrategoTerm const17857;
+  protected static IStrategoTerm const4470;
 
-  protected static IStrategoTerm const17856;
+  protected static IStrategoTerm const4469;
 
-  protected static IStrategoTerm const17855;
+  protected static IStrategoTerm const4468;
 
-  protected static IStrategoTerm const17854;
+  protected static IStrategoTerm const4467;
 
-  protected static IStrategoTerm const17853;
+  protected static IStrategoTerm const4466;
 
-  protected static IStrategoTerm const17852;
+  protected static IStrategoTerm const4465;
 
-  protected static IStrategoTerm constCons8525;
+  protected static IStrategoTerm constCons2044;
 
-  protected static IStrategoTerm const17851;
+  protected static IStrategoTerm const4464;
 
-  protected static IStrategoTerm const17850;
+  protected static IStrategoTerm const4463;
 
-  protected static IStrategoTerm const17849;
+  protected static IStrategoTerm const4462;
 
-  protected static IStrategoTerm const17848;
+  protected static IStrategoTerm const4461;
 
-  protected static IStrategoTerm const17847;
+  protected static IStrategoTerm const4460;
 
-  protected static IStrategoTerm const17846;
+  protected static IStrategoTerm const4459;
 
-  protected static IStrategoTerm constNil14;
+  protected static IStrategoTerm constNil4;
 
-  protected static IStrategoTerm const17845;
+  protected static IStrategoTerm const4458;
 
-  protected static IStrategoTerm const17844;
+  protected static IStrategoTerm const4457;
 
-  protected static IStrategoTerm const17843;
+  protected static IStrategoTerm const4456;
 
   public static IStrategoConstructor _consConc_2;
 
@@ -335,72 +335,72 @@ import java.lang.ref.WeakReference;
 
   public static void initConstants(ITermFactory termFactory)
   { 
-    const17843 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in strategy 'get-all-sources'");
-    const17844 = termFactory.makeString("\n");
-    const17845 = termFactory.makeString("\n               ");
-    constNil14 = (IStrategoTerm)termFactory.makeList(Term.NO_TERMS);
-    const17846 = termFactory.makeString("/");
-    const17847 = termFactory.makeString("Failed to get list of source directory.");
-    const17848 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'get-local-sources'");
-    const17849 = termFactory.makeString("..");
-    const17850 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in strategy 'resolve-external-sources'");
-    const17851 = termFactory.makeString("/spx.config");
-    constCons8525 = (IStrategoTerm)termFactory.makeListCons(trans.const17851, (IStrategoList)trans.constNil14);
-    const17852 = termFactory.makeString("spx.config");
-    const17853 = termFactory.makeString("");
-    const17854 = termFactory.makeString("Failed to retrieve list of projects.");
-    const17855 = termFactory.makeString("Configuration | Failed to find the directory specified: ");
-    const17856 = termFactory.makeString("Configuration | Failed to find spx.config file in the directory specified: ");
-    const17857 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'normalized-spxproject-reference'");
-    const17858 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'verify-local-directory-exist'");
-    const17859 = termFactory.makeString("\n            ");
-    const17860 = termFactory.makeString("\" is not found.");
-    constCons8526 = (IStrategoTerm)termFactory.makeListCons(trans.const17860, (IStrategoList)trans.constNil14);
-    const17861 = termFactory.makeString("Direcotory \"");
-    const17862 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'verify-project-reference'");
-    const17863 = termFactory.makeString("\n                                                                                   ");
-    const17864 = termFactory.makeString("Illegal project reference. spx.config file is not found in the following project : ");
-    const17865 = termFactory.makeString("\n                                             ");
-    const17866 = termFactory.makeString(" is not found in the current workspace");
-    constCons8527 = (IStrategoTerm)termFactory.makeListCons(trans.const17866, (IStrategoList)trans.constNil14);
-    const17867 = termFactory.makeString("Illegal project reference. Following project ");
-    const17868 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in strategy 'is-spx-config-exist'");
-    const17869 = termFactory.makeString("get-config-reference");
+    const4456 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in strategy 'get-all-sources'");
+    const4457 = termFactory.makeString("\n");
+    const4458 = termFactory.makeString("\n               ");
+    constNil4 = (IStrategoTerm)termFactory.makeList(Term.NO_TERMS);
+    const4459 = termFactory.makeString("/");
+    const4460 = termFactory.makeString("Failed to get list of source directory.");
+    const4461 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'get-local-sources'");
+    const4462 = termFactory.makeString("..");
+    const4463 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in strategy 'resolve-external-sources'");
+    const4464 = termFactory.makeString("/spx.config");
+    constCons2044 = (IStrategoTerm)termFactory.makeListCons(trans.const4464, (IStrategoList)trans.constNil4);
+    const4465 = termFactory.makeString("spx.config");
+    const4466 = termFactory.makeString("");
+    const4467 = termFactory.makeString("Failed to retrieve list of projects.");
+    const4468 = termFactory.makeString("Configuration | Failed to find the directory specified: ");
+    const4469 = termFactory.makeString("Configuration | Failed to find spx.config file in the directory specified: ");
+    const4470 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'normalized-spxproject-reference'");
+    const4471 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'verify-local-directory-exist'");
+    const4472 = termFactory.makeString("\n            ");
+    const4473 = termFactory.makeString("\" is not found.");
+    constCons2045 = (IStrategoTerm)termFactory.makeListCons(trans.const4473, (IStrategoList)trans.constNil4);
+    const4474 = termFactory.makeString("Direcotory \"");
+    const4475 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'verify-project-reference'");
+    const4476 = termFactory.makeString("\n                                                                                   ");
+    const4477 = termFactory.makeString("Illegal project reference. spx.config file is not found in the following project : ");
+    const4478 = termFactory.makeString("\n                                             ");
+    const4479 = termFactory.makeString(" is not found in the current workspace");
+    constCons2046 = (IStrategoTerm)termFactory.makeListCons(trans.const4479, (IStrategoList)trans.constNil4);
+    const4480 = termFactory.makeString("Illegal project reference. Following project ");
+    const4481 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in strategy 'is-spx-config-exist'");
+    const4482 = termFactory.makeString("get-config-reference");
     constDR_DUMMY0 = termFactory.makeAppl(Main._consDR_DUMMY_0, NO_TERMS);
-    constCons8528 = (IStrategoTerm)termFactory.makeListCons(trans.constDR_DUMMY0, (IStrategoList)trans.constNil14);
-    const17870 = termFactory.makeString("-763437");
+    constCons2047 = (IStrategoTerm)termFactory.makeListCons(trans.constDR_DUMMY0, (IStrategoList)trans.constNil4);
+    const4483 = termFactory.makeString("-763437");
     constSpoofaxConfigurationTbl = new ImportTerm(termFactory, trans.class, "/trans/", "SpoofaxConfiguration.tbl");
     constSpoofaxConfigurationTbl0 = new ImportTerm(termFactory, trans.class, "/trans/", "SpoofaxConfiguration.tbl");
     constSpoofaxConfigurationTbl1 = new ImportTerm(termFactory, trans.class, "/trans/", "SpoofaxConfiguration.tbl");
     constSpoofaxConfigurationGeneratedPpAf = new ImportTerm(termFactory, trans.class, "/trans/", "SpoofaxConfiguration.generated.pp.af");
     constSpoofaxConfigurationPpAf = new ImportTerm(termFactory, trans.class, "/trans/", "SpoofaxConfiguration.pp.af");
-    const17871 = termFactory.makeInt(100);
-    const17872 = termFactory.makeString("CurrentFile");
-    const17873 = termFactory.makeString("99705");
-    const17874 = termFactory.makeString("IsImported");
-    const17875 = termFactory.makeString("-597601");
-    const17876 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'open-wildcard-import'");
-    const17877 = termFactory.makeString("\n       ");
-    const17878 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'import-cache-path'");
-    const17879 = termFactory.makeString("/.cache");
-    constCons8529 = (IStrategoTerm)termFactory.makeListCons(trans.const17879, (IStrategoList)trans.constNil14);
-    const17880 = termFactory.makeString("+");
-    const17881 = termFactory.makeString("\\");
-    const17882 = termFactory.makeString(":");
-    const17883 = termFactory.makeString(".sig");
-    constCons8530 = (IStrategoTerm)termFactory.makeListCons(trans.const17883, (IStrategoList)trans.constNil14);
-    const17884 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'import-cache-path'");
-    const17885 = termFactory.makeString("SpoofaxConfiguration");
+    const4484 = termFactory.makeInt(100);
+    const4485 = termFactory.makeString("CurrentFile");
+    const4486 = termFactory.makeString("99705");
+    const4487 = termFactory.makeString("IsImported");
+    const4488 = termFactory.makeString("-597601");
+    const4489 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'open-wildcard-import'");
+    const4490 = termFactory.makeString("\n       ");
+    const4491 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'import-cache-path'");
+    const4492 = termFactory.makeString("/.cache");
+    constCons2048 = (IStrategoTerm)termFactory.makeListCons(trans.const4492, (IStrategoList)trans.constNil4);
+    const4493 = termFactory.makeString("+");
+    const4494 = termFactory.makeString("\\");
+    const4495 = termFactory.makeString(":");
+    const4496 = termFactory.makeString(".sig");
+    constCons2049 = (IStrategoTerm)termFactory.makeListCons(trans.const4496, (IStrategoList)trans.constNil4);
+    const4497 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'import-cache-path'");
+    const4498 = termFactory.makeString("SpoofaxConfiguration");
     constMARKER0 = termFactory.makeAppl(Main._consMARKER_0, NO_TERMS);
-    constCons8531 = (IStrategoTerm)termFactory.makeListCons(trans.constMARKER0, (IStrategoList)trans.constNil14);
-    const17886 = termFactory.makeInt(0);
-    const17887 = termFactory.makeString("BACKGROUNDED");
-    const17888 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'editor-analyze'");
-    const17889 = termFactory.makeString("config.fullpath");
-    const17890 = termFactory.makeString("aterm");
-    const17891 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'generate-aterm'");
-    const17892 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'editor-hover'");
-    const17893 = termFactory.makeString("Hover help: ");
+    constCons2050 = (IStrategoTerm)termFactory.makeListCons(trans.constMARKER0, (IStrategoList)trans.constNil4);
+    const4499 = termFactory.makeInt(0);
+    const4500 = termFactory.makeString("BACKGROUNDED");
+    const4501 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'editor-analyze'");
+    const4502 = termFactory.makeString("config.fullpath");
+    const4503 = termFactory.makeString("aterm");
+    const4504 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'generate-aterm'");
+    const4505 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'editor-hover'");
+    const4506 = termFactory.makeString("Hover help: ");
   }
 
   public static void registerInterop(org.spoofax.interpreter.core.IContext context, Context compiledContext)

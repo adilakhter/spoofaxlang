@@ -20,16 +20,16 @@ import java.lang.ref.WeakReference;
 { 
   public static continue_to_label_$Outer$Cookie_0_1 instance = new continue_to_label_$Outer$Cookie_0_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm b_4886)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm j_4332)
   { 
     context.push("continue_to_label_OuterCookie_0_1");
-    Fail23715:
+    Fail22239:
     { 
-      IStrategoTerm d_4886 = null;
-      d_4886 = term;
-      term = dr_continue_0_2.instance.invoke(context, d_4886, trans.const4604, b_4886);
+      IStrategoTerm l_4332 = null;
+      l_4332 = term;
+      term = dr_continue_0_2.instance.invoke(context, l_4332, trans.const4394, j_4332);
       if(term == null)
-        break Fail23715;
+        break Fail22239;
       context.popOnSuccess();
       if(true)
         return term;

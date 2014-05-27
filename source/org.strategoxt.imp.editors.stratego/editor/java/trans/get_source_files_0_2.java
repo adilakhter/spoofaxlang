@@ -20,23 +20,23 @@ import java.lang.ref.WeakReference;
 { 
   public static get_source_files_0_2 instance = new get_source_files_0_2();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm ref_v_4733, IStrategoTerm ref_w_4733)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm ref_d_4180, IStrategoTerm ref_e_4180)
   { 
-    TermReference v_4733 = new TermReference(ref_v_4733);
-    TermReference w_4733 = new TermReference(ref_w_4733);
+    TermReference d_4180 = new TermReference(ref_d_4180);
+    TermReference e_4180 = new TermReference(ref_e_4180);
     context.push("get_source_files_0_2");
-    Fail22816:
+    Fail21340:
     { 
-      IStrategoTerm x_4733 = null;
-      x_4733 = term;
-      term = x_4733;
-      lifted6768 lifted67680 = new lifted6768();
-      lifted6767 lifted67670 = new lifted6767();
-      lifted67680.w_4733 = w_4733;
-      lifted67670.v_4733 = v_4733;
-      term = get_source_files_2_0.instance.invoke(context, term, lifted67670, lifted67680);
+      IStrategoTerm f_4180 = null;
+      f_4180 = term;
+      term = f_4180;
+      lifted6497 lifted64970 = new lifted6497();
+      lifted6496 lifted64960 = new lifted6496();
+      lifted64970.e_4180 = e_4180;
+      lifted64960.d_4180 = d_4180;
+      term = get_source_files_2_0.instance.invoke(context, term, lifted64960, lifted64970);
       if(term == null)
-        break Fail22816;
+        break Fail21340;
       context.popOnSuccess();
       if(true)
         return term;

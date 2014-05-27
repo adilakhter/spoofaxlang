@@ -20,12 +20,12 @@ import java.lang.ref.WeakReference;
 { 
   public static undefine_$Memoize$Include$Properties_0_1 instance = new undefine_$Memoize$Include$Properties_0_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm f_4881)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm n_4327)
   { 
-    Fail23686:
+    Fail22210:
     { 
       if(true)
-        break Fail23686;
+        break Fail22210;
       if(true)
         return term;
     }

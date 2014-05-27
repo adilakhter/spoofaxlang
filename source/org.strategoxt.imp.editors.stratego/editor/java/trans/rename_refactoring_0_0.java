@@ -24,109 +24,109 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("rename_refactoring_0_0");
-    Fail22861:
+    Fail21385:
     { 
-      IStrategoTerm u_4742 = null;
-      IStrategoTerm v_4742 = null;
-      IStrategoTerm w_4742 = null;
-      IStrategoTerm x_4742 = null;
-      IStrategoTerm y_4742 = null;
-      IStrategoTerm z_4742 = null;
-      IStrategoTerm a_4743 = null;
-      IStrategoTerm b_4743 = null;
-      IStrategoTerm c_4743 = null;
-      IStrategoTerm d_4743 = null;
-      IStrategoTerm f_4743 = null;
-      IStrategoTerm g_4743 = null;
-      IStrategoTerm l_4743 = null;
+      IStrategoTerm c_4189 = null;
+      IStrategoTerm d_4189 = null;
+      IStrategoTerm e_4189 = null;
+      IStrategoTerm f_4189 = null;
+      IStrategoTerm g_4189 = null;
+      IStrategoTerm h_4189 = null;
+      IStrategoTerm i_4189 = null;
+      IStrategoTerm j_4189 = null;
+      IStrategoTerm k_4189 = null;
+      IStrategoTerm l_4189 = null;
+      IStrategoTerm n_4189 = null;
+      IStrategoTerm o_4189 = null;
+      IStrategoTerm t_4189 = null;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 6)
-        break Fail22861;
-      v_4742 = term.getSubterm(0);
-      IStrategoTerm arg8131 = term.getSubterm(1);
-      u_4742 = arg8131;
-      IStrategoList annos704 = arg8131.getAnnotations();
-      if(annos704.getTermType() != IStrategoTerm.LIST || ((IStrategoList)annos704).isEmpty())
-        break Fail22861;
-      c_4743 = ((IStrategoList)annos704).head();
-      IStrategoTerm arg8132 = ((IStrategoList)annos704).tail();
-      if(arg8132.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg8132).isEmpty())
-        break Fail22861;
-      x_4742 = term.getSubterm(3);
-      w_4742 = term.getSubterm(4);
-      term = termFactory.makeTuple(termFactory.annotateTerm(u_4742, checkListAnnos(termFactory, (IStrategoTerm)termFactory.makeListCons(c_4743, (IStrategoList)trans.constNil4))), v_4742);
+        break Fail21385;
+      d_4189 = term.getSubterm(0);
+      IStrategoTerm arg7664 = term.getSubterm(1);
+      c_4189 = arg7664;
+      IStrategoList annos676 = arg7664.getAnnotations();
+      if(annos676.getTermType() != IStrategoTerm.LIST || ((IStrategoList)annos676).isEmpty())
+        break Fail21385;
+      k_4189 = ((IStrategoList)annos676).head();
+      IStrategoTerm arg7665 = ((IStrategoList)annos676).tail();
+      if(arg7665.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg7665).isEmpty())
+        break Fail21385;
+      f_4189 = term.getSubterm(3);
+      e_4189 = term.getSubterm(4);
+      term = termFactory.makeTuple(termFactory.annotateTerm(c_4189, checkListAnnos(termFactory, (IStrategoTerm)termFactory.makeListCons(k_4189, (IStrategoList)trans.constNil3))), d_4189);
       term = get_dependend_renamings_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22861;
-      y_4742 = term;
-      Success12182:
+        break Fail21385;
+      g_4189 = term;
+      Success11473:
       { 
-        Fail22862:
+        Fail21386:
         { 
-          IStrategoTerm h_4743 = null;
-          h_4743 = term;
-          term = w_4742;
-          IStrategoTerm term12218 = term;
-          Success12183:
+          IStrategoTerm p_4189 = null;
+          p_4189 = term;
+          term = e_4189;
+          IStrategoTerm term11509 = term;
+          Success11474:
           { 
-            Fail22863:
+            Fail21387:
             { 
-              IStrategoTerm k_4743 = null;
-              k_4743 = term;
-              term = has_extension_0_1.instance.invoke(context, k_4743, trans.const4499);
+              IStrategoTerm s_4189 = null;
+              s_4189 = term;
+              term = has_extension_0_1.instance.invoke(context, s_4189, trans.const4289);
               if(term == null)
-                break Fail22863;
+                break Fail21387;
               { 
                 if(true)
-                  break Fail22862;
+                  break Fail21386;
                 if(true)
-                  break Success12183;
+                  break Success11474;
               }
             }
-            term = term12218;
+            term = term11509;
           }
-          term = h_4743;
+          term = p_4189;
           { 
-            term = termFactory.makeTuple(c_4743, y_4742, x_4742);
+            term = termFactory.makeTuple(k_4189, g_4189, f_4189);
             term = get_asts_affected_by_renaming_0_0.instance.invoke(context, term);
             if(term == null)
-              break Fail22861;
+              break Fail21385;
             if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-              break Fail22861;
-            z_4742 = term.getSubterm(0);
-            d_4743 = term.getSubterm(1);
+              break Fail21385;
+            h_4189 = term.getSubterm(0);
+            l_4189 = term.getSubterm(1);
             if(true)
-              break Success12182;
+              break Success11473;
           }
         }
-        term = (IStrategoTerm)termFactory.makeListCons(x_4742, (IStrategoList)trans.constNil4);
-        z_4742 = term;
-        d_4743 = trans.constNil4;
-        term = termFactory.makeTuple((IStrategoTerm)termFactory.makeListCons(x_4742, (IStrategoList)trans.constNil4), trans.constNil4);
+        term = (IStrategoTerm)termFactory.makeListCons(f_4189, (IStrategoList)trans.constNil3);
+        h_4189 = term;
+        l_4189 = trans.constNil3;
+        term = termFactory.makeTuple((IStrategoTerm)termFactory.makeListCons(f_4189, (IStrategoList)trans.constNil3), trans.constNil3);
       }
-      term = apply_rename_refactoring_2_1.instance.invoke(context, z_4742, re_analyse_names_0_0.instance, collect_semantic_issues_0_0.instance, y_4742);
+      term = apply_rename_refactoring_2_1.instance.invoke(context, h_4189, re_analyse_names_0_0.instance, collect_semantic_issues_0_0.instance, g_4189);
       if(term == null)
-        break Fail22861;
+        break Fail21385;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 3)
-        break Fail22861;
-      a_4743 = term.getSubterm(0);
-      f_4743 = term.getSubterm(1);
-      b_4743 = term.getSubterm(2);
-      term = external_declaration_errors_0_0.instance.invoke(context, c_4743);
+        break Fail21385;
+      i_4189 = term.getSubterm(0);
+      n_4189 = term.getSubterm(1);
+      j_4189 = term.getSubterm(2);
+      term = external_declaration_errors_0_0.instance.invoke(context, k_4189);
       if(term == null)
-        break Fail22861;
-      term = (IStrategoTerm)termFactory.makeListCons(d_4743, termFactory.makeListCons(term, termFactory.makeListCons(f_4743, (IStrategoList)trans.constNil4)));
+        break Fail21385;
+      term = (IStrategoTerm)termFactory.makeListCons(l_4189, termFactory.makeListCons(term, termFactory.makeListCons(n_4189, (IStrategoList)trans.constNil3)));
       term = concat_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22861;
-      g_4743 = term;
-      term = make_set_0_0.instance.invoke(context, g_4743);
+        break Fail21385;
+      o_4189 = term;
+      term = make_set_0_0.instance.invoke(context, o_4189);
       if(term == null)
-        break Fail22861;
-      l_4743 = term;
-      term = make_set_0_0.instance.invoke(context, b_4743);
+        break Fail21385;
+      t_4189 = term;
+      term = make_set_0_0.instance.invoke(context, j_4189);
       if(term == null)
-        break Fail22861;
-      term = termFactory.makeTuple(a_4743, trans.constNil4, l_4743, term);
+        break Fail21385;
+      term = termFactory.makeTuple(i_4189, trans.constNil3, t_4189, term);
       context.popOnSuccess();
       if(true)
         return term;

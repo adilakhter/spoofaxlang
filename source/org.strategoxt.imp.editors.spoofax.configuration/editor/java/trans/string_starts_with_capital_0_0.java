@@ -22,17 +22,17 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("string_starts_with_capital_0_0");
-    Fail87680:
+    Fail22872:
     { 
       term = explode_string_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail87680;
+        break Fail22872;
       term = $Hd_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail87680;
+        break Fail22872;
       term = is_upper_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail87680;
+        break Fail22872;
       context.popOnSuccess();
       if(true)
         return term;

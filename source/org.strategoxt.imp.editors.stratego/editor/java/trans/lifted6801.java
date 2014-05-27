@@ -18,26 +18,17 @@ import java.lang.ref.WeakReference;
 
 @SuppressWarnings("all") final class lifted6801 extends Strategy 
 { 
-  TermReference q_5053;
+  TermReference n_4326;
+
+  TermReference o_4326;
 
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
-    ITermFactory termFactory = context.getFactory();
-    Fail24112:
+    Fail22353:
     { 
-      IStrategoTerm w_5053 = null;
-      IStrategoTerm z_5053 = null;
-      IStrategoTerm x_5053 = null;
-      z_5053 = term;
-      if(q_5053.value == null)
-        break Fail24112;
-      w_5053 = q_5053.value;
-      x_5053 = z_5053;
-      term = termFactory.makeTuple(x_5053, w_5053);
-      term = elem_0_0.instance.invoke(context, term);
+      term = aux_$Is$Imported$Failed_0_2.instance.invoke(context, term, n_4326.value, o_4326.value);
       if(term == null)
-        break Fail24112;
-      term = x_5053;
+        break Fail22353;
       if(true)
         return term;
     }

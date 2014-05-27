@@ -20,29 +20,29 @@ import java.lang.ref.WeakReference;
 { 
   public static declare_svar_signatures_0_2 instance = new declare_svar_signatures_0_2();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm j_4805, IStrategoTerm k_4805)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm r_4251, IStrategoTerm s_4251)
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("declare_svar_signatures_0_2");
-    Fail23202:
+    Fail21726:
     { 
-      IStrategoTerm l_4805 = null;
-      IStrategoTerm o_4805 = null;
-      IStrategoTerm q_4805 = null;
-      IStrategoTerm r_4805 = null;
-      l_4805 = term;
+      IStrategoTerm t_4251 = null;
+      IStrategoTerm w_4251 = null;
+      IStrategoTerm y_4251 = null;
+      IStrategoTerm z_4251 = null;
+      t_4251 = term;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 3)
-        break Fail23202;
-      if(term.getSubterm(0) != k_4805 && !k_4805.match(term.getSubterm(0)))
-        break Fail23202;
-      q_4805 = term;
-      o_4805 = trans.const4568;
-      r_4805 = q_4805;
-      term = termFactory.makeTuple(trans.const4569, j_4805);
-      term = dr_set_rule_0_3.instance.invoke(context, r_4805, o_4805, l_4805, term);
+        break Fail21726;
+      if(term.getSubterm(0) != s_4251 && !s_4251.match(term.getSubterm(0)))
+        break Fail21726;
+      y_4251 = term;
+      w_4251 = trans.const4358;
+      z_4251 = y_4251;
+      term = termFactory.makeTuple(trans.const4359, r_4251);
+      term = dr_set_rule_0_3.instance.invoke(context, z_4251, w_4251, t_4251, term);
       if(term == null)
-        break Fail23202;
-      term = l_4805;
+        break Fail21726;
+      term = t_4251;
       context.popOnSuccess();
       if(true)
         return term;

@@ -18,40 +18,20 @@ import java.lang.ref.WeakReference;
 
 @SuppressWarnings("all") final class lifted6723 extends Strategy 
 { 
-  TermReference b_4725;
-
-  TermReference c_4725;
-
-  TermReference d_4725;
+  public static final lifted6723 instance = new lifted6723();
 
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
-    Fail24218:
+    Fail22431:
     { 
-      if(term.getTermType() != IStrategoTerm.APPL || Main._consSDefT_4 != ((IStrategoAppl)term).getConstructor())
-        break Fail24218;
-      IStrategoTerm arg8054 = term.getSubterm(0);
-      if(b_4725.value == null)
-        b_4725.value = arg8054;
-      else
-        if(b_4725.value != arg8054 && !b_4725.value.match(arg8054))
-          break Fail24218;
-      IStrategoList annos692 = arg8054.getAnnotations();
-      if(annos692.getTermType() != IStrategoTerm.LIST || ((IStrategoList)annos692).isEmpty())
-        break Fail24218;
-      if(c_4725.value == null)
-        c_4725.value = ((IStrategoList)annos692).head();
-      else
-        if(c_4725.value != ((IStrategoList)annos692).head() && !c_4725.value.match(((IStrategoList)annos692).head()))
-          break Fail24218;
-      IStrategoTerm arg8055 = ((IStrategoList)annos692).tail();
-      if(arg8055.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg8055).isEmpty())
-        break Fail24218;
-      if(d_4725.value == null)
-        d_4725.value = term;
-      else
-        if(d_4725.value != term && !d_4725.value.match(term))
-          break Fail24218;
+      IStrategoTerm i_4289 = null;
+      if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
+        break Fail22431;
+      i_4289 = term.getSubterm(0);
+      IStrategoTerm arg7905 = term.getSubterm(1);
+      term = aux_$Source$Dir_0_1.instance.invoke(context, i_4289, arg7905);
+      if(term == null)
+        break Fail22431;
       if(true)
         return term;
     }

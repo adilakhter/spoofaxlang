@@ -23,37 +23,37 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("bigbagof_ProjectDir_0_0");
-    Fail23392:
+    Fail21916:
     { 
-      TermReference s_4831 = new TermReference();
-      if(s_4831.value == null)
-        s_4831.value = term;
+      TermReference a_4278 = new TermReference();
+      if(a_4278.value == null)
+        a_4278.value = term;
       else
-        if(s_4831.value != term && !s_4831.value.match(term))
-          break Fail23392;
-      Success12577:
+        if(a_4278.value != term && !a_4278.value.match(term))
+          break Fail21916;
+      Success11868:
       { 
-        Fail23393:
+        Fail21917:
         { 
-          IStrategoTerm v_4831 = null;
-          IStrategoTerm x_4831 = null;
-          IStrategoTerm y_4831 = null;
-          x_4831 = term;
-          v_4831 = trans.const4475;
-          y_4831 = x_4831;
-          term = dr_lookup_all_rules_0_2.instance.invoke(context, y_4831, v_4831, trans.constCons2047);
+          IStrategoTerm d_4278 = null;
+          IStrategoTerm f_4278 = null;
+          IStrategoTerm g_4278 = null;
+          f_4278 = term;
+          d_4278 = trans.const4265;
+          g_4278 = f_4278;
+          term = dr_lookup_all_rules_0_2.instance.invoke(context, g_4278, d_4278, trans.constCons1966);
           if(term == null)
-            break Fail23393;
+            break Fail21917;
           if(true)
-            break Success12577;
+            break Success11868;
         }
-        term = trans.constNil4;
+        term = trans.constNil3;
       }
-      lifted6971 lifted69710 = new lifted6971();
-      lifted69710.s_4831 = s_4831;
-      term = filter_1_0.instance.invoke(context, term, lifted69710);
+      lifted6700 lifted67000 = new lifted6700();
+      lifted67000.a_4278 = a_4278;
+      term = filter_1_0.instance.invoke(context, term, lifted67000);
       if(term == null)
-        break Fail23392;
+        break Fail21916;
       context.popOnSuccess();
       if(true)
         return term;

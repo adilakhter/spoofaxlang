@@ -22,50 +22,50 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("resolve_0_0");
-    Fail87724:
+    Fail22916:
     { 
-      IStrategoTerm w_17575 = null;
-      IStrategoTerm x_17575 = null;
-      w_17575 = term;
-      Success47293:
+      IStrategoTerm z_4631 = null;
+      IStrategoTerm a_4632 = null;
+      z_4631 = term;
+      Success12206:
       { 
-        Fail87725:
+        Fail22917:
         { 
-          IStrategoTerm term47317 = term;
-          Success47294:
+          IStrategoTerm term12230 = term;
+          Success12207:
           { 
-            Fail87726:
+            Fail22918:
             { 
               term = is_string_0_0.instance.invoke(context, term);
               if(term == null)
-                break Fail87726;
+                break Fail22918;
               if(true)
-                break Success47294;
+                break Success12207;
             }
-            term = term47317;
-            IStrategoTerm z_17575 = null;
+            term = term12230;
+            IStrategoTerm c_4632 = null;
             if(term.getTermType() != IStrategoTerm.LIST || ((IStrategoList)term).isEmpty())
-              break Fail87725;
-            z_17575 = ((IStrategoList)term).head();
-            IStrategoTerm arg30015 = ((IStrategoList)term).tail();
-            if(arg30015.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg30015).isEmpty())
-              break Fail87725;
-            term = z_17575;
+              break Fail22917;
+            c_4632 = ((IStrategoList)term).head();
+            IStrategoTerm arg8040 = ((IStrategoList)term).tail();
+            if(arg8040.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg8040).isEmpty())
+              break Fail22917;
+            term = c_4632;
           }
           term = get_config_reference_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail87725;
+            break Fail22917;
           term = parse_spoofaxconfiguration_file_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail87725;
-          x_17575 = term;
+            break Fail22917;
+          a_4632 = term;
           if(true)
-            break Success47293;
+            break Success12206;
         }
-        term = w_17575;
-        x_17575 = w_17575;
+        term = z_4631;
+        a_4632 = z_4631;
       }
-      term = x_17575;
+      term = a_4632;
       context.popOnSuccess();
       if(true)
         return term;

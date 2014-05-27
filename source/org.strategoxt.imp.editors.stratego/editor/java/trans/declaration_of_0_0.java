@@ -23,68 +23,68 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("declaration_of_0_0");
-    Fail23066:
+    Fail21590:
     { 
       term = signature_of_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail23066;
-      IStrategoTerm term12395 = term;
-      Success12320:
+        break Fail21590;
+      IStrategoTerm term11686 = term;
+      Success11611:
       { 
-        Fail23067:
+        Fail21591:
         { 
-          IStrategoTerm t_4774 = null;
-          IStrategoList annos708 = term.getAnnotations();
-          if(annos708.getTermType() != IStrategoTerm.LIST || ((IStrategoList)annos708).isEmpty())
-            break Fail23067;
-          t_4774 = ((IStrategoList)annos708).head();
-          IStrategoTerm arg8205 = ((IStrategoList)annos708).tail();
-          if(arg8205.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg8205).isEmpty())
-            break Fail23067;
-          term = $Declaration_0_0.instance.invoke(context, t_4774);
+          IStrategoTerm b_4221 = null;
+          IStrategoList annos680 = term.getAnnotations();
+          if(annos680.getTermType() != IStrategoTerm.LIST || ((IStrategoList)annos680).isEmpty())
+            break Fail21591;
+          b_4221 = ((IStrategoList)annos680).head();
+          IStrategoTerm arg7738 = ((IStrategoList)annos680).tail();
+          if(arg7738.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg7738).isEmpty())
+            break Fail21591;
+          term = $Declaration_0_0.instance.invoke(context, b_4221);
           if(term == null)
-            break Fail23067;
+            break Fail21591;
           if(true)
-            break Success12320;
+            break Success11611;
         }
-        term = term12395;
-        IStrategoTerm term12396 = term;
-        Success12321:
+        term = term11686;
+        IStrategoTerm term11687 = term;
+        Success11612:
         { 
-          Fail23068:
+          Fail21592:
           { 
-            IStrategoTerm u_4774 = null;
+            IStrategoTerm c_4221 = null;
             if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-              break Fail23068;
-            IStrategoTerm arg8206 = term.getSubterm(0);
-            IStrategoList annos709 = arg8206.getAnnotations();
-            if(annos709.getTermType() != IStrategoTerm.LIST || ((IStrategoList)annos709).isEmpty())
-              break Fail23068;
-            u_4774 = ((IStrategoList)annos709).head();
-            IStrategoTerm arg8207 = ((IStrategoList)annos709).tail();
-            if(arg8207.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg8207).isEmpty())
-              break Fail23068;
-            term = $Declaration_0_0.instance.invoke(context, u_4774);
+              break Fail21592;
+            IStrategoTerm arg7739 = term.getSubterm(0);
+            IStrategoList annos681 = arg7739.getAnnotations();
+            if(annos681.getTermType() != IStrategoTerm.LIST || ((IStrategoList)annos681).isEmpty())
+              break Fail21592;
+            c_4221 = ((IStrategoList)annos681).head();
+            IStrategoTerm arg7740 = ((IStrategoList)annos681).tail();
+            if(arg7740.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg7740).isEmpty())
+              break Fail21592;
+            term = $Declaration_0_0.instance.invoke(context, c_4221);
             if(term == null)
-              break Fail23068;
+              break Fail21592;
             if(true)
-              break Success12321;
+              break Success11612;
           }
-          term = term12396;
-          IStrategoTerm v_4774 = null;
+          term = term11687;
+          IStrategoTerm d_4221 = null;
           if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 3)
-            break Fail23066;
-          IStrategoTerm arg8209 = term.getSubterm(0);
-          IStrategoList annos710 = arg8209.getAnnotations();
-          if(annos710.getTermType() != IStrategoTerm.LIST || ((IStrategoList)annos710).isEmpty())
-            break Fail23066;
-          v_4774 = ((IStrategoList)annos710).head();
-          IStrategoTerm arg8210 = ((IStrategoList)annos710).tail();
-          if(arg8210.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg8210).isEmpty())
-            break Fail23066;
-          term = $Declaration_0_0.instance.invoke(context, v_4774);
+            break Fail21590;
+          IStrategoTerm arg7742 = term.getSubterm(0);
+          IStrategoList annos682 = arg7742.getAnnotations();
+          if(annos682.getTermType() != IStrategoTerm.LIST || ((IStrategoList)annos682).isEmpty())
+            break Fail21590;
+          d_4221 = ((IStrategoList)annos682).head();
+          IStrategoTerm arg7743 = ((IStrategoList)annos682).tail();
+          if(arg7743.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg7743).isEmpty())
+            break Fail21590;
+          term = $Declaration_0_0.instance.invoke(context, d_4221);
           if(term == null)
-            break Fail23066;
+            break Fail21590;
         }
       }
       context.popOnSuccess();

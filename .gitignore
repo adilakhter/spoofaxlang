@@ -4,3 +4,12 @@
 **/.spxindex/**
 **/bin/**
 generated
+*.class
+*.sig
+.shadowdir
+*.cache
+.spxcache
+.log
+*.0
+*.t
+trans

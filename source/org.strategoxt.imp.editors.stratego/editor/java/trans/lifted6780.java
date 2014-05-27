@@ -18,17 +18,26 @@ import java.lang.ref.WeakReference;
 
 @SuppressWarnings("all") final class lifted6780 extends Strategy 
 { 
-  TermReference t_4738;
-
-  TermReference u_4738;
+  public static final lifted6780 instance = new lifted6780();
 
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
-    Fail24145:
+    Fail22374:
     { 
-      term = is_binding_violation_0_2.instance.invoke(context, term, t_4738.value, u_4738.value);
+      IStrategoTerm d_4317 = null;
+      IStrategoTerm e_4317 = null;
+      IStrategoTerm o_4317 = null;
+      if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
+        break Fail22374;
+      o_4317 = term.getSubterm(0);
+      IStrategoTerm arg7940 = term.getSubterm(1);
+      d_4317 = arg7940;
+      if(arg7940.getTermType() != IStrategoTerm.TUPLE || arg7940.getSubtermCount() != 3)
+        break Fail22374;
+      e_4317 = arg7940.getSubterm(0);
+      term = aux_$Declare$Cookie_0_2.instance.invoke(context, o_4317, e_4317, d_4317);
       if(term == null)
-        break Fail24145;
+        break Fail22374;
       if(true)
         return term;
     }

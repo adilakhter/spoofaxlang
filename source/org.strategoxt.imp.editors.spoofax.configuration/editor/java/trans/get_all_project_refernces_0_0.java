@@ -22,30 +22,30 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("get_all_project_refernces_0_0");
-    Fail87592:
+    Fail22784:
     { 
-      IStrategoTerm term47233 = term;
-      Success47225:
+      IStrategoTerm term12146 = term;
+      Success12138:
       { 
-        Fail87593:
+        Fail22785:
         { 
-          term = collect_all_2_0.instance.invoke(context, term, lifted24731.instance, conc_0_0.instance);
+          term = collect_all_2_0.instance.invoke(context, term, lifted6846.instance, conc_0_0.instance);
           if(term == null)
-            break Fail87593;
+            break Fail22785;
           term = flatten_list_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail87593;
-          term = filter_1_0.instance.invoke(context, term, lifted24733.instance);
+            break Fail22785;
+          term = filter_1_0.instance.invoke(context, term, lifted6848.instance);
           if(term == null)
-            break Fail87593;
+            break Fail22785;
           if(true)
-            break Success47225;
+            break Success12138;
         }
-        term = debug_1_0.instance.invoke(context, term47233, lifted24734.instance);
+        term = debug_1_0.instance.invoke(context, term12146, lifted6849.instance);
         if(term == null)
-          break Fail87592;
+          break Fail22784;
         if(true)
-          break Fail87592;
+          break Fail22784;
       }
       context.popOnSuccess();
       if(true)

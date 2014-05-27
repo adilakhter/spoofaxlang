@@ -20,17 +20,17 @@ import java.lang.ref.WeakReference;
 { 
   public static get_affected_stratego_asts_1_0 instance = new get_affected_stratego_asts_1_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy f_4731)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy n_4177)
   { 
     context.push("get_affected_stratego_asts_1_0");
-    Fail22806:
+    Fail21330:
     { 
       term = project_path_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22806;
-      term = get_affected_asts_4_0.instance.invoke(context, term, lifted6752.instance, lifted6753.instance, f_4731, get_cache_path_0_0.instance);
+        break Fail21330;
+      term = get_affected_asts_4_0.instance.invoke(context, term, lifted6481.instance, lifted6482.instance, n_4177, get_cache_path_0_0.instance);
       if(term == null)
-        break Fail22806;
+        break Fail21330;
       context.popOnSuccess();
       if(true)
         return term;

@@ -22,46 +22,18 @@ import java.lang.ref.WeakReference;
 
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
-    Fail24092:
+    Fail22339:
     { 
-      IStrategoTerm term12300 = term;
-      Success12764:
-      { 
-        Fail24093:
-        { 
-          if(term.getTermType() != IStrategoTerm.INT || 32 != ((IStrategoInt)term).intValue())
-            break Fail24093;
-          if(true)
-            break Success12764;
-        }
-        term = term12300;
-        IStrategoTerm term12301 = term;
-        Success12765:
-        { 
-          Fail24094:
-          { 
-            if(term.getTermType() != IStrategoTerm.INT || 9 != ((IStrategoInt)term).intValue())
-              break Fail24094;
-            if(true)
-              break Success12765;
-          }
-          term = term12301;
-          IStrategoTerm term12302 = term;
-          Success12766:
-          { 
-            Fail24095:
-            { 
-              if(term.getTermType() != IStrategoTerm.INT || 10 != ((IStrategoInt)term).intValue())
-                break Fail24095;
-              if(true)
-                break Success12766;
-            }
-            term = term12302;
-            if(term.getTermType() != IStrategoTerm.INT || 13 != ((IStrategoInt)term).intValue())
-              break Fail24092;
-          }
-        }
-      }
+      IStrategoTerm l_4333 = null;
+      IStrategoTerm u_4333 = null;
+      if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
+        break Fail22339;
+      u_4333 = term.getSubterm(0);
+      IStrategoTerm arg7982 = term.getSubterm(1);
+      l_4333 = arg7982;
+      term = aux_$Outer$Cookie_0_2.instance.invoke(context, u_4333, arg7982, l_4333);
+      if(term == null)
+        break Fail22339;
       if(true)
         return term;
     }

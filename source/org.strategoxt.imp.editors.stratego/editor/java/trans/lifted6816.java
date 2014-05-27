@@ -22,10 +22,18 @@ import java.lang.ref.WeakReference;
 
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
-    ITermFactory termFactory = context.getFactory();
-    Fail24091:
+    Fail22338:
     { 
-      term = termFactory.annotateTerm(term, checkListAnnos(termFactory, trans.constCons2088));
+      IStrategoTerm x_4333 = null;
+      IStrategoTerm f_4334 = null;
+      if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
+        break Fail22338;
+      f_4334 = term.getSubterm(0);
+      IStrategoTerm arg7983 = term.getSubterm(1);
+      x_4333 = arg7983;
+      term = aux_$Outer$Cookie_0_2.instance.invoke(context, f_4334, arg7983, x_4333);
+      if(term == null)
+        break Fail22338;
       if(true)
         return term;
     }

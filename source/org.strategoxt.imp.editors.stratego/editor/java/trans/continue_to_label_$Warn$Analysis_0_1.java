@@ -20,16 +20,16 @@ import java.lang.ref.WeakReference;
 { 
   public static continue_to_label_$Warn$Analysis_0_1 instance = new continue_to_label_$Warn$Analysis_0_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm p_4850)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm x_4296)
   { 
     context.push("continue_to_label_WarnAnalysis_0_1");
-    Fail23508:
+    Fail22032:
     { 
-      IStrategoTerm r_4850 = null;
-      r_4850 = term;
-      term = dr_continue_0_2.instance.invoke(context, r_4850, trans.const4562, p_4850);
+      IStrategoTerm z_4296 = null;
+      z_4296 = term;
+      term = dr_continue_0_2.instance.invoke(context, z_4296, trans.const4352, x_4296);
       if(term == null)
-        break Fail23508;
+        break Fail22032;
       context.popOnSuccess();
       if(true)
         return term;

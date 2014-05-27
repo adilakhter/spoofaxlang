@@ -24,73 +24,73 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("DeclareCookie_0_0");
-    Fail23655:
+    Fail22179:
     { 
-      IStrategoTerm term12795 = term;
-      Success12665:
+      IStrategoTerm term12086 = term;
+      Success11956:
       { 
-        Fail23656:
+        Fail22180:
         { 
-          TermReference l_4876 = new TermReference();
-          TermReference m_4876 = new TermReference();
-          IStrategoTerm q_4876 = null;
-          if(m_4876.value == null)
-            m_4876.value = term;
+          TermReference t_4322 = new TermReference();
+          TermReference u_4322 = new TermReference();
+          IStrategoTerm y_4322 = null;
+          if(u_4322.value == null)
+            u_4322.value = term;
           else
-            if(m_4876.value != term && !m_4876.value.match(term))
-              break Fail23656;
-          if(l_4876.value == null)
-            l_4876.value = term;
+            if(u_4322.value != term && !u_4322.value.match(term))
+              break Fail22180;
+          if(t_4322.value == null)
+            t_4322.value = term;
           else
-            if(l_4876.value != term && !l_4876.value.match(term))
-              break Fail23656;
-          q_4876 = term;
-          term = dr_lookup_rule_0_2.instance.invoke(context, q_4876, trans.const4568, m_4876.value);
+            if(t_4322.value != term && !t_4322.value.match(term))
+              break Fail22180;
+          y_4322 = term;
+          term = dr_lookup_rule_0_2.instance.invoke(context, y_4322, trans.const4358, u_4322.value);
           if(term == null)
-            break Fail23656;
-          lifted7064 lifted70640 = new lifted7064();
-          lifted70640.l_4876 = l_4876;
-          lifted70640.m_4876 = m_4876;
-          term = fetch_elem_1_0.instance.invoke(context, term, lifted70640);
+            break Fail22180;
+          lifted6793 lifted67930 = new lifted6793();
+          lifted67930.t_4322 = t_4322;
+          lifted67930.u_4322 = u_4322;
+          term = fetch_elem_1_0.instance.invoke(context, term, lifted67930);
           if(term == null)
-            break Fail23656;
+            break Fail22180;
           if(true)
-            break Success12665;
+            break Success11956;
         }
-        term = term12795;
-        TermReference d_4876 = new TermReference();
-        TermReference e_4876 = new TermReference();
-        IStrategoTerm h_4876 = null;
-        IStrategoTerm j_4876 = null;
-        IStrategoTerm k_4876 = null;
-        if(d_4876.value == null)
-          d_4876.value = term;
+        term = term12086;
+        TermReference l_4322 = new TermReference();
+        TermReference m_4322 = new TermReference();
+        IStrategoTerm p_4322 = null;
+        IStrategoTerm r_4322 = null;
+        IStrategoTerm s_4322 = null;
+        if(l_4322.value == null)
+          l_4322.value = term;
         else
-          if(d_4876.value != term && !d_4876.value.match(term))
-            break Fail23655;
+          if(l_4322.value != term && !l_4322.value.match(term))
+            break Fail22179;
         if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 3)
-          break Fail23655;
-        if(e_4876.value == null)
-          e_4876.value = term.getSubterm(0);
+          break Fail22179;
+        if(m_4322.value == null)
+          m_4322.value = term.getSubterm(0);
         else
-          if(e_4876.value != term.getSubterm(0) && !e_4876.value.match(term.getSubterm(0)))
-            break Fail23655;
-        j_4876 = term;
-        h_4876 = trans.const4568;
-        term = j_4876;
-        k_4876 = j_4876;
-        if(e_4876.value == null)
-          break Fail23655;
-        term = termFactory.annotateTerm(termFactory.makeTuple(e_4876.value, trans.constCons2047, trans.constCons2047), checkListAnnos(termFactory, trans.constCons2047));
-        term = dr_lookup_rule_0_2.instance.invoke(context, k_4876, h_4876, term);
+          if(m_4322.value != term.getSubterm(0) && !m_4322.value.match(term.getSubterm(0)))
+            break Fail22179;
+        r_4322 = term;
+        p_4322 = trans.const4358;
+        term = r_4322;
+        s_4322 = r_4322;
+        if(m_4322.value == null)
+          break Fail22179;
+        term = termFactory.annotateTerm(termFactory.makeTuple(m_4322.value, trans.constCons1966, trans.constCons1966), checkListAnnos(termFactory, trans.constCons1966));
+        term = dr_lookup_rule_0_2.instance.invoke(context, s_4322, p_4322, term);
         if(term == null)
-          break Fail23655;
-        lifted7065 lifted70650 = new lifted7065();
-        lifted70650.e_4876 = e_4876;
-        lifted70650.d_4876 = d_4876;
-        term = fetch_elem_1_0.instance.invoke(context, term, lifted70650);
+          break Fail22179;
+        lifted6794 lifted67940 = new lifted6794();
+        lifted67940.m_4322 = m_4322;
+        lifted67940.l_4322 = l_4322;
+        term = fetch_elem_1_0.instance.invoke(context, term, lifted67940);
         if(term == null)
-          break Fail23655;
+          break Fail22179;
       }
       context.popOnSuccess();
       if(true)

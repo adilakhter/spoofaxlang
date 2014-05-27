@@ -20,16 +20,16 @@ import java.lang.ref.WeakReference;
 { 
   public static throw_$Content$Proposals_1_1 instance = new throw_$Content$Proposals_1_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy b_4890, IStrategoTerm a_4890)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy j_4336, IStrategoTerm i_4336)
   { 
     context.push("throw_ContentProposals_1_1");
-    Fail23740:
+    Fail22264:
     { 
-      IStrategoTerm d_4890 = null;
-      d_4890 = term;
-      term = dr_throw_1_2.instance.invoke(context, d_4890, b_4890, a_4890, trans.const4611);
+      IStrategoTerm l_4336 = null;
+      l_4336 = term;
+      term = dr_throw_1_2.instance.invoke(context, l_4336, j_4336, i_4336, trans.const4401);
       if(term == null)
-        break Fail23740;
+        break Fail22264;
       context.popOnSuccess();
       if(true)
         return term;

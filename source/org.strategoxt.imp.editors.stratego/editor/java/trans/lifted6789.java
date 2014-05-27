@@ -18,15 +18,17 @@ import java.lang.ref.WeakReference;
 
 @SuppressWarnings("all") final class lifted6789 extends Strategy 
 { 
-  TermReference w_4740;
+  TermReference q_4321;
+
+  TermReference r_4321;
 
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
-    Fail24141:
+    Fail22365:
     { 
-      term = is_endangered_name_0_1.instance.invoke(context, term, w_4740.value);
+      term = aux_$Declare$Cookie_0_2.instance.invoke(context, term, q_4321.value, r_4321.value);
       if(term == null)
-        break Fail24141;
+        break Fail22365;
       if(true)
         return term;
     }

@@ -19,186 +19,186 @@ import java.lang.ref.WeakReference;
 { 
   public static open_import_3_0 instance = new open_import_3_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy n_17564, Strategy o_17564, Strategy p_17564)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy q_4620, Strategy r_4620, Strategy s_4620)
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("open_import_3_0");
-    Fail87648:
+    Fail22840:
     { 
-      IStrategoTerm c_17564 = null;
-      IStrategoTerm d_17564 = null;
-      TermReference e_17564 = new TermReference();
-      TermReference f_17564 = new TermReference();
-      c_17564 = term;
-      IStrategoTerm term47268 = term;
-      Success47259:
+      IStrategoTerm f_4620 = null;
+      IStrategoTerm g_4620 = null;
+      TermReference h_4620 = new TermReference();
+      TermReference i_4620 = new TermReference();
+      f_4620 = term;
+      IStrategoTerm term12181 = term;
+      Success12172:
       { 
-        Fail87649:
+        Fail22841:
         { 
-          IStrategoTerm g_17564 = null;
-          g_17564 = term;
-          IStrategoTerm term47269 = term;
-          Success47260:
+          IStrategoTerm j_4620 = null;
+          j_4620 = term;
+          IStrategoTerm term12182 = term;
+          Success12173:
           { 
-            Fail87650:
+            Fail22842:
             { 
-              term = c_17564;
+              term = f_4620;
               if(term.getTermType() != IStrategoTerm.APPL || Main._consCOMPLETION_1 != ((IStrategoAppl)term).getConstructor())
-                break Fail87650;
+                break Fail22842;
               { 
                 if(true)
-                  break Fail87649;
+                  break Fail22841;
                 if(true)
-                  break Success47260;
+                  break Success12173;
               }
             }
-            term = term47269;
+            term = term12182;
           }
-          term = g_17564;
+          term = j_4620;
           { 
-            term = n_17564.invoke(context, c_17564);
+            term = q_4620.invoke(context, f_4620);
             if(term == null)
-              break Fail87648;
-            if(e_17564.value == null)
-              e_17564.value = term;
+              break Fail22840;
+            if(h_4620.value == null)
+              h_4620.value = term;
             else
-              if(e_17564.value != term && !e_17564.value.match(term))
-                break Fail87648;
-            if(e_17564.value == null)
-              break Fail87648;
-            term = import_cache_path_0_0.instance.invoke(context, e_17564.value);
+              if(h_4620.value != term && !h_4620.value.match(term))
+                break Fail22840;
+            if(h_4620.value == null)
+              break Fail22840;
+            term = import_cache_path_0_0.instance.invoke(context, h_4620.value);
             if(term == null)
-              break Fail87648;
-            d_17564 = term;
-            IStrategoTerm term47270 = term;
-            Success47261:
+              break Fail22840;
+            g_4620 = term;
+            IStrategoTerm term12183 = term;
+            Success12174:
             { 
-              Fail87651:
+              Fail22843:
               { 
-                IStrategoTerm h_17564 = null;
-                h_17564 = term;
-                IStrategoTerm term47271 = term;
-                Success47262:
+                IStrategoTerm k_4620 = null;
+                k_4620 = term;
+                IStrategoTerm term12184 = term;
+                Success12175:
                 { 
-                  Fail87652:
+                  Fail22844:
                   { 
-                    if(e_17564.value == null)
-                      break Fail87652;
-                    term = $Is$Imported_0_0.instance.invoke(context, e_17564.value);
+                    if(h_4620.value == null)
+                      break Fail22844;
+                    term = $Is$Imported_0_0.instance.invoke(context, h_4620.value);
                     if(term == null)
-                      break Fail87652;
+                      break Fail22844;
                     { 
                       if(true)
-                        break Fail87651;
+                        break Fail22843;
                       if(true)
-                        break Success47262;
+                        break Success12175;
                     }
                   }
-                  term = term47271;
+                  term = term12184;
                 }
-                term = h_17564;
+                term = k_4620;
                 { 
-                  IStrategoTerm i_17564 = null;
-                  IStrategoTerm r_17564 = null;
-                  IStrategoTerm t_17564 = null;
-                  IStrategoTerm u_17564 = null;
-                  IStrategoTerm v_17564 = null;
-                  IStrategoTerm w_17564 = null;
-                  i_17564 = term;
-                  t_17564 = term;
-                  r_17564 = trans.const17874;
-                  term = t_17564;
-                  u_17564 = t_17564;
-                  if(e_17564.value == null)
-                    break Fail87648;
-                  term = termFactory.makeTuple(trans.const17875, e_17564.value);
-                  term = dr_set_rule_0_3.instance.invoke(context, u_17564, r_17564, e_17564.value, term);
+                  IStrategoTerm l_4620 = null;
+                  IStrategoTerm u_4620 = null;
+                  IStrategoTerm w_4620 = null;
+                  IStrategoTerm x_4620 = null;
+                  IStrategoTerm y_4620 = null;
+                  IStrategoTerm z_4620 = null;
+                  l_4620 = term;
+                  w_4620 = term;
+                  u_4620 = trans.const4487;
+                  term = w_4620;
+                  x_4620 = w_4620;
+                  if(h_4620.value == null)
+                    break Fail22840;
+                  term = termFactory.makeTuple(trans.const4488, h_4620.value);
+                  term = dr_set_rule_0_3.instance.invoke(context, x_4620, u_4620, h_4620.value, term);
                   if(term == null)
-                    break Fail87648;
-                  term = i_17564;
-                  IStrategoTerm term47272 = term;
-                  Success47263:
+                    break Fail22840;
+                  term = l_4620;
+                  IStrategoTerm term12185 = term;
+                  Success12176:
                   { 
-                    Fail87653:
+                    Fail22845:
                     { 
-                      if(e_17564.value == null)
-                        break Fail87653;
-                      term = termFactory.makeTuple(d_17564, e_17564.value);
+                      if(h_4620.value == null)
+                        break Fail22845;
+                      term = termFactory.makeTuple(g_4620, h_4620.value);
                       term = is_newer_0_0.instance.invoke(context, term);
                       if(term == null)
-                        break Fail87653;
-                      term = $Read$From$File_0_0.instance.invoke(context, d_17564);
+                        break Fail22845;
+                      term = $Read$From$File_0_0.instance.invoke(context, g_4620);
                       if(term == null)
-                        break Fail87653;
-                      if(f_17564.value == null)
-                        f_17564.value = term;
+                        break Fail22845;
+                      if(i_4620.value == null)
+                        i_4620.value = term;
                       else
-                        if(f_17564.value != term && !f_17564.value.match(term))
-                          break Fail87653;
+                        if(i_4620.value != term && !i_4620.value.match(term))
+                          break Fail22845;
                       if(true)
-                        break Success47263;
+                        break Success12176;
                     }
-                    term = term47272;
-                    if(e_17564.value == null)
-                      break Fail87648;
-                    term = o_17564.invoke(context, e_17564.value);
+                    term = term12185;
+                    if(h_4620.value == null)
+                      break Fail22840;
+                    term = r_4620.invoke(context, h_4620.value);
                     if(term == null)
-                      break Fail87648;
-                    if(f_17564.value == null)
-                      f_17564.value = term;
+                      break Fail22840;
+                    if(i_4620.value == null)
+                      i_4620.value = term;
                     else
-                      if(f_17564.value != term && !f_17564.value.match(term))
-                        break Fail87648;
-                    IStrategoTerm term47273 = term;
-                    Success47264:
+                      if(i_4620.value != term && !i_4620.value.match(term))
+                        break Fail22840;
+                    IStrategoTerm term12186 = term;
+                    Success12177:
                     { 
-                      Fail87654:
+                      Fail22846:
                       { 
-                        IStrategoTerm j_17564 = null;
-                        j_17564 = term;
-                        if(e_17564.value == null)
-                          break Fail87654;
-                        term = file_exists_0_0.instance.invoke(context, e_17564.value);
+                        IStrategoTerm m_4620 = null;
+                        m_4620 = term;
+                        if(h_4620.value == null)
+                          break Fail22846;
+                        term = file_exists_0_0.instance.invoke(context, h_4620.value);
                         if(term == null)
-                          break Fail87654;
-                        term = j_17564;
+                          break Fail22846;
+                        term = m_4620;
                         { 
-                          if(f_17564.value == null)
-                            break Fail87648;
-                          term = termFactory.makeTuple(d_17564, f_17564.value);
+                          if(i_4620.value == null)
+                            break Fail22840;
+                          term = termFactory.makeTuple(g_4620, i_4620.value);
                           term = $Write$To$Binary$File_0_0.instance.invoke(context, term);
                           if(term == null)
-                            break Fail87648;
+                            break Fail22840;
                           if(true)
-                            break Success47264;
+                            break Success12177;
                         }
                       }
-                      term = term47273;
+                      term = term12186;
                     }
                   }
-                  w_17564 = term;
-                  v_17564 = trans.const17872;
-                  term = w_17564;
-                  lifted24746 lifted247460 = new lifted24746();
-                  lifted247460.p_17564 = p_17564;
-                  lifted247460.e_17564 = e_17564;
-                  lifted247460.f_17564 = f_17564;
-                  term = dr_scope_1_1.instance.invoke(context, term, lifted247460, v_17564);
+                  z_4620 = term;
+                  y_4620 = trans.const4485;
+                  term = z_4620;
+                  lifted6861 lifted68610 = new lifted6861();
+                  lifted68610.s_4620 = s_4620;
+                  lifted68610.h_4620 = h_4620;
+                  lifted68610.i_4620 = i_4620;
+                  term = dr_scope_1_1.instance.invoke(context, term, lifted68610, y_4620);
                   if(term == null)
-                    break Fail87648;
+                    break Fail22840;
                   if(true)
-                    break Success47261;
+                    break Success12174;
                 }
               }
-              term = term47270;
+              term = term12183;
             }
             if(true)
-              break Success47259;
+              break Success12172;
           }
         }
-        term = term47268;
+        term = term12181;
       }
-      term = c_17564;
+      term = f_4620;
       context.popOnSuccess();
       if(true)
         return term;

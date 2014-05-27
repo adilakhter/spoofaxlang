@@ -1,0 +1,141 @@
+definition
+
+module Common
+exports
+  sorts WATER WATERTOKEN WATERTOKENSTART WATERTOKENSEPARATOR WATERTOKENSTAR
+
+  lexical syntax
+    ~[A-Za-z0-9\_]                 -> WATERTOKENSTART     {recover, avoid}
+    WATERTOKENSTART [A-Za-z0-9\_]* -> WATERTOKEN          
+    ~[A-Za-z0-9\_\ \t\12\r\n\*]    -> WATERTOKENSEPARATOR {recover, avoid}
+    "*"                            -> WATERTOKENSTAR      {recover, avoid}
+    WATERTOKEN                     -> WATER               
+    WATERTOKENSEPARATOR            -> WATER               
+    WATERTOKENSTAR                 -> WATER               
+                                   -> WATEREOF            
+
+  lexical restrictions
+    WATERTOKEN -/- [A-Za-z0-9\_]
+    WATERTOKENSTAR -/- [\/]
+
+  context-free syntax
+    WATER -> LAYOUT {cons("WATER")}
+
+  (
+
+  sorts WATEREOF
+
+  lexical restrictions
+    WATEREOF -/- ~[]
+
+  lexical syntax
+    %% Lexical insertion recovery rules                                  
+    "\""                                          -> INSERTOPENQUOTE     {recover}
+    INSERTOPENQUOTE StringChar* "\n"              -> STRING              {cons("INSERTEND")}
+    INSERTOPENQUOTE StringChar* WATEREOF          -> STRING              {cons("INSERTEND")}
+    "/*"                                          -> INSERTSTART         {recover}
+    INSERTSTART ( ~[\*] | CommentChar )* WATEREOF -> LAYOUT              {cons("INSERTEND")}
+                                                  -> "configuration"     {recover, cons("INSERTION")}
+                                                  -> "src"               {recover, cons("INSERTION")}
+                                                  -> "projectreferences" {recover, cons("INSERTION")}
+                                                  -> "log"               {recover, cons("INSERTION")}
+                                                  -> ","                 {recover, cons("INSERTION")}
+                                                  -> "templatelang"      {recover, cons("INSERTION")}
+                                                  -> "codegen:"          {recover, cons("INSERTION")}
+                                                  -> "todir"             {recover, cons("INSERTION")}
+                                                  -> "stroutputmode"     {recover, cons("INSERTION")}
+                                                  -> "**"                {recover, cons("INSERTION")}
+                                                  -> "."                 {recover, cons("INSERTION")}
+
+  syntax
+    %% Kernel syntax insertion recovery rules   
+
+  )
+
+  (
+
+  lexical syntax
+    [a-zA-Z] [a-zA-Z0-9]*              -> ID            
+    "-"? [0-9]+                        -> INT           
+    "\"" StringChar* "\""              -> STRING        
+    ~[\"\n]                            -> StringChar    
+    "\\\""                             -> StringChar    
+    BackSlashChar                      -> StringChar    
+    "\\"                               -> BackSlashChar 
+    [\ \t\n\r]                         -> LAYOUT        
+    [\*]                               -> CommentChar   
+    "/*" ( ~[\*] | CommentChar )* "*/" -> LAYOUT        
+    "//" ~[\n\r]* [\n\r] | EOF         -> LAYOUT        
+                                       -> EOF           
+
+  lexical restrictions
+    CommentChar -/- [\/]
+    INT -/- [0-9]
+    ID -/- [a-zA-Z0-9\_]
+    EOF -/- ~[]
+    BackSlashChar -/- [\"]
+
+  context-free restrictions
+    LAYOUT? -/- [\ \t\n\r]
+    LAYOUT? -/- [\/] . [\/]
+    LAYOUT? -/- [\/] . [\*]
+
+  )
+
+module SpoofaxConfiguration
+imports Common
+
+exports
+  context-free start-symbols
+    Start
+
+  context-free syntax
+    "configuration" ConfigSection*        -> Start              {cons("Configuration")}
+    "src" ":" IncludeDefinition+          -> ConfigSection      {cons("Includes")}
+    RelativePath IncludeOption            -> IncludeDefinition  {cons("Source")}
+    "projectreferences" ":" ProjectName*  -> ConfigSection      {cons("SpxProjects")}
+    "log" ":" {DebugOption ","}*          -> ConfigSection      {cons("Debug")}
+    "templatelang" ":" TemplateLangOption -> ConfigSection      {cons("TemplateLang")}
+    "enabled"                             -> TemplateLangOption {cons("TemplatelangEnabled")}
+    "disabled"                            -> TemplateLangOption {cons("TemplatelangDisabled")}
+    "compiler"                            -> DebugOption        {cons("DebugCompiler")}
+    "declaration"                         -> DebugOption        {cons("DebugDeclaration")}
+    "analysis"                            -> DebugOption        {cons("DebugAnalysis")}
+    "symboltable"                         -> DebugOption        {cons("DebugSymbolTable")}
+    "all"                                 -> DebugOption        {cons("DebugAll")}
+    "none"                                -> DebugOption        {cons("DebugNone")}
+    "codegen:" CodeGenDefinition*         -> ConfigSection      {cons("CodeGeneration")}
+    "todir" ":" RelativePath              -> CodeGenDefinition  {cons("OutputDirectory")}
+    "stroutputmode" ":" STROutputMode     -> CodeGenDefinition  {cons("STROutputMode")}
+    "ctree"                               -> STROutputMode      {cons("CTree")}
+    "jar"                                 -> STROutputMode      {cons("Jar")}
+    "|" "**"                              -> IncludeOption      {cons("All")}
+    "|" "."                               -> IncludeOption      {cons("ThisOnly")}
+
+  lexical syntax
+    [a-zA-Z] [a-zA-Z0-9\_\-\.]*             -> ProjectName  
+    PathChar                                -> RelativePath 
+    PathChar ( PathChar | Slash )* PathChar -> RelativePath 
+    [A-Za-z0-9\_\-\.\+]                     -> PathChar     
+    "/"                                     -> Slash        
+    Slash RelativePath                      -> AbsolutePath 
+    [a-zA-Z] ":" Slash RelativePath         -> AbsolutePath 
+    ".." Slash RelativePath                 -> AbsolutePath {prefer}
+
+  lexical syntax
+    "SpxProjects"    -> Reserved     
+    "Sources"        -> Reserved     
+    "SpxSources"     -> Reserved     
+    "Configuration"  -> Reserved     
+    "Includes"       -> Reserved     
+    "AllDirectories" -> Reserved     
+    "CodeGeneration" -> Reserved     
+    "RootDirectory"  -> Reserved     
+    Reserved         -> RelativePath {reject}
+
+  lexical restrictions
+    Slash -/- [\/]
+    RelativePath -/- [A-Za-z0-9\_\-\/\.\+]
+    ProjectName -/- [A-Za-z0-9\_\-\.]
+    "SpxProjects" "Sources" "SpxSources" "Configuration" "CodeGeneration"
+    "Includes" "AllDirectories" "RootDirectory" -/- [A-Za-z0-9\_]

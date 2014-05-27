@@ -23,11 +23,11 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("spoofax_dirs_0_0");
-    Fail22823:
+    Fail21347:
     { 
-      term = map_1_0.instance.invoke(context, trans.constCons2059, lifted6773.instance);
+      term = map_1_0.instance.invoke(context, trans.constCons1978, lifted6502.instance);
       if(term == null)
-        break Fail22823;
+        break Fail21347;
       context.popOnSuccess();
       if(true)
         return term;

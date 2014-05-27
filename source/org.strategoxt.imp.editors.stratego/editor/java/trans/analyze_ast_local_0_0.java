@@ -23,48 +23,48 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("analyze_ast_local_0_0");
-    Fail23041:
+    Fail21565:
     { 
-      IStrategoTerm term12376 = term;
-      Success12301:
+      IStrategoTerm term11667 = term;
+      Success11592:
       { 
-        Fail23042:
+        Fail21566:
         { 
-          IStrategoTerm f_4771 = null;
-          f_4771 = term;
-          IStrategoTerm term12377 = term;
-          Success12302:
+          IStrategoTerm n_4217 = null;
+          n_4217 = term;
+          IStrategoTerm term11668 = term;
+          Success11593:
           { 
-            Fail23043:
+            Fail21567:
             { 
               term = bagof_$Declaration_0_0.instance.invoke(context, term);
               if(term == null)
-                break Fail23043;
+                break Fail21567;
               if(term.getTermType() != IStrategoTerm.LIST || ((IStrategoList)term).isEmpty())
-                break Fail23043;
+                break Fail21567;
               { 
                 if(true)
-                  break Fail23042;
+                  break Fail21566;
                 if(true)
-                  break Success12302;
+                  break Success11593;
               }
             }
-            term = term12377;
+            term = term11668;
           }
-          term = f_4771;
+          term = n_4217;
           { 
             term = declare_globals_top_0_0.instance.invoke(context, term);
             if(term == null)
-              break Fail23041;
+              break Fail21565;
             if(true)
-              break Success12301;
+              break Success11592;
           }
         }
-        term = term12376;
+        term = term11667;
       }
       term = declare_bodies_top_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail23041;
+        break Fail21565;
       context.popOnSuccess();
       if(true)
         return term;

@@ -23,48 +23,48 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("is_editable_0_0");
-    Fail22898:
+    Fail21422:
     { 
-      IStrategoTerm term12265 = term;
-      Success12210:
+      IStrategoTerm term11556 = term;
+      Success11501:
       { 
-        Fail22899:
+        Fail21423:
         { 
-          IStrategoTerm t_4750 = null;
-          t_4750 = term;
-          term = string_ends_with_0_1.instance.invoke(context, t_4750, trans.const4535);
+          IStrategoTerm b_4197 = null;
+          b_4197 = term;
+          term = string_ends_with_0_1.instance.invoke(context, b_4197, trans.const4325);
           if(term == null)
-            break Fail22899;
+            break Fail21423;
           { 
             if(true)
-              break Fail22898;
+              break Fail21422;
             if(true)
-              break Success12210;
+              break Success11501;
           }
         }
-        term = term12265;
+        term = term11556;
       }
-      IStrategoTerm term12266 = term;
-      Success12211:
+      IStrategoTerm term11557 = term;
+      Success11502:
       { 
-        Fail22900:
+        Fail21424:
         { 
-          IStrategoTerm v_4750 = null;
+          IStrategoTerm d_4197 = null;
           term = dirname_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail22900;
-          v_4750 = term;
-          term = string_ends_with_0_1.instance.invoke(context, v_4750, trans.const4491);
+            break Fail21424;
+          d_4197 = term;
+          term = string_ends_with_0_1.instance.invoke(context, d_4197, trans.const4281);
           if(term == null)
-            break Fail22900;
+            break Fail21424;
           { 
             if(true)
-              break Fail22898;
+              break Fail21422;
             if(true)
-              break Success12211;
+              break Success11502;
           }
         }
-        term = term12266;
+        term = term11557;
       }
       context.popOnSuccess();
       if(true)

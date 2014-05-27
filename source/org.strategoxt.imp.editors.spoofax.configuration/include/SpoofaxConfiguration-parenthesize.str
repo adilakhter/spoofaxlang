@@ -1,0 +1,10 @@
+module include/SpoofaxConfiguration-parenthesize
+
+imports
+  libstratego-lib
+
+
+strategies
+  io-SpoofaxConfiguration-parenthesize =
+    io-wrap(id)
+

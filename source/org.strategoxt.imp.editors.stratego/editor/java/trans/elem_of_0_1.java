@@ -20,19 +20,19 @@ import java.lang.ref.WeakReference;
 { 
   public static elem_of_0_1 instance = new elem_of_0_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm l_4735)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm t_4181)
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("elem_of_0_1");
-    Fail22821:
+    Fail21345:
     { 
-      IStrategoTerm m_4735 = null;
-      m_4735 = term;
-      term = termFactory.makeTuple(m_4735, l_4735);
+      IStrategoTerm u_4181 = null;
+      u_4181 = term;
+      term = termFactory.makeTuple(u_4181, t_4181);
       term = elem_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22821;
-      term = m_4735;
+        break Fail21345;
+      term = u_4181;
       context.popOnSuccess();
       if(true)
         return term;

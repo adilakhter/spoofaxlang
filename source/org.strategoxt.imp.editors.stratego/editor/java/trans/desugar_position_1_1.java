@@ -20,24 +20,24 @@ import java.lang.ref.WeakReference;
 { 
   public static desugar_position_1_1 instance = new desugar_position_1_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy o_4758, IStrategoTerm h_4758)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy w_4204, IStrategoTerm p_4204)
   { 
     context.push("desugar_position_1_1");
-    Fail22953:
+    Fail21477:
     { 
-      IStrategoTerm i_4758 = null;
-      i_4758 = term;
-      term = at_position_1_1.instance.invoke(context, h_4758, lifted6816.instance, i_4758);
+      IStrategoTerm q_4204 = null;
+      q_4204 = term;
+      term = at_position_1_1.instance.invoke(context, p_4204, lifted6545.instance, q_4204);
       if(term == null)
-        break Fail22953;
-      lifted6817 lifted68170 = new lifted6817();
-      lifted68170.o_4758 = o_4758;
-      term = topdown_1_0.instance.invoke(context, term, lifted68170);
+        break Fail21477;
+      lifted6546 lifted65460 = new lifted6546();
+      lifted65460.w_4204 = w_4204;
+      term = topdown_1_0.instance.invoke(context, term, lifted65460);
       if(term == null)
-        break Fail22953;
-      term = position_of_term_1_0.instance.invoke(context, term, lifted6820.instance);
+        break Fail21477;
+      term = position_of_term_1_0.instance.invoke(context, term, lifted6549.instance);
       if(term == null)
-        break Fail22953;
+        break Fail21477;
       context.popOnSuccess();
       if(true)
         return term;

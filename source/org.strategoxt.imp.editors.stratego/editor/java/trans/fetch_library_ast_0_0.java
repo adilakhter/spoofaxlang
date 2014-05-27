@@ -24,12 +24,12 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("fetch_library_ast_0_0");
-    Fail23140:
+    Fail21664:
     { 
-      term = termFactory.makeTuple(termFactory.makeAppl(Main._consIncludeFromPath_1, new IStrategoTerm[]{term}), trans.constNil4);
+      term = termFactory.makeTuple(termFactory.makeAppl(Main._consIncludeFromPath_1, new IStrategoTerm[]{term}), trans.constNil3);
       term = pack_stratego_parse_stratego_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail23140;
+        break Fail21664;
       context.popOnSuccess();
       if(true)
         return term;

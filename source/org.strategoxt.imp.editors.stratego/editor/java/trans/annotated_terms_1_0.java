@@ -20,50 +20,50 @@ import java.lang.ref.WeakReference;
 { 
   public static annotated_terms_1_0 instance = new annotated_terms_1_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy w_4715)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy e_4162)
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("annotated_terms_1_0");
-    Fail22711:
+    Fail21235:
     { 
-      IStrategoTerm s_4715 = null;
-      IStrategoTerm t_4715 = null;
-      IStrategoTerm u_4715 = null;
-      IStrategoTerm b_4716 = null;
+      IStrategoTerm a_4162 = null;
+      IStrategoTerm b_4162 = null;
+      IStrategoTerm c_4162 = null;
+      IStrategoTerm j_4162 = null;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-        break Fail22711;
-      t_4715 = term.getSubterm(0);
-      s_4715 = term.getSubterm(1);
-      term = s_4715;
-      IStrategoTerm term12120 = term;
-      Success12120:
+        break Fail21235;
+      b_4162 = term.getSubterm(0);
+      a_4162 = term.getSubterm(1);
+      term = a_4162;
+      IStrategoTerm term11411 = term;
+      Success11411:
       { 
-        Fail22712:
+        Fail21236:
         { 
-          term = w_4715.invoke(context, term);
+          term = e_4162.invoke(context, term);
           if(term == null)
-            break Fail22712;
+            break Fail21236;
           if(true)
-            break Success12120;
+            break Success11411;
         }
-        term = term12120;
-        term = (IStrategoTerm)termFactory.makeListCons(term, (IStrategoList)trans.constNil4);
-        term = w_4715.invoke(context, term);
+        term = term11411;
+        term = (IStrategoTerm)termFactory.makeListCons(term, (IStrategoList)trans.constNil3);
+        term = e_4162.invoke(context, term);
         if(term == null)
-          break Fail22711;
+          break Fail21235;
         term = $Hd_0_0.instance.invoke(context, term);
         if(term == null)
-          break Fail22711;
+          break Fail21235;
       }
-      u_4715 = term;
-      b_4716 = term;
-      term = fetch_down_1_0.instance.invoke(context, t_4715, is_string_0_0.instance);
+      c_4162 = term;
+      j_4162 = term;
+      term = fetch_down_1_0.instance.invoke(context, b_4162, is_string_0_0.instance);
       if(term == null)
-        break Fail22711;
-      term = fetch_annotated_term_0_1.instance.invoke(context, b_4716, term);
+        break Fail21235;
+      term = fetch_annotated_term_0_1.instance.invoke(context, j_4162, term);
       if(term == null)
-        break Fail22711;
-      term = termFactory.makeTuple(term, u_4715);
+        break Fail21235;
+      term = termFactory.makeTuple(term, c_4162);
       context.popOnSuccess();
       if(true)
         return term;

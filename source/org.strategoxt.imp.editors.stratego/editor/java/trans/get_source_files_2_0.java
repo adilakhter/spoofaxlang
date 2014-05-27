@@ -20,65 +20,65 @@ import java.lang.ref.WeakReference;
 { 
   public static get_source_files_2_0 instance = new get_source_files_2_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy x_4734, Strategy y_4734)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy f_4181, Strategy g_4181)
   { 
     context.push("get_source_files_2_0");
-    Fail22817:
+    Fail21341:
     { 
-      TermReference a_4734 = new TermReference();
-      IStrategoTerm b_4734 = null;
-      if(a_4734.value == null)
-        a_4734.value = term;
+      TermReference i_4180 = new TermReference();
+      IStrategoTerm j_4180 = null;
+      if(i_4180.value == null)
+        i_4180.value = term;
       else
-        if(a_4734.value != term && !a_4734.value.match(term))
-          break Fail22817;
-      Success12162:
+        if(i_4180.value != term && !i_4180.value.match(term))
+          break Fail21341;
+      Success11453:
       { 
-        Fail22818:
+        Fail21342:
         { 
-          IStrategoTerm c_4734 = null;
-          IStrategoTerm d_4734 = null;
-          c_4734 = term;
-          if(a_4734.value == null)
-            break Fail22818;
-          term = a_4734.value;
-          d_4734 = a_4734.value;
-          term = y_4734.invoke(context, term);
+          IStrategoTerm k_4180 = null;
+          IStrategoTerm l_4180 = null;
+          k_4180 = term;
+          if(i_4180.value == null)
+            break Fail21342;
+          term = i_4180.value;
+          l_4180 = i_4180.value;
+          term = g_4181.invoke(context, term);
           if(term == null)
-            break Fail22818;
-          term = isdir_0_0.instance.invoke(context, d_4734);
+            break Fail21342;
+          term = isdir_0_0.instance.invoke(context, l_4180);
           if(term == null)
-            break Fail22818;
-          term = c_4734;
+            break Fail21342;
+          term = k_4180;
           { 
-            if(a_4734.value == null)
-              break Fail22817;
-            term = readdir_0_0.instance.invoke(context, a_4734.value);
+            if(i_4180.value == null)
+              break Fail21341;
+            term = readdir_0_0.instance.invoke(context, i_4180.value);
             if(term == null)
-              break Fail22817;
-            lifted6769 lifted67690 = new lifted6769();
-            lifted67690.a_4734 = a_4734;
-            term = map_1_0.instance.invoke(context, term, lifted67690);
+              break Fail21341;
+            lifted6498 lifted64980 = new lifted6498();
+            lifted64980.i_4180 = i_4180;
+            term = map_1_0.instance.invoke(context, term, lifted64980);
             if(term == null)
-              break Fail22817;
-            lifted6770 lifted67700 = new lifted6770();
-            lifted67700.x_4734 = x_4734;
-            lifted67700.y_4734 = y_4734;
-            term = map_1_0.instance.invoke(context, term, lifted67700);
+              break Fail21341;
+            lifted6499 lifted64990 = new lifted6499();
+            lifted64990.f_4181 = f_4181;
+            lifted64990.g_4181 = g_4181;
+            term = map_1_0.instance.invoke(context, term, lifted64990);
             if(term == null)
-              break Fail22817;
+              break Fail21341;
             term = flatten_list_0_0.instance.invoke(context, term);
             if(term == null)
-              break Fail22817;
-            b_4734 = term;
+              break Fail21341;
+            j_4180 = term;
             if(true)
-              break Success12162;
+              break Success11453;
           }
         }
-        term = trans.constNil4;
-        b_4734 = trans.constNil4;
+        term = trans.constNil3;
+        j_4180 = trans.constNil3;
       }
-      term = b_4734;
+      term = j_4180;
       context.popOnSuccess();
       if(true)
         return term;

@@ -20,16 +20,16 @@ import java.lang.ref.WeakReference;
 { 
   public static continue_to_label_$Memoize$Include$Properties_0_1 instance = new continue_to_label_$Memoize$Include$Properties_0_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm k_4881)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm s_4327)
   { 
     context.push("continue_to_label_MemoizeIncludeProperties_0_1");
-    Fail23688:
+    Fail22212:
     { 
-      IStrategoTerm m_4881 = null;
-      m_4881 = term;
-      term = dr_continue_0_2.instance.invoke(context, m_4881, trans.const4584, k_4881);
+      IStrategoTerm u_4327 = null;
+      u_4327 = term;
+      term = dr_continue_0_2.instance.invoke(context, u_4327, trans.const4374, s_4327);
       if(term == null)
-        break Fail23688;
+        break Fail22212;
       context.popOnSuccess();
       if(true)
         return term;

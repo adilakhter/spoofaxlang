@@ -18,16 +18,17 @@ import java.lang.ref.WeakReference;
 
 @SuppressWarnings("all") final class lifted6820 extends Strategy 
 { 
-  public static final lifted6820 instance = new lifted6820();
+  TermReference h_4335;
+
+  TermReference i_4335;
 
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
-    Fail24085:
+    Fail22334:
     { 
-      IStrategoList annos707 = term.getAnnotations();
-      term = SRTS_one.instance.invoke(context, annos707, lifted6821.instance);
+      term = aux_$Outer$Cookie_0_2.instance.invoke(context, term, h_4335.value, i_4335.value);
       if(term == null)
-        break Fail24085;
+        break Fail22334;
       if(true)
         return term;
     }

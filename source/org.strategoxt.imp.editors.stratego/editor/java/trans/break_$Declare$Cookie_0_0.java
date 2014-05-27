@@ -23,27 +23,27 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("break_DeclareCookie_0_0");
-    Fail23621:
+    Fail22145:
     { 
-      IStrategoTerm term12771 = term;
-      Success12641:
+      IStrategoTerm term12062 = term;
+      Success11932:
       { 
-        Fail23622:
+        Fail22146:
         { 
-          IStrategoTerm o_4869 = null;
-          o_4869 = term;
-          term = dr_break_0_1.instance.invoke(context, o_4869, trans.const4568);
+          IStrategoTerm w_4315 = null;
+          w_4315 = term;
+          term = dr_break_0_1.instance.invoke(context, w_4315, trans.const4358);
           if(term == null)
-            break Fail23622;
+            break Fail22146;
           if(true)
-            break Success12641;
+            break Success11932;
         }
-        term = term12771;
-        IStrategoTerm m_4869 = null;
-        m_4869 = term;
-        term = dr_break_0_1.instance.invoke(context, m_4869, trans.const4568);
+        term = term12062;
+        IStrategoTerm u_4315 = null;
+        u_4315 = term;
+        term = dr_break_0_1.instance.invoke(context, u_4315, trans.const4358);
         if(term == null)
-          break Fail23621;
+          break Fail22145;
       }
       context.popOnSuccess();
       if(true)

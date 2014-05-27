@@ -22,22 +22,22 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("fail_if_no_config_found_0_0");
-    Fail87596:
+    Fail22788:
     { 
-      IStrategoTerm term47236 = term;
-      Success47227:
+      IStrategoTerm term12149 = term;
+      Success12140:
       { 
-        Fail87597:
+        Fail22789:
         { 
           term = is_spx_config_exist_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail87597;
+            break Fail22789;
           if(true)
-            break Success47227;
+            break Success12140;
         }
-        term = throw_config_not_found_exception_1_0.instance.invoke(context, term47236, _Fail.instance);
+        term = throw_config_not_found_exception_1_0.instance.invoke(context, term12149, _Fail.instance);
         if(term == null)
-          break Fail87596;
+          break Fail22788;
       }
       context.popOnSuccess();
       if(true)

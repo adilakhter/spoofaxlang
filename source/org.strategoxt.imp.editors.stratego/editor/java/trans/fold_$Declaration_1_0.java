@@ -20,37 +20,37 @@ import java.lang.ref.WeakReference;
 { 
   public static fold_$Declaration_1_0 instance = new fold_$Declaration_1_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy o_4865)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy w_4311)
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("fold_Declaration_1_0");
-    Fail23594:
+    Fail22118:
     { 
-      IStrategoTerm l_4865 = null;
-      IStrategoTerm p_4865 = null;
-      IStrategoTerm r_4865 = null;
-      l_4865 = term;
-      r_4865 = term;
-      Success12630:
+      IStrategoTerm t_4311 = null;
+      IStrategoTerm x_4311 = null;
+      IStrategoTerm z_4311 = null;
+      t_4311 = term;
+      z_4311 = term;
+      Success11921:
       { 
-        Fail23595:
+        Fail22119:
         { 
-          IStrategoTerm t_4865 = null;
-          t_4865 = term;
-          term = dr_lookup_rule_0_2.instance.invoke(context, t_4865, trans.const4570, l_4865);
+          IStrategoTerm b_4312 = null;
+          b_4312 = term;
+          term = dr_lookup_rule_0_2.instance.invoke(context, b_4312, trans.const4360, t_4311);
           if(term == null)
-            break Fail23595;
+            break Fail22119;
           if(true)
-            break Success12630;
+            break Success11921;
         }
-        term = trans.constNil4;
+        term = trans.constNil3;
       }
-      p_4865 = term;
-      term = r_4865;
-      term = termFactory.makeTuple(p_4865, term);
-      term = o_4865.invoke(context, term, lifted7040.instance);
+      x_4311 = term;
+      term = z_4311;
+      term = termFactory.makeTuple(x_4311, term);
+      term = w_4311.invoke(context, term, lifted6769.instance);
       if(term == null)
-        break Fail23594;
+        break Fail22118;
       context.popOnSuccess();
       if(true)
         return term;

@@ -20,55 +20,55 @@ import java.lang.ref.WeakReference;
 { 
   public static reject_or_get_ast_from_parsing_1_0 instance = new reject_or_get_ast_from_parsing_1_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy w_4737)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy e_4184)
   { 
     context.push("reject_or_get_ast_from_parsing_1_0");
-    Fail22830:
+    Fail21354:
     { 
-      IStrategoTerm s_4737 = null;
-      IStrategoTerm t_4737 = null;
-      IStrategoTerm u_4737 = null;
-      s_4737 = term;
-      term = parse_file_0_0.instance.invoke(context, s_4737);
+      IStrategoTerm a_4184 = null;
+      IStrategoTerm b_4184 = null;
+      IStrategoTerm c_4184 = null;
+      a_4184 = term;
+      term = parse_file_0_0.instance.invoke(context, a_4184);
       if(term == null)
-        break Fail22830;
-      t_4737 = term;
-      Success12166:
+        break Fail21354;
+      b_4184 = term;
+      Success11457:
       { 
-        Fail22831:
+        Fail21355:
         { 
-          IStrategoTerm v_4737 = null;
-          v_4737 = term;
-          term = t_4737;
-          IStrategoTerm term12200 = term;
-          Success12167:
+          IStrategoTerm d_4184 = null;
+          d_4184 = term;
+          term = b_4184;
+          IStrategoTerm term11491 = term;
+          Success11458:
           { 
-            Fail22832:
+            Fail21356:
             { 
-              term = w_4737.invoke(context, term);
+              term = e_4184.invoke(context, term);
               if(term == null)
-                break Fail22832;
+                break Fail21356;
               { 
                 if(true)
-                  break Fail22831;
+                  break Fail21355;
                 if(true)
-                  break Success12167;
+                  break Success11458;
               }
             }
-            term = term12200;
+            term = term11491;
           }
-          term = v_4737;
+          term = d_4184;
           { 
             term = trans.constNone0;
-            u_4737 = trans.constNone0;
+            c_4184 = trans.constNone0;
             if(true)
-              break Success12166;
+              break Success11457;
           }
         }
-        term = t_4737;
-        u_4737 = t_4737;
+        term = b_4184;
+        c_4184 = b_4184;
       }
-      term = u_4737;
+      term = c_4184;
       context.popOnSuccess();
       if(true)
         return term;

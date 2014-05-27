@@ -23,28 +23,28 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("DecoratedAst_0_0");
-    Fail23503:
+    Fail22027:
     { 
-      TermReference x_4849 = new TermReference();
-      IStrategoTerm a_4850 = null;
-      IStrategoTerm c_4850 = null;
-      IStrategoTerm d_4850 = null;
-      if(x_4849.value == null)
-        x_4849.value = term;
+      TermReference f_4296 = new TermReference();
+      IStrategoTerm i_4296 = null;
+      IStrategoTerm k_4296 = null;
+      IStrategoTerm l_4296 = null;
+      if(f_4296.value == null)
+        f_4296.value = term;
       else
-        if(x_4849.value != term && !x_4849.value.match(term))
-          break Fail23503;
-      c_4850 = term;
-      a_4850 = trans.const4565;
-      d_4850 = c_4850;
-      term = dr_lookup_rule_0_2.instance.invoke(context, d_4850, a_4850, trans.constCons2047);
+        if(f_4296.value != term && !f_4296.value.match(term))
+          break Fail22027;
+      k_4296 = term;
+      i_4296 = trans.const4355;
+      l_4296 = k_4296;
+      term = dr_lookup_rule_0_2.instance.invoke(context, l_4296, i_4296, trans.constCons1966);
       if(term == null)
-        break Fail23503;
-      lifted7011 lifted70110 = new lifted7011();
-      lifted70110.x_4849 = x_4849;
-      term = fetch_elem_1_0.instance.invoke(context, term, lifted70110);
+        break Fail22027;
+      lifted6740 lifted67400 = new lifted6740();
+      lifted67400.f_4296 = f_4296;
+      term = fetch_elem_1_0.instance.invoke(context, term, lifted67400);
       if(term == null)
-        break Fail23503;
+        break Fail22027;
       context.popOnSuccess();
       if(true)
         return term;

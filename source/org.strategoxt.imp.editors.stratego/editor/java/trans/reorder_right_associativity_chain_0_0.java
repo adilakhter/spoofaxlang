@@ -24,44 +24,44 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("reorder_right_associativity_chain_0_0");
-    Fail22756:
+    Fail21280:
     { 
-      IStrategoTerm a_4722 = null;
-      IStrategoTerm b_4722 = null;
-      IStrategoTerm c_4722 = null;
-      IStrategoTerm d_4722 = null;
-      IStrategoTerm e_4722 = null;
-      c_4722 = term;
-      IStrategoTerm cons570 = context.invokePrimitive("SSL_get_constructor", term, NO_STRATEGIES, new IStrategoTerm[]{term});
-      b_4722 = cons570;
-      IStrategoTerm args23 = context.invokePrimitive("SSL_get_arguments", term, NO_STRATEGIES, new IStrategoTerm[]{term});
-      if(args23.getTermType() != IStrategoTerm.LIST || ((IStrategoList)args23).isEmpty())
-        break Fail22756;
-      IStrategoTerm arg8002 = ((IStrategoList)args23).tail();
-      if(arg8002.getTermType() != IStrategoTerm.LIST || ((IStrategoList)arg8002).isEmpty())
-        break Fail22756;
-      IStrategoTerm arg8003 = ((IStrategoList)arg8002).tail();
-      if(arg8003.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg8003).isEmpty())
-        break Fail22756;
-      e_4722 = term;
-      term = break_right_associativity_chain_0_1.instance.invoke(context, c_4722, b_4722);
+      IStrategoTerm i_4168 = null;
+      IStrategoTerm j_4168 = null;
+      IStrategoTerm k_4168 = null;
+      IStrategoTerm l_4168 = null;
+      IStrategoTerm m_4168 = null;
+      k_4168 = term;
+      IStrategoTerm cons526 = context.invokePrimitive("SSL_get_constructor", term, NO_STRATEGIES, new IStrategoTerm[]{term});
+      j_4168 = cons526;
+      IStrategoTerm args10 = context.invokePrimitive("SSL_get_arguments", term, NO_STRATEGIES, new IStrategoTerm[]{term});
+      if(args10.getTermType() != IStrategoTerm.LIST || ((IStrategoList)args10).isEmpty())
+        break Fail21280;
+      IStrategoTerm arg7535 = ((IStrategoList)args10).tail();
+      if(arg7535.getTermType() != IStrategoTerm.LIST || ((IStrategoList)arg7535).isEmpty())
+        break Fail21280;
+      IStrategoTerm arg7536 = ((IStrategoList)arg7535).tail();
+      if(arg7536.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg7536).isEmpty())
+        break Fail21280;
+      m_4168 = term;
+      term = break_right_associativity_chain_0_1.instance.invoke(context, k_4168, j_4168);
       if(term == null)
-        break Fail22756;
-      a_4722 = term;
-      term = broken_child_in_right_associativity_chain_0_1.instance.invoke(context, c_4722, b_4722);
+        break Fail21280;
+      i_4168 = term;
+      term = broken_child_in_right_associativity_chain_0_1.instance.invoke(context, k_4168, j_4168);
       if(term == null)
-        break Fail22756;
-      d_4722 = term;
-      term = termFactory.makeTuple(c_4722, term);
+        break Fail21280;
+      l_4168 = term;
+      term = termFactory.makeTuple(k_4168, term);
       term = check_brackets_tail_term_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22756;
-      term = e_4722;
-      IStrategoTerm mkterm9;
-      mkterm9 = context.invokePrimitive("SSL_mkterm", term, NO_STRATEGIES, new IStrategoTerm[]{b_4722, (IStrategoTerm)termFactory.makeListCons(a_4722, termFactory.makeListCons(d_4722, (IStrategoList)trans.constNil4))});
-      if(mkterm9 == null)
-        break Fail22756;
-      term = mkterm9;
+        break Fail21280;
+      term = m_4168;
+      IStrategoTerm mkterm4;
+      mkterm4 = context.invokePrimitive("SSL_mkterm", term, NO_STRATEGIES, new IStrategoTerm[]{j_4168, (IStrategoTerm)termFactory.makeListCons(i_4168, termFactory.makeListCons(l_4168, (IStrategoList)trans.constNil3))});
+      if(mkterm4 == null)
+        break Fail21280;
+      term = mkterm4;
       context.popOnSuccess();
       if(true)
         return term;

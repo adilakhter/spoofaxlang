@@ -20,16 +20,16 @@ import java.lang.ref.WeakReference;
 { 
   public static throw_$Outer$Cookie_1_1 instance = new throw_$Outer$Cookie_1_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy y_4885, IStrategoTerm x_4885)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy g_4332, IStrategoTerm f_4332)
   { 
     context.push("throw_OuterCookie_1_1");
-    Fail23714:
+    Fail22238:
     { 
-      IStrategoTerm a_4886 = null;
-      a_4886 = term;
-      term = dr_throw_1_2.instance.invoke(context, a_4886, y_4885, x_4885, trans.const4604);
+      IStrategoTerm i_4332 = null;
+      i_4332 = term;
+      term = dr_throw_1_2.instance.invoke(context, i_4332, g_4332, f_4332, trans.const4394);
       if(term == null)
-        break Fail23714;
+        break Fail22238;
       context.popOnSuccess();
       if(true)
         return term;

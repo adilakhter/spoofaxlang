@@ -20,92 +20,92 @@ import java.lang.ref.WeakReference;
 { 
   public static fetch_up_with_position_2_1 instance = new fetch_up_with_position_2_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy g_4898, Strategy h_4898, IStrategoTerm i_4898)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy o_4344, Strategy p_4344, IStrategoTerm q_4344)
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("fetch_up_with_position_2_1");
-    Fail22703:
+    Fail21227:
     { 
-      IStrategoTerm term12115 = term;
-      Success12115:
+      IStrategoTerm term11406 = term;
+      Success11406:
       { 
-        Fail22704:
+        Fail21228:
         { 
-          IStrategoTerm p_4714 = null;
-          IStrategoTerm q_4714 = null;
-          IStrategoTerm s_4714 = null;
-          IStrategoTerm t_4714 = null;
-          IStrategoTerm x_4714 = null;
+          IStrategoTerm x_4160 = null;
+          IStrategoTerm y_4160 = null;
+          IStrategoTerm a_4161 = null;
+          IStrategoTerm b_4161 = null;
+          IStrategoTerm f_4161 = null;
           if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-            break Fail22704;
-          p_4714 = term.getSubterm(0);
-          q_4714 = term.getSubterm(1);
-          term = p_4714;
-          IStrategoTerm term12116 = term;
-          Success12116:
+            break Fail21228;
+          x_4160 = term.getSubterm(0);
+          y_4160 = term.getSubterm(1);
+          term = x_4160;
+          IStrategoTerm term11407 = term;
+          Success11407:
           { 
-            Fail22705:
+            Fail21229:
             { 
-              term = g_4898.invoke(context, term);
+              term = o_4344.invoke(context, term);
               if(term == null)
-                break Fail22705;
+                break Fail21229;
               { 
                 if(true)
-                  break Fail22704;
+                  break Fail21228;
                 if(true)
-                  break Success12116;
+                  break Success11407;
               }
             }
-            term = term12116;
+            term = term11407;
           }
-          term = p_4714;
-          IStrategoTerm term12117 = term;
-          Success12117:
+          term = x_4160;
+          IStrategoTerm term11408 = term;
+          Success11408:
           { 
-            Fail22706:
+            Fail21230:
             { 
-              term = h_4898.invoke(context, term);
+              term = p_4344.invoke(context, term);
               if(term == null)
-                break Fail22706;
+                break Fail21230;
               { 
                 if(true)
-                  break Fail22704;
+                  break Fail21228;
                 if(true)
-                  break Success12117;
+                  break Success11408;
               }
             }
-            term = term12117;
+            term = term11408;
           }
-          term = parent_at_position_0_1.instance.invoke(context, i_4898, q_4714);
+          term = parent_at_position_0_1.instance.invoke(context, q_4344, y_4160);
           if(term == null)
-            break Fail22704;
-          x_4714 = term;
-          term = init_0_0.instance.invoke(context, q_4714);
+            break Fail21228;
+          f_4161 = term;
+          term = init_0_0.instance.invoke(context, y_4160);
           if(term == null)
-            break Fail22704;
-          term = termFactory.makeTuple(x_4714, term);
-          term = this.invoke(context, term, g_4898, h_4898, i_4898);
+            break Fail21228;
+          term = termFactory.makeTuple(f_4161, term);
+          term = this.invoke(context, term, o_4344, p_4344, q_4344);
           if(term == null)
-            break Fail22704;
+            break Fail21228;
           if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-            break Fail22704;
-          s_4714 = term.getSubterm(0);
-          t_4714 = term.getSubterm(1);
-          term = termFactory.makeTuple(s_4714, t_4714);
+            break Fail21228;
+          a_4161 = term.getSubterm(0);
+          b_4161 = term.getSubterm(1);
+          term = termFactory.makeTuple(a_4161, b_4161);
           if(true)
-            break Success12115;
+            break Success11406;
         }
-        term = term12115;
-        IStrategoTerm j_4714 = null;
-        IStrategoTerm k_4714 = null;
+        term = term11406;
+        IStrategoTerm r_4160 = null;
+        IStrategoTerm s_4160 = null;
         if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-          break Fail22703;
-        k_4714 = term.getSubterm(0);
-        j_4714 = term.getSubterm(1);
-        term = g_4898.invoke(context, k_4714);
+          break Fail21227;
+        s_4160 = term.getSubterm(0);
+        r_4160 = term.getSubterm(1);
+        term = o_4344.invoke(context, s_4160);
         if(term == null)
-          break Fail22703;
-        term = termFactory.makeTuple(k_4714, j_4714);
+          break Fail21227;
+        term = termFactory.makeTuple(s_4160, r_4160);
       }
       context.popOnSuccess();
       if(true)

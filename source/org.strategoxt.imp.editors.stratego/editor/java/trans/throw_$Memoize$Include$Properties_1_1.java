@@ -20,16 +20,16 @@ import java.lang.ref.WeakReference;
 { 
   public static throw_$Memoize$Include$Properties_1_1 instance = new throw_$Memoize$Include$Properties_1_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy h_4881, IStrategoTerm g_4881)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy p_4327, IStrategoTerm o_4327)
   { 
     context.push("throw_MemoizeIncludeProperties_1_1");
-    Fail23687:
+    Fail22211:
     { 
-      IStrategoTerm j_4881 = null;
-      j_4881 = term;
-      term = dr_throw_1_2.instance.invoke(context, j_4881, h_4881, g_4881, trans.const4584);
+      IStrategoTerm r_4327 = null;
+      r_4327 = term;
+      term = dr_throw_1_2.instance.invoke(context, r_4327, p_4327, o_4327, trans.const4374);
       if(term == null)
-        break Fail23687;
+        break Fail22211;
       context.popOnSuccess();
       if(true)
         return term;

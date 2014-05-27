@@ -20,16 +20,16 @@ import java.lang.ref.WeakReference;
 { 
   public static innermost_scope_$Memoize$Include$Properties_1_0 instance = new innermost_scope_$Memoize$Include$Properties_1_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy c_4881)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy k_4327)
   { 
     context.push("innermost_scope_MemoizeIncludeProperties_1_0");
-    Fail23685:
+    Fail22209:
     { 
-      IStrategoTerm e_4881 = null;
-      e_4881 = term;
-      term = dr_get_first_scope_label_1_1.instance.invoke(context, e_4881, c_4881, trans.const4584);
+      IStrategoTerm m_4327 = null;
+      m_4327 = term;
+      term = dr_get_first_scope_label_1_1.instance.invoke(context, m_4327, k_4327, trans.const4374);
       if(term == null)
-        break Fail23685;
+        break Fail22209;
       context.popOnSuccess();
       if(true)
         return term;

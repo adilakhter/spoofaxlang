@@ -23,58 +23,58 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("once_WarnAnalysis_0_0");
-    Fail23524:
+    Fail22048:
     { 
-      IStrategoTerm n_4853 = null;
-      TermReference o_4853 = new TermReference();
-      TermReference p_4853 = new TermReference();
-      TermReference q_4853 = new TermReference();
-      IStrategoTerm r_4853 = null;
-      IStrategoTerm s_4853 = null;
-      IStrategoTerm u_4853 = null;
-      IStrategoTerm v_4853 = null;
-      IStrategoTerm x_4853 = null;
-      IStrategoTerm y_4853 = null;
-      if(p_4853.value == null)
-        p_4853.value = term;
+      IStrategoTerm v_4299 = null;
+      TermReference w_4299 = new TermReference();
+      TermReference x_4299 = new TermReference();
+      TermReference y_4299 = new TermReference();
+      IStrategoTerm z_4299 = null;
+      IStrategoTerm a_4300 = null;
+      IStrategoTerm c_4300 = null;
+      IStrategoTerm d_4300 = null;
+      IStrategoTerm f_4300 = null;
+      IStrategoTerm g_4300 = null;
+      if(x_4299.value == null)
+        x_4299.value = term;
       else
-        if(p_4853.value != term && !p_4853.value.match(term))
-          break Fail23524;
-      if(o_4853.value == null)
-        o_4853.value = term;
+        if(x_4299.value != term && !x_4299.value.match(term))
+          break Fail22048;
+      if(w_4299.value == null)
+        w_4299.value = term;
       else
-        if(o_4853.value != term && !o_4853.value.match(term))
-          break Fail23524;
-      u_4853 = term;
-      x_4853 = term;
-      v_4853 = trans.const4562;
-      y_4853 = x_4853;
-      term = dr_lookup_rule_pointer_0_2.instance.invoke(context, y_4853, v_4853, trans.constCons2047);
+        if(w_4299.value != term && !w_4299.value.match(term))
+          break Fail22048;
+      c_4300 = term;
+      f_4300 = term;
+      d_4300 = trans.const4352;
+      g_4300 = f_4300;
+      term = dr_lookup_rule_pointer_0_2.instance.invoke(context, g_4300, d_4300, trans.constCons1966);
       if(term == null)
-        break Fail23524;
+        break Fail22048;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 3)
-        break Fail23524;
-      n_4853 = term.getSubterm(0);
-      s_4853 = term.getSubterm(1);
-      r_4853 = term.getSubterm(2);
-      term = n_4853;
-      lifted7017 lifted70170 = new lifted7017();
-      lifted70170.o_4853 = o_4853;
-      lifted70170.p_4853 = p_4853;
-      lifted70170.q_4853 = q_4853;
-      term = split_fetch_1_0.instance.invoke(context, term, lifted70170);
+        break Fail22048;
+      v_4299 = term.getSubterm(0);
+      a_4300 = term.getSubterm(1);
+      z_4299 = term.getSubterm(2);
+      term = v_4299;
+      lifted6746 lifted67460 = new lifted6746();
+      lifted67460.w_4299 = w_4299;
+      lifted67460.x_4299 = x_4299;
+      lifted67460.y_4299 = y_4299;
+      term = split_fetch_1_0.instance.invoke(context, term, lifted67460);
       if(term == null)
-        break Fail23524;
+        break Fail22048;
       term = conc_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail23524;
-      term = hashtable_put_0_2.instance.invoke(context, r_4853, s_4853, term);
+        break Fail22048;
+      term = hashtable_put_0_2.instance.invoke(context, z_4299, a_4300, term);
       if(term == null)
-        break Fail23524;
-      term = u_4853;
-      if(q_4853.value == null)
-        break Fail23524;
-      term = q_4853.value;
+        break Fail22048;
+      term = c_4300;
+      if(y_4299.value == null)
+        break Fail22048;
+      term = y_4299.value;
       context.popOnSuccess();
       if(true)
         return term;

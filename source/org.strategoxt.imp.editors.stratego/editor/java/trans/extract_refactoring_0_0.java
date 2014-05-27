@@ -24,45 +24,45 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("extract_refactoring_0_0");
-    Fail22736:
+    Fail21260:
     { 
-      IStrategoTerm v_4718 = null;
-      IStrategoTerm w_4718 = null;
-      IStrategoTerm x_4718 = null;
-      IStrategoTerm y_4718 = null;
-      IStrategoTerm z_4718 = null;
-      IStrategoTerm b_4719 = null;
-      IStrategoTerm c_4719 = null;
-      IStrategoTerm d_4719 = null;
-      IStrategoTerm e_4719 = null;
+      IStrategoTerm d_4165 = null;
+      IStrategoTerm e_4165 = null;
+      IStrategoTerm f_4165 = null;
+      IStrategoTerm g_4165 = null;
+      IStrategoTerm h_4165 = null;
+      IStrategoTerm j_4165 = null;
+      IStrategoTerm k_4165 = null;
+      IStrategoTerm l_4165 = null;
+      IStrategoTerm m_4165 = null;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 6)
-        break Fail22736;
-      v_4718 = term.getSubterm(0);
-      w_4718 = term.getSubterm(1);
-      x_4718 = term.getSubterm(2);
-      z_4718 = term.getSubterm(3);
-      term = termFactory.makeTuple(v_4718, w_4718);
+        break Fail21260;
+      d_4165 = term.getSubterm(0);
+      e_4165 = term.getSubterm(1);
+      f_4165 = term.getSubterm(2);
+      h_4165 = term.getSubterm(3);
+      term = termFactory.makeTuple(d_4165, e_4165);
       term = mk_defs_for_extraction_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22736;
+        break Fail21260;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-        break Fail22736;
-      d_4719 = term.getSubterm(0);
-      y_4718 = term.getSubterm(1);
-      term = debug_1_0.instance.invoke(context, term, lifted6701.instance);
+        break Fail21260;
+      l_4165 = term.getSubterm(0);
+      g_4165 = term.getSubterm(1);
+      term = debug_1_0.instance.invoke(context, term, lifted6430.instance);
       if(term == null)
-        break Fail22736;
-      term = extract_1_3.instance.invoke(context, z_4718, lifted6702.instance, x_4718, y_4718, d_4719);
+        break Fail21260;
+      term = extract_1_3.instance.invoke(context, h_4165, lifted6431.instance, f_4165, g_4165, l_4165);
       if(term == null)
-        break Fail22736;
-      term = (IStrategoTerm)termFactory.makeListCons(termFactory.makeTuple(z_4718, term), (IStrategoList)trans.constNil4);
-      b_4719 = term;
-      c_4719 = trans.constNil4;
-      term = collect_all_1_0.instance.invoke(context, d_4719, lifted6703.instance);
+        break Fail21260;
+      term = (IStrategoTerm)termFactory.makeListCons(termFactory.makeTuple(h_4165, term), (IStrategoList)trans.constNil3);
+      j_4165 = term;
+      k_4165 = trans.constNil3;
+      term = collect_all_1_0.instance.invoke(context, l_4165, lifted6432.instance);
       if(term == null)
-        break Fail22736;
-      e_4719 = term;
-      term = termFactory.makeTuple(b_4719, c_4719, trans.constNil4, e_4719);
+        break Fail21260;
+      m_4165 = term;
+      term = termFactory.makeTuple(j_4165, k_4165, trans.constNil3, m_4165);
       context.popOnSuccess();
       if(true)
         return term;

@@ -23,11 +23,11 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("get_soure_base_dir_0_0");
-    Fail23006:
+    Fail21530:
     { 
       term = $Project$Dir_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail23006;
+        break Fail21530;
       context.popOnSuccess();
       if(true)
         return term;

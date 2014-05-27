@@ -20,37 +20,37 @@ import java.lang.ref.WeakReference;
 { 
   public static bigfold_$Outer$Cookie_1_0 instance = new bigfold_$Outer$Cookie_1_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy t_4886)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy b_4333)
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("bigfold_OuterCookie_1_0");
-    Fail23721:
+    Fail22245:
     { 
-      IStrategoTerm q_4886 = null;
-      IStrategoTerm u_4886 = null;
-      IStrategoTerm w_4886 = null;
-      q_4886 = term;
-      w_4886 = term;
-      Success12681:
+      IStrategoTerm y_4332 = null;
+      IStrategoTerm c_4333 = null;
+      IStrategoTerm e_4333 = null;
+      y_4332 = term;
+      e_4333 = term;
+      Success11972:
       { 
-        Fail23722:
+        Fail22246:
         { 
-          IStrategoTerm y_4886 = null;
-          y_4886 = term;
-          term = dr_lookup_all_rules_0_2.instance.invoke(context, y_4886, trans.const4604, q_4886);
+          IStrategoTerm g_4333 = null;
+          g_4333 = term;
+          term = dr_lookup_all_rules_0_2.instance.invoke(context, g_4333, trans.const4394, y_4332);
           if(term == null)
-            break Fail23722;
+            break Fail22246;
           if(true)
-            break Success12681;
+            break Success11972;
         }
-        term = trans.constNil4;
+        term = trans.constNil3;
       }
-      u_4886 = term;
-      term = w_4886;
-      term = termFactory.makeTuple(u_4886, term);
-      term = t_4886.invoke(context, term, lifted7085.instance);
+      c_4333 = term;
+      term = e_4333;
+      term = termFactory.makeTuple(c_4333, term);
+      term = b_4333.invoke(context, term, lifted6814.instance);
       if(term == null)
-        break Fail23721;
+        break Fail22245;
       context.popOnSuccess();
       if(true)
         return term;

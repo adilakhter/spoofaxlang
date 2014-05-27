@@ -20,55 +20,55 @@ import java.lang.ref.WeakReference;
 { 
   public static apply_rename_refactoring_2_1 instance = new apply_rename_refactoring_2_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy f_4741, Strategy g_4741, IStrategoTerm ref_w_4740)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy n_4187, Strategy o_4187, IStrategoTerm ref_e_4187)
   { 
     ITermFactory termFactory = context.getFactory();
-    TermReference w_4740 = new TermReference(ref_w_4740);
+    TermReference e_4187 = new TermReference(ref_e_4187);
     context.push("apply_rename_refactoring_2_1");
-    Fail22849:
+    Fail21373:
     { 
-      IStrategoTerm x_4740 = null;
-      IStrategoTerm y_4740 = null;
-      IStrategoTerm a_4741 = null;
-      IStrategoTerm b_4741 = null;
-      IStrategoTerm c_4741 = null;
-      IStrategoTerm d_4741 = null;
-      c_4741 = term;
-      term = c_4741;
-      lifted6787 lifted67870 = new lifted6787();
-      lifted67870.w_4740 = w_4740;
-      term = topdown_1_0.instance.invoke(context, term, lifted67870);
+      IStrategoTerm f_4187 = null;
+      IStrategoTerm g_4187 = null;
+      IStrategoTerm i_4187 = null;
+      IStrategoTerm j_4187 = null;
+      IStrategoTerm k_4187 = null;
+      IStrategoTerm l_4187 = null;
+      k_4187 = term;
+      term = k_4187;
+      lifted6516 lifted65160 = new lifted6516();
+      lifted65160.e_4187 = e_4187;
+      term = topdown_1_0.instance.invoke(context, term, lifted65160);
       if(term == null)
-        break Fail22849;
-      d_4741 = term;
-      term = f_4741.invoke(context, term);
+        break Fail21373;
+      l_4187 = term;
+      term = n_4187.invoke(context, term);
       if(term == null)
-        break Fail22849;
-      y_4740 = term;
-      term = termFactory.makeTuple(c_4741, term);
-      term = introduced_constraint_errors_1_0.instance.invoke(context, term, g_4741);
+        break Fail21373;
+      g_4187 = term;
+      term = termFactory.makeTuple(k_4187, term);
+      term = introduced_constraint_errors_1_0.instance.invoke(context, term, o_4187);
       if(term == null)
-        break Fail22849;
+        break Fail21373;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-        break Fail22849;
-      a_4741 = term.getSubterm(0);
-      x_4740 = term.getSubterm(1);
-      term = termFactory.makeTuple(d_4741, y_4740);
-      lifted6789 lifted67890 = new lifted6789();
-      lifted67890.w_4740 = w_4740;
-      term = namebinding_error_messages_1_0.instance.invoke(context, term, lifted67890);
+        break Fail21373;
+      i_4187 = term.getSubterm(0);
+      f_4187 = term.getSubterm(1);
+      term = termFactory.makeTuple(l_4187, g_4187);
+      lifted6518 lifted65180 = new lifted6518();
+      lifted65180.e_4187 = e_4187;
+      term = namebinding_error_messages_1_0.instance.invoke(context, term, lifted65180);
       if(term == null)
-        break Fail22849;
-      term = termFactory.makeTuple(term, a_4741);
+        break Fail21373;
+      term = termFactory.makeTuple(term, i_4187);
       term = conc_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22849;
-      b_4741 = term;
-      term = termFactory.makeTuple(c_4741, d_4741);
+        break Fail21373;
+      j_4187 = term;
+      term = termFactory.makeTuple(k_4187, l_4187);
       term = get_changed_asts_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22849;
-      term = termFactory.makeTuple(term, b_4741, x_4740);
+        break Fail21373;
+      term = termFactory.makeTuple(term, j_4187, f_4187);
       context.popOnSuccess();
       if(true)
         return term;

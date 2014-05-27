@@ -24,25 +24,25 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("declared_in_external_lib_0_0");
-    Fail22880:
+    Fail21404:
     { 
-      IStrategoTerm i_4748 = null;
-      IStrategoTerm l_4748 = null;
-      i_4748 = term;
-      term = $Declaration_0_0.instance.invoke(context, i_4748);
+      IStrategoTerm q_4194 = null;
+      IStrategoTerm t_4194 = null;
+      q_4194 = term;
+      term = $Declaration_0_0.instance.invoke(context, q_4194);
       if(term == null)
-        break Fail22880;
+        break Fail21404;
       term = get_constructor_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22880;
-      l_4748 = term;
-      term = string_starts_with_0_1.instance.invoke(context, l_4748, trans.const4529);
+        break Fail21404;
+      t_4194 = term;
+      term = string_starts_with_0_1.instance.invoke(context, t_4194, trans.const4319);
       if(term == null)
-        break Fail22880;
-      term = concat_strings_0_0.instance.invoke(context, trans.constCons2082);
+        break Fail21404;
+      term = concat_strings_0_0.instance.invoke(context, trans.constCons2001);
       if(term == null)
-        break Fail22880;
-      term = termFactory.annotateTerm(term, checkListAnnos(termFactory, trans.constNil4));
+        break Fail21404;
+      term = termFactory.annotateTerm(term, checkListAnnos(termFactory, trans.constNil3));
       context.popOnSuccess();
       if(true)
         return term;

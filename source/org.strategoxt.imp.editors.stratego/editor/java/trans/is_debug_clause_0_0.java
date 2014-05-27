@@ -23,42 +23,42 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("is_debug_clause_0_0");
-    Fail22727:
+    Fail21251:
     { 
-      IStrategoTerm i_4718 = null;
-      i_4718 = term;
-      IStrategoTerm term12131 = term;
-      IStrategoConstructor cons583 = term.getTermType() == IStrategoTerm.APPL ? ((IStrategoAppl)term).getConstructor() : null;
-      Success12130:
+      IStrategoTerm q_4164 = null;
+      q_4164 = term;
+      IStrategoTerm term11422 = term;
+      IStrategoConstructor cons539 = term.getTermType() == IStrategoTerm.APPL ? ((IStrategoAppl)term).getConstructor() : null;
+      Success11421:
       { 
-        if(cons583 == Main._consWhereClause_1)
+        if(cons539 == Main._consWhereClause_1)
         { 
-          Fail22728:
+          Fail21252:
           { 
-            IStrategoTerm j_4718 = null;
-            j_4718 = term.getSubterm(0);
-            term = is_debug_call_0_0.instance.invoke(context, j_4718);
+            IStrategoTerm r_4164 = null;
+            r_4164 = term.getSubterm(0);
+            term = is_debug_call_0_0.instance.invoke(context, r_4164);
             if(term == null)
-              break Fail22728;
+              break Fail21252;
             if(true)
-              break Success12130;
+              break Success11421;
           }
-          term = term12131;
+          term = term11422;
         }
-        if(cons583 == Main._consWithClause_1)
+        if(cons539 == Main._consWithClause_1)
         { 
-          IStrategoTerm k_4718 = null;
-          k_4718 = term.getSubterm(0);
-          term = is_debug_call_0_0.instance.invoke(context, k_4718);
+          IStrategoTerm s_4164 = null;
+          s_4164 = term.getSubterm(0);
+          term = is_debug_call_0_0.instance.invoke(context, s_4164);
           if(term == null)
-            break Fail22727;
+            break Fail21251;
         }
         else
         { 
-          break Fail22727;
+          break Fail21251;
         }
       }
-      term = i_4718;
+      term = q_4164;
       context.popOnSuccess();
       if(true)
         return term;

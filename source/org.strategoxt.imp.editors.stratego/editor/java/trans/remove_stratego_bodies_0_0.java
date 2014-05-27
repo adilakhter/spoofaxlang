@@ -24,81 +24,81 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("remove_stratego_bodies_0_0");
-    Fail23142:
+    Fail21666:
     { 
-      IStrategoTerm term12472 = term;
-      IStrategoConstructor cons591 = term.getTermType() == IStrategoTerm.APPL ? ((IStrategoAppl)term).getConstructor() : null;
-      Success12379:
+      IStrategoTerm term11763 = term;
+      IStrategoConstructor cons547 = term.getTermType() == IStrategoTerm.APPL ? ((IStrategoAppl)term).getConstructor() : null;
+      Success11670:
       { 
-        if(cons591 == Main._consSDefT_4)
+        if(cons547 == Main._consSDefT_4)
         { 
-          Fail23143:
+          Fail21667:
           { 
-            IStrategoTerm v_4788 = null;
-            IStrategoTerm w_4788 = null;
-            IStrategoTerm x_4788 = null;
-            IStrategoTerm y_4788 = null;
-            IStrategoTerm z_4788 = null;
-            IStrategoTerm c_4789 = null;
-            v_4788 = term.getSubterm(0);
-            w_4788 = term.getSubterm(1);
-            x_4788 = term.getSubterm(2);
-            y_4788 = term.getSubterm(3);
-            c_4789 = term;
-            IStrategoTerm term12473 = term;
-            Success12380:
+            IStrategoTerm d_4235 = null;
+            IStrategoTerm e_4235 = null;
+            IStrategoTerm f_4235 = null;
+            IStrategoTerm g_4235 = null;
+            IStrategoTerm h_4235 = null;
+            IStrategoTerm k_4235 = null;
+            d_4235 = term.getSubterm(0);
+            e_4235 = term.getSubterm(1);
+            f_4235 = term.getSubterm(2);
+            g_4235 = term.getSubterm(3);
+            k_4235 = term;
+            IStrategoTerm term11764 = term;
+            Success11671:
             { 
-              Fail23144:
+              Fail21668:
               { 
-                term = collect_all_1_0.instance.invoke(context, y_4788, lifted6871.instance);
+                term = collect_all_1_0.instance.invoke(context, g_4235, lifted6600.instance);
                 if(term == null)
-                  break Fail23144;
-                z_4788 = term;
+                  break Fail21668;
+                h_4235 = term;
                 if(true)
-                  break Success12380;
+                  break Success11671;
               }
-              term = term12473;
-              IStrategoTerm a_4789 = null;
-              IStrategoTerm b_4789 = null;
-              IStrategoTerm e_4789 = null;
-              a_4789 = term;
+              term = term11764;
+              IStrategoTerm i_4235 = null;
+              IStrategoTerm j_4235 = null;
+              IStrategoTerm m_4235 = null;
+              i_4235 = term;
               term = context.invokePrimitive("SSL_stacktrace_get_all_frame_names", term, NO_STRATEGIES, NO_TERMS);
               if(term == null)
-                break Fail23143;
-              b_4789 = term;
-              e_4789 = a_4789;
-              term = report_with_failure_0_2.instance.invoke(context, e_4789, trans.const4594, b_4789);
+                break Fail21667;
+              j_4235 = term;
+              m_4235 = i_4235;
+              term = report_with_failure_0_2.instance.invoke(context, m_4235, trans.const4384, j_4235);
               if(term == null)
-                break Fail23143;
+                break Fail21667;
             }
-            term = c_4789;
-            if(z_4788 == null)
-              break Fail23143;
-            term = termFactory.makeAppl(Main._consSDefT_4, new IStrategoTerm[]{v_4788, w_4788, x_4788, z_4788});
+            term = k_4235;
+            if(h_4235 == null)
+              break Fail21667;
+            term = termFactory.makeAppl(Main._consSDefT_4, new IStrategoTerm[]{d_4235, e_4235, f_4235, h_4235});
             if(true)
-              break Success12379;
+              break Success11670;
           }
-          term = term12472;
+          term = term11763;
         }
-        Success12381:
+        Success11672:
         { 
-          if(cons591 == Main._consImport_1)
+          if(cons547 == Main._consImport_1)
           { 
-            Fail23145:
+            Fail21669:
             { 
-              term = trans.const4595;
+              term = trans.const4385;
               if(true)
-                break Success12381;
+                break Success11672;
             }
-            term = term12472;
+            term = term11763;
           }
-          if(cons591 == Main._consImportWildcard_1)
+          if(cons547 == Main._consImportWildcard_1)
           { 
-            term = trans.const4595;
+            term = trans.const4385;
           }
           else
           { 
-            break Fail23142;
+            break Fail21666;
           }
         }
       }

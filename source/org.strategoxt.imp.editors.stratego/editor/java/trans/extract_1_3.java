@@ -20,32 +20,32 @@ import java.lang.ref.WeakReference;
 { 
   public static extract_1_3 instance = new extract_1_3();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy w_4720, IStrategoTerm q_4720, IStrategoTerm ref_r_4720, IStrategoTerm s_4720)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy e_4167, IStrategoTerm y_4166, IStrategoTerm ref_z_4166, IStrategoTerm a_4167)
   { 
-    TermReference r_4720 = new TermReference(ref_r_4720);
+    TermReference z_4166 = new TermReference(ref_z_4166);
     context.push("extract_1_3");
-    Fail22747:
+    Fail21271:
     { 
-      IStrategoTerm t_4720 = null;
-      IStrategoTerm u_4720 = null;
-      IStrategoTerm z_4720 = null;
-      u_4720 = term;
-      term = fetch_up_position_1_1.instance.invoke(context, q_4720, w_4720, u_4720);
+      IStrategoTerm b_4167 = null;
+      IStrategoTerm c_4167 = null;
+      IStrategoTerm h_4167 = null;
+      c_4167 = term;
+      term = fetch_up_position_1_1.instance.invoke(context, y_4166, e_4167, c_4167);
       if(term == null)
-        break Fail22747;
-      t_4720 = term;
-      z_4720 = u_4720;
-      term = at_last_1_0.instance.invoke(context, t_4720, lifted6718.instance);
+        break Fail21271;
+      b_4167 = term;
+      h_4167 = c_4167;
+      term = at_last_1_0.instance.invoke(context, b_4167, lifted6447.instance);
       if(term == null)
-        break Fail22747;
-      term = insert_at_position_0_2.instance.invoke(context, z_4720, term, s_4720);
+        break Fail21271;
+      term = insert_at_position_0_2.instance.invoke(context, h_4167, term, a_4167);
       if(term == null)
-        break Fail22747;
-      lifted6720 lifted67200 = new lifted6720();
-      lifted67200.r_4720 = r_4720;
-      term = at_position_1_1.instance.invoke(context, term, lifted67200, q_4720);
+        break Fail21271;
+      lifted6449 lifted64490 = new lifted6449();
+      lifted64490.z_4166 = z_4166;
+      term = at_position_1_1.instance.invoke(context, term, lifted64490, y_4166);
       if(term == null)
-        break Fail22747;
+        break Fail21271;
       context.popOnSuccess();
       if(true)
         return term;

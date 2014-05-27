@@ -18,14 +18,17 @@ import java.lang.ref.WeakReference;
 
 @SuppressWarnings("all") final class lifted6839 extends Strategy 
 { 
-  public static final lifted6839 instance = new lifted6839();
+  TermReference y_4343;
+
+  TermReference z_4343;
 
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
-    Fail24070:
+    Fail22315:
     { 
-      if(term.getTermType() != IStrategoTerm.INT || 47 != ((IStrategoInt)term).intValue())
-        break Fail24070;
+      term = aux_$Is$No$Conflict_0_2.instance.invoke(context, term, y_4343.value, z_4343.value);
+      if(term == null)
+        break Fail22315;
       if(true)
         return term;
     }

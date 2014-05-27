@@ -23,22 +23,22 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("mk_defs_for_extraction_0_0");
-    Fail22743:
+    Fail21267:
     { 
-      IStrategoTerm term12143 = term;
-      Success12142:
+      IStrategoTerm term11434 = term;
+      Success11433:
       { 
-        Fail22744:
+        Fail21268:
         { 
           term = mk_defs_for_selection_in_chain_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail22744;
+            break Fail21268;
           if(true)
-            break Success12142;
+            break Success11433;
         }
-        term = mk_defs_for_selection_0_0.instance.invoke(context, term12143);
+        term = mk_defs_for_selection_0_0.instance.invoke(context, term11434);
         if(term == null)
-          break Fail22743;
+          break Fail21267;
       }
       context.popOnSuccess();
       if(true)

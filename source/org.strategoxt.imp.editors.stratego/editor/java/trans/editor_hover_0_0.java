@@ -24,49 +24,49 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("editor_hover_0_0");
-    Fail23346:
+    Fail21870:
     { 
-      IStrategoTerm term12685 = term;
-      Success12555:
+      IStrategoTerm term11976 = term;
+      Success11846:
       { 
-        Fail23347:
+        Fail21871:
         { 
-          IStrategoTerm d_4826 = null;
+          IStrategoTerm l_4272 = null;
           if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 5)
-            break Fail23347;
-          d_4826 = term.getSubterm(0);
-          term = signature_of_0_0.instance.invoke(context, d_4826);
+            break Fail21871;
+          l_4272 = term.getSubterm(0);
+          term = signature_of_0_0.instance.invoke(context, l_4272);
           if(term == null)
-            break Fail23347;
-          term = pp_stratego_string_0_0.instance.invoke(context, d_4826);
+            break Fail21871;
+          term = pp_stratego_string_0_0.instance.invoke(context, l_4272);
           if(term == null)
-            break Fail23347;
+            break Fail21871;
           if(true)
-            break Success12555;
+            break Success11846;
         }
-        term = term12685;
-        IStrategoTerm t_4825 = null;
-        IStrategoTerm u_4825 = null;
+        term = term11976;
+        IStrategoTerm b_4272 = null;
+        IStrategoTerm c_4272 = null;
         if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 5)
-          break Fail23346;
-        IStrategoTerm arg8355 = term.getSubterm(0);
-        t_4825 = arg8355;
-        if(arg8355.getTermType() != IStrategoTerm.APPL || Main._consToMetaExpr_1 != ((IStrategoAppl)arg8355).getConstructor())
-          break Fail23346;
-        term = meta_explode_1_0.instance.invoke(context, t_4825, false_0_0.instance);
+          break Fail21870;
+        IStrategoTerm arg7888 = term.getSubterm(0);
+        b_4272 = arg7888;
+        if(arg7888.getTermType() != IStrategoTerm.APPL || Main._consToMetaExpr_1 != ((IStrategoAppl)arg7888).getConstructor())
+          break Fail21870;
+        term = meta_explode_1_0.instance.invoke(context, b_4272, false_0_0.instance);
         if(term == null)
-          break Fail23346;
+          break Fail21870;
         term = $Stratego_$Ensugar_0_0.instance.invoke(context, term);
         if(term == null)
-          break Fail23346;
-        u_4825 = term;
-        term = pp_stratego_string_0_0.instance.invoke(context, u_4825);
+          break Fail21870;
+        c_4272 = term;
+        term = pp_stratego_string_0_0.instance.invoke(context, c_4272);
         if(term == null)
-          break Fail23346;
-        term = (IStrategoTerm)termFactory.makeListCons(trans.const4662, termFactory.makeListCons(term, (IStrategoList)trans.constCons2124));
+          break Fail21870;
+        term = (IStrategoTerm)termFactory.makeListCons(trans.const4452, termFactory.makeListCons(term, (IStrategoList)trans.constCons2043));
         term = concat_strings_0_0.instance.invoke(context, term);
         if(term == null)
-          break Fail23346;
+          break Fail21870;
       }
       context.popOnSuccess();
       if(true)

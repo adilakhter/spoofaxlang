@@ -20,16 +20,16 @@ import java.lang.ref.WeakReference;
 { 
   public static continue_to_label_$Is$No$Conflict_0_1 instance = new continue_to_label_$Is$No$Conflict_0_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm l_4894)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm t_4340)
   { 
     context.push("continue_to_label_IsNoConflict_0_1");
-    Fail23767:
+    Fail22291:
     { 
-      IStrategoTerm n_4894 = null;
-      n_4894 = term;
-      term = dr_continue_0_2.instance.invoke(context, n_4894, trans.const4637, l_4894);
+      IStrategoTerm v_4340 = null;
+      v_4340 = term;
+      term = dr_continue_0_2.instance.invoke(context, v_4340, trans.const4427, t_4340);
       if(term == null)
-        break Fail23767;
+        break Fail22291;
       context.popOnSuccess();
       if(true)
         return term;

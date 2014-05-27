@@ -23,41 +23,41 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("verify_project_references_0_0");
-    Fail87617:
+    Fail22809:
     { 
-      IStrategoTerm term47248 = term;
-      Success47239:
+      IStrategoTerm term12161 = term;
+      Success12152:
       { 
-        Fail87618:
+        Fail22810:
         { 
           if(term.getTermType() != IStrategoTerm.LIST || !((IStrategoList)term).isEmpty())
-            break Fail87618;
-          term = trans.constNil14;
+            break Fail22810;
+          term = trans.constNil4;
           if(true)
-            break Success47239;
+            break Success12152;
         }
-        term = term47248;
-        IStrategoTerm f_17560 = null;
-        IStrategoTerm g_17560 = null;
-        IStrategoTerm j_17560 = null;
+        term = term12161;
+        IStrategoTerm i_4616 = null;
+        IStrategoTerm j_4616 = null;
+        IStrategoTerm m_4616 = null;
         if(term.getTermType() != IStrategoTerm.LIST || ((IStrategoList)term).isEmpty())
-          break Fail87617;
-        f_17560 = ((IStrategoList)term).head();
-        g_17560 = ((IStrategoList)term).tail();
-        term = verify_project_reference_0_0.instance.invoke(context, f_17560);
+          break Fail22809;
+        i_4616 = ((IStrategoList)term).head();
+        j_4616 = ((IStrategoList)term).tail();
+        term = verify_project_reference_0_0.instance.invoke(context, i_4616);
         if(term == null)
-          break Fail87617;
-        j_17560 = term;
-        term = this.invoke(context, g_17560);
+          break Fail22809;
+        m_4616 = term;
+        term = this.invoke(context, j_4616);
         if(term == null)
-          break Fail87617;
-        term = termFactory.makeTuple(j_17560, term);
+          break Fail22809;
+        term = termFactory.makeTuple(m_4616, term);
         term = conc_0_0.instance.invoke(context, term);
         if(term == null)
-          break Fail87617;
+          break Fail22809;
         term = flatten_list_0_0.instance.invoke(context, term);
         if(term == null)
-          break Fail87617;
+          break Fail22809;
       }
       context.popOnSuccess();
       if(true)

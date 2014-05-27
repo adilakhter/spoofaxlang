@@ -23,31 +23,31 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("get_all_includes_0_0");
-    Fail87571:
+    Fail22763:
     { 
-      IStrategoTerm x_17554 = null;
-      IStrategoTerm z_17554 = null;
-      IStrategoTerm b_17555 = null;
-      z_17554 = term;
-      b_17555 = term;
+      IStrategoTerm a_4611 = null;
+      IStrategoTerm c_4611 = null;
+      IStrategoTerm e_4611 = null;
+      c_4611 = term;
+      e_4611 = term;
       term = project_path_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail87571;
-      term = get_all_sources_0_1.instance.invoke(context, b_17555, term);
+        break Fail22763;
+      term = get_all_sources_0_1.instance.invoke(context, e_4611, term);
       if(term == null)
-        break Fail87571;
-      x_17554 = term;
-      term = z_17554;
+        break Fail22763;
+      a_4611 = term;
+      term = c_4611;
       term = get_sources_from_external_projects_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail87571;
-      term = termFactory.makeTuple(x_17554, term);
+        break Fail22763;
+      term = termFactory.makeTuple(a_4611, term);
       term = conc_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail87571;
+        break Fail22763;
       term = make_set_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail87571;
+        break Fail22763;
       context.popOnSuccess();
       if(true)
         return term;

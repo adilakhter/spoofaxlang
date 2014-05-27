@@ -20,39 +20,39 @@ import java.lang.ref.WeakReference;
 { 
   public static bigfold_$Warn$Analysis_1_0 instance = new bigfold_$Warn$Analysis_1_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy h_4851)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy p_4297)
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("bigfold_WarnAnalysis_1_0");
-    Fail23514:
+    Fail22038:
     { 
-      IStrategoTerm i_4851 = null;
-      IStrategoTerm k_4851 = null;
-      k_4851 = term;
-      Success12608:
+      IStrategoTerm q_4297 = null;
+      IStrategoTerm s_4297 = null;
+      s_4297 = term;
+      Success11899:
       { 
-        Fail23515:
+        Fail22039:
         { 
-          IStrategoTerm l_4851 = null;
-          IStrategoTerm n_4851 = null;
-          IStrategoTerm o_4851 = null;
-          n_4851 = term;
-          l_4851 = trans.const4562;
-          o_4851 = n_4851;
-          term = dr_lookup_all_rules_0_2.instance.invoke(context, o_4851, l_4851, trans.constCons2047);
+          IStrategoTerm t_4297 = null;
+          IStrategoTerm v_4297 = null;
+          IStrategoTerm w_4297 = null;
+          v_4297 = term;
+          t_4297 = trans.const4352;
+          w_4297 = v_4297;
+          term = dr_lookup_all_rules_0_2.instance.invoke(context, w_4297, t_4297, trans.constCons1966);
           if(term == null)
-            break Fail23515;
+            break Fail22039;
           if(true)
-            break Success12608;
+            break Success11899;
         }
-        term = trans.constNil4;
+        term = trans.constNil3;
       }
-      i_4851 = term;
-      term = k_4851;
-      term = termFactory.makeTuple(i_4851, term);
-      term = h_4851.invoke(context, term, lifted7012.instance);
+      q_4297 = term;
+      term = s_4297;
+      term = termFactory.makeTuple(q_4297, term);
+      term = p_4297.invoke(context, term, lifted6741.instance);
       if(term == null)
-        break Fail23514;
+        break Fail22038;
       context.popOnSuccess();
       if(true)
         return term;

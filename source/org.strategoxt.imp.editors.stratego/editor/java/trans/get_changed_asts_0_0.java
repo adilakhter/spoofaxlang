@@ -24,84 +24,84 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("get_changed_asts_0_0");
-    Fail22857:
+    Fail21381:
     { 
-      IStrategoTerm term12213 = term;
-      Success12179:
+      IStrategoTerm term11504 = term;
+      Success11470:
       { 
-        Fail22858:
+        Fail21382:
         { 
-          IStrategoTerm k_4742 = null;
-          IStrategoTerm l_4742 = null;
-          IStrategoTerm o_4742 = null;
+          IStrategoTerm s_4188 = null;
+          IStrategoTerm t_4188 = null;
+          IStrategoTerm w_4188 = null;
           if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-            break Fail22858;
-          k_4742 = term.getSubterm(0);
-          l_4742 = term.getSubterm(1);
-          term = topdown_1_0.instance.invoke(context, k_4742, strip_annos_0_0.instance);
+            break Fail21382;
+          s_4188 = term.getSubterm(0);
+          t_4188 = term.getSubterm(1);
+          term = topdown_1_0.instance.invoke(context, s_4188, strip_annos_0_0.instance);
           if(term == null)
-            break Fail22858;
-          o_4742 = term;
-          term = topdown_1_0.instance.invoke(context, l_4742, strip_annos_0_0.instance);
+            break Fail21382;
+          w_4188 = term;
+          term = topdown_1_0.instance.invoke(context, t_4188, strip_annos_0_0.instance);
           if(term == null)
-            break Fail22858;
-          term = termFactory.makeTuple(o_4742, term);
+            break Fail21382;
+          term = termFactory.makeTuple(w_4188, term);
           term = zip_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail22858;
-          term = filter_1_0.instance.invoke(context, term, lifted6792.instance);
+            break Fail21382;
+          term = filter_1_0.instance.invoke(context, term, lifted6521.instance);
           if(term == null)
-            break Fail22858;
+            break Fail21382;
           if(true)
-            break Success12179;
+            break Success11470;
         }
-        term = term12213;
-        IStrategoTerm h_4742 = null;
-        IStrategoTerm i_4742 = null;
+        term = term11504;
+        IStrategoTerm p_4188 = null;
+        IStrategoTerm q_4188 = null;
         if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-          break Fail22857;
-        h_4742 = term.getSubterm(0);
-        i_4742 = term.getSubterm(1);
-        term = h_4742;
-        IStrategoTerm term12215 = term;
-        Success12180:
+          break Fail21381;
+        p_4188 = term.getSubterm(0);
+        q_4188 = term.getSubterm(1);
+        term = p_4188;
+        IStrategoTerm term11506 = term;
+        Success11471:
         { 
-          Fail22859:
+          Fail21383:
           { 
             term = is_list_0_0.instance.invoke(context, term);
             if(term == null)
-              break Fail22859;
+              break Fail21383;
             { 
               if(true)
-                break Fail22857;
+                break Fail21381;
               if(true)
-                break Success12180;
+                break Success11471;
             }
           }
-          term = term12215;
+          term = term11506;
         }
-        term = i_4742;
-        IStrategoTerm term12216 = term;
-        Success12181:
+        term = q_4188;
+        IStrategoTerm term11507 = term;
+        Success11472:
         { 
-          Fail22860:
+          Fail21384:
           { 
             term = is_list_0_0.instance.invoke(context, term);
             if(term == null)
-              break Fail22860;
+              break Fail21384;
             { 
               if(true)
-                break Fail22857;
+                break Fail21381;
               if(true)
-                break Success12181;
+                break Success11472;
             }
           }
-          term = term12216;
+          term = term11507;
         }
-        term = termFactory.makeTuple((IStrategoTerm)termFactory.makeListCons(h_4742, (IStrategoList)trans.constNil4), (IStrategoTerm)termFactory.makeListCons(i_4742, (IStrategoList)trans.constNil4));
+        term = termFactory.makeTuple((IStrategoTerm)termFactory.makeListCons(p_4188, (IStrategoList)trans.constNil3), (IStrategoTerm)termFactory.makeListCons(q_4188, (IStrategoList)trans.constNil3));
         term = this.invoke(context, term);
         if(term == null)
-          break Fail22857;
+          break Fail21381;
       }
       context.popOnSuccess();
       if(true)

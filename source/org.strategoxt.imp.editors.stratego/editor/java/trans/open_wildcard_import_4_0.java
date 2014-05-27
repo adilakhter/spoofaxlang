@@ -20,85 +20,85 @@ import java.lang.ref.WeakReference;
 { 
   public static open_wildcard_import_4_0 instance = new open_wildcard_import_4_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy q_4753, Strategy r_4753, Strategy s_4753, Strategy t_4753)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy y_4199, Strategy z_4199, Strategy a_4200, Strategy b_4200)
   { 
     context.push("open_wildcard_import_4_0");
-    Fail22915:
+    Fail21439:
     { 
-      IStrategoTerm t_4752 = null;
-      TermReference u_4752 = new TermReference();
-      TermReference v_4752 = new TermReference();
-      t_4752 = term;
-      IStrategoTerm term12273 = term;
-      Success12218:
+      IStrategoTerm b_4199 = null;
+      TermReference c_4199 = new TermReference();
+      TermReference d_4199 = new TermReference();
+      b_4199 = term;
+      IStrategoTerm term11564 = term;
+      Success11509:
       { 
-        Fail22916:
+        Fail21440:
         { 
-          IStrategoTerm w_4752 = null;
-          w_4752 = term;
-          IStrategoTerm term12274 = term;
-          Success12219:
+          IStrategoTerm e_4199 = null;
+          e_4199 = term;
+          IStrategoTerm term11565 = term;
+          Success11510:
           { 
-            Fail22917:
+            Fail21441:
             { 
-              term = t_4752;
+              term = b_4199;
               if(term.getTermType() != IStrategoTerm.APPL || Main._consCOMPLETION_1 != ((IStrategoAppl)term).getConstructor())
-                break Fail22917;
+                break Fail21441;
               { 
                 if(true)
-                  break Fail22916;
+                  break Fail21440;
                 if(true)
-                  break Success12219;
+                  break Success11510;
               }
             }
-            term = term12274;
+            term = term11565;
           }
-          term = w_4752;
+          term = e_4199;
           { 
-            term = q_4753.invoke(context, t_4752);
+            term = y_4199.invoke(context, b_4199);
             if(term == null)
-              break Fail22915;
-            if(u_4752.value == null)
-              u_4752.value = term;
+              break Fail21439;
+            if(c_4199.value == null)
+              c_4199.value = term;
             else
-              if(u_4752.value != term && !u_4752.value.match(term))
-                break Fail22915;
+              if(c_4199.value != term && !c_4199.value.match(term))
+                break Fail21439;
             term = readdir_0_0.instance.invoke(context, term);
             if(term == null)
-              break Fail22915;
-            lifted6809 lifted68090 = new lifted6809();
-            lifted68090.t_4753 = t_4753;
-            lifted68090.r_4753 = r_4753;
-            lifted68090.s_4753 = s_4753;
-            lifted68090.u_4752 = u_4752;
-            lifted68090.v_4752 = v_4752;
-            term = list_loop_1_0.instance.invoke(context, term, lifted68090);
+              break Fail21439;
+            lifted6538 lifted65380 = new lifted6538();
+            lifted65380.b_4200 = b_4200;
+            lifted65380.z_4199 = z_4199;
+            lifted65380.a_4200 = a_4200;
+            lifted65380.c_4199 = c_4199;
+            lifted65380.d_4199 = d_4199;
+            term = list_loop_1_0.instance.invoke(context, term, lifted65380);
             if(term == null)
-              break Fail22915;
-            IStrategoTerm term12285 = term;
-            Success12220:
+              break Fail21439;
+            IStrategoTerm term11576 = term;
+            Success11511:
             { 
-              Fail22918:
+              Fail21442:
               { 
-                if(v_4752.value == null)
-                  break Fail22918;
-                term = v_4752.value;
+                if(d_4199.value == null)
+                  break Fail21442;
+                term = d_4199.value;
                 { 
                   if(true)
-                    break Fail22915;
+                    break Fail21439;
                   if(true)
-                    break Success12220;
+                    break Success11511;
                 }
               }
-              term = term12285;
+              term = term11576;
             }
             if(true)
-              break Success12218;
+              break Success11509;
           }
         }
-        term = term12273;
+        term = term11564;
       }
-      term = t_4752;
+      term = b_4199;
       context.popOnSuccess();
       if(true)
         return term;

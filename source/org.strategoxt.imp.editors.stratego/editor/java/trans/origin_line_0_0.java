@@ -22,18 +22,18 @@ import java.lang.ref.WeakReference;
 
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
-    Fail22945:
+    Fail21469:
     { 
-      IStrategoTerm l_4757 = null;
-      IStrategoTerm b_5054 = null;
-      b_5054 = term;
-      term = context.invokePrimitive("SSL_EXT_origin_location", b_5054, NO_STRATEGIES, new IStrategoTerm[]{term});
+      IStrategoTerm t_4203 = null;
+      IStrategoTerm j_4500 = null;
+      j_4500 = term;
+      term = context.invokePrimitive("SSL_EXT_origin_location", j_4500, NO_STRATEGIES, new IStrategoTerm[]{term});
       if(term == null)
-        break Fail22945;
+        break Fail21469;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 4)
-        break Fail22945;
-      l_4757 = term.getSubterm(0);
-      term = l_4757;
+        break Fail21469;
+      t_4203 = term.getSubterm(0);
+      term = t_4203;
       if(true)
         return term;
     }

@@ -23,11 +23,11 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("parse_file_0_0");
-    Fail22901:
+    Fail21425:
     { 
       term = parse_stratego__sugar_file_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22901;
+        break Fail21425;
       context.popOnSuccess();
       if(true)
         return term;

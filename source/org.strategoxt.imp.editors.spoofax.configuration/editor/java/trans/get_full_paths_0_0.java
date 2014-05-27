@@ -23,28 +23,28 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("get_full_paths_0_0");
-    Fail87713:
+    Fail22905:
     { 
-      IStrategoTerm v_17573 = null;
-      IStrategoTerm w_17573 = null;
-      IStrategoTerm x_17573 = null;
-      IStrategoTerm b_17574 = null;
+      IStrategoTerm y_4629 = null;
+      IStrategoTerm z_4629 = null;
+      IStrategoTerm a_4630 = null;
+      IStrategoTerm e_4630 = null;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 5)
-        break Fail87713;
-      x_17573 = term.getSubterm(0);
-      v_17573 = term.getSubterm(3);
-      b_17574 = v_17573;
-      term = guarantee_extension_0_1.instance.invoke(context, b_17574, trans.const17889);
+        break Fail22905;
+      a_4630 = term.getSubterm(0);
+      y_4629 = term.getSubterm(3);
+      e_4630 = y_4629;
+      term = guarantee_extension_0_1.instance.invoke(context, e_4630, trans.const4502);
       if(term == null)
-        break Fail87713;
-      w_17573 = term;
-      term = alltd_1_0.instance.invoke(context, x_17573, normalized_spxproject_reference_0_0.instance);
+        break Fail22905;
+      z_4629 = term;
+      term = alltd_1_0.instance.invoke(context, a_4630, normalized_spxproject_reference_0_0.instance);
       if(term == null)
-        break Fail87713;
+        break Fail22905;
       term = get_all_includes_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail87713;
-      term = termFactory.makeTuple(w_17573, term);
+        break Fail22905;
+      term = termFactory.makeTuple(z_4629, term);
       context.popOnSuccess();
       if(true)
         return term;

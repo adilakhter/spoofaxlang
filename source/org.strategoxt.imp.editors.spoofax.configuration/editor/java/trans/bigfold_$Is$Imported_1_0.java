@@ -19,37 +19,37 @@ import java.lang.ref.WeakReference;
 { 
   public static bigfold_$Is$Imported_1_0 instance = new bigfold_$Is$Imported_1_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy b_17587)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy e_4643)
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("bigfold_IsImported_1_0");
-    Fail87819:
+    Fail23011:
     { 
-      IStrategoTerm y_17586 = null;
-      IStrategoTerm c_17587 = null;
-      IStrategoTerm e_17587 = null;
-      y_17586 = term;
-      e_17587 = term;
-      Success47311:
+      IStrategoTerm b_4643 = null;
+      IStrategoTerm f_4643 = null;
+      IStrategoTerm h_4643 = null;
+      b_4643 = term;
+      h_4643 = term;
+      Success12224:
       { 
-        Fail87820:
+        Fail23012:
         { 
-          IStrategoTerm g_17587 = null;
-          g_17587 = term;
-          term = dr_lookup_all_rules_0_2.instance.invoke(context, g_17587, trans.const17874, y_17586);
+          IStrategoTerm j_4643 = null;
+          j_4643 = term;
+          term = dr_lookup_all_rules_0_2.instance.invoke(context, j_4643, trans.const4487, b_4643);
           if(term == null)
-            break Fail87820;
+            break Fail23012;
           if(true)
-            break Success47311;
+            break Success12224;
         }
-        term = trans.constNil14;
+        term = trans.constNil4;
       }
-      c_17587 = term;
-      term = e_17587;
-      term = termFactory.makeTuple(c_17587, term);
-      term = b_17587.invoke(context, term, lifted24788.instance);
+      f_4643 = term;
+      term = h_4643;
+      term = termFactory.makeTuple(f_4643, term);
+      term = e_4643.invoke(context, term, lifted6903.instance);
       if(term == null)
-        break Fail87819;
+        break Fail23011;
       context.popOnSuccess();
       if(true)
         return term;

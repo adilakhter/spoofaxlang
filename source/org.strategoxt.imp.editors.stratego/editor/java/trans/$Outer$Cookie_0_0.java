@@ -23,31 +23,31 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("OuterCookie_0_0");
-    Fail23736:
+    Fail22260:
     { 
-      TermReference m_4889 = new TermReference();
-      TermReference n_4889 = new TermReference();
-      IStrategoTerm r_4889 = null;
-      if(n_4889.value == null)
-        n_4889.value = term;
+      TermReference u_4335 = new TermReference();
+      TermReference v_4335 = new TermReference();
+      IStrategoTerm z_4335 = null;
+      if(v_4335.value == null)
+        v_4335.value = term;
       else
-        if(n_4889.value != term && !n_4889.value.match(term))
-          break Fail23736;
-      if(m_4889.value == null)
-        m_4889.value = term;
+        if(v_4335.value != term && !v_4335.value.match(term))
+          break Fail22260;
+      if(u_4335.value == null)
+        u_4335.value = term;
       else
-        if(m_4889.value != term && !m_4889.value.match(term))
-          break Fail23736;
-      r_4889 = term;
-      term = dr_lookup_rule_0_2.instance.invoke(context, r_4889, trans.const4604, n_4889.value);
+        if(u_4335.value != term && !u_4335.value.match(term))
+          break Fail22260;
+      z_4335 = term;
+      term = dr_lookup_rule_0_2.instance.invoke(context, z_4335, trans.const4394, v_4335.value);
       if(term == null)
-        break Fail23736;
-      lifted7093 lifted70930 = new lifted7093();
-      lifted70930.m_4889 = m_4889;
-      lifted70930.n_4889 = n_4889;
-      term = fetch_elem_1_0.instance.invoke(context, term, lifted70930);
+        break Fail22260;
+      lifted6822 lifted68220 = new lifted6822();
+      lifted68220.u_4335 = u_4335;
+      lifted68220.v_4335 = v_4335;
+      term = fetch_elem_1_0.instance.invoke(context, term, lifted68220);
       if(term == null)
-        break Fail23736;
+        break Fail22260;
       context.popOnSuccess();
       if(true)
         return term;

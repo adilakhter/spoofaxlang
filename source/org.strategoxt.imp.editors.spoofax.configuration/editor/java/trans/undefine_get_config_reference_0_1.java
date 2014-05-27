@@ -19,12 +19,12 @@ import java.lang.ref.WeakReference;
 { 
   public static undefine_get_config_reference_0_1 instance = new undefine_get_config_reference_0_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm c_17577)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm f_4633)
   { 
-    Fail87759:
+    Fail22951:
     { 
       if(true)
-        break Fail87759;
+        break Fail22951;
       if(true)
         return term;
     }

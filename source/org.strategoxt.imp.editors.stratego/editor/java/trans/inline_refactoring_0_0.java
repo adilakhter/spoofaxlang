@@ -24,154 +24,154 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("inline_refactoring_0_0");
-    Fail22771:
+    Fail21295:
     { 
-      IStrategoTerm term12153 = term;
-      Success12152:
+      IStrategoTerm term11444 = term;
+      Success11443:
       { 
-        Fail22772:
+        Fail21296:
         { 
-          IStrategoTerm r_4724 = null;
-          IStrategoTerm s_4724 = null;
-          IStrategoTerm t_4724 = null;
-          IStrategoTerm u_4724 = null;
+          IStrategoTerm z_4170 = null;
+          IStrategoTerm a_4171 = null;
+          IStrategoTerm b_4171 = null;
+          IStrategoTerm c_4171 = null;
           if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 6)
-            break Fail22772;
-          r_4724 = term.getSubterm(1);
-          u_4724 = term.getSubterm(3);
-          term = termFactory.makeTuple(r_4724, u_4724);
-          IStrategoTerm term12154 = term;
-          Success12153:
+            break Fail21296;
+          z_4170 = term.getSubterm(1);
+          c_4171 = term.getSubterm(3);
+          term = termFactory.makeTuple(z_4170, c_4171);
+          IStrategoTerm term11445 = term;
+          Success11444:
           { 
-            Fail22773:
+            Fail21297:
             { 
-              IStrategoTerm x_4724 = null;
+              IStrategoTerm f_4171 = null;
               if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-                break Fail22773;
-              x_4724 = term.getSubterm(0);
-              term = x_4724;
+                break Fail21297;
+              f_4171 = term.getSubterm(0);
+              term = f_4171;
               if(term.getTermType() != IStrategoTerm.APPL || Main._consSDefT_4 != ((IStrategoAppl)term).getConstructor())
-                break Fail22773;
+                break Fail21297;
               if(true)
-                break Success12153;
+                break Success11444;
             }
-            term = declaration_of_call_0_0.instance.invoke(context, term12154);
+            term = declaration_of_call_0_0.instance.invoke(context, term11445);
             if(term == null)
-              break Fail22772;
+              break Fail21296;
           }
-          t_4724 = term;
-          IStrategoTerm term12155 = term;
-          Success12154:
+          b_4171 = term;
+          IStrategoTerm term11446 = term;
+          Success11445:
           { 
-            Fail22774:
+            Fail21298:
             { 
               term = errors_recursion_0_0.instance.invoke(context, term);
               if(term == null)
-                break Fail22774;
+                break Fail21298;
               { 
                 if(true)
-                  break Fail22772;
+                  break Fail21296;
                 if(true)
-                  break Success12154;
+                  break Success11445;
               }
             }
-            term = term12155;
+            term = term11446;
           }
-          term = termFactory.makeTuple(t_4724, u_4724);
+          term = termFactory.makeTuple(b_4171, c_4171);
           term = warnings_multiple_declarations_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail22772;
-          s_4724 = term;
-          term = termFactory.makeTuple(t_4724, u_4724);
+            break Fail21296;
+          a_4171 = term;
+          term = termFactory.makeTuple(b_4171, c_4171);
           term = inline_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail22772;
-          term = (IStrategoTerm)termFactory.makeListCons(termFactory.makeTuple(u_4724, term), (IStrategoList)trans.constNil4);
-          term = termFactory.makeTuple(term, trans.constNil4, trans.constNil4, s_4724);
+            break Fail21296;
+          term = (IStrategoTerm)termFactory.makeListCons(termFactory.makeTuple(c_4171, term), (IStrategoList)trans.constNil3);
+          term = termFactory.makeTuple(term, trans.constNil3, trans.constNil3, a_4171);
           if(true)
-            break Success12152;
+            break Success11443;
         }
-        term = term12153;
-        IStrategoTerm term12156 = term;
-        Success12155:
+        term = term11444;
+        IStrategoTerm term11447 = term;
+        Success11446:
         { 
-          Fail22775:
+          Fail21299:
           { 
-            IStrategoTerm k_4724 = null;
-            IStrategoTerm l_4724 = null;
+            IStrategoTerm s_4170 = null;
+            IStrategoTerm t_4170 = null;
             if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 6)
-              break Fail22775;
-            k_4724 = term.getSubterm(1);
-            l_4724 = term.getSubterm(3);
-            term = termFactory.makeTuple(k_4724, l_4724);
-            IStrategoTerm term12157 = term;
-            Success12156:
+              break Fail21299;
+            s_4170 = term.getSubterm(1);
+            t_4170 = term.getSubterm(3);
+            term = termFactory.makeTuple(s_4170, t_4170);
+            IStrategoTerm term11448 = term;
+            Success11447:
             { 
-              Fail22776:
+              Fail21300:
               { 
-                IStrategoTerm term12158 = term;
-                Success12157:
+                IStrategoTerm term11449 = term;
+                Success11448:
                 { 
-                  Fail22777:
+                  Fail21301:
                   { 
-                    IStrategoTerm n_4724 = null;
+                    IStrategoTerm v_4170 = null;
                     if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-                      break Fail22777;
-                    n_4724 = term.getSubterm(0);
-                    term = n_4724;
+                      break Fail21301;
+                    v_4170 = term.getSubterm(0);
+                    term = v_4170;
                     if(term.getTermType() != IStrategoTerm.APPL || Main._consSDefT_4 != ((IStrategoAppl)term).getConstructor())
-                      break Fail22777;
+                      break Fail21301;
                     if(true)
-                      break Success12157;
+                      break Success11448;
                   }
-                  term = declaration_of_call_0_0.instance.invoke(context, term12158);
+                  term = declaration_of_call_0_0.instance.invoke(context, term11449);
                   if(term == null)
-                    break Fail22776;
+                    break Fail21300;
                 }
                 { 
                   if(true)
-                    break Fail22775;
+                    break Fail21299;
                   if(true)
-                    break Success12156;
+                    break Success11447;
                 }
               }
-              term = term12157;
+              term = term11448;
             }
-            term = trans.const4455;
+            term = trans.const4245;
             if(true)
-              break Success12155;
+              break Success11446;
           }
-          term = term12156;
-          IStrategoTerm b_4724 = null;
-          IStrategoTerm c_4724 = null;
+          term = term11447;
+          IStrategoTerm j_4170 = null;
+          IStrategoTerm k_4170 = null;
           if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 6)
-            break Fail22771;
-          b_4724 = term.getSubterm(1);
-          c_4724 = term.getSubterm(3);
-          term = termFactory.makeTuple(b_4724, c_4724);
-          IStrategoTerm term12159 = term;
-          Success12158:
+            break Fail21295;
+          j_4170 = term.getSubterm(1);
+          k_4170 = term.getSubterm(3);
+          term = termFactory.makeTuple(j_4170, k_4170);
+          IStrategoTerm term11450 = term;
+          Success11449:
           { 
-            Fail22778:
+            Fail21302:
             { 
-              IStrategoTerm g_4724 = null;
+              IStrategoTerm o_4170 = null;
               if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-                break Fail22778;
-              g_4724 = term.getSubterm(0);
-              term = g_4724;
+                break Fail21302;
+              o_4170 = term.getSubterm(0);
+              term = o_4170;
               if(term.getTermType() != IStrategoTerm.APPL || Main._consSDefT_4 != ((IStrategoAppl)term).getConstructor())
-                break Fail22778;
+                break Fail21302;
               if(true)
-                break Success12158;
+                break Success11449;
             }
-            term = declaration_of_call_0_0.instance.invoke(context, term12159);
+            term = declaration_of_call_0_0.instance.invoke(context, term11450);
             if(term == null)
-              break Fail22771;
+              break Fail21295;
           }
           term = errors_recursion_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail22771;
-          term = termFactory.makeTuple(trans.constNil4, term, trans.constNil4, trans.constNil4);
+            break Fail21295;
+          term = termFactory.makeTuple(trans.constNil3, term, trans.constNil3, trans.constNil3);
         }
       }
       context.popOnSuccess();

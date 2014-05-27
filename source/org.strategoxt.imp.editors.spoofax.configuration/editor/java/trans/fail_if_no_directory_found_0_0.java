@@ -22,22 +22,22 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("fail_if_no_directory_found_0_0");
-    Fail87594:
+    Fail22786:
     { 
-      IStrategoTerm term47235 = term;
-      Success47226:
+      IStrategoTerm term12148 = term;
+      Success12139:
       { 
-        Fail87595:
+        Fail22787:
         { 
           term = is_dir_exist_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail87595;
+            break Fail22787;
           if(true)
-            break Success47226;
+            break Success12139;
         }
-        term = throw_directory_not_found_exception_1_0.instance.invoke(context, term47235, _Fail.instance);
+        term = throw_directory_not_found_exception_1_0.instance.invoke(context, term12148, _Fail.instance);
         if(term == null)
-          break Fail87594;
+          break Fail22786;
       }
       context.popOnSuccess();
       if(true)

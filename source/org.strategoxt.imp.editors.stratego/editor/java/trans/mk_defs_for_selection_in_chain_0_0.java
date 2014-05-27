@@ -24,51 +24,51 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("mk_defs_for_selection_in_chain_0_0");
-    Fail22745:
+    Fail21269:
     { 
-      IStrategoTerm x_4719 = null;
-      IStrategoTerm y_4719 = null;
-      IStrategoTerm z_4719 = null;
-      IStrategoTerm a_4720 = null;
-      IStrategoTerm b_4720 = null;
-      IStrategoTerm c_4720 = null;
-      IStrategoTerm d_4720 = null;
-      IStrategoTerm e_4720 = null;
+      IStrategoTerm f_4166 = null;
+      IStrategoTerm g_4166 = null;
+      IStrategoTerm h_4166 = null;
+      IStrategoTerm i_4166 = null;
+      IStrategoTerm j_4166 = null;
+      IStrategoTerm k_4166 = null;
+      IStrategoTerm l_4166 = null;
+      IStrategoTerm m_4166 = null;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-        break Fail22745;
-      a_4720 = term.getSubterm(0);
-      x_4719 = term.getSubterm(1);
-      e_4720 = term;
-      term = reorder_associativity_chain_0_0.instance.invoke(context, x_4719);
+        break Fail21269;
+      i_4166 = term.getSubterm(0);
+      f_4166 = term.getSubterm(1);
+      m_4166 = term;
+      term = reorder_associativity_chain_0_0.instance.invoke(context, f_4166);
       if(term == null)
-        break Fail22745;
-      IStrategoTerm cons569 = context.invokePrimitive("SSL_get_constructor", term, NO_STRATEGIES, new IStrategoTerm[]{term});
-      y_4719 = cons569;
-      IStrategoTerm args22 = context.invokePrimitive("SSL_get_arguments", term, NO_STRATEGIES, new IStrategoTerm[]{term});
-      if(args22.getTermType() != IStrategoTerm.LIST || ((IStrategoList)args22).isEmpty())
-        break Fail22745;
-      b_4720 = ((IStrategoList)args22).head();
-      IStrategoTerm arg7999 = ((IStrategoList)args22).tail();
-      if(arg7999.getTermType() != IStrategoTerm.LIST || ((IStrategoList)arg7999).isEmpty())
-        break Fail22745;
-      z_4719 = ((IStrategoList)arg7999).head();
-      IStrategoTerm arg8000 = ((IStrategoList)arg7999).tail();
-      if(arg8000.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg8000).isEmpty())
-        break Fail22745;
-      term = termFactory.makeTuple(a_4720, b_4720);
+        break Fail21269;
+      IStrategoTerm cons525 = context.invokePrimitive("SSL_get_constructor", term, NO_STRATEGIES, new IStrategoTerm[]{term});
+      g_4166 = cons525;
+      IStrategoTerm args9 = context.invokePrimitive("SSL_get_arguments", term, NO_STRATEGIES, new IStrategoTerm[]{term});
+      if(args9.getTermType() != IStrategoTerm.LIST || ((IStrategoList)args9).isEmpty())
+        break Fail21269;
+      j_4166 = ((IStrategoList)args9).head();
+      IStrategoTerm arg7532 = ((IStrategoList)args9).tail();
+      if(arg7532.getTermType() != IStrategoTerm.LIST || ((IStrategoList)arg7532).isEmpty())
+        break Fail21269;
+      h_4166 = ((IStrategoList)arg7532).head();
+      IStrategoTerm arg7533 = ((IStrategoList)arg7532).tail();
+      if(arg7533.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg7533).isEmpty())
+        break Fail21269;
+      term = termFactory.makeTuple(i_4166, j_4166);
       term = mk_defs_for_selection_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22745;
+        break Fail21269;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-        break Fail22745;
-      c_4720 = term.getSubterm(0);
-      d_4720 = term.getSubterm(1);
-      term = e_4720;
-      IStrategoTerm mkterm8;
-      mkterm8 = context.invokePrimitive("SSL_mkterm", term, NO_STRATEGIES, new IStrategoTerm[]{y_4719, (IStrategoTerm)termFactory.makeListCons(d_4720, termFactory.makeListCons(z_4719, (IStrategoList)trans.constNil4))});
-      if(mkterm8 == null)
-        break Fail22745;
-      term = termFactory.makeTuple(c_4720, mkterm8);
+        break Fail21269;
+      k_4166 = term.getSubterm(0);
+      l_4166 = term.getSubterm(1);
+      term = m_4166;
+      IStrategoTerm mkterm3;
+      mkterm3 = context.invokePrimitive("SSL_mkterm", term, NO_STRATEGIES, new IStrategoTerm[]{g_4166, (IStrategoTerm)termFactory.makeListCons(l_4166, termFactory.makeListCons(h_4166, (IStrategoList)trans.constNil3))});
+      if(mkterm3 == null)
+        break Fail21269;
+      term = termFactory.makeTuple(k_4166, mkterm3);
       context.popOnSuccess();
       if(true)
         return term;

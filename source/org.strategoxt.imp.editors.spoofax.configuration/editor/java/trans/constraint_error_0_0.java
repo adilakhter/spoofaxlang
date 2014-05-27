@@ -23,38 +23,38 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("constraint_error_0_0");
-    Fail87606:
+    Fail22798:
     { 
-      IStrategoTerm term47240 = term;
-      IStrategoConstructor cons2012 = term.getTermType() == IStrategoTerm.APPL ? ((IStrategoAppl)term).getConstructor() : null;
-      Success47231:
+      IStrategoTerm term12153 = term;
+      IStrategoConstructor cons572 = term.getTermType() == IStrategoTerm.APPL ? ((IStrategoAppl)term).getConstructor() : null;
+      Success12144:
       { 
-        if(cons2012 == Main._consSpxProjects_1)
+        if(cons572 == Main._consSpxProjects_1)
         { 
-          Fail87607:
+          Fail22799:
           { 
-            IStrategoTerm f_17559 = null;
-            f_17559 = term.getSubterm(0);
-            term = verify_project_references_0_0.instance.invoke(context, f_17559);
+            IStrategoTerm i_4615 = null;
+            i_4615 = term.getSubterm(0);
+            term = verify_project_references_0_0.instance.invoke(context, i_4615);
             if(term == null)
-              break Fail87607;
+              break Fail22799;
             if(true)
-              break Success47231;
+              break Success12144;
           }
-          term = term47240;
+          term = term12153;
         }
-        if(cons2012 == Main._consSource_2)
+        if(cons572 == Main._consSource_2)
         { 
-          IStrategoTerm e_17559 = null;
-          e_17559 = term.getSubterm(0);
-          term = (IStrategoTerm)termFactory.makeListCons(e_17559, (IStrategoList)trans.constNil14);
+          IStrategoTerm h_4615 = null;
+          h_4615 = term.getSubterm(0);
+          term = (IStrategoTerm)termFactory.makeListCons(h_4615, (IStrategoList)trans.constNil4);
           term = verify_local_directories_exists_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail87606;
+            break Fail22798;
         }
         else
         { 
-          break Fail87606;
+          break Fail22798;
         }
       }
       context.popOnSuccess();

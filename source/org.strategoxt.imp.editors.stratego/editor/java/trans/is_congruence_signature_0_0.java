@@ -24,22 +24,22 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("is_congruence_signature_0_0");
-    Fail23064:
+    Fail21588:
     { 
-      IStrategoTerm q_4774 = null;
-      IStrategoTerm r_4774 = null;
+      IStrategoTerm y_4220 = null;
+      IStrategoTerm z_4220 = null;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 3)
-        break Fail23064;
-      q_4774 = term.getSubterm(0);
-      r_4774 = term.getSubterm(1);
-      IStrategoTerm arg8204 = term.getSubterm(2);
-      if(arg8204.getTermType() != IStrategoTerm.INT || 0 != ((IStrategoInt)arg8204).intValue())
-        break Fail23064;
-      term = termFactory.makeTuple(q_4774, r_4774);
+        break Fail21588;
+      y_4220 = term.getSubterm(0);
+      z_4220 = term.getSubterm(1);
+      IStrategoTerm arg7737 = term.getSubterm(2);
+      if(arg7737.getTermType() != IStrategoTerm.INT || 0 != ((IStrategoInt)arg7737).intValue())
+        break Fail21588;
+      term = termFactory.makeTuple(y_4220, z_4220);
       term = $Declare$Cookie_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail23064;
-      term = termFactory.makeTuple(q_4774, r_4774, trans.constNil4);
+        break Fail21588;
+      term = termFactory.makeTuple(y_4220, z_4220, trans.constNil3);
       context.popOnSuccess();
       if(true)
         return term;

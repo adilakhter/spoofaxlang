@@ -24,16 +24,16 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("test_builder_0_0");
-    Fail22803:
+    Fail21327:
     { 
-      IStrategoTerm h_4730 = null;
+      IStrategoTerm p_4176 = null;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 5)
-        break Fail22803;
-      h_4730 = term.getSubterm(0);
-      term = reorder_right_associativity_chain_0_0.instance.invoke(context, h_4730);
+        break Fail21327;
+      p_4176 = term.getSubterm(0);
+      term = reorder_right_associativity_chain_0_0.instance.invoke(context, p_4176);
       if(term == null)
-        break Fail22803;
-      term = termFactory.makeTuple(trans.const4466, term);
+        break Fail21327;
+      term = termFactory.makeTuple(trans.const4256, term);
       context.popOnSuccess();
       if(true)
         return term;

@@ -20,21 +20,21 @@ import java.lang.ref.WeakReference;
 { 
   public static fetch_down_1_0 instance = new fetch_down_1_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy d_4715)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy l_4161)
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("fetch_down_1_0");
-    Fail22707:
+    Fail21231:
     { 
-      IStrategoTerm b_4715 = null;
-      b_4715 = term;
-      term = termFactory.makeTuple(b_4715, trans.constNil4);
-      term = fetch_down_with_position_1_0.instance.invoke(context, term, d_4715);
+      IStrategoTerm j_4161 = null;
+      j_4161 = term;
+      term = termFactory.makeTuple(j_4161, trans.constNil3);
+      term = fetch_down_with_position_1_0.instance.invoke(context, term, l_4161);
       if(term == null)
-        break Fail22707;
+        break Fail21231;
       term = $Fst_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22707;
+        break Fail21231;
       context.popOnSuccess();
       if(true)
         return term;

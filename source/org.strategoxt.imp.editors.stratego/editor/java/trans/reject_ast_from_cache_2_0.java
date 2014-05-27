@@ -20,35 +20,35 @@ import java.lang.ref.WeakReference;
 { 
   public static reject_ast_from_cache_2_0 instance = new reject_ast_from_cache_2_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy p_4737, Strategy q_4737)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy x_4183, Strategy y_4183)
   { 
     context.push("reject_ast_from_cache_2_0");
-    Fail22828:
+    Fail21352:
     { 
-      IStrategoTerm n_4737 = null;
-      n_4737 = term;
-      term = q_4737.invoke(context, n_4737);
+      IStrategoTerm v_4183 = null;
+      v_4183 = term;
+      term = y_4183.invoke(context, v_4183);
       if(term == null)
-        break Fail22828;
+        break Fail21352;
       term = $Read$From$File_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22828;
-      IStrategoTerm term12198 = term;
-      Success12165:
+        break Fail21352;
+      IStrategoTerm term11489 = term;
+      Success11456:
       { 
-        Fail22829:
+        Fail21353:
         { 
-          term = p_4737.invoke(context, term);
+          term = x_4183.invoke(context, term);
           if(term == null)
-            break Fail22829;
+            break Fail21353;
           { 
             if(true)
-              break Fail22828;
+              break Fail21352;
             if(true)
-              break Success12165;
+              break Success11456;
           }
         }
-        term = term12198;
+        term = term11489;
       }
       term = trans.constNone0;
       context.popOnSuccess();

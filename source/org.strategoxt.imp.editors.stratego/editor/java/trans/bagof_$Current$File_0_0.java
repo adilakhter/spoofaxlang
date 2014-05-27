@@ -23,37 +23,37 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("bagof_CurrentFile_0_0");
-    Fail23423:
+    Fail21947:
     { 
-      TermReference z_4836 = new TermReference();
-      if(z_4836.value == null)
-        z_4836.value = term;
+      TermReference h_4283 = new TermReference();
+      if(h_4283.value == null)
+        h_4283.value = term;
       else
-        if(z_4836.value != term && !z_4836.value.match(term))
-          break Fail23423;
-      Success12586:
+        if(h_4283.value != term && !h_4283.value.match(term))
+          break Fail21947;
+      Success11877:
       { 
-        Fail23424:
+        Fail21948:
         { 
-          IStrategoTerm c_4837 = null;
-          IStrategoTerm e_4837 = null;
-          IStrategoTerm f_4837 = null;
-          e_4837 = term;
-          c_4837 = trans.const4473;
-          f_4837 = e_4837;
-          term = dr_lookup_rule_0_2.instance.invoke(context, f_4837, c_4837, trans.constCons2047);
+          IStrategoTerm k_4283 = null;
+          IStrategoTerm m_4283 = null;
+          IStrategoTerm n_4283 = null;
+          m_4283 = term;
+          k_4283 = trans.const4263;
+          n_4283 = m_4283;
+          term = dr_lookup_rule_0_2.instance.invoke(context, n_4283, k_4283, trans.constCons1966);
           if(term == null)
-            break Fail23424;
+            break Fail21948;
           if(true)
-            break Success12586;
+            break Success11877;
         }
-        term = trans.constNil4;
+        term = trans.constNil3;
       }
-      lifted6983 lifted69830 = new lifted6983();
-      lifted69830.z_4836 = z_4836;
-      term = filter_1_0.instance.invoke(context, term, lifted69830);
+      lifted6712 lifted67120 = new lifted6712();
+      lifted67120.h_4283 = h_4283;
+      term = filter_1_0.instance.invoke(context, term, lifted67120);
       if(term == null)
-        break Fail23423;
+        break Fail21947;
       context.popOnSuccess();
       if(true)
         return term;

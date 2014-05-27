@@ -18,15 +18,22 @@ import java.lang.ref.WeakReference;
 
 @SuppressWarnings("all") final class lifted6728 extends Strategy 
 { 
-  TermReference a_4726;
+  TermReference z_4290;
+
+  TermReference a_4291;
 
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
-    Fail24213:
+    Fail22426:
     { 
-      term = inline_call_0_1.instance.invoke(context, term, a_4726.value);
+      term = aux_$Source$Dir_0_1.instance.invoke(context, term, z_4290.value);
       if(term == null)
-        break Fail24213;
+        break Fail22426;
+      if(a_4291.value == null)
+        a_4291.value = term;
+      else
+        if(a_4291.value != term && !a_4291.value.match(term))
+          break Fail22426;
       if(true)
         return term;
     }

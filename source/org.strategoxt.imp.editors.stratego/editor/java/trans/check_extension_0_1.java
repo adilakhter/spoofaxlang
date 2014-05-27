@@ -20,41 +20,41 @@ import java.lang.ref.WeakReference;
 { 
   public static check_extension_0_1 instance = new check_extension_0_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm r_4898)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm z_4344)
   { 
     context.push("check_extension_0_1");
-    Fail22819:
+    Fail21343:
     { 
-      IStrategoTerm term12187 = term;
-      Success12163:
+      IStrategoTerm term11478 = term;
+      Success11454:
       { 
-        Fail22820:
+        Fail21344:
         { 
-          term = has_extension_0_1.instance.invoke(context, term, r_4898);
+          term = has_extension_0_1.instance.invoke(context, term, z_4344);
           if(term == null)
-            break Fail22820;
+            break Fail21344;
           if(true)
-            break Success12163;
+            break Success11454;
         }
-        term = term12187;
-        IStrategoTerm h_4735 = null;
-        TermReference i_4735 = new TermReference();
-        h_4735 = term;
-        term = get_extension_0_0.instance.invoke(context, h_4735);
+        term = term11478;
+        IStrategoTerm p_4181 = null;
+        TermReference q_4181 = new TermReference();
+        p_4181 = term;
+        term = get_extension_0_0.instance.invoke(context, p_4181);
         if(term == null)
-          break Fail22819;
-        if(i_4735.value == null)
-          i_4735.value = term;
+          break Fail21343;
+        if(q_4181.value == null)
+          q_4181.value = term;
         else
-          if(i_4735.value != term && !i_4735.value.match(term))
-            break Fail22819;
-        term = r_4898;
-        lifted6771 lifted67710 = new lifted6771();
-        lifted67710.i_4735 = i_4735;
-        term = fetch_1_0.instance.invoke(context, term, lifted67710);
+          if(q_4181.value != term && !q_4181.value.match(term))
+            break Fail21343;
+        term = z_4344;
+        lifted6500 lifted65000 = new lifted6500();
+        lifted65000.q_4181 = q_4181;
+        term = fetch_1_0.instance.invoke(context, term, lifted65000);
         if(term == null)
-          break Fail22819;
-        term = h_4735;
+          break Fail21343;
+        term = p_4181;
       }
       context.popOnSuccess();
       if(true)

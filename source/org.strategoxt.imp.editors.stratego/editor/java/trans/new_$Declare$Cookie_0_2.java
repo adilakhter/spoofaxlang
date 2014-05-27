@@ -20,37 +20,37 @@ import java.lang.ref.WeakReference;
 { 
   public static new_$Declare$Cookie_0_2 instance = new new_$Declare$Cookie_0_2();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm g_4885, IStrategoTerm h_4885)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm o_4331, IStrategoTerm p_4331)
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("new_DeclareCookie_0_2");
-    Fail23711:
+    Fail22235:
     { 
-      IStrategoTerm i_4885 = null;
-      IStrategoTerm m_4885 = null;
-      IStrategoTerm p_4885 = null;
-      IStrategoTerm r_4885 = null;
-      IStrategoTerm s_4885 = null;
-      i_4885 = term;
-      m_4885 = term;
-      term = dr_label_scope_0_2.instance.invoke(context, m_4885, trans.const4568, g_4885);
+      IStrategoTerm q_4331 = null;
+      IStrategoTerm u_4331 = null;
+      IStrategoTerm x_4331 = null;
+      IStrategoTerm z_4331 = null;
+      IStrategoTerm a_4332 = null;
+      q_4331 = term;
+      u_4331 = term;
+      term = dr_label_scope_0_2.instance.invoke(context, u_4331, trans.const4358, o_4331);
       if(term == null)
-        break Fail23711;
-      term = termFactory.makeAppl(Main._consDR_UNDEFINE_1, new IStrategoTerm[]{h_4885});
+        break Fail22235;
+      term = termFactory.makeAppl(Main._consDR_UNDEFINE_1, new IStrategoTerm[]{p_4331});
       term = bagof_$Declare$Cookie_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail23711;
-      term = map_1_0.instance.invoke(context, term, lifted7084.instance);
+        break Fail22235;
+      term = map_1_0.instance.invoke(context, term, lifted6813.instance);
       if(term == null)
-        break Fail23711;
-      r_4885 = term;
-      p_4885 = trans.const4568;
-      s_4885 = r_4885;
-      term = termFactory.makeAppl(Main._consDR_UNDEFINE_1, new IStrategoTerm[]{h_4885});
-      term = dr_undefine_rule_0_2.instance.invoke(context, s_4885, p_4885, term);
+        break Fail22235;
+      z_4331 = term;
+      x_4331 = trans.const4358;
+      a_4332 = z_4331;
+      term = termFactory.makeAppl(Main._consDR_UNDEFINE_1, new IStrategoTerm[]{p_4331});
+      term = dr_undefine_rule_0_2.instance.invoke(context, a_4332, x_4331, term);
       if(term == null)
-        break Fail23711;
-      term = i_4885;
+        break Fail22235;
+      term = q_4331;
       context.popOnSuccess();
       if(true)
         return term;

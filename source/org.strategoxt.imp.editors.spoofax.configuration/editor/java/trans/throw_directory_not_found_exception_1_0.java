@@ -19,17 +19,17 @@ import java.lang.ref.WeakReference;
 { 
   public static throw_directory_not_found_exception_1_0 instance = new throw_directory_not_found_exception_1_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy m_17558)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy p_4614)
   { 
     context.push("throw_directory_not_found_exception_1_0");
-    Fail87598:
+    Fail22790:
     { 
-      term = debug_1_0.instance.invoke(context, term, lifted24737.instance);
+      term = debug_1_0.instance.invoke(context, term, lifted6852.instance);
       if(term == null)
-        break Fail87598;
-      term = m_17558.invoke(context, term);
+        break Fail22790;
+      term = p_4614.invoke(context, term);
       if(term == null)
-        break Fail87598;
+        break Fail22790;
       context.popOnSuccess();
       if(true)
         return term;

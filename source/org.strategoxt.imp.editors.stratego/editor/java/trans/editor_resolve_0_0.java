@@ -23,89 +23,89 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("editor_resolve_0_0");
-    Fail23343:
+    Fail21867:
     { 
-      IStrategoTerm term12683 = term;
-      Success12553:
+      IStrategoTerm term11974 = term;
+      Success11844:
       { 
-        Fail23344:
+        Fail21868:
         { 
-          IStrategoTerm f_4825 = null;
-          IStrategoTerm g_4825 = null;
-          IStrategoTerm h_4825 = null;
-          IStrategoTerm i_4825 = null;
-          IStrategoTerm j_4825 = null;
+          IStrategoTerm n_4271 = null;
+          IStrategoTerm o_4271 = null;
+          IStrategoTerm p_4271 = null;
+          IStrategoTerm q_4271 = null;
+          IStrategoTerm r_4271 = null;
           if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 5)
-            break Fail23344;
-          g_4825 = term.getSubterm(1);
-          f_4825 = term.getSubterm(2);
-          j_4825 = term;
-          term = desugar_position_1_1.instance.invoke(context, g_4825, basic_desugar_0_0.instance, f_4825);
+            break Fail21868;
+          o_4271 = term.getSubterm(1);
+          n_4271 = term.getSubterm(2);
+          r_4271 = term;
+          term = desugar_position_1_1.instance.invoke(context, o_4271, basic_desugar_0_0.instance, n_4271);
           if(term == null)
-            break Fail23344;
-          h_4825 = term;
-          term = j_4825;
-          IStrategoTerm term12684 = term;
-          Success12554:
+            break Fail21868;
+          p_4271 = term;
+          term = r_4271;
+          IStrategoTerm term11975 = term;
+          Success11845:
           { 
-            Fail23345:
+            Fail21869:
             { 
-              IStrategoTerm t_5054 = null;
-              IStrategoTerm x_5054 = null;
-              TermReference v_5054 = new TermReference();
-              IStrategoTerm w_5054 = null;
+              IStrategoTerm b_4501 = null;
+              IStrategoTerm f_4501 = null;
+              TermReference d_4501 = new TermReference();
+              IStrategoTerm e_4501 = null;
               term = $Decorated$Ast_0_0.instance.invoke(context, term);
               if(term == null)
-                break Fail23345;
-              x_5054 = term;
-              t_5054 = h_4825;
-              term = x_5054;
-              w_5054 = term;
-              lifted6962 lifted69620 = new lifted6962();
-              lifted69620.v_5054 = v_5054;
-              term = at_position_1_1.instance.invoke(context, term, lifted69620, t_5054);
+                break Fail21869;
+              f_4501 = term;
+              b_4501 = p_4271;
+              term = f_4501;
+              e_4501 = term;
+              lifted6691 lifted66910 = new lifted6691();
+              lifted66910.d_4501 = d_4501;
+              term = at_position_1_1.instance.invoke(context, term, lifted66910, b_4501);
               if(term == null)
-                break Fail23345;
-              term = w_5054;
-              if(v_5054.value == null)
-                break Fail23345;
-              term = declaration_of_0_0.instance.invoke(context, v_5054.value);
+                break Fail21869;
+              term = e_4501;
+              if(d_4501.value == null)
+                break Fail21869;
+              term = declaration_of_0_0.instance.invoke(context, d_4501.value);
               if(term == null)
-                break Fail23345;
-              i_4825 = term;
+                break Fail21869;
+              q_4271 = term;
               if(true)
-                break Success12554;
+                break Success11845;
             }
-            term = term12684;
+            term = term11975;
             term = $Decorated$Ast_0_0.instance.invoke(context, term);
             if(term == null)
-              break Fail23344;
-            term = parent_at_position_0_1.instance.invoke(context, term, h_4825);
+              break Fail21868;
+            term = parent_at_position_0_1.instance.invoke(context, term, p_4271);
             if(term == null)
-              break Fail23344;
+              break Fail21868;
             term = declaration_of_0_0.instance.invoke(context, term);
             if(term == null)
-              break Fail23344;
-            i_4825 = term;
+              break Fail21868;
+            q_4271 = term;
           }
-          term = i_4825;
+          term = q_4271;
           if(true)
-            break Success12553;
+            break Success11844;
         }
-        term = term12683;
-        IStrategoTerm z_4824 = null;
+        term = term11974;
+        IStrategoTerm h_4271 = null;
         if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 5)
-          break Fail23343;
-        IStrategoTerm arg8354 = term.getSubterm(0);
-        if(arg8354.getTermType() != IStrategoTerm.APPL || Main._consImport_1 != ((IStrategoAppl)arg8354).getConstructor())
-          break Fail23343;
-        z_4824 = arg8354.getSubterm(0);
-        term = resolve_import_decl_0_0.instance.invoke(context, z_4824);
+          break Fail21867;
+        IStrategoTerm arg7887 = term.getSubterm(0);
+        if(arg7887.getTermType() != IStrategoTerm.APPL || Main._consImport_1 != ((IStrategoAppl)arg7887).getConstructor())
+          break Fail21867;
+        h_4271 = arg7887.getSubterm(0);
+        term = resolve_import_decl_0_0.instance.invoke(context, h_4271);
         if(term == null)
-          break Fail23343;
+          break Fail21867;
         term = parse_stratego_file_0_0.instance.invoke(context, term);
         if(term == null)
-          break Fail23343;
+          break Fail21867;
       }
       context.popOnSuccess();
       if(true)

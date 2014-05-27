@@ -20,35 +20,35 @@ import java.lang.ref.WeakReference;
 { 
   public static aux_$Declare$Cookie_0_2 instance = new aux_$Declare$Cookie_0_2();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm e_4899, IStrategoTerm f_4899)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm m_4345, IStrategoTerm n_4345)
   { 
-    Fail23657:
+    Fail22181:
     { 
-      IStrategoTerm term12796 = term;
-      Success12666:
+      IStrategoTerm term12087 = term;
+      Success11957:
       { 
-        Fail23658:
+        Fail22182:
         { 
-          IStrategoTerm x_4876 = null;
+          IStrategoTerm f_4323 = null;
           if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-            break Fail23658;
-          IStrategoTerm arg8434 = term.getSubterm(0);
-          if(arg8434.getTermType() != IStrategoTerm.STRING || !"-783129".equals(((IStrategoString)arg8434).stringValue()))
-            break Fail23658;
-          x_4876 = term.getSubterm(1);
-          term = x_4876;
+            break Fail22182;
+          IStrategoTerm arg7967 = term.getSubterm(0);
+          if(arg7967.getTermType() != IStrategoTerm.STRING || !"-783129".equals(((IStrategoString)arg7967).stringValue()))
+            break Fail22182;
+          f_4323 = term.getSubterm(1);
+          term = f_4323;
           if(true)
-            break Success12666;
+            break Success11957;
         }
-        term = term12796;
-        IStrategoTerm t_4876 = null;
+        term = term12087;
+        IStrategoTerm b_4323 = null;
         if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-          break Fail23657;
-        IStrategoTerm arg8435 = term.getSubterm(0);
-        if(arg8435.getTermType() != IStrategoTerm.STRING || !"-670577".equals(((IStrategoString)arg8435).stringValue()))
-          break Fail23657;
-        t_4876 = term.getSubterm(1);
-        term = t_4876;
+          break Fail22181;
+        IStrategoTerm arg7968 = term.getSubterm(0);
+        if(arg7968.getTermType() != IStrategoTerm.STRING || !"-670577".equals(((IStrategoString)arg7968).stringValue()))
+          break Fail22181;
+        b_4323 = term.getSubterm(1);
+        term = b_4323;
       }
       if(true)
         return term;

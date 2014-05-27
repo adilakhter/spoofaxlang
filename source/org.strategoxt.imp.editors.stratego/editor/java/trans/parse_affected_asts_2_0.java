@@ -20,31 +20,31 @@ import java.lang.ref.WeakReference;
 { 
   public static parse_affected_asts_2_0 instance = new parse_affected_asts_2_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy d_4737, Strategy e_4737)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy l_4183, Strategy m_4183)
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("parse_affected_asts_2_0");
-    Fail22825:
+    Fail21349:
     { 
-      IStrategoTerm z_4736 = null;
-      IStrategoTerm a_4737 = null;
-      IStrategoTerm b_4737 = null;
-      z_4736 = term;
-      term = z_4736;
-      lifted6774 lifted67740 = new lifted6774();
-      lifted67740.d_4737 = d_4737;
-      lifted67740.e_4737 = e_4737;
-      term = partition_1_0.instance.invoke(context, term, lifted67740);
+      IStrategoTerm h_4183 = null;
+      IStrategoTerm i_4183 = null;
+      IStrategoTerm j_4183 = null;
+      h_4183 = term;
+      term = h_4183;
+      lifted6503 lifted65030 = new lifted6503();
+      lifted65030.l_4183 = l_4183;
+      lifted65030.m_4183 = m_4183;
+      term = partition_1_0.instance.invoke(context, term, lifted65030);
       if(term == null)
-        break Fail22825;
+        break Fail21349;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-        break Fail22825;
-      b_4737 = term.getSubterm(0);
-      a_4737 = term.getSubterm(1);
-      term = filter_1_0.instance.invoke(context, b_4737, lifted6775.instance);
+        break Fail21349;
+      j_4183 = term.getSubterm(0);
+      i_4183 = term.getSubterm(1);
+      term = filter_1_0.instance.invoke(context, j_4183, lifted6504.instance);
       if(term == null)
-        break Fail22825;
-      term = termFactory.makeTuple(term, a_4737);
+        break Fail21349;
+      term = termFactory.makeTuple(term, i_4183);
       context.popOnSuccess();
       if(true)
         return term;

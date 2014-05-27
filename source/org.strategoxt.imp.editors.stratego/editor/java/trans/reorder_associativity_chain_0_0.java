@@ -23,11 +23,11 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("reorder_associativity_chain_0_0");
-    Fail22755:
+    Fail21279:
     { 
       term = origin_track_forced_1_0.instance.invoke(context, term, reorder_right_associativity_chain_0_0.instance);
       if(term == null)
-        break Fail22755;
+        break Fail21279;
       context.popOnSuccess();
       if(true)
         return term;

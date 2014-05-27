@@ -21,11 +21,11 @@ import java.lang.ref.WeakReference;
 
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
-    Fail87723:
+    Fail22915:
     { 
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 5)
-        break Fail87723;
-      term = trans.constNil14;
+        break Fail22915;
+      term = trans.constNil4;
       if(true)
         return term;
     }

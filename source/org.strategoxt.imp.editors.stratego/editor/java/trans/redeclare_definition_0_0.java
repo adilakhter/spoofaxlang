@@ -24,74 +24,74 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("redeclare_definition_0_0");
-    Fail23073:
+    Fail21597:
     { 
-      IStrategoTerm b_4776 = null;
-      IStrategoTerm c_4776 = null;
-      IStrategoTerm d_4776 = null;
-      IStrategoTerm i_4776 = null;
-      d_4776 = term;
-      i_4776 = term;
-      IStrategoTerm term12400 = term;
-      Success12325:
+      IStrategoTerm j_4222 = null;
+      IStrategoTerm k_4222 = null;
+      IStrategoTerm l_4222 = null;
+      IStrategoTerm q_4222 = null;
+      l_4222 = term;
+      q_4222 = term;
+      IStrategoTerm term11691 = term;
+      Success11616:
       { 
-        Fail23074:
+        Fail21598:
         { 
-          IStrategoTerm e_4776 = null;
-          IStrategoTerm n_4776 = null;
-          IStrategoTerm p_4776 = null;
-          IStrategoTerm q_4776 = null;
-          IStrategoTerm f_4776 = null;
-          IStrategoTerm r_4776 = null;
-          IStrategoTerm t_4776 = null;
-          IStrategoTerm u_4776 = null;
+          IStrategoTerm m_4222 = null;
+          IStrategoTerm v_4222 = null;
+          IStrategoTerm x_4222 = null;
+          IStrategoTerm y_4222 = null;
+          IStrategoTerm n_4222 = null;
+          IStrategoTerm z_4222 = null;
+          IStrategoTerm b_4223 = null;
+          IStrategoTerm c_4223 = null;
           term = signature_of_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail23074;
-          b_4776 = term;
+            break Fail21598;
+          j_4222 = term;
           term = newterm_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail23074;
-          c_4776 = term;
-          e_4776 = term;
-          p_4776 = term;
-          n_4776 = trans.const4568;
-          q_4776 = p_4776;
-          term = termFactory.makeTuple(trans.const4569, c_4776);
-          term = dr_set_rule_0_3.instance.invoke(context, q_4776, n_4776, b_4776, term);
+            break Fail21598;
+          k_4222 = term;
+          m_4222 = term;
+          x_4222 = term;
+          v_4222 = trans.const4358;
+          y_4222 = x_4222;
+          term = termFactory.makeTuple(trans.const4359, k_4222);
+          term = dr_set_rule_0_3.instance.invoke(context, y_4222, v_4222, j_4222, term);
           if(term == null)
-            break Fail23074;
-          term = e_4776;
-          f_4776 = e_4776;
-          t_4776 = term;
-          r_4776 = trans.const4570;
-          u_4776 = t_4776;
-          term = termFactory.makeTuple(trans.const4571, d_4776);
-          term = dr_set_rule_0_3.instance.invoke(context, u_4776, r_4776, c_4776, term);
+            break Fail21598;
+          term = m_4222;
+          n_4222 = m_4222;
+          b_4223 = term;
+          z_4222 = trans.const4360;
+          c_4223 = b_4223;
+          term = termFactory.makeTuple(trans.const4361, l_4222);
+          term = dr_set_rule_0_3.instance.invoke(context, c_4223, z_4222, k_4222, term);
           if(term == null)
-            break Fail23074;
-          term = f_4776;
+            break Fail21598;
+          term = n_4222;
           if(true)
-            break Success12325;
+            break Success11616;
         }
-        term = term12400;
-        IStrategoTerm g_4776 = null;
-        IStrategoTerm h_4776 = null;
-        IStrategoTerm w_4776 = null;
-        g_4776 = term;
+        term = term11691;
+        IStrategoTerm o_4222 = null;
+        IStrategoTerm p_4222 = null;
+        IStrategoTerm e_4223 = null;
+        o_4222 = term;
         term = context.invokePrimitive("SSL_stacktrace_get_all_frame_names", term, NO_STRATEGIES, NO_TERMS);
         if(term == null)
-          break Fail23073;
-        h_4776 = term;
-        w_4776 = g_4776;
-        term = report_with_failure_0_2.instance.invoke(context, w_4776, trans.const4573, h_4776);
+          break Fail21597;
+        p_4222 = term;
+        e_4223 = o_4222;
+        term = report_with_failure_0_2.instance.invoke(context, e_4223, trans.const4363, p_4222);
         if(term == null)
-          break Fail23073;
+          break Fail21597;
       }
-      term = i_4776;
-      if(c_4776 == null)
-        break Fail23073;
-      term = c_4776;
+      term = q_4222;
+      if(k_4222 == null)
+        break Fail21597;
+      term = k_4222;
       context.popOnSuccess();
       if(true)
         return term;

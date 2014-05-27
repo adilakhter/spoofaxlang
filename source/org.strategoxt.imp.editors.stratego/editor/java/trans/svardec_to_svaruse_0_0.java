@@ -23,22 +23,22 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     ITermFactory termFactory = context.getFactory();
-    Fail22791:
+    Fail21315:
     { 
-      IStrategoTerm h_4727 = null;
-      IStrategoTerm i_4727 = null;
+      IStrategoTerm p_4173 = null;
+      IStrategoTerm q_4173 = null;
       if(term.getTermType() != IStrategoTerm.APPL || Main._consVarDec_2 != ((IStrategoAppl)term).getConstructor())
-        break Fail22791;
-      IStrategoTerm arg8105 = term.getSubterm(0);
-      h_4727 = arg8105;
-      IStrategoList annos701 = arg8105.getAnnotations();
-      if(annos701.getTermType() != IStrategoTerm.LIST || ((IStrategoList)annos701).isEmpty())
-        break Fail22791;
-      i_4727 = ((IStrategoList)annos701).head();
-      IStrategoTerm arg8106 = ((IStrategoList)annos701).tail();
-      if(arg8106.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg8106).isEmpty())
-        break Fail22791;
-      term = termFactory.makeAppl(Main._consCallT_3, new IStrategoTerm[]{termFactory.makeAppl(Main._consSVar_1, new IStrategoTerm[]{termFactory.annotateTerm(h_4727, checkListAnnos(termFactory, (IStrategoTerm)termFactory.makeListCons(i_4727, (IStrategoList)trans.constNil4)))}), trans.constNil4, trans.constNil4});
+        break Fail21315;
+      IStrategoTerm arg7638 = term.getSubterm(0);
+      p_4173 = arg7638;
+      IStrategoList annos673 = arg7638.getAnnotations();
+      if(annos673.getTermType() != IStrategoTerm.LIST || ((IStrategoList)annos673).isEmpty())
+        break Fail21315;
+      q_4173 = ((IStrategoList)annos673).head();
+      IStrategoTerm arg7639 = ((IStrategoList)annos673).tail();
+      if(arg7639.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg7639).isEmpty())
+        break Fail21315;
+      term = termFactory.makeAppl(Main._consCallT_3, new IStrategoTerm[]{termFactory.makeAppl(Main._consSVar_1, new IStrategoTerm[]{termFactory.annotateTerm(p_4173, checkListAnnos(termFactory, (IStrategoTerm)termFactory.makeListCons(q_4173, (IStrategoList)trans.constNil3)))}), trans.constNil3, trans.constNil3});
       if(true)
         return term;
     }

@@ -24,74 +24,74 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("chain_DeclareCookie_0_0");
-    Fail23637:
+    Fail22161:
     { 
-      IStrategoTerm term12782 = term;
-      Success12652:
+      IStrategoTerm term12073 = term;
+      Success11943:
       { 
-        Fail23638:
+        Fail22162:
         { 
-          IStrategoTerm f_4873 = null;
-          IStrategoTerm i_4873 = null;
-          IStrategoTerm k_4873 = null;
-          f_4873 = term;
-          k_4873 = term;
-          Success12653:
+          IStrategoTerm n_4319 = null;
+          IStrategoTerm q_4319 = null;
+          IStrategoTerm s_4319 = null;
+          n_4319 = term;
+          s_4319 = term;
+          Success11944:
           { 
-            Fail23639:
+            Fail22163:
             { 
-              IStrategoTerm m_4873 = null;
-              m_4873 = term;
-              term = dr_lookup_rule_0_2.instance.invoke(context, m_4873, trans.const4568, f_4873);
+              IStrategoTerm u_4319 = null;
+              u_4319 = term;
+              term = dr_lookup_rule_0_2.instance.invoke(context, u_4319, trans.const4358, n_4319);
               if(term == null)
-                break Fail23639;
+                break Fail22163;
               if(true)
-                break Success12653;
+                break Success11944;
             }
-            term = trans.constNil4;
+            term = trans.constNil3;
           }
-          i_4873 = term;
-          term = k_4873;
-          term = termFactory.makeTuple(i_4873, term);
-          term = foldl_1_0.instance.invoke(context, term, lifted7054.instance);
+          q_4319 = term;
+          term = s_4319;
+          term = termFactory.makeTuple(q_4319, term);
+          term = foldl_1_0.instance.invoke(context, term, lifted6783.instance);
           if(term == null)
-            break Fail23638;
+            break Fail22162;
           if(true)
-            break Success12652;
+            break Success11943;
         }
-        term = term12782;
-        IStrategoTerm s_4872 = null;
-        IStrategoTerm v_4872 = null;
-        IStrategoTerm x_4872 = null;
+        term = term12073;
+        IStrategoTerm a_4319 = null;
+        IStrategoTerm d_4319 = null;
+        IStrategoTerm f_4319 = null;
         if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 3)
-          break Fail23637;
-        s_4872 = term.getSubterm(0);
-        x_4872 = term;
-        Success12654:
+          break Fail22161;
+        a_4319 = term.getSubterm(0);
+        f_4319 = term;
+        Success11945:
         { 
-          Fail23640:
+          Fail22164:
           { 
-            IStrategoTerm y_4872 = null;
-            IStrategoTerm a_4873 = null;
-            IStrategoTerm b_4873 = null;
-            a_4873 = term;
-            y_4872 = trans.const4568;
-            b_4873 = a_4873;
-            term = termFactory.annotateTerm(termFactory.makeTuple(s_4872, trans.constCons2047, trans.constCons2047), checkListAnnos(termFactory, trans.constCons2047));
-            term = dr_lookup_rule_0_2.instance.invoke(context, b_4873, y_4872, term);
+            IStrategoTerm g_4319 = null;
+            IStrategoTerm i_4319 = null;
+            IStrategoTerm j_4319 = null;
+            i_4319 = term;
+            g_4319 = trans.const4358;
+            j_4319 = i_4319;
+            term = termFactory.annotateTerm(termFactory.makeTuple(a_4319, trans.constCons1966, trans.constCons1966), checkListAnnos(termFactory, trans.constCons1966));
+            term = dr_lookup_rule_0_2.instance.invoke(context, j_4319, g_4319, term);
             if(term == null)
-              break Fail23640;
+              break Fail22164;
             if(true)
-              break Success12654;
+              break Success11945;
           }
-          term = trans.constNil4;
+          term = trans.constNil3;
         }
-        v_4872 = term;
-        term = x_4872;
-        term = termFactory.makeTuple(v_4872, term);
-        term = foldl_1_0.instance.invoke(context, term, lifted7055.instance);
+        d_4319 = term;
+        term = f_4319;
+        term = termFactory.makeTuple(d_4319, term);
+        term = foldl_1_0.instance.invoke(context, term, lifted6784.instance);
         if(term == null)
-          break Fail23637;
+          break Fail22161;
       }
       context.popOnSuccess();
       if(true)

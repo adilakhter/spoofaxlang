@@ -22,9 +22,16 @@ import java.lang.ref.WeakReference;
 
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
-    Fail24228:
+    Fail22447:
     { 
-      term = trans.const4444;
+      IStrategoTerm v_4281 = null;
+      if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
+        break Fail22447;
+      v_4281 = term.getSubterm(0);
+      IStrategoTerm arg7897 = term.getSubterm(1);
+      term = aux_$Current$File_0_1.instance.invoke(context, v_4281, arg7897);
+      if(term == null)
+        break Fail22447;
       if(true)
         return term;
     }

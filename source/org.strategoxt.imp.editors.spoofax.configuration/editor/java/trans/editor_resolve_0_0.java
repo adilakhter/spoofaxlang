@@ -22,15 +22,15 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("editor_resolve_0_0");
-    Fail87717:
+    Fail22909:
     { 
-      IStrategoTerm x_17574 = null;
+      IStrategoTerm a_4631 = null;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 5)
-        break Fail87717;
-      x_17574 = term.getSubterm(0);
-      term = resolve_0_0.instance.invoke(context, x_17574);
+        break Fail22909;
+      a_4631 = term.getSubterm(0);
+      term = resolve_0_0.instance.invoke(context, a_4631);
       if(term == null)
-        break Fail87717;
+        break Fail22909;
       context.popOnSuccess();
       if(true)
         return term;

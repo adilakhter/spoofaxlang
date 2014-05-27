@@ -20,33 +20,33 @@ import java.lang.ref.WeakReference;
 { 
   public static collect_binding_violations_1_0 instance = new collect_binding_violations_1_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy j_4738)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy r_4184)
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("collect_binding_violations_1_0");
-    Fail22834:
+    Fail21358:
     { 
-      IStrategoTerm e_4738 = null;
-      IStrategoTerm f_4738 = null;
-      IStrategoTerm g_4738 = null;
+      IStrategoTerm m_4184 = null;
+      IStrategoTerm n_4184 = null;
+      IStrategoTerm o_4184 = null;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-        break Fail22834;
-      e_4738 = term.getSubterm(0);
-      f_4738 = term.getSubterm(1);
-      term = collect_all_2_0.instance.invoke(context, e_4738, j_4738, conc_0_0.instance);
+        break Fail21358;
+      m_4184 = term.getSubterm(0);
+      n_4184 = term.getSubterm(1);
+      term = collect_all_2_0.instance.invoke(context, m_4184, r_4184, conc_0_0.instance);
       if(term == null)
-        break Fail22834;
-      g_4738 = term;
-      term = collect_all_2_0.instance.invoke(context, f_4738, j_4738, conc_0_0.instance);
+        break Fail21358;
+      o_4184 = term;
+      term = collect_all_2_0.instance.invoke(context, n_4184, r_4184, conc_0_0.instance);
       if(term == null)
-        break Fail22834;
-      term = termFactory.makeTuple(g_4738, term);
+        break Fail21358;
+      term = termFactory.makeTuple(o_4184, term);
       term = zip_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22834;
+        break Fail21358;
       term = binding_violations_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22834;
+        break Fail21358;
       context.popOnSuccess();
       if(true)
         return term;

@@ -20,29 +20,29 @@ import java.lang.ref.WeakReference;
 { 
   public static fetch_up_with_position_1_1 instance = new fetch_up_with_position_1_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy g_4714, IStrategoTerm b_4714)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy o_4160, IStrategoTerm j_4160)
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("fetch_up_with_position_1_1");
-    Fail22702:
+    Fail21226:
     { 
-      IStrategoTerm c_4714 = null;
-      IStrategoTerm d_4714 = null;
-      IStrategoTerm e_4714 = null;
-      IStrategoTerm f_4714 = null;
+      IStrategoTerm k_4160 = null;
+      IStrategoTerm l_4160 = null;
+      IStrategoTerm m_4160 = null;
+      IStrategoTerm n_4160 = null;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-        break Fail22702;
-      c_4714 = term.getSubterm(0);
-      d_4714 = term.getSubterm(1);
-      term = termFactory.makeTuple(c_4714, d_4714);
-      term = fetch_up_with_position_2_1.instance.invoke(context, term, g_4714, _Fail.instance, b_4714);
+        break Fail21226;
+      k_4160 = term.getSubterm(0);
+      l_4160 = term.getSubterm(1);
+      term = termFactory.makeTuple(k_4160, l_4160);
+      term = fetch_up_with_position_2_1.instance.invoke(context, term, o_4160, _Fail.instance, j_4160);
       if(term == null)
-        break Fail22702;
+        break Fail21226;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-        break Fail22702;
-      e_4714 = term.getSubterm(0);
-      f_4714 = term.getSubterm(1);
-      term = termFactory.makeTuple(e_4714, f_4714);
+        break Fail21226;
+      m_4160 = term.getSubterm(0);
+      n_4160 = term.getSubterm(1);
+      term = termFactory.makeTuple(m_4160, n_4160);
       context.popOnSuccess();
       if(true)
         return term;

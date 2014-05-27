@@ -20,40 +20,40 @@ import java.lang.ref.WeakReference;
 { 
   public static is_endangered_name_0_2 instance = new is_endangered_name_0_2();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm z_4741, IStrategoTerm a_4742)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm h_4188, IStrategoTerm i_4188)
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("is_endangered_name_0_2");
-    Fail22855:
+    Fail21379:
     { 
-      IStrategoTerm b_4742 = null;
-      b_4742 = term;
-      term = strip_annos_0_0.instance.invoke(context, b_4742);
+      IStrategoTerm j_4188 = null;
+      j_4188 = term;
+      term = strip_annos_0_0.instance.invoke(context, j_4188);
       if(term == null)
-        break Fail22855;
-      IStrategoTerm term12212 = term;
-      Success12178:
+        break Fail21379;
+      IStrategoTerm term11503 = term;
+      Success11469:
       { 
-        Fail22856:
+        Fail21380:
         { 
-          IStrategoTerm e_4742 = null;
-          e_4742 = term;
-          term = termFactory.annotateTerm(z_4741, checkListAnnos(termFactory, trans.constNil4));
-          term = equal_0_1.instance.invoke(context, e_4742, term);
+          IStrategoTerm m_4188 = null;
+          m_4188 = term;
+          term = termFactory.annotateTerm(h_4188, checkListAnnos(termFactory, trans.constNil3));
+          term = equal_0_1.instance.invoke(context, m_4188, term);
           if(term == null)
-            break Fail22856;
+            break Fail21380;
           if(true)
-            break Success12178;
+            break Success11469;
         }
-        term = term12212;
-        IStrategoTerm g_4742 = null;
-        g_4742 = term;
-        term = termFactory.annotateTerm(a_4742, checkListAnnos(termFactory, trans.constNil4));
-        term = equal_0_1.instance.invoke(context, g_4742, term);
+        term = term11503;
+        IStrategoTerm o_4188 = null;
+        o_4188 = term;
+        term = termFactory.annotateTerm(i_4188, checkListAnnos(termFactory, trans.constNil3));
+        term = equal_0_1.instance.invoke(context, o_4188, term);
         if(term == null)
-          break Fail22855;
+          break Fail21379;
       }
-      term = b_4742;
+      term = j_4188;
       context.popOnSuccess();
       if(true)
         return term;

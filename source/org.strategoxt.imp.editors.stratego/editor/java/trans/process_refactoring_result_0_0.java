@@ -23,45 +23,45 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("process_refactoring_result_0_0");
-    Fail22801:
+    Fail21325:
     { 
-      IStrategoTerm q_4729 = null;
-      IStrategoTerm r_4729 = null;
-      IStrategoTerm s_4729 = null;
-      IStrategoTerm t_4729 = null;
-      IStrategoTerm u_4729 = null;
+      IStrategoTerm y_4175 = null;
+      IStrategoTerm z_4175 = null;
+      IStrategoTerm a_4176 = null;
+      IStrategoTerm b_4176 = null;
+      IStrategoTerm c_4176 = null;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 4)
-        break Fail22801;
-      r_4729 = term.getSubterm(0);
-      s_4729 = term.getSubterm(1);
-      t_4729 = term.getSubterm(2);
-      u_4729 = term.getSubterm(3);
-      term = $Hd_0_0.instance.invoke(context, r_4729);
+        break Fail21325;
+      z_4175 = term.getSubterm(0);
+      a_4176 = term.getSubterm(1);
+      b_4176 = term.getSubterm(2);
+      c_4176 = term.getSubterm(3);
+      term = $Hd_0_0.instance.invoke(context, z_4175);
       if(term == null)
-        break Fail22801;
+        break Fail21325;
       term = $Snd_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22801;
+        break Fail21325;
       term = debug_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22801;
-      q_4729 = term;
-      term = length_0_0.instance.invoke(context, r_4729);
+        break Fail21325;
+      y_4175 = term;
+      term = length_0_0.instance.invoke(context, z_4175);
       if(term == null)
-        break Fail22801;
-      term = debug_1_0.instance.invoke(context, term, lifted6743.instance);
+        break Fail21325;
+      term = debug_1_0.instance.invoke(context, term, lifted6472.instance);
       if(term == null)
-        break Fail22801;
-      term = debug_1_0.instance.invoke(context, s_4729, lifted6744.instance);
+        break Fail21325;
+      term = debug_1_0.instance.invoke(context, a_4176, lifted6473.instance);
       if(term == null)
-        break Fail22801;
-      term = debug_1_0.instance.invoke(context, t_4729, lifted6745.instance);
+        break Fail21325;
+      term = debug_1_0.instance.invoke(context, b_4176, lifted6474.instance);
       if(term == null)
-        break Fail22801;
-      term = debug_1_0.instance.invoke(context, u_4729, lifted6746.instance);
+        break Fail21325;
+      term = debug_1_0.instance.invoke(context, c_4176, lifted6475.instance);
       if(term == null)
-        break Fail22801;
-      term = q_4729;
+        break Fail21325;
+      term = y_4175;
       context.popOnSuccess();
       if(true)
         return term;

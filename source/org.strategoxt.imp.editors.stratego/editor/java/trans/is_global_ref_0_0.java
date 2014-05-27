@@ -23,25 +23,25 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("is_global_ref_0_0");
-    Fail22869:
+    Fail21393:
     { 
-      IStrategoTerm a_4747 = null;
-      IStrategoTerm b_4747 = null;
-      b_4747 = term;
-      a_4747 = term;
+      IStrategoTerm i_4193 = null;
+      IStrategoTerm j_4193 = null;
+      j_4193 = term;
+      i_4193 = term;
       term = $Declaration_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22869;
+        break Fail21393;
       term = signature_of_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22869;
+        break Fail21393;
       term = $Declare$Cookie_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22869;
-      term = equal_0_1.instance.invoke(context, term, a_4747);
+        break Fail21393;
+      term = equal_0_1.instance.invoke(context, term, i_4193);
       if(term == null)
-        break Fail22869;
-      term = b_4747;
+        break Fail21393;
+      term = j_4193;
       context.popOnSuccess();
       if(true)
         return term;

@@ -22,41 +22,41 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("DYNAMIC__CALLS_0_0");
-    Fail87756:
+    Fail22948:
     { 
-      IStrategoTerm term47318 = term;
-      Success47295:
+      IStrategoTerm term12231 = term;
+      Success12208:
       { 
-        Fail87757:
+        Fail22949:
         { 
-          IStrategoTerm b_17577 = null;
-          b_17577 = term;
-          term = undefine_get_config_reference_0_1.instance.invoke(context, b_17577, trans.const17853);
+          IStrategoTerm e_4633 = null;
+          e_4633 = term;
+          term = undefine_get_config_reference_0_1.instance.invoke(context, e_4633, trans.const4466);
           if(term == null)
-            break Fail87757;
+            break Fail22949;
           if(true)
-            break Success47295;
+            break Success12208;
         }
-        term = term47318;
-        IStrategoTerm term47319 = term;
-        Success47296:
+        term = term12231;
+        IStrategoTerm term12232 = term;
+        Success12209:
         { 
-          Fail87758:
+          Fail22950:
           { 
-            IStrategoTerm z_17576 = null;
-            z_17576 = term;
-            term = undefine_$Current$File_0_1.instance.invoke(context, z_17576, trans.const17853);
+            IStrategoTerm c_4633 = null;
+            c_4633 = term;
+            term = undefine_$Current$File_0_1.instance.invoke(context, c_4633, trans.const4466);
             if(term == null)
-              break Fail87758;
+              break Fail22950;
             if(true)
-              break Success47296;
+              break Success12209;
           }
-          term = term47319;
-          IStrategoTerm x_17576 = null;
-          x_17576 = term;
-          term = undefine_$Is$Imported_0_1.instance.invoke(context, x_17576, trans.const17853);
+          term = term12232;
+          IStrategoTerm a_4633 = null;
+          a_4633 = term;
+          term = undefine_$Is$Imported_0_1.instance.invoke(context, a_4633, trans.const4466);
           if(term == null)
-            break Fail87756;
+            break Fail22948;
         }
       }
       context.popOnSuccess();

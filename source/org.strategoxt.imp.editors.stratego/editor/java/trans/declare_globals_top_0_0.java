@@ -23,71 +23,71 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("declare_globals_top_0_0");
-    Fail23078:
+    Fail21602:
     { 
-      IStrategoTerm term12403 = term;
-      Success12327:
+      IStrategoTerm term11694 = term;
+      Success11618:
       { 
-        Fail23079:
+        Fail21603:
         { 
-          IStrategoTerm z_4776 = null;
-          z_4776 = term;
-          IStrategoTerm term12404 = term;
-          Success12328:
+          IStrategoTerm h_4223 = null;
+          h_4223 = term;
+          IStrategoTerm term11695 = term;
+          Success11619:
           { 
-            Fail23080:
+            Fail21604:
             { 
               term = $No$Analysis_0_0.instance.invoke(context, term);
               if(term == null)
-                break Fail23080;
+                break Fail21604;
               { 
                 if(true)
-                  break Fail23079;
+                  break Fail21603;
                 if(true)
-                  break Success12328;
+                  break Success11619;
               }
             }
-            term = term12404;
+            term = term11695;
           }
-          term = z_4776;
+          term = h_4223;
           { 
-            IStrategoTerm a_4777 = null;
-            a_4777 = term;
-            IStrategoTerm term12405 = term;
-            Success12329:
+            IStrategoTerm i_4223 = null;
+            i_4223 = term;
+            IStrategoTerm term11696 = term;
+            Success11620:
             { 
-              Fail23081:
+              Fail21605:
               { 
                 term = declare_globals_0_0.instance.invoke(context, trans.constImport0);
                 if(term == null)
-                  break Fail23081;
+                  break Fail21605;
                 if(true)
-                  break Success12329;
+                  break Success11620;
               }
-              term = term12405;
-              TermReference b_4777 = new TermReference();
-              if(b_4777.value == null)
-                b_4777.value = term;
+              term = term11696;
+              TermReference j_4223 = new TermReference();
+              if(j_4223.value == null)
+                j_4223.value = term;
               else
-                if(b_4777.value != term && !b_4777.value.match(term))
-                  break Fail23078;
+                if(j_4223.value != term && !j_4223.value.match(term))
+                  break Fail21602;
               term = context.invokePrimitive("SSL_stacktrace_get_all_frame_names", term, NO_STRATEGIES, NO_TERMS);
               if(term == null)
-                break Fail23078;
-              lifted6849 lifted68490 = new lifted6849();
-              lifted68490.b_4777 = b_4777;
-              term = report_failure_1_0.instance.invoke(context, term, lifted68490);
+                break Fail21602;
+              lifted6578 lifted65780 = new lifted6578();
+              lifted65780.j_4223 = j_4223;
+              term = report_failure_1_0.instance.invoke(context, term, lifted65780);
               if(term == null)
-                break Fail23078;
+                break Fail21602;
             }
-            term = alltd_1_0.instance.invoke(context, a_4777, lifted6850.instance);
+            term = alltd_1_0.instance.invoke(context, i_4223, lifted6579.instance);
             if(term == null)
-              break Fail23078;
+              break Fail21602;
             if(true)
-              break Success12327;
+              break Success11618;
           }
         }
-        term = term12403;
+        term = term11694;
       }
       context.popOnSuccess();
       if(true)

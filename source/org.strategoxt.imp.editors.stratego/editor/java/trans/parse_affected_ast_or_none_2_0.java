@@ -20,28 +20,28 @@ import java.lang.ref.WeakReference;
 { 
   public static parse_affected_ast_or_none_2_0 instance = new parse_affected_ast_or_none_2_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy k_4737, Strategy l_4737)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy s_4183, Strategy t_4183)
   { 
     context.push("parse_affected_ast_or_none_2_0");
-    Fail22826:
+    Fail21350:
     { 
-      IStrategoTerm i_4737 = null;
-      i_4737 = term;
-      term = i_4737;
-      IStrategoTerm term12197 = term;
-      Success12164:
+      IStrategoTerm q_4183 = null;
+      q_4183 = term;
+      term = q_4183;
+      IStrategoTerm term11488 = term;
+      Success11455:
       { 
-        Fail22827:
+        Fail21351:
         { 
-          term = reject_ast_from_cache_2_0.instance.invoke(context, term, k_4737, l_4737);
+          term = reject_ast_from_cache_2_0.instance.invoke(context, term, s_4183, t_4183);
           if(term == null)
-            break Fail22827;
+            break Fail21351;
           if(true)
-            break Success12164;
+            break Success11455;
         }
-        term = reject_or_get_ast_from_parsing_1_0.instance.invoke(context, term12197, k_4737);
+        term = reject_or_get_ast_from_parsing_1_0.instance.invoke(context, term11488, s_4183);
         if(term == null)
-          break Fail22826;
+          break Fail21350;
       }
       context.popOnSuccess();
       if(true)

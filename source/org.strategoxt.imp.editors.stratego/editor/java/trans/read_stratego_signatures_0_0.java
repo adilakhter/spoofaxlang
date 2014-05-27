@@ -24,103 +24,103 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("read_stratego_signatures_0_0");
-    Fail23134:
+    Fail21658:
     { 
-      IStrategoTerm f_4788 = null;
-      IStrategoTerm g_4788 = null;
-      IStrategoTerm h_4788 = null;
-      g_4788 = term;
-      IStrategoTerm term12467 = term;
-      Success12374:
+      IStrategoTerm n_4234 = null;
+      IStrategoTerm o_4234 = null;
+      IStrategoTerm p_4234 = null;
+      o_4234 = term;
+      IStrategoTerm term11758 = term;
+      Success11665:
       { 
-        Fail23135:
+        Fail21659:
         { 
           term = fetch_library_ast_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail23135;
-          h_4788 = term;
+            break Fail21659;
+          p_4234 = term;
           if(true)
-            break Success12374;
+            break Success11665;
         }
-        term = term12467;
-        IStrategoTerm p_4788 = null;
-        p_4788 = term;
-        term = guarantee_extension_0_1.instance.invoke(context, p_4788, trans.const4578);
+        term = term11758;
+        IStrategoTerm x_4234 = null;
+        x_4234 = term;
+        term = guarantee_extension_0_1.instance.invoke(context, x_4234, trans.const4368);
         if(term == null)
-          break Fail23134;
-        f_4788 = term;
-        Success12375:
+          break Fail21658;
+        n_4234 = term;
+        Success11666:
         { 
-          Fail23136:
+          Fail21660:
           { 
-            IStrategoTerm i_4788 = null;
-            i_4788 = term;
-            IStrategoTerm term12469 = term;
-            Success12376:
+            IStrategoTerm q_4234 = null;
+            q_4234 = term;
+            IStrategoTerm term11760 = term;
+            Success11667:
             { 
-              Fail23137:
+              Fail21661:
               { 
-                term = termFactory.makeTuple(f_4788, g_4788);
+                term = termFactory.makeTuple(n_4234, o_4234);
                 term = is_newer_0_0.instance.invoke(context, term);
                 if(term == null)
-                  break Fail23137;
+                  break Fail21661;
                 if(true)
-                  break Success12376;
+                  break Success11667;
               }
-              term = term12469;
-              Success12377:
+              term = term11760;
+              Success11668:
               { 
-                Fail23138:
+                Fail21662:
                 { 
-                  IStrategoTerm term12471 = term;
-                  Success12378:
+                  IStrategoTerm term11762 = term;
+                  Success11669:
                   { 
-                    Fail23139:
+                    Fail21663:
                     { 
-                      term = file_exists_0_0.instance.invoke(context, g_4788);
+                      term = file_exists_0_0.instance.invoke(context, o_4234);
                       if(term == null)
-                        break Fail23139;
+                        break Fail21663;
                       { 
                         if(true)
-                          break Fail23138;
+                          break Fail21662;
                         if(true)
-                          break Success12378;
+                          break Success11669;
                       }
                     }
-                    term = term12471;
+                    term = term11762;
                   }
                   if(true)
-                    break Success12377;
+                    break Success11668;
                 }
-                IStrategoTerm r_4788 = null;
-                r_4788 = g_4788;
-                term = has_extension_0_1.instance.invoke(context, r_4788, trans.const4578);
+                IStrategoTerm z_4234 = null;
+                z_4234 = o_4234;
+                term = has_extension_0_1.instance.invoke(context, z_4234, trans.const4368);
                 if(term == null)
-                  break Fail23136;
+                  break Fail21660;
               }
             }
-            term = i_4788;
+            term = q_4234;
             { 
-              term = file_exists_0_0.instance.invoke(context, f_4788);
+              term = file_exists_0_0.instance.invoke(context, n_4234);
               if(term == null)
-                break Fail23134;
+                break Fail21658;
               term = $Read$From$File_0_0.instance.invoke(context, term);
               if(term == null)
-                break Fail23134;
-              h_4788 = term;
+                break Fail21658;
+              p_4234 = term;
               if(true)
-                break Success12375;
+                break Success11666;
             }
           }
-          term = parse_stratego_file_0_0.instance.invoke(context, g_4788);
+          term = parse_stratego_file_0_0.instance.invoke(context, o_4234);
           if(term == null)
-            break Fail23134;
-          h_4788 = term;
+            break Fail21658;
+          p_4234 = term;
         }
       }
-      term = to_signatures_0_0.instance.invoke(context, h_4788);
+      term = to_signatures_0_0.instance.invoke(context, p_4234);
       if(term == null)
-        break Fail23134;
+        break Fail21658;
       context.popOnSuccess();
       if(true)
         return term;

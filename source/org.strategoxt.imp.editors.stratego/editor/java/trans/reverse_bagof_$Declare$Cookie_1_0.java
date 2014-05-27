@@ -20,95 +20,95 @@ import java.lang.ref.WeakReference;
 { 
   public static reverse_bagof_$Declare$Cookie_1_0 instance = new reverse_bagof_$Declare$Cookie_1_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy d_4899)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy l_4345)
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("reverse_bagof_DeclareCookie_1_0");
-    Fail23647:
+    Fail22171:
     { 
-      IStrategoTerm term12789 = term;
-      Success12659:
+      IStrategoTerm term12080 = term;
+      Success11950:
       { 
-        Fail23648:
+        Fail22172:
         { 
-          TermReference i_4875 = new TermReference();
-          TermReference j_4875 = new TermReference();
-          if(j_4875.value == null)
-            j_4875.value = term;
+          TermReference q_4321 = new TermReference();
+          TermReference r_4321 = new TermReference();
+          if(r_4321.value == null)
+            r_4321.value = term;
           else
-            if(j_4875.value != term && !j_4875.value.match(term))
-              break Fail23648;
-          if(i_4875.value == null)
-            i_4875.value = term;
+            if(r_4321.value != term && !r_4321.value.match(term))
+              break Fail22172;
+          if(q_4321.value == null)
+            q_4321.value = term;
           else
-            if(i_4875.value != term && !i_4875.value.match(term))
-              break Fail23648;
-          Success12660:
+            if(q_4321.value != term && !q_4321.value.match(term))
+              break Fail22172;
+          Success11951:
           { 
-            Fail23649:
+            Fail22173:
             { 
-              IStrategoTerm o_4875 = null;
-              o_4875 = term;
-              term = dr_lookup_rule_0_2.instance.invoke(context, o_4875, trans.const4568, j_4875.value);
+              IStrategoTerm w_4321 = null;
+              w_4321 = term;
+              term = dr_lookup_rule_0_2.instance.invoke(context, w_4321, trans.const4358, r_4321.value);
               if(term == null)
-                break Fail23649;
+                break Fail22173;
               if(true)
-                break Success12660;
+                break Success11951;
             }
-            term = trans.constNil4;
+            term = trans.constNil3;
           }
-          lifted7060 lifted70600 = new lifted7060();
-          lifted70600.i_4875 = i_4875;
-          lifted70600.j_4875 = j_4875;
-          term = reverse_filter_2_0.instance.invoke(context, term, lifted70600, d_4899);
+          lifted6789 lifted67890 = new lifted6789();
+          lifted67890.q_4321 = q_4321;
+          lifted67890.r_4321 = r_4321;
+          term = reverse_filter_2_0.instance.invoke(context, term, lifted67890, l_4345);
           if(term == null)
-            break Fail23648;
+            break Fail22172;
           if(true)
-            break Success12659;
+            break Success11950;
         }
-        term = term12789;
-        TermReference z_4874 = new TermReference();
-        TermReference a_4875 = new TermReference();
-        if(z_4874.value == null)
-          z_4874.value = term;
+        term = term12080;
+        TermReference h_4321 = new TermReference();
+        TermReference i_4321 = new TermReference();
+        if(h_4321.value == null)
+          h_4321.value = term;
         else
-          if(z_4874.value != term && !z_4874.value.match(term))
-            break Fail23647;
+          if(h_4321.value != term && !h_4321.value.match(term))
+            break Fail22171;
         if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 3)
-          break Fail23647;
-        if(a_4875.value == null)
-          a_4875.value = term.getSubterm(0);
+          break Fail22171;
+        if(i_4321.value == null)
+          i_4321.value = term.getSubterm(0);
         else
-          if(a_4875.value != term.getSubterm(0) && !a_4875.value.match(term.getSubterm(0)))
-            break Fail23647;
-        Success12661:
+          if(i_4321.value != term.getSubterm(0) && !i_4321.value.match(term.getSubterm(0)))
+            break Fail22171;
+        Success11952:
         { 
-          Fail23650:
+          Fail22174:
           { 
-            IStrategoTerm e_4875 = null;
-            IStrategoTerm g_4875 = null;
-            IStrategoTerm h_4875 = null;
-            g_4875 = term;
-            e_4875 = trans.const4568;
-            term = g_4875;
-            h_4875 = g_4875;
-            if(a_4875.value == null)
-              break Fail23650;
-            term = termFactory.annotateTerm(termFactory.makeTuple(a_4875.value, trans.constCons2047, trans.constCons2047), checkListAnnos(termFactory, trans.constCons2047));
-            term = dr_lookup_rule_0_2.instance.invoke(context, h_4875, e_4875, term);
+            IStrategoTerm m_4321 = null;
+            IStrategoTerm o_4321 = null;
+            IStrategoTerm p_4321 = null;
+            o_4321 = term;
+            m_4321 = trans.const4358;
+            term = o_4321;
+            p_4321 = o_4321;
+            if(i_4321.value == null)
+              break Fail22174;
+            term = termFactory.annotateTerm(termFactory.makeTuple(i_4321.value, trans.constCons1966, trans.constCons1966), checkListAnnos(termFactory, trans.constCons1966));
+            term = dr_lookup_rule_0_2.instance.invoke(context, p_4321, m_4321, term);
             if(term == null)
-              break Fail23650;
+              break Fail22174;
             if(true)
-              break Success12661;
+              break Success11952;
           }
-          term = trans.constNil4;
+          term = trans.constNil3;
         }
-        lifted7061 lifted70610 = new lifted7061();
-        lifted70610.a_4875 = a_4875;
-        lifted70610.z_4874 = z_4874;
-        term = reverse_filter_2_0.instance.invoke(context, term, lifted70610, d_4899);
+        lifted6790 lifted67900 = new lifted6790();
+        lifted67900.i_4321 = i_4321;
+        lifted67900.h_4321 = h_4321;
+        term = reverse_filter_2_0.instance.invoke(context, term, lifted67900, l_4345);
         if(term == null)
-          break Fail23647;
+          break Fail22171;
       }
       context.popOnSuccess();
       if(true)

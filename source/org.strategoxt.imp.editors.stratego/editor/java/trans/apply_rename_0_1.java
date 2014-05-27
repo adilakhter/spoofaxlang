@@ -20,40 +20,40 @@ import java.lang.ref.WeakReference;
 { 
   public static apply_rename_0_1 instance = new apply_rename_0_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm i_4741)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm q_4187)
   { 
     context.push("apply_rename_0_1");
-    Fail22850:
+    Fail21374:
     { 
-      IStrategoTerm j_4741 = null;
-      IStrategoTerm k_4741 = null;
-      IStrategoTerm l_4741 = null;
-      IStrategoTerm m_4741 = null;
-      m_4741 = term;
-      term = i_4741;
+      IStrategoTerm r_4187 = null;
+      IStrategoTerm s_4187 = null;
+      IStrategoTerm t_4187 = null;
+      IStrategoTerm u_4187 = null;
+      u_4187 = term;
+      term = q_4187;
       if(term.getTermType() != IStrategoTerm.LIST || ((IStrategoList)term).isEmpty())
-        break Fail22850;
-      IStrategoTerm arg8128 = ((IStrategoList)term).head();
-      if(arg8128.getTermType() != IStrategoTerm.TUPLE || arg8128.getSubtermCount() != 2)
-        break Fail22850;
-      j_4741 = arg8128.getSubterm(0);
-      k_4741 = arg8128.getSubterm(1);
-      l_4741 = ((IStrategoList)term).tail();
-      term = m_4741;
-      IStrategoTerm term12210 = term;
-      Success12176:
+        break Fail21374;
+      IStrategoTerm arg7661 = ((IStrategoList)term).head();
+      if(arg7661.getTermType() != IStrategoTerm.TUPLE || arg7661.getSubtermCount() != 2)
+        break Fail21374;
+      r_4187 = arg7661.getSubterm(0);
+      s_4187 = arg7661.getSubterm(1);
+      t_4187 = ((IStrategoList)term).tail();
+      term = u_4187;
+      IStrategoTerm term11501 = term;
+      Success11467:
       { 
-        Fail22851:
+        Fail21375:
         { 
-          term = apply_rename_0_2.instance.invoke(context, term, j_4741, k_4741);
+          term = apply_rename_0_2.instance.invoke(context, term, r_4187, s_4187);
           if(term == null)
-            break Fail22851;
+            break Fail21375;
           if(true)
-            break Success12176;
+            break Success11467;
         }
-        term = this.invoke(context, term12210, l_4741);
+        term = this.invoke(context, term11501, t_4187);
         if(term == null)
-          break Fail22850;
+          break Fail21374;
       }
       context.popOnSuccess();
       if(true)

@@ -20,39 +20,39 @@ import java.lang.ref.WeakReference;
 { 
   public static binding_violations_0_2 instance = new binding_violations_0_2();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm ref_t_4738, IStrategoTerm ref_u_4738)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm ref_b_4185, IStrategoTerm ref_c_4185)
   { 
     ITermFactory termFactory = context.getFactory();
-    TermReference t_4738 = new TermReference(ref_t_4738);
-    TermReference u_4738 = new TermReference(ref_u_4738);
+    TermReference b_4185 = new TermReference(ref_b_4185);
+    TermReference c_4185 = new TermReference(ref_c_4185);
     context.push("binding_violations_0_2");
-    Fail22837:
+    Fail21361:
     { 
-      IStrategoTerm v_4738 = null;
-      IStrategoTerm w_4738 = null;
-      IStrategoTerm x_4738 = null;
-      v_4738 = term;
-      term = v_4738;
-      lifted6779 lifted67790 = new lifted6779();
-      lifted67790.t_4738 = t_4738;
-      lifted67790.u_4738 = u_4738;
-      term = filter_1_0.instance.invoke(context, term, lifted67790);
+      IStrategoTerm d_4185 = null;
+      IStrategoTerm e_4185 = null;
+      IStrategoTerm f_4185 = null;
+      d_4185 = term;
+      term = d_4185;
+      lifted6508 lifted65080 = new lifted6508();
+      lifted65080.b_4185 = b_4185;
+      lifted65080.c_4185 = c_4185;
+      term = filter_1_0.instance.invoke(context, term, lifted65080);
       if(term == null)
-        break Fail22837;
-      lifted6780 lifted67800 = new lifted6780();
-      lifted67800.t_4738 = t_4738;
-      lifted67800.u_4738 = u_4738;
-      term = partition_1_0.instance.invoke(context, term, lifted67800);
+        break Fail21361;
+      lifted6509 lifted65090 = new lifted6509();
+      lifted65090.b_4185 = b_4185;
+      lifted65090.c_4185 = c_4185;
+      term = partition_1_0.instance.invoke(context, term, lifted65090);
       if(term == null)
-        break Fail22837;
+        break Fail21361;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-        break Fail22837;
-      w_4738 = term.getSubterm(0);
-      x_4738 = term.getSubterm(1);
-      term = make_set_0_0.instance.invoke(context, w_4738);
+        break Fail21361;
+      e_4185 = term.getSubterm(0);
+      f_4185 = term.getSubterm(1);
+      term = make_set_0_0.instance.invoke(context, e_4185);
       if(term == null)
-        break Fail22837;
-      term = termFactory.makeTuple(term, x_4738);
+        break Fail21361;
+      term = termFactory.makeTuple(term, f_4185);
       context.popOnSuccess();
       if(true)
         return term;

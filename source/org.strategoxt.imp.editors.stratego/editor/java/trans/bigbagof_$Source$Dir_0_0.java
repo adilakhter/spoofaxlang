@@ -23,37 +23,37 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("bigbagof_SourceDir_0_0");
-    Fail23470:
+    Fail21994:
     { 
-      TermReference j_4844 = new TermReference();
-      if(j_4844.value == null)
-        j_4844.value = term;
+      TermReference r_4290 = new TermReference();
+      if(r_4290.value == null)
+        r_4290.value = term;
       else
-        if(j_4844.value != term && !j_4844.value.match(term))
-          break Fail23470;
-      Success12598:
+        if(r_4290.value != term && !r_4290.value.match(term))
+          break Fail21994;
+      Success11889:
       { 
-        Fail23471:
+        Fail21995:
         { 
-          IStrategoTerm m_4844 = null;
-          IStrategoTerm o_4844 = null;
-          IStrategoTerm p_4844 = null;
-          o_4844 = term;
-          m_4844 = trans.const4552;
-          p_4844 = o_4844;
-          term = dr_lookup_all_rules_0_2.instance.invoke(context, p_4844, m_4844, trans.constCons2047);
+          IStrategoTerm u_4290 = null;
+          IStrategoTerm w_4290 = null;
+          IStrategoTerm x_4290 = null;
+          w_4290 = term;
+          u_4290 = trans.const4342;
+          x_4290 = w_4290;
+          term = dr_lookup_all_rules_0_2.instance.invoke(context, x_4290, u_4290, trans.constCons1966);
           if(term == null)
-            break Fail23471;
+            break Fail21995;
           if(true)
-            break Success12598;
+            break Success11889;
         }
-        term = trans.constNil4;
+        term = trans.constNil3;
       }
-      lifted6998 lifted69980 = new lifted6998();
-      lifted69980.j_4844 = j_4844;
-      term = filter_1_0.instance.invoke(context, term, lifted69980);
+      lifted6727 lifted67270 = new lifted6727();
+      lifted67270.r_4290 = r_4290;
+      term = filter_1_0.instance.invoke(context, term, lifted67270);
       if(term == null)
-        break Fail23470;
+        break Fail21994;
       context.popOnSuccess();
       if(true)
         return term;

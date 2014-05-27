@@ -24,33 +24,33 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("bigchain_OuterCookie_0_0");
-    Fail23725:
+    Fail22249:
     { 
-      IStrategoTerm o_4887 = null;
-      IStrategoTerm r_4887 = null;
-      IStrategoTerm t_4887 = null;
-      o_4887 = term;
-      t_4887 = term;
-      Success12683:
+      IStrategoTerm w_4333 = null;
+      IStrategoTerm z_4333 = null;
+      IStrategoTerm b_4334 = null;
+      w_4333 = term;
+      b_4334 = term;
+      Success11974:
       { 
-        Fail23726:
+        Fail22250:
         { 
-          IStrategoTerm v_4887 = null;
-          v_4887 = term;
-          term = dr_lookup_all_rules_0_2.instance.invoke(context, v_4887, trans.const4604, o_4887);
+          IStrategoTerm d_4334 = null;
+          d_4334 = term;
+          term = dr_lookup_all_rules_0_2.instance.invoke(context, d_4334, trans.const4394, w_4333);
           if(term == null)
-            break Fail23726;
+            break Fail22250;
           if(true)
-            break Success12683;
+            break Success11974;
         }
-        term = trans.constNil4;
+        term = trans.constNil3;
       }
-      r_4887 = term;
-      term = t_4887;
-      term = termFactory.makeTuple(r_4887, term);
-      term = foldl_1_0.instance.invoke(context, term, lifted7087.instance);
+      z_4333 = term;
+      term = b_4334;
+      term = termFactory.makeTuple(z_4333, term);
+      term = foldl_1_0.instance.invoke(context, term, lifted6816.instance);
       if(term == null)
-        break Fail23725;
+        break Fail22249;
       context.popOnSuccess();
       if(true)
         return term;

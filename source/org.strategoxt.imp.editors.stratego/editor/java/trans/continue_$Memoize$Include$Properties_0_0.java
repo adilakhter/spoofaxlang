@@ -23,13 +23,13 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("continue_MemoizeIncludeProperties_0_0");
-    Fail23689:
+    Fail22213:
     { 
-      IStrategoTerm o_4881 = null;
-      o_4881 = term;
-      term = dr_continue_0_1.instance.invoke(context, o_4881, trans.const4584);
+      IStrategoTerm w_4327 = null;
+      w_4327 = term;
+      term = dr_continue_0_1.instance.invoke(context, w_4327, trans.const4374);
       if(term == null)
-        break Fail23689;
+        break Fail22213;
       context.popOnSuccess();
       if(true)
         return term;

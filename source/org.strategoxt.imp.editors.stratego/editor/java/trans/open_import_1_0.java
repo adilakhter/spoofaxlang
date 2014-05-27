@@ -20,41 +20,41 @@ import java.lang.ref.WeakReference;
 { 
   public static open_import_1_0 instance = new open_import_1_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy p_4782)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy x_4228)
   { 
     context.push("open_import_1_0");
-    Fail23100:
+    Fail21624:
     { 
-      IStrategoTerm m_4782 = null;
-      IStrategoTerm q_4782 = null;
-      q_4782 = term;
-      IStrategoTerm term12424 = term;
-      Success12347:
+      IStrategoTerm u_4228 = null;
+      IStrategoTerm y_4228 = null;
+      y_4228 = term;
+      IStrategoTerm term11715 = term;
+      Success11638:
       { 
-        Fail23101:
+        Fail21625:
         { 
-          m_4782 = term;
+          u_4228 = term;
           if(true)
-            break Success12347;
+            break Success11638;
         }
-        term = term12424;
-        IStrategoTerm n_4782 = null;
-        IStrategoTerm o_4782 = null;
-        IStrategoTerm u_4782 = null;
-        n_4782 = term;
+        term = term11715;
+        IStrategoTerm v_4228 = null;
+        IStrategoTerm w_4228 = null;
+        IStrategoTerm c_4229 = null;
+        v_4228 = term;
         term = context.invokePrimitive("SSL_stacktrace_get_all_frame_names", term, NO_STRATEGIES, NO_TERMS);
         if(term == null)
-          break Fail23100;
-        o_4782 = term;
-        u_4782 = n_4782;
-        term = report_with_failure_0_2.instance.invoke(context, u_4782, trans.const4579, o_4782);
+          break Fail21624;
+        w_4228 = term;
+        c_4229 = v_4228;
+        term = report_with_failure_0_2.instance.invoke(context, c_4229, trans.const4369, w_4228);
         if(term == null)
-          break Fail23100;
+          break Fail21624;
       }
-      term = q_4782;
-      if(m_4782 == null)
-        break Fail23100;
-      term = m_4782;
+      term = y_4228;
+      if(u_4228 == null)
+        break Fail21624;
+      term = u_4228;
       context.popOnSuccess();
       if(true)
         return term;

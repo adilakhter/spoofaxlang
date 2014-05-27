@@ -24,29 +24,29 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("remove_debug_refactoring_0_0");
-    Fail22717:
+    Fail21241:
     { 
-      IStrategoTerm w_4716 = null;
-      IStrategoTerm x_4716 = null;
-      IStrategoTerm y_4716 = null;
-      IStrategoTerm z_4716 = null;
-      IStrategoTerm a_4717 = null;
+      IStrategoTerm e_4163 = null;
+      IStrategoTerm f_4163 = null;
+      IStrategoTerm g_4163 = null;
+      IStrategoTerm h_4163 = null;
+      IStrategoTerm i_4163 = null;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 6)
-        break Fail22717;
-      w_4716 = term.getSubterm(1);
-      term = bottomup_1_0.instance.invoke(context, w_4716, lifted6698.instance);
+        break Fail21241;
+      e_4163 = term.getSubterm(1);
+      term = bottomup_1_0.instance.invoke(context, e_4163, lifted6427.instance);
       if(term == null)
-        break Fail22717;
-      term = (IStrategoTerm)termFactory.makeListCons(termFactory.makeTuple(w_4716, term), (IStrategoList)trans.constNil4);
-      x_4716 = term;
-      y_4716 = trans.constNil4;
-      z_4716 = trans.constNil4;
-      a_4717 = trans.constNil4;
-      term = termFactory.makeTuple(y_4716, z_4716);
+        break Fail21241;
+      term = (IStrategoTerm)termFactory.makeListCons(termFactory.makeTuple(e_4163, term), (IStrategoList)trans.constNil3);
+      f_4163 = term;
+      g_4163 = trans.constNil3;
+      h_4163 = trans.constNil3;
+      i_4163 = trans.constNil3;
+      term = termFactory.makeTuple(g_4163, h_4163);
       term = conc_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22717;
-      term = termFactory.makeTuple(x_4716, trans.constNil4, term, a_4717);
+        break Fail21241;
+      term = termFactory.makeTuple(f_4163, trans.constNil3, term, i_4163);
       context.popOnSuccess();
       if(true)
         return term;

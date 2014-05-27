@@ -23,28 +23,28 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("is_spoofax_dir_0_0");
-    Fail22822:
+    Fail21346:
     { 
-      TermReference o_4735 = new TermReference();
-      IStrategoTerm p_4735 = null;
-      if(o_4735.value == null)
-        o_4735.value = term;
+      TermReference w_4181 = new TermReference();
+      IStrategoTerm x_4181 = null;
+      if(w_4181.value == null)
+        w_4181.value = term;
       else
-        if(o_4735.value != term && !o_4735.value.match(term))
-          break Fail22822;
-      p_4735 = term;
+        if(w_4181.value != term && !w_4181.value.match(term))
+          break Fail21346;
+      x_4181 = term;
       term = spoofax_dirs_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22822;
-      lifted6772 lifted67720 = new lifted6772();
-      lifted67720.o_4735 = o_4735;
-      term = fetch_1_0.instance.invoke(context, term, lifted67720);
+        break Fail21346;
+      lifted6501 lifted65010 = new lifted6501();
+      lifted65010.w_4181 = w_4181;
+      term = fetch_1_0.instance.invoke(context, term, lifted65010);
       if(term == null)
-        break Fail22822;
-      term = p_4735;
-      if(o_4735.value == null)
-        break Fail22822;
-      term = o_4735.value;
+        break Fail21346;
+      term = x_4181;
+      if(w_4181.value == null)
+        break Fail21346;
+      term = w_4181.value;
       context.popOnSuccess();
       if(true)
         return term;

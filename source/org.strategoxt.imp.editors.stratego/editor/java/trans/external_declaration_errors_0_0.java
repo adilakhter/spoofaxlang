@@ -24,87 +24,87 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("external_declaration_errors_0_0");
-    Fail22870:
+    Fail21394:
     { 
-      IStrategoTerm d_4747 = null;
-      TermReference e_4747 = new TermReference();
-      IStrategoTerm j_4747 = null;
-      IStrategoTerm k_4747 = null;
-      IStrategoTerm l_4747 = null;
-      IStrategoTerm m_4747 = null;
-      TermReference p_5053 = new TermReference();
-      TermReference q_5053 = new TermReference();
-      IStrategoTerm u_5053 = null;
-      IStrategoTerm v_5053 = null;
-      IStrategoTerm r_5053 = null;
-      IStrategoTerm s_5053 = null;
-      if(e_4747.value == null)
-        e_4747.value = term;
+      IStrategoTerm l_4193 = null;
+      TermReference m_4193 = new TermReference();
+      IStrategoTerm r_4193 = null;
+      IStrategoTerm s_4193 = null;
+      IStrategoTerm t_4193 = null;
+      IStrategoTerm u_4193 = null;
+      TermReference x_4499 = new TermReference();
+      TermReference y_4499 = new TermReference();
+      IStrategoTerm c_4500 = null;
+      IStrategoTerm d_4500 = null;
+      IStrategoTerm z_4499 = null;
+      IStrategoTerm a_4500 = null;
+      if(m_4193.value == null)
+        m_4193.value = term;
       else
-        if(e_4747.value != term && !e_4747.value.match(term))
-          break Fail22870;
+        if(m_4193.value != term && !m_4193.value.match(term))
+          break Fail21394;
       term = project_path_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22870;
-      l_4747 = term;
-      j_4747 = trans.const4467;
-      term = l_4747;
-      m_4747 = l_4747;
+        break Fail21394;
+      t_4193 = term;
+      r_4193 = trans.const4257;
+      term = t_4193;
+      u_4193 = t_4193;
       term = dirs_with_generated_files_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22870;
-      k_4747 = term;
-      u_5053 = m_4747;
-      term = j_4747;
-      if(p_5053.value == null)
-        p_5053.value = term;
+        break Fail21394;
+      s_4193 = term;
+      c_4500 = u_4193;
+      term = r_4193;
+      if(x_4499.value == null)
+        x_4499.value = term;
       else
-        if(p_5053.value != term && !p_5053.value.match(term))
-          break Fail22870;
-      v_5053 = u_5053;
-      term = k_4747;
-      if(q_5053.value == null)
-        q_5053.value = term;
+        if(x_4499.value != term && !x_4499.value.match(term))
+          break Fail21394;
+      d_4500 = c_4500;
+      term = s_4193;
+      if(y_4499.value == null)
+        y_4499.value = term;
       else
-        if(q_5053.value != term && !q_5053.value.match(term))
-          break Fail22870;
-      r_5053 = v_5053;
-      term = r_5053;
-      lifted6801 lifted68010 = new lifted6801();
-      lifted6800 lifted68000 = new lifted6800();
-      lifted68010.q_5053 = q_5053;
-      lifted68000.p_5053 = p_5053;
-      term = get_source_files_2_0.instance.invoke(context, term, lifted68000, lifted68010);
+        if(y_4499.value != term && !y_4499.value.match(term))
+          break Fail21394;
+      z_4499 = d_4500;
+      term = z_4499;
+      lifted6530 lifted65300 = new lifted6530();
+      lifted6529 lifted65290 = new lifted6529();
+      lifted65300.y_4499 = y_4499;
+      lifted65290.x_4499 = x_4499;
+      term = get_source_files_2_0.instance.invoke(context, term, lifted65290, lifted65300);
       if(term == null)
-        break Fail22870;
-      s_5053 = term;
-      term = s_5053;
-      lifted6802 lifted68020 = new lifted6802();
-      lifted68020.e_4747 = e_4747;
-      term = filter_1_0.instance.invoke(context, term, lifted68020);
+        break Fail21394;
+      a_4500 = term;
+      term = a_4500;
+      lifted6531 lifted65310 = new lifted6531();
+      lifted65310.m_4193 = m_4193;
+      term = filter_1_0.instance.invoke(context, term, lifted65310);
       if(term == null)
-        break Fail22870;
-      d_4747 = term;
-      if(e_4747.value == null)
-        break Fail22870;
-      term = e_4747.value;
-      Success12186:
+        break Fail21394;
+      l_4193 = term;
+      if(m_4193.value == null)
+        break Fail21394;
+      term = m_4193.value;
+      Success11477:
       { 
-        Fail22871:
+        Fail21395:
         { 
           term = declared_in_external_lib_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail22871;
-          term = (IStrategoTerm)termFactory.makeListCons(term, (IStrategoList)trans.constNil4);
+            break Fail21395;
+          term = (IStrategoTerm)termFactory.makeListCons(term, (IStrategoList)trans.constNil3);
           if(true)
-            break Success12186;
+            break Success11477;
         }
-        term = trans.constNil4;
+        term = trans.constNil3;
       }
-      term = termFactory.makeTuple(d_4747, term);
+      term = termFactory.makeTuple(l_4193, term);
       term = conc_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22870;
+        break Fail21394;
       context.popOnSuccess();
       if(true)
         return term;

@@ -22,31 +22,31 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("IsImported_0_0");
-    Fail87834:
+    Fail23026:
     { 
-      TermReference u_17589 = new TermReference();
-      TermReference v_17589 = new TermReference();
-      IStrategoTerm z_17589 = null;
-      if(v_17589.value == null)
-        v_17589.value = term;
+      TermReference x_4645 = new TermReference();
+      TermReference y_4645 = new TermReference();
+      IStrategoTerm c_4646 = null;
+      if(y_4645.value == null)
+        y_4645.value = term;
       else
-        if(v_17589.value != term && !v_17589.value.match(term))
-          break Fail87834;
-      if(u_17589.value == null)
-        u_17589.value = term;
+        if(y_4645.value != term && !y_4645.value.match(term))
+          break Fail23026;
+      if(x_4645.value == null)
+        x_4645.value = term;
       else
-        if(u_17589.value != term && !u_17589.value.match(term))
-          break Fail87834;
-      z_17589 = term;
-      term = dr_lookup_rule_0_2.instance.invoke(context, z_17589, trans.const17874, v_17589.value);
+        if(x_4645.value != term && !x_4645.value.match(term))
+          break Fail23026;
+      c_4646 = term;
+      term = dr_lookup_rule_0_2.instance.invoke(context, c_4646, trans.const4487, y_4645.value);
       if(term == null)
-        break Fail87834;
-      lifted24796 lifted247960 = new lifted24796();
-      lifted247960.u_17589 = u_17589;
-      lifted247960.v_17589 = v_17589;
-      term = fetch_elem_1_0.instance.invoke(context, term, lifted247960);
+        break Fail23026;
+      lifted6911 lifted69110 = new lifted6911();
+      lifted69110.x_4645 = x_4645;
+      lifted69110.y_4645 = y_4645;
+      term = fetch_elem_1_0.instance.invoke(context, term, lifted69110);
       if(term == null)
-        break Fail87834;
+        break Fail23026;
       context.popOnSuccess();
       if(true)
         return term;

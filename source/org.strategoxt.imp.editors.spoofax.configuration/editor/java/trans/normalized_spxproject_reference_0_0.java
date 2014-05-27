@@ -23,45 +23,45 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("normalized_spxproject_reference_0_0");
-    Fail87601:
+    Fail22793:
     { 
-      IStrategoTerm r_17558 = null;
-      IStrategoTerm s_17558 = null;
-      IStrategoTerm v_17558 = null;
+      IStrategoTerm u_4614 = null;
+      IStrategoTerm v_4614 = null;
+      IStrategoTerm y_4614 = null;
       if(term.getTermType() != IStrategoTerm.APPL || Main._consSpxProjects_1 != ((IStrategoAppl)term).getConstructor())
-        break Fail87601;
-      r_17558 = term.getSubterm(0);
-      v_17558 = term;
-      IStrategoTerm term47237 = term;
-      Success47228:
+        break Fail22793;
+      u_4614 = term.getSubterm(0);
+      y_4614 = term;
+      IStrategoTerm term12150 = term;
+      Success12141:
       { 
-        Fail87602:
+        Fail22794:
         { 
-          term = map_1_0.instance.invoke(context, r_17558, annotate_project_location_0_0.instance);
+          term = map_1_0.instance.invoke(context, u_4614, annotate_project_location_0_0.instance);
           if(term == null)
-            break Fail87602;
-          s_17558 = term;
+            break Fail22794;
+          v_4614 = term;
           if(true)
-            break Success47228;
+            break Success12141;
         }
-        term = term47237;
-        IStrategoTerm t_17558 = null;
-        IStrategoTerm u_17558 = null;
-        IStrategoTerm x_17558 = null;
-        t_17558 = term;
+        term = term12150;
+        IStrategoTerm w_4614 = null;
+        IStrategoTerm x_4614 = null;
+        IStrategoTerm a_4615 = null;
+        w_4614 = term;
         term = context.invokePrimitive("SSL_stacktrace_get_all_frame_names", term, NO_STRATEGIES, NO_TERMS);
         if(term == null)
-          break Fail87601;
-        u_17558 = term;
-        x_17558 = t_17558;
-        term = report_with_failure_0_2.instance.invoke(context, x_17558, trans.const17857, u_17558);
+          break Fail22793;
+        x_4614 = term;
+        a_4615 = w_4614;
+        term = report_with_failure_0_2.instance.invoke(context, a_4615, trans.const4470, x_4614);
         if(term == null)
-          break Fail87601;
+          break Fail22793;
       }
-      term = v_17558;
-      if(s_17558 == null)
-        break Fail87601;
-      term = termFactory.makeAppl(Main._consSpxProjects_1, new IStrategoTerm[]{s_17558});
+      term = y_4614;
+      if(v_4614 == null)
+        break Fail22793;
+      term = termFactory.makeAppl(Main._consSpxProjects_1, new IStrategoTerm[]{v_4614});
       context.popOnSuccess();
       if(true)
         return term;

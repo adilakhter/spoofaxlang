@@ -24,75 +24,75 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("mk_defs_for_selection_0_0");
-    Fail22746:
+    Fail21270:
     { 
-      IStrategoTerm g_4720 = null;
-      IStrategoTerm h_4720 = null;
-      IStrategoTerm i_4720 = null;
-      IStrategoTerm j_4720 = null;
-      IStrategoTerm k_4720 = null;
-      IStrategoTerm l_4720 = null;
-      IStrategoTerm m_4720 = null;
-      IStrategoTerm n_4720 = null;
-      IStrategoTerm o_4720 = null;
+      IStrategoTerm o_4166 = null;
+      IStrategoTerm p_4166 = null;
+      IStrategoTerm q_4166 = null;
+      IStrategoTerm r_4166 = null;
+      IStrategoTerm s_4166 = null;
+      IStrategoTerm t_4166 = null;
+      IStrategoTerm u_4166 = null;
+      IStrategoTerm v_4166 = null;
+      IStrategoTerm w_4166 = null;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-        break Fail22746;
-      l_4720 = term.getSubterm(0);
-      j_4720 = term.getSubterm(1);
-      term = termFactory.makeAppl(Main._consSDefT_4, new IStrategoTerm[]{l_4720, trans.constNil4, trans.constNil4, j_4720});
-      term = debug_1_0.instance.invoke(context, term, lifted6705.instance);
+        break Fail21270;
+      t_4166 = term.getSubterm(0);
+      r_4166 = term.getSubterm(1);
+      term = termFactory.makeAppl(Main._consSDefT_4, new IStrategoTerm[]{t_4166, trans.constNil3, trans.constNil3, r_4166});
+      term = debug_1_0.instance.invoke(context, term, lifted6434.instance);
       if(term == null)
-        break Fail22746;
-      term = termFactory.makeAppl(Main._consSDefT_4, new IStrategoTerm[]{l_4720, trans.constNil4, trans.constNil4, j_4720});
+        break Fail21270;
+      term = termFactory.makeAppl(Main._consSDefT_4, new IStrategoTerm[]{t_4166, trans.constNil3, trans.constNil3, r_4166});
       term = topdown_1_0.instance.invoke(context, term, strip_annos_0_0.instance);
       if(term == null)
-        break Fail22746;
+        break Fail21270;
       term = declare_bodies_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22746;
-      g_4720 = term;
-      term = debug_1_0.instance.invoke(context, term, lifted6707.instance);
+        break Fail21270;
+      o_4166 = term;
+      term = debug_1_0.instance.invoke(context, term, lifted6436.instance);
       if(term == null)
-        break Fail22746;
-      term = collect_all_1_0.instance.invoke(context, g_4720, is_unbound_svar_0_0.instance);
+        break Fail21270;
+      term = collect_all_1_0.instance.invoke(context, o_4166, is_unbound_svar_0_0.instance);
       if(term == null)
-        break Fail22746;
-      m_4720 = term;
-      term = debug_1_0.instance.invoke(context, term, lifted6709.instance);
+        break Fail21270;
+      u_4166 = term;
+      term = debug_1_0.instance.invoke(context, term, lifted6438.instance);
       if(term == null)
-        break Fail22746;
-      term = map_1_0.instance.invoke(context, m_4720, svaruse_to_svardec_0_0.instance);
+        break Fail21270;
+      term = map_1_0.instance.invoke(context, u_4166, svaruse_to_svardec_0_0.instance);
       if(term == null)
-        break Fail22746;
-      h_4720 = term;
-      term = debug_1_0.instance.invoke(context, term, lifted6711.instance);
+        break Fail21270;
+      p_4166 = term;
+      term = debug_1_0.instance.invoke(context, term, lifted6440.instance);
       if(term == null)
-        break Fail22746;
-      term = collect_all_1_0.instance.invoke(context, g_4720, is_unbound_tvar_0_0.instance);
+        break Fail21270;
+      term = collect_all_1_0.instance.invoke(context, o_4166, is_unbound_tvar_0_0.instance);
       if(term == null)
-        break Fail22746;
-      n_4720 = term;
-      term = debug_1_0.instance.invoke(context, term, lifted6713.instance);
+        break Fail21270;
+      v_4166 = term;
+      term = debug_1_0.instance.invoke(context, term, lifted6442.instance);
       if(term == null)
-        break Fail22746;
-      term = map_1_0.instance.invoke(context, n_4720, tvaruse_to_tvardec_0_0.instance);
+        break Fail21270;
+      term = map_1_0.instance.invoke(context, v_4166, tvaruse_to_tvardec_0_0.instance);
       if(term == null)
-        break Fail22746;
-      i_4720 = term;
-      term = debug_1_0.instance.invoke(context, term, lifted6715.instance);
+        break Fail21270;
+      q_4166 = term;
+      term = debug_1_0.instance.invoke(context, term, lifted6444.instance);
       if(term == null)
-        break Fail22746;
-      term = termFactory.makeAppl(Main._consSDefT_4, new IStrategoTerm[]{l_4720, h_4720, i_4720, j_4720});
-      k_4720 = term;
-      term = debug_1_0.instance.invoke(context, term, lifted6716.instance);
+        break Fail21270;
+      term = termFactory.makeAppl(Main._consSDefT_4, new IStrategoTerm[]{t_4166, p_4166, q_4166, r_4166});
+      s_4166 = term;
+      term = debug_1_0.instance.invoke(context, term, lifted6445.instance);
       if(term == null)
-        break Fail22746;
-      term = termFactory.makeAppl(Main._consCallT_3, new IStrategoTerm[]{termFactory.makeAppl(Main._consSVar_1, new IStrategoTerm[]{l_4720}), m_4720, n_4720});
-      o_4720 = term;
-      term = debug_1_0.instance.invoke(context, term, lifted6717.instance);
+        break Fail21270;
+      term = termFactory.makeAppl(Main._consCallT_3, new IStrategoTerm[]{termFactory.makeAppl(Main._consSVar_1, new IStrategoTerm[]{t_4166}), u_4166, v_4166});
+      w_4166 = term;
+      term = debug_1_0.instance.invoke(context, term, lifted6446.instance);
       if(term == null)
-        break Fail22746;
-      term = termFactory.makeTuple(k_4720, o_4720);
+        break Fail21270;
+      term = termFactory.makeTuple(s_4166, w_4166);
       context.popOnSuccess();
       if(true)
         return term;

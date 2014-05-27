@@ -20,31 +20,31 @@ import java.lang.ref.WeakReference;
 { 
   public static get_source_asts_0_2 instance = new get_source_asts_0_2();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm ref_e_4733, IStrategoTerm ref_f_4733)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm ref_m_4179, IStrategoTerm ref_n_4179)
   { 
     ITermFactory termFactory = context.getFactory();
-    TermReference e_4733 = new TermReference(ref_e_4733);
-    TermReference f_4733 = new TermReference(ref_f_4733);
+    TermReference m_4179 = new TermReference(ref_m_4179);
+    TermReference n_4179 = new TermReference(ref_n_4179);
     context.push("get_source_asts_0_2");
-    Fail22813:
+    Fail21337:
     { 
-      IStrategoTerm g_4733 = null;
-      IStrategoTerm h_4733 = null;
-      IStrategoTerm i_4733 = null;
-      g_4733 = term;
-      term = g_4733;
-      lifted6765 lifted67650 = new lifted6765();
-      lifted6764 lifted67640 = new lifted6764();
-      lifted67650.f_4733 = f_4733;
-      lifted67640.e_4733 = e_4733;
-      term = get_source_asts_2_0.instance.invoke(context, term, lifted67640, lifted67650);
+      IStrategoTerm o_4179 = null;
+      IStrategoTerm p_4179 = null;
+      IStrategoTerm q_4179 = null;
+      o_4179 = term;
+      term = o_4179;
+      lifted6494 lifted64940 = new lifted6494();
+      lifted6493 lifted64930 = new lifted6493();
+      lifted64940.n_4179 = n_4179;
+      lifted64930.m_4179 = m_4179;
+      term = get_source_asts_2_0.instance.invoke(context, term, lifted64930, lifted64940);
       if(term == null)
-        break Fail22813;
+        break Fail21337;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-        break Fail22813;
-      h_4733 = term.getSubterm(0);
-      i_4733 = term.getSubterm(1);
-      term = termFactory.makeTuple(h_4733, i_4733);
+        break Fail21337;
+      p_4179 = term.getSubterm(0);
+      q_4179 = term.getSubterm(1);
+      term = termFactory.makeTuple(p_4179, q_4179);
       context.popOnSuccess();
       if(true)
         return term;

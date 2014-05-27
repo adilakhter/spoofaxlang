@@ -24,20 +24,20 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("parse_source_files_0_0");
-    Fail22815:
+    Fail21339:
     { 
-      IStrategoTerm r_4733 = null;
-      IStrategoTerm s_4733 = null;
-      IStrategoTerm t_4733 = null;
-      r_4733 = term;
-      term = partition_1_0.instance.invoke(context, r_4733, parse_file_0_0.instance);
+      IStrategoTerm z_4179 = null;
+      IStrategoTerm a_4180 = null;
+      IStrategoTerm b_4180 = null;
+      z_4179 = term;
+      term = partition_1_0.instance.invoke(context, z_4179, parse_file_0_0.instance);
       if(term == null)
-        break Fail22815;
+        break Fail21339;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-        break Fail22815;
-      s_4733 = term.getSubterm(0);
-      t_4733 = term.getSubterm(1);
-      term = termFactory.makeTuple(s_4733, t_4733);
+        break Fail21339;
+      a_4180 = term.getSubterm(0);
+      b_4180 = term.getSubterm(1);
+      term = termFactory.makeTuple(a_4180, b_4180);
       context.popOnSuccess();
       if(true)
         return term;

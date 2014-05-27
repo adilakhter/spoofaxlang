@@ -24,29 +24,29 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("get_cache_path_0_0");
-    Fail22807:
+    Fail21331:
     { 
-      IStrategoTerm q_4731 = null;
-      IStrategoTerm r_4731 = null;
-      IStrategoTerm t_4731 = null;
-      IStrategoTerm v_4731 = null;
-      IStrategoTerm w_4731 = null;
-      r_4731 = term;
-      term = import_cache_path_0_0.instance.invoke(context, r_4731);
+      IStrategoTerm y_4177 = null;
+      IStrategoTerm z_4177 = null;
+      IStrategoTerm b_4178 = null;
+      IStrategoTerm d_4178 = null;
+      IStrategoTerm e_4178 = null;
+      z_4177 = term;
+      term = import_cache_path_0_0.instance.invoke(context, z_4177);
       if(term == null)
-        break Fail22807;
-      v_4731 = term;
-      t_4731 = trans.const4470;
-      w_4731 = v_4731;
-      term = string_replace_0_2.instance.invoke(context, w_4731, t_4731, trans.const4471);
+        break Fail21331;
+      d_4178 = term;
+      b_4178 = trans.const4260;
+      e_4178 = d_4178;
+      term = string_replace_0_2.instance.invoke(context, e_4178, b_4178, trans.const4261);
       if(term == null)
-        break Fail22807;
-      q_4731 = term;
-      term = termFactory.makeTuple(term, r_4731);
+        break Fail21331;
+      y_4177 = term;
+      term = termFactory.makeTuple(term, z_4177);
       term = is_newer_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22807;
-      term = q_4731;
+        break Fail21331;
+      term = y_4177;
       context.popOnSuccess();
       if(true)
         return term;

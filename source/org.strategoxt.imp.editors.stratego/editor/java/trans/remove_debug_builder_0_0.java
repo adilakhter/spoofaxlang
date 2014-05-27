@@ -24,28 +24,28 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("remove_debug_builder_0_0");
-    Fail22800:
+    Fail21324:
     { 
-      IStrategoTerm i_4729 = null;
-      IStrategoTerm j_4729 = null;
-      IStrategoTerm k_4729 = null;
-      IStrategoTerm l_4729 = null;
-      IStrategoTerm m_4729 = null;
+      IStrategoTerm q_4175 = null;
+      IStrategoTerm r_4175 = null;
+      IStrategoTerm s_4175 = null;
+      IStrategoTerm t_4175 = null;
+      IStrategoTerm u_4175 = null;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 5)
-        break Fail22800;
-      i_4729 = term.getSubterm(0);
-      j_4729 = term.getSubterm(1);
-      k_4729 = term.getSubterm(2);
-      l_4729 = term.getSubterm(3);
-      m_4729 = term.getSubterm(4);
-      term = termFactory.makeTuple(trans.constNone0, i_4729, j_4729, k_4729, l_4729, m_4729);
+        break Fail21324;
+      q_4175 = term.getSubterm(0);
+      r_4175 = term.getSubterm(1);
+      s_4175 = term.getSubterm(2);
+      t_4175 = term.getSubterm(3);
+      u_4175 = term.getSubterm(4);
+      term = termFactory.makeTuple(trans.constNone0, q_4175, r_4175, s_4175, t_4175, u_4175);
       term = remove_debug_refactoring_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22800;
+        break Fail21324;
       term = process_refactoring_result_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22800;
-      term = termFactory.makeTuple(trans.const4459, term);
+        break Fail21324;
+      term = termFactory.makeTuple(trans.const4249, term);
       context.popOnSuccess();
       if(true)
         return term;

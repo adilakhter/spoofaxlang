@@ -23,21 +23,21 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("pp_spoofaxconfiguration_string_0_0");
-    Fail87647:
+    Fail22839:
     { 
-      IStrategoTerm t_17563 = null;
-      IStrategoTerm u_17563 = null;
-      IStrategoTerm z_17563 = null;
-      t_17563 = term;
-      u_17563 = trans.constSpoofaxConfigurationGeneratedPpAf;
-      term = (IStrategoTerm)termFactory.makeListCons(u_17563, termFactory.makeListCons(trans.constSpoofaxConfigurationPpAf, (IStrategoList)trans.constNil14));
-      term = ast2abox_0_1.instance.invoke(context, t_17563, term);
+      IStrategoTerm w_4619 = null;
+      IStrategoTerm x_4619 = null;
+      IStrategoTerm c_4620 = null;
+      w_4619 = term;
+      x_4619 = trans.constSpoofaxConfigurationGeneratedPpAf;
+      term = (IStrategoTerm)termFactory.makeListCons(x_4619, termFactory.makeListCons(trans.constSpoofaxConfigurationPpAf, (IStrategoList)trans.constNil4));
+      term = ast2abox_0_1.instance.invoke(context, w_4619, term);
       if(term == null)
-        break Fail87647;
-      z_17563 = term;
-      term = box2text_string_0_1.instance.invoke(context, z_17563, trans.const17871);
+        break Fail22839;
+      c_4620 = term;
+      term = box2text_string_0_1.instance.invoke(context, c_4620, trans.const4484);
       if(term == null)
-        break Fail87647;
+        break Fail22839;
       context.popOnSuccess();
       if(true)
         return term;

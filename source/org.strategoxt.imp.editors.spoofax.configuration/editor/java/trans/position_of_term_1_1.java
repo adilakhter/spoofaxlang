@@ -19,53 +19,53 @@ import java.lang.ref.WeakReference;
 { 
   public static position_of_term_1_1 instance = new position_of_term_1_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy f_17572, IStrategoTerm z_17571)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy i_4628, IStrategoTerm c_4628)
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("position_of_term_1_1");
-    Fail87698:
+    Fail22890:
     { 
-      IStrategoTerm a_17572 = null;
-      IStrategoTerm b_17572 = null;
-      IStrategoTerm c_17572 = null;
-      IStrategoTerm d_17572 = null;
+      IStrategoTerm d_4628 = null;
+      IStrategoTerm e_4628 = null;
+      IStrategoTerm f_4628 = null;
+      IStrategoTerm g_4628 = null;
       if(term.getTermType() != IStrategoTerm.LIST || ((IStrategoList)term).isEmpty())
-        break Fail87698;
-      a_17572 = ((IStrategoList)term).head();
-      c_17572 = ((IStrategoList)term).tail();
-      Success47284:
+        break Fail22890;
+      d_4628 = ((IStrategoList)term).head();
+      f_4628 = ((IStrategoList)term).tail();
+      Success12197:
       { 
-        Fail87699:
+        Fail22891:
         { 
-          IStrategoTerm e_17572 = null;
-          e_17572 = term;
-          term = position_of_term_1_0.instance.invoke(context, a_17572, f_17572);
+          IStrategoTerm h_4628 = null;
+          h_4628 = term;
+          term = position_of_term_1_0.instance.invoke(context, d_4628, i_4628);
           if(term == null)
-            break Fail87699;
-          b_17572 = term;
-          term = e_17572;
+            break Fail22891;
+          e_4628 = term;
+          term = h_4628;
           { 
-            IStrategoList list758;
-            list758 = checkListTail(b_17572);
-            if(list758 == null)
-              break Fail87698;
-            term = (IStrategoTerm)termFactory.makeListCons(z_17571, list758);
-            d_17572 = term;
+            IStrategoList list194;
+            list194 = checkListTail(e_4628);
+            if(list194 == null)
+              break Fail22890;
+            term = (IStrategoTerm)termFactory.makeListCons(c_4628, list194);
+            g_4628 = term;
             if(true)
-              break Success47284;
+              break Success12197;
           }
         }
-        IStrategoTerm i_17572 = null;
-        i_17572 = c_17572;
-        term = inc_0_0.instance.invoke(context, z_17571);
+        IStrategoTerm l_4628 = null;
+        l_4628 = f_4628;
+        term = inc_0_0.instance.invoke(context, c_4628);
         if(term == null)
-          break Fail87698;
-        term = this.invoke(context, i_17572, f_17572, term);
+          break Fail22890;
+        term = this.invoke(context, l_4628, i_4628, term);
         if(term == null)
-          break Fail87698;
-        d_17572 = term;
+          break Fail22890;
+        g_4628 = term;
       }
-      term = d_17572;
+      term = g_4628;
       context.popOnSuccess();
       if(true)
         return term;

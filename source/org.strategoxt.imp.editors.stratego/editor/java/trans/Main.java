@@ -26,349 +26,349 @@ import java.lang.ref.WeakReference;
 
   private static boolean isIniting;
 
-  protected static IStrategoTerm const4665;
+  protected static IStrategoTerm const4455;
 
-  protected static IStrategoTerm const4664;
+  protected static IStrategoTerm const4454;
 
-  protected static IStrategoTerm const4663;
+  protected static IStrategoTerm const4453;
 
-  protected static IStrategoTerm const4662;
+  protected static IStrategoTerm const4452;
 
-  protected static IStrategoTerm constCons2124;
+  protected static IStrategoTerm constCons2043;
 
-  protected static IStrategoTerm const4661;
+  protected static IStrategoTerm const4451;
 
-  protected static IStrategoTerm const4660;
+  protected static IStrategoTerm const4450;
 
-  protected static IStrategoTerm const4659;
+  protected static IStrategoTerm const4449;
 
-  protected static IStrategoTerm constCons2123;
+  protected static IStrategoTerm constCons2042;
 
-  protected static IStrategoTerm const4658;
+  protected static IStrategoTerm const4448;
 
-  protected static IStrategoTerm const4657;
+  protected static IStrategoTerm const4447;
 
-  protected static IStrategoTerm constCons2122;
+  protected static IStrategoTerm constCons2041;
 
-  protected static IStrategoTerm const4656;
+  protected static IStrategoTerm const4446;
 
-  protected static IStrategoTerm const4655;
+  protected static IStrategoTerm const4445;
 
-  protected static IStrategoTerm const4654;
+  protected static IStrategoTerm const4444;
 
-  protected static IStrategoTerm const4653;
+  protected static IStrategoTerm const4443;
 
-  protected static IStrategoTerm constCons2121;
+  protected static IStrategoTerm constCons2040;
 
-  protected static IStrategoTerm const4652;
+  protected static IStrategoTerm const4442;
 
-  protected static IStrategoTerm const4651;
+  protected static IStrategoTerm const4441;
 
-  protected static IStrategoTerm constCons2120;
+  protected static IStrategoTerm constCons2039;
 
-  protected static IStrategoTerm const4650;
+  protected static IStrategoTerm const4440;
 
-  protected static IStrategoTerm const4649;
+  protected static IStrategoTerm const4439;
 
-  protected static IStrategoTerm const4648;
+  protected static IStrategoTerm const4438;
 
-  protected static IStrategoTerm const4647;
+  protected static IStrategoTerm const4437;
 
-  protected static IStrategoTerm const4646;
+  protected static IStrategoTerm const4436;
 
-  protected static IStrategoTerm const4645;
+  protected static IStrategoTerm const4435;
 
-  protected static IStrategoTerm const4644;
+  protected static IStrategoTerm const4434;
 
-  protected static IStrategoTerm const4643;
+  protected static IStrategoTerm const4433;
 
-  protected static IStrategoTerm const4642;
+  protected static IStrategoTerm const4432;
 
-  protected static IStrategoTerm const4641;
+  protected static IStrategoTerm const4431;
 
-  protected static IStrategoTerm const4640;
+  protected static IStrategoTerm const4430;
 
-  protected static IStrategoTerm const4639;
+  protected static IStrategoTerm const4429;
 
-  protected static IStrategoTerm const4638;
+  protected static IStrategoTerm const4428;
 
-  protected static IStrategoTerm const4637;
+  protected static IStrategoTerm const4427;
 
-  protected static IStrategoTerm const4636;
+  protected static IStrategoTerm const4426;
 
-  protected static IStrategoTerm constCons2119;
+  protected static IStrategoTerm constCons2038;
 
-  protected static IStrategoTerm const4635;
+  protected static IStrategoTerm const4425;
 
-  protected static IStrategoTerm const4634;
+  protected static IStrategoTerm const4424;
 
-  protected static IStrategoTerm const4633;
+  protected static IStrategoTerm const4423;
 
-  protected static IStrategoTerm const4632;
+  protected static IStrategoTerm const4422;
 
-  protected static IStrategoTerm const4631;
+  protected static IStrategoTerm const4421;
 
-  protected static IStrategoTerm const4630;
+  protected static IStrategoTerm const4420;
 
-  protected static IStrategoTerm const4629;
+  protected static IStrategoTerm const4419;
 
-  protected static IStrategoTerm const4628;
+  protected static IStrategoTerm const4418;
 
-  protected static IStrategoTerm const4627;
+  protected static IStrategoTerm const4417;
 
-  protected static IStrategoTerm constCons2118;
+  protected static IStrategoTerm constCons2037;
 
-  protected static IStrategoTerm const4626;
+  protected static IStrategoTerm const4416;
 
-  protected static IStrategoTerm const4625;
+  protected static IStrategoTerm const4415;
 
-  protected static IStrategoTerm const4624;
+  protected static IStrategoTerm const4414;
 
-  protected static IStrategoTerm constCons2117;
+  protected static IStrategoTerm constCons2036;
 
-  protected static IStrategoTerm const4623;
+  protected static IStrategoTerm const4413;
 
-  protected static IStrategoTerm const4622;
+  protected static IStrategoTerm const4412;
 
-  protected static IStrategoTerm const4621;
+  protected static IStrategoTerm const4411;
 
-  protected static IStrategoTerm const4620;
+  protected static IStrategoTerm const4410;
 
-  protected static IStrategoTerm const4619;
+  protected static IStrategoTerm const4409;
 
-  protected static IStrategoTerm const4618;
+  protected static IStrategoTerm const4408;
 
-  protected static IStrategoTerm constCons2116;
+  protected static IStrategoTerm constCons2035;
 
-  protected static IStrategoTerm const4617;
+  protected static IStrategoTerm const4407;
 
-  protected static IStrategoTerm const4616;
+  protected static IStrategoTerm const4406;
 
-  protected static IStrategoTerm constCons2115;
+  protected static IStrategoTerm constCons2034;
 
-  protected static IStrategoTerm const4615;
+  protected static IStrategoTerm const4405;
 
-  protected static IStrategoTerm const4614;
+  protected static IStrategoTerm const4404;
 
-  protected static IStrategoTerm const4613;
+  protected static IStrategoTerm const4403;
 
-  protected static IStrategoTerm const4612;
+  protected static IStrategoTerm const4402;
 
-  protected static IStrategoTerm const4611;
+  protected static IStrategoTerm const4401;
 
-  protected static IStrategoTerm const4610;
+  protected static IStrategoTerm const4400;
 
-  protected static IStrategoTerm const4609;
+  protected static IStrategoTerm const4399;
 
-  protected static IStrategoTerm const4608;
+  protected static IStrategoTerm const4398;
 
-  protected static IStrategoTerm const4607;
+  protected static IStrategoTerm const4397;
 
-  protected static IStrategoTerm const4606;
+  protected static IStrategoTerm const4396;
 
-  protected static IStrategoTerm const4605;
+  protected static IStrategoTerm const4395;
 
-  protected static IStrategoTerm const4604;
+  protected static IStrategoTerm const4394;
 
-  protected static IStrategoTerm const4603;
+  protected static IStrategoTerm const4393;
 
-  protected static IStrategoTerm constCons2114;
+  protected static IStrategoTerm constCons2033;
 
-  protected static IStrategoTerm const4602;
+  protected static IStrategoTerm const4392;
 
-  protected static IStrategoTerm const4601;
+  protected static IStrategoTerm const4391;
 
-  protected static IStrategoTerm const4600;
+  protected static IStrategoTerm const4390;
 
-  protected static IStrategoTerm const4599;
+  protected static IStrategoTerm const4389;
 
-  protected static IStrategoTerm const4598;
+  protected static IStrategoTerm const4388;
 
-  protected static IStrategoTerm constCons2113;
+  protected static IStrategoTerm constCons2032;
 
-  protected static IStrategoTerm constCons2112;
+  protected static IStrategoTerm constCons2031;
 
-  protected static IStrategoTerm constCons2111;
+  protected static IStrategoTerm constCons2030;
 
-  protected static IStrategoTerm constCons2110;
+  protected static IStrategoTerm constCons2029;
 
-  protected static IStrategoTerm constCons2109;
+  protected static IStrategoTerm constCons2028;
 
-  protected static IStrategoTerm constCons2108;
+  protected static IStrategoTerm constCons2027;
 
-  protected static IStrategoTerm constCons2107;
+  protected static IStrategoTerm constCons2026;
 
-  protected static IStrategoTerm constCons2106;
+  protected static IStrategoTerm constCons2025;
 
-  protected static IStrategoTerm constCons2105;
+  protected static IStrategoTerm constCons2024;
 
-  protected static IStrategoTerm constCons2104;
+  protected static IStrategoTerm constCons2023;
 
-  protected static IStrategoTerm constCons2103;
+  protected static IStrategoTerm constCons2022;
 
-  protected static IStrategoTerm constCons2102;
+  protected static IStrategoTerm constCons2021;
 
-  protected static IStrategoTerm const4597;
+  protected static IStrategoTerm const4387;
 
-  protected static IStrategoTerm const4596;
+  protected static IStrategoTerm const4386;
 
-  protected static IStrategoTerm const4595;
+  protected static IStrategoTerm const4385;
 
-  protected static IStrategoTerm const4594;
+  protected static IStrategoTerm const4384;
 
-  protected static IStrategoTerm const4593;
+  protected static IStrategoTerm const4383;
 
-  protected static IStrategoTerm const4592;
+  protected static IStrategoTerm const4382;
 
-  protected static IStrategoTerm const4591;
+  protected static IStrategoTerm const4381;
 
-  protected static IStrategoTerm constCons2101;
+  protected static IStrategoTerm constCons2020;
 
-  protected static IStrategoTerm constCons2100;
+  protected static IStrategoTerm constCons2019;
 
-  protected static IStrategoTerm constCons2099;
+  protected static IStrategoTerm constCons2018;
 
-  protected static IStrategoTerm const4590;
+  protected static IStrategoTerm const4380;
 
-  protected static IStrategoTerm constCons2098;
+  protected static IStrategoTerm constCons2017;
 
-  protected static IStrategoTerm const4589;
+  protected static IStrategoTerm const4379;
 
-  protected static IStrategoTerm constCons2097;
+  protected static IStrategoTerm constCons2016;
 
-  protected static IStrategoTerm constCons2096;
+  protected static IStrategoTerm constCons2015;
 
-  protected static IStrategoTerm const4588;
+  protected static IStrategoTerm const4378;
 
-  protected static IStrategoTerm constCons2095;
+  protected static IStrategoTerm constCons2014;
 
-  protected static IStrategoTerm const4587;
+  protected static IStrategoTerm const4377;
 
-  protected static IStrategoTerm constCons2094;
+  protected static IStrategoTerm constCons2013;
 
-  protected static IStrategoTerm const4586;
+  protected static IStrategoTerm const4376;
 
-  protected static IStrategoTerm const4585;
+  protected static IStrategoTerm const4375;
 
-  protected static IStrategoTerm const4584;
+  protected static IStrategoTerm const4374;
 
-  protected static IStrategoTerm constCons2093;
+  protected static IStrategoTerm constCons2012;
 
-  protected static IStrategoTerm const4583;
+  protected static IStrategoTerm const4373;
 
-  protected static IStrategoTerm const4582;
+  protected static IStrategoTerm const4372;
 
-  protected static IStrategoTerm constCons2092;
+  protected static IStrategoTerm constCons2011;
 
-  protected static IStrategoTerm constCons2091;
+  protected static IStrategoTerm constCons2010;
 
-  protected static IStrategoTerm const4581;
+  protected static IStrategoTerm const4371;
 
-  protected static IStrategoTerm const4580;
+  protected static IStrategoTerm const4370;
 
-  protected static IStrategoTerm const4579;
+  protected static IStrategoTerm const4369;
 
-  protected static IStrategoTerm const4578;
+  protected static IStrategoTerm const4368;
 
-  protected static IStrategoTerm const4577;
+  protected static IStrategoTerm const4367;
 
-  protected static IStrategoTerm const4576;
+  protected static IStrategoTerm const4366;
 
-  protected static IStrategoTerm const4575;
+  protected static IStrategoTerm const4365;
 
-  protected static IStrategoTerm const4574;
+  protected static IStrategoTerm const4364;
 
   protected static IStrategoTerm constCritical0;
 
-  protected static IStrategoTerm const4573;
+  protected static IStrategoTerm const4363;
 
-  protected static IStrategoTerm const4572;
+  protected static IStrategoTerm const4362;
 
-  protected static IStrategoTerm const4571;
+  protected static IStrategoTerm const4361;
 
-  protected static IStrategoTerm const4570;
+  protected static IStrategoTerm const4360;
 
-  protected static IStrategoTerm const4569;
+  protected static IStrategoTerm const4359;
 
-  protected static IStrategoTerm const4568;
+  protected static IStrategoTerm const4358;
 
-  protected static IStrategoTerm const4567;
+  protected static IStrategoTerm const4357;
 
-  protected static IStrategoTerm const4566;
+  protected static IStrategoTerm const4356;
 
-  protected static IStrategoTerm const4565;
+  protected static IStrategoTerm const4355;
 
-  protected static IStrategoTerm const4564;
+  protected static IStrategoTerm const4354;
 
-  protected static IStrategoTerm const4563;
+  protected static IStrategoTerm const4353;
 
-  protected static IStrategoTerm const4562;
+  protected static IStrategoTerm const4352;
 
-  protected static IStrategoTerm constCons2090;
+  protected static IStrategoTerm constCons2009;
 
-  protected static IStrategoTerm const4561;
+  protected static IStrategoTerm const4351;
 
-  protected static IStrategoTerm const4560;
+  protected static IStrategoTerm const4350;
 
-  protected static IStrategoTerm const4559;
+  protected static IStrategoTerm const4349;
 
-  protected static IStrategoTerm constCons2089;
+  protected static IStrategoTerm constCons2008;
 
-  protected static IStrategoTerm const4558;
+  protected static IStrategoTerm const4348;
 
-  protected static IStrategoTerm const4557;
+  protected static IStrategoTerm const4347;
 
-  protected static IStrategoTerm const4556;
+  protected static IStrategoTerm const4346;
 
-  protected static IStrategoTerm const4555;
+  protected static IStrategoTerm const4345;
 
-  protected static IStrategoTerm const4554;
+  protected static IStrategoTerm const4344;
 
-  protected static IStrategoTerm const4553;
+  protected static IStrategoTerm const4343;
 
-  protected static IStrategoTerm const4552;
+  protected static IStrategoTerm const4342;
 
-  protected static IStrategoTerm const4551;
+  protected static IStrategoTerm const4341;
 
-  protected static IStrategoTerm const4550;
+  protected static IStrategoTerm const4340;
 
   protected static IStrategoTerm constFail0;
 
-  protected static IStrategoTerm const4549;
+  protected static IStrategoTerm const4339;
 
-  protected static IStrategoTerm constCons2088;
+  protected static IStrategoTerm constCons2007;
 
   protected static IStrategoTerm constMARKER0;
 
-  protected static IStrategoTerm const4548;
+  protected static IStrategoTerm const4338;
 
-  protected static IStrategoTerm const4547;
+  protected static IStrategoTerm const4337;
 
-  protected static IStrategoTerm constCons2087;
+  protected static IStrategoTerm constCons2006;
 
-  protected static IStrategoTerm const4546;
+  protected static IStrategoTerm const4336;
 
-  protected static IStrategoTerm const4545;
+  protected static IStrategoTerm const4335;
 
-  protected static IStrategoTerm const4544;
+  protected static IStrategoTerm const4334;
 
-  protected static IStrategoTerm const4543;
+  protected static IStrategoTerm const4333;
 
-  protected static IStrategoTerm const4542;
+  protected static IStrategoTerm const4332;
 
-  protected static IStrategoTerm constCons2086;
+  protected static IStrategoTerm constCons2005;
 
-  protected static IStrategoTerm const4541;
+  protected static IStrategoTerm const4331;
 
-  protected static IStrategoTerm const4540;
+  protected static IStrategoTerm const4330;
 
-  protected static IStrategoTerm const4539;
+  protected static IStrategoTerm const4329;
 
-  protected static IStrategoTerm const4538;
+  protected static IStrategoTerm const4328;
 
-  protected static IStrategoTerm const4537;
+  protected static IStrategoTerm const4327;
 
-  protected static IStrategoTerm const4536;
+  protected static IStrategoTerm const4326;
 
   public static IStrategoTerm getStrategoSugarPpAf()
   { 
@@ -405,303 +405,303 @@ import java.lang.ref.WeakReference;
 
   protected static ImportTerm constStrategoSugarTbl;
 
-  protected static IStrategoTerm const4535;
+  protected static IStrategoTerm const4325;
 
-  protected static IStrategoTerm constCons2085;
+  protected static IStrategoTerm constCons2004;
 
-  protected static IStrategoTerm const4534;
+  protected static IStrategoTerm const4324;
 
-  protected static IStrategoTerm constCons2084;
+  protected static IStrategoTerm constCons2003;
 
-  protected static IStrategoTerm const4533;
+  protected static IStrategoTerm const4323;
 
-  protected static IStrategoTerm constCons2083;
+  protected static IStrategoTerm constCons2002;
 
-  protected static IStrategoTerm const4532;
+  protected static IStrategoTerm const4322;
 
-  protected static IStrategoTerm const4531;
+  protected static IStrategoTerm const4321;
 
-  protected static IStrategoTerm constCons2082;
+  protected static IStrategoTerm constCons2001;
 
-  protected static IStrategoTerm const4530;
+  protected static IStrategoTerm const4320;
 
-  protected static IStrategoTerm const4529;
+  protected static IStrategoTerm const4319;
 
-  protected static IStrategoTerm const4528;
+  protected static IStrategoTerm const4318;
 
-  protected static IStrategoTerm constCons2081;
+  protected static IStrategoTerm constCons2000;
 
-  protected static IStrategoTerm const4527;
+  protected static IStrategoTerm const4317;
 
-  protected static IStrategoTerm const4526;
+  protected static IStrategoTerm const4316;
 
-  protected static IStrategoTerm const4525;
+  protected static IStrategoTerm const4315;
 
-  protected static IStrategoTerm const4524;
+  protected static IStrategoTerm const4314;
 
-  protected static IStrategoTerm const4523;
+  protected static IStrategoTerm const4313;
 
-  protected static IStrategoTerm const4522;
+  protected static IStrategoTerm const4312;
 
-  protected static IStrategoTerm constCons2080;
+  protected static IStrategoTerm constCons1999;
 
-  protected static IStrategoTerm const4521;
+  protected static IStrategoTerm const4311;
 
-  protected static IStrategoTerm constCons2079;
+  protected static IStrategoTerm constCons1998;
 
-  protected static IStrategoTerm const4520;
+  protected static IStrategoTerm const4310;
 
-  protected static IStrategoTerm constCons2078;
+  protected static IStrategoTerm constCons1997;
 
-  protected static IStrategoTerm const4519;
+  protected static IStrategoTerm const4309;
 
-  protected static IStrategoTerm constCons2077;
+  protected static IStrategoTerm constCons1996;
 
-  protected static IStrategoTerm const4518;
+  protected static IStrategoTerm const4308;
 
-  protected static IStrategoTerm constCons2076;
+  protected static IStrategoTerm constCons1995;
 
-  protected static IStrategoTerm constCons2075;
+  protected static IStrategoTerm constCons1994;
 
-  protected static IStrategoTerm const4517;
+  protected static IStrategoTerm const4307;
 
-  protected static IStrategoTerm constCons2074;
+  protected static IStrategoTerm constCons1993;
 
-  protected static IStrategoTerm const4516;
+  protected static IStrategoTerm const4306;
 
-  protected static IStrategoTerm constCons2073;
+  protected static IStrategoTerm constCons1992;
 
-  protected static IStrategoTerm const4515;
+  protected static IStrategoTerm const4305;
 
-  protected static IStrategoTerm constCons2072;
+  protected static IStrategoTerm constCons1991;
 
-  protected static IStrategoTerm const4514;
+  protected static IStrategoTerm const4304;
 
-  protected static IStrategoTerm constCons2071;
+  protected static IStrategoTerm constCons1990;
 
-  protected static IStrategoTerm const4513;
+  protected static IStrategoTerm const4303;
 
-  protected static IStrategoTerm constCons2070;
+  protected static IStrategoTerm constCons1989;
 
-  protected static IStrategoTerm const4512;
+  protected static IStrategoTerm const4302;
 
-  protected static IStrategoTerm constCons2069;
+  protected static IStrategoTerm constCons1988;
 
-  protected static IStrategoTerm const4511;
+  protected static IStrategoTerm const4301;
 
-  protected static IStrategoTerm constCons2068;
+  protected static IStrategoTerm constCons1987;
 
-  protected static IStrategoTerm const4510;
+  protected static IStrategoTerm const4300;
 
-  protected static IStrategoTerm constCons2067;
+  protected static IStrategoTerm constCons1986;
 
-  protected static IStrategoTerm const4509;
+  protected static IStrategoTerm const4299;
 
-  protected static IStrategoTerm constCons2066;
+  protected static IStrategoTerm constCons1985;
 
-  protected static IStrategoTerm const4508;
+  protected static IStrategoTerm const4298;
 
-  protected static IStrategoTerm constCons2065;
+  protected static IStrategoTerm constCons1984;
 
-  protected static IStrategoTerm const4507;
+  protected static IStrategoTerm const4297;
 
-  protected static IStrategoTerm constCons2064;
+  protected static IStrategoTerm constCons1983;
 
-  protected static IStrategoTerm const4506;
+  protected static IStrategoTerm const4296;
 
-  protected static IStrategoTerm constCons2063;
+  protected static IStrategoTerm constCons1982;
 
-  protected static IStrategoTerm const4505;
+  protected static IStrategoTerm const4295;
 
-  protected static IStrategoTerm constCons2062;
+  protected static IStrategoTerm constCons1981;
 
-  protected static IStrategoTerm const4504;
+  protected static IStrategoTerm const4294;
 
-  protected static IStrategoTerm constCons2061;
+  protected static IStrategoTerm constCons1980;
 
-  protected static IStrategoTerm const4503;
+  protected static IStrategoTerm const4293;
 
-  protected static IStrategoTerm const4502;
+  protected static IStrategoTerm const4292;
 
-  protected static IStrategoTerm const4501;
+  protected static IStrategoTerm const4291;
 
-  protected static IStrategoTerm const4500;
+  protected static IStrategoTerm const4290;
 
-  protected static IStrategoTerm const4499;
+  protected static IStrategoTerm const4289;
 
-  protected static IStrategoTerm const4498;
+  protected static IStrategoTerm const4288;
 
-  protected static IStrategoTerm constCons2060;
+  protected static IStrategoTerm constCons1979;
 
-  protected static IStrategoTerm const4497;
+  protected static IStrategoTerm const4287;
 
-  protected static IStrategoTerm const4496;
+  protected static IStrategoTerm const4286;
 
-  protected static IStrategoTerm const4495;
+  protected static IStrategoTerm const4285;
 
-  protected static IStrategoTerm constCons2059;
+  protected static IStrategoTerm constCons1978;
 
-  protected static IStrategoTerm const4494;
+  protected static IStrategoTerm const4284;
 
-  protected static IStrategoTerm constCons2058;
+  protected static IStrategoTerm constCons1977;
 
-  protected static IStrategoTerm const4493;
+  protected static IStrategoTerm const4283;
 
-  protected static IStrategoTerm constCons2057;
+  protected static IStrategoTerm constCons1976;
 
-  protected static IStrategoTerm const4492;
+  protected static IStrategoTerm const4282;
 
-  protected static IStrategoTerm constCons2056;
+  protected static IStrategoTerm constCons1975;
 
-  protected static IStrategoTerm const4491;
+  protected static IStrategoTerm const4281;
 
-  protected static IStrategoTerm constCons2055;
+  protected static IStrategoTerm constCons1974;
 
-  protected static IStrategoTerm const4490;
+  protected static IStrategoTerm const4280;
 
-  protected static IStrategoTerm constCons2054;
+  protected static IStrategoTerm constCons1973;
 
-  protected static IStrategoTerm const4489;
+  protected static IStrategoTerm const4279;
 
-  protected static IStrategoTerm constCons2053;
+  protected static IStrategoTerm constCons1972;
 
-  protected static IStrategoTerm const4488;
+  protected static IStrategoTerm const4278;
 
-  protected static IStrategoTerm constCons2052;
+  protected static IStrategoTerm constCons1971;
 
-  protected static IStrategoTerm const4487;
+  protected static IStrategoTerm const4277;
 
-  protected static IStrategoTerm constCons2051;
+  protected static IStrategoTerm constCons1970;
 
-  protected static IStrategoTerm const4486;
+  protected static IStrategoTerm const4276;
 
-  protected static IStrategoTerm constCons2050;
+  protected static IStrategoTerm constCons1969;
 
-  protected static IStrategoTerm const4485;
+  protected static IStrategoTerm const4275;
 
-  protected static IStrategoTerm constCons2049;
+  protected static IStrategoTerm constCons1968;
 
-  protected static IStrategoTerm const4484;
+  protected static IStrategoTerm const4274;
 
-  protected static IStrategoTerm constCons2048;
+  protected static IStrategoTerm constCons1967;
 
-  protected static IStrategoTerm const4483;
+  protected static IStrategoTerm const4273;
 
-  protected static IStrategoTerm const4482;
+  protected static IStrategoTerm const4272;
 
-  protected static IStrategoTerm const4481;
+  protected static IStrategoTerm const4271;
 
-  protected static IStrategoTerm const4480;
+  protected static IStrategoTerm const4270;
 
-  protected static IStrategoTerm const4479;
+  protected static IStrategoTerm const4269;
 
-  protected static IStrategoTerm const4478;
+  protected static IStrategoTerm const4268;
 
   protected static IStrategoTerm constImport0;
 
-  protected static IStrategoTerm const4477;
+  protected static IStrategoTerm const4267;
 
-  protected static IStrategoTerm const4476;
+  protected static IStrategoTerm const4266;
 
-  protected static IStrategoTerm const4475;
+  protected static IStrategoTerm const4265;
 
-  protected static IStrategoTerm const4474;
+  protected static IStrategoTerm const4264;
 
-  protected static IStrategoTerm constCons2047;
+  protected static IStrategoTerm constCons1966;
 
   protected static IStrategoTerm constDR_DUMMY0;
 
-  protected static IStrategoTerm const4473;
+  protected static IStrategoTerm const4263;
 
-  protected static IStrategoTerm const4472;
+  protected static IStrategoTerm const4262;
 
-  protected static IStrategoTerm const4471;
+  protected static IStrategoTerm const4261;
 
-  protected static IStrategoTerm const4470;
+  protected static IStrategoTerm const4260;
 
-  protected static IStrategoTerm constCons2046;
+  protected static IStrategoTerm constCons1965;
 
-  protected static IStrategoTerm const4469;
+  protected static IStrategoTerm const4259;
 
-  protected static IStrategoTerm const4468;
+  protected static IStrategoTerm const4258;
 
-  protected static IStrategoTerm const4467;
+  protected static IStrategoTerm const4257;
 
-  protected static IStrategoTerm const4466;
+  protected static IStrategoTerm const4256;
 
-  protected static IStrategoTerm const4465;
+  protected static IStrategoTerm const4255;
 
-  protected static IStrategoTerm const4464;
+  protected static IStrategoTerm const4254;
 
-  protected static IStrategoTerm const4463;
+  protected static IStrategoTerm const4253;
 
-  protected static IStrategoTerm const4462;
+  protected static IStrategoTerm const4252;
 
-  protected static IStrategoTerm const4461;
+  protected static IStrategoTerm const4251;
 
-  protected static IStrategoTerm const4460;
+  protected static IStrategoTerm const4250;
 
   protected static IStrategoTerm constNone0;
 
-  protected static IStrategoTerm const4459;
+  protected static IStrategoTerm const4249;
 
-  protected static IStrategoTerm const4458;
+  protected static IStrategoTerm const4248;
 
-  protected static IStrategoTerm const4457;
+  protected static IStrategoTerm const4247;
 
-  protected static IStrategoTerm const4456;
+  protected static IStrategoTerm const4246;
 
-  protected static IStrategoTerm const4455;
+  protected static IStrategoTerm const4245;
 
-  protected static IStrategoTerm constCons2045;
+  protected static IStrategoTerm constCons1964;
 
-  protected static IStrategoTerm const4454;
+  protected static IStrategoTerm const4244;
 
   protected static IStrategoTerm constConstType0;
 
   protected static IStrategoTerm constSortNoArgs0;
 
-  protected static IStrategoTerm const4453;
+  protected static IStrategoTerm const4243;
 
-  protected static IStrategoTerm const4452;
+  protected static IStrategoTerm const4242;
 
-  protected static IStrategoTerm constCons2044;
+  protected static IStrategoTerm constCons1963;
 
-  protected static IStrategoTerm const4451;
+  protected static IStrategoTerm const4241;
 
-  protected static IStrategoTerm const4450;
+  protected static IStrategoTerm const4240;
 
-  protected static IStrategoTerm const4449;
+  protected static IStrategoTerm const4239;
 
-  protected static IStrategoTerm const4448;
+  protected static IStrategoTerm const4238;
 
-  protected static IStrategoTerm const4447;
+  protected static IStrategoTerm const4237;
 
-  protected static IStrategoTerm const4446;
+  protected static IStrategoTerm const4236;
 
-  protected static IStrategoTerm const4445;
+  protected static IStrategoTerm const4235;
 
-  protected static IStrategoTerm const4444;
+  protected static IStrategoTerm const4234;
 
-  protected static IStrategoTerm const4443;
+  protected static IStrategoTerm const4233;
 
-  protected static IStrategoTerm const4442;
+  protected static IStrategoTerm const4232;
 
-  protected static IStrategoTerm const4441;
+  protected static IStrategoTerm const4231;
 
-  protected static IStrategoTerm const4440;
+  protected static IStrategoTerm const4230;
 
-  protected static IStrategoTerm const4439;
+  protected static IStrategoTerm const4229;
 
-  protected static IStrategoTerm const4438;
+  protected static IStrategoTerm const4228;
 
   protected static IStrategoTerm constId0;
 
-  protected static IStrategoTerm constCons2043;
+  protected static IStrategoTerm constCons1962;
 
-  protected static IStrategoTerm const4437;
+  protected static IStrategoTerm const4227;
 
-  protected static IStrategoTerm constNil4;
+  protected static IStrategoTerm constNil3;
 
   public static IStrategoConstructor _consConc_2;
 
@@ -1061,332 +1061,332 @@ import java.lang.ref.WeakReference;
 
   public static void initConstants(ITermFactory termFactory)
   { 
-    constNil4 = (IStrategoTerm)termFactory.makeList(Term.NO_TERMS);
-    const4437 = termFactory.makeInt(0);
-    constCons2043 = (IStrategoTerm)termFactory.makeListCons(trans.const4437, (IStrategoList)trans.constNil4);
+    constNil3 = (IStrategoTerm)termFactory.makeList(Term.NO_TERMS);
+    const4227 = termFactory.makeInt(0);
+    constCons1962 = (IStrategoTerm)termFactory.makeListCons(trans.const4227, (IStrategoList)trans.constNil3);
     constId0 = termFactory.makeAppl(Main._consId_0, NO_TERMS);
-    const4438 = termFactory.makeString("Defs: ");
-    const4439 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'precondition-warning'");
-    const4440 = termFactory.makeString("\n");
-    const4441 = termFactory.makeString("\n                       ");
-    const4442 = termFactory.makeString("selection extended to: ");
-    const4443 = termFactory.makeString("1: ");
-    const4444 = termFactory.makeString("2: ");
-    const4445 = termFactory.makeString("3: ");
-    const4446 = termFactory.makeString("4: ");
-    const4447 = termFactory.makeString("6: ");
-    const4448 = termFactory.makeString("7: ");
-    const4449 = termFactory.makeString("8: ");
-    const4450 = termFactory.makeString("9: ");
-    const4451 = termFactory.makeString(")");
-    constCons2044 = (IStrategoTerm)termFactory.makeListCons(trans.const4451, (IStrategoList)trans.constNil4);
-    const4452 = termFactory.makeString("(");
-    const4453 = termFactory.makeString("ATerm");
-    constSortNoArgs0 = termFactory.makeAppl(Main._consSortNoArgs_1, new IStrategoTerm[]{trans.const4453});
+    const4228 = termFactory.makeString("Defs: ");
+    const4229 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'precondition-warning'");
+    const4230 = termFactory.makeString("\n");
+    const4231 = termFactory.makeString("\n                       ");
+    const4232 = termFactory.makeString("selection extended to: ");
+    const4233 = termFactory.makeString("1: ");
+    const4234 = termFactory.makeString("2: ");
+    const4235 = termFactory.makeString("3: ");
+    const4236 = termFactory.makeString("4: ");
+    const4237 = termFactory.makeString("6: ");
+    const4238 = termFactory.makeString("7: ");
+    const4239 = termFactory.makeString("8: ");
+    const4240 = termFactory.makeString("9: ");
+    const4241 = termFactory.makeString(")");
+    constCons1963 = (IStrategoTerm)termFactory.makeListCons(trans.const4241, (IStrategoList)trans.constNil3);
+    const4242 = termFactory.makeString("(");
+    const4243 = termFactory.makeString("ATerm");
+    constSortNoArgs0 = termFactory.makeAppl(Main._consSortNoArgs_1, new IStrategoTerm[]{trans.const4243});
     constConstType0 = termFactory.makeAppl(Main._consConstType_1, new IStrategoTerm[]{trans.constSortNoArgs0});
-    const4454 = termFactory.makeString("No declaration found. Libary strategy?");
-    constCons2045 = (IStrategoTerm)termFactory.makeListCons(trans.const4454, (IStrategoList)trans.constNil4);
-    const4455 = termFactory.makeTuple(trans.constNil4, trans.constCons2045, trans.constNil4, trans.constNil4);
-    const4456 = termFactory.makeString("strategy declaration contains recursive call");
-    const4457 = termFactory.makeString("multiple declarations found, refactoring may change behaviour by introducing determinism");
-    const4458 = termFactory.makeString("NEWNAME");
-    const4459 = termFactory.makeString("x.aterm");
+    const4244 = termFactory.makeString("No declaration found. Libary strategy?");
+    constCons1964 = (IStrategoTerm)termFactory.makeListCons(trans.const4244, (IStrategoList)trans.constNil3);
+    const4245 = termFactory.makeTuple(trans.constNil3, trans.constCons1964, trans.constNil3, trans.constNil3);
+    const4246 = termFactory.makeString("strategy declaration contains recursive call");
+    const4247 = termFactory.makeString("multiple declarations found, refactoring may change behaviour by introducing determinism");
+    const4248 = termFactory.makeString("NEWNAME");
+    const4249 = termFactory.makeString("x.aterm");
     constNone0 = termFactory.makeAppl(Main._consNone_0, NO_TERMS);
-    const4460 = termFactory.makeString("MyStrategy");
-    const4461 = termFactory.makeString("number of affected files: ");
-    const4462 = termFactory.makeString("fatal-errors: ");
-    const4463 = termFactory.makeString("errors: ");
-    const4464 = termFactory.makeString("warnings: ");
-    const4465 = termFactory.makeString("pp: ");
-    const4466 = termFactory.makeString("x.str");
-    const4467 = termFactory.makeString("str");
-    const4468 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in strategy 'get-affected-stratego-asts'");
-    const4469 = termFactory.makeString("/trans");
-    constCons2046 = (IStrategoTerm)termFactory.makeListCons(trans.const4469, (IStrategoList)trans.constNil4);
-    const4470 = termFactory.makeString(".str.sig");
-    const4471 = termFactory.makeString(".rtree");
-    const4472 = termFactory.makeString("");
-    const4473 = termFactory.makeString("CurrentFile");
+    const4250 = termFactory.makeString("MyStrategy");
+    const4251 = termFactory.makeString("number of affected files: ");
+    const4252 = termFactory.makeString("fatal-errors: ");
+    const4253 = termFactory.makeString("errors: ");
+    const4254 = termFactory.makeString("warnings: ");
+    const4255 = termFactory.makeString("pp: ");
+    const4256 = termFactory.makeString("x.str");
+    const4257 = termFactory.makeString("str");
+    const4258 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in strategy 'get-affected-stratego-asts'");
+    const4259 = termFactory.makeString("/trans");
+    constCons1965 = (IStrategoTerm)termFactory.makeListCons(trans.const4259, (IStrategoList)trans.constNil3);
+    const4260 = termFactory.makeString(".str.sig");
+    const4261 = termFactory.makeString(".rtree");
+    const4262 = termFactory.makeString("");
+    const4263 = termFactory.makeString("CurrentFile");
     constDR_DUMMY0 = termFactory.makeAppl(Main._consDR_DUMMY_0, NO_TERMS);
-    constCons2047 = (IStrategoTerm)termFactory.makeListCons(trans.constDR_DUMMY0, (IStrategoList)trans.constNil4);
-    const4474 = termFactory.makeString("99705");
-    const4475 = termFactory.makeString("ProjectDir");
-    const4476 = termFactory.makeString("-231360");
-    const4477 = termFactory.makeString("libstratego-lib");
-    constImport0 = termFactory.makeAppl(Main._consImport_1, new IStrategoTerm[]{trans.const4477});
-    const4478 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'get-source-files'");
-    const4479 = termFactory.makeString("\n           ");
-    const4480 = termFactory.makeString("/");
-    const4481 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in strategy 'spoofax-dirs'");
-    const4482 = termFactory.makeString("\n                 ");
-    const4483 = termFactory.makeString("trans");
-    constCons2048 = (IStrategoTerm)termFactory.makeListCons(trans.const4483, (IStrategoList)trans.constNil4);
-    const4484 = termFactory.makeString(".svn");
-    constCons2049 = (IStrategoTerm)termFactory.makeListCons(trans.const4484, (IStrategoList)trans.constCons2048);
-    const4485 = termFactory.makeString(".settings");
-    constCons2050 = (IStrategoTerm)termFactory.makeListCons(trans.const4485, (IStrategoList)trans.constCons2049);
-    const4486 = termFactory.makeString(".externalToolBuilders");
-    constCons2051 = (IStrategoTerm)termFactory.makeListCons(trans.const4486, (IStrategoList)trans.constCons2050);
-    const4487 = termFactory.makeString(".cache");
-    constCons2052 = (IStrategoTerm)termFactory.makeListCons(trans.const4487, (IStrategoList)trans.constCons2051);
-    const4488 = termFactory.makeString("utils");
-    constCons2053 = (IStrategoTerm)termFactory.makeListCons(trans.const4488, (IStrategoList)trans.constCons2052);
-    const4489 = termFactory.makeString("syntax");
-    constCons2054 = (IStrategoTerm)termFactory.makeListCons(trans.const4489, (IStrategoList)trans.constCons2053);
-    const4490 = termFactory.makeString("META-INF");
-    constCons2055 = (IStrategoTerm)termFactory.makeListCons(trans.const4490, (IStrategoList)trans.constCons2054);
-    const4491 = termFactory.makeString("include");
-    constCons2056 = (IStrategoTerm)termFactory.makeListCons(trans.const4491, (IStrategoList)trans.constCons2055);
-    const4492 = termFactory.makeString("icons");
-    constCons2057 = (IStrategoTerm)termFactory.makeListCons(trans.const4492, (IStrategoList)trans.constCons2056);
-    const4493 = termFactory.makeString("editor");
-    constCons2058 = (IStrategoTerm)termFactory.makeListCons(trans.const4493, (IStrategoList)trans.constCons2057);
-    const4494 = termFactory.makeString("bin");
-    constCons2059 = (IStrategoTerm)termFactory.makeListCons(trans.const4494, (IStrategoList)trans.constCons2058);
-    const4495 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'mk-binding-violation-message'");
-    const4496 = termFactory.makeString("\n                                 ");
-    const4497 = termFactory.makeString("'");
-    constCons2060 = (IStrategoTerm)termFactory.makeListCons(trans.const4497, (IStrategoList)trans.constNil4);
-    const4498 = termFactory.makeString("Variabele captures detected for '");
-    const4499 = termFactory.makeString("spt");
-    const4500 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'get-dependend-renamings'");
-    const4501 = termFactory.makeString("\n       ");
-    const4502 = termFactory.makeString("-");
-    const4503 = termFactory.makeString("bigfold");
-    constCons2061 = (IStrategoTerm)termFactory.makeListCons(trans.const4503, (IStrategoList)trans.constNil4);
-    const4504 = termFactory.makeString("fold");
-    constCons2062 = (IStrategoTerm)termFactory.makeListCons(trans.const4504, (IStrategoList)trans.constCons2061);
-    const4505 = termFactory.makeString("throw");
-    constCons2063 = (IStrategoTerm)termFactory.makeListCons(trans.const4505, (IStrategoList)trans.constCons2062);
-    const4506 = termFactory.makeString("continue-to-label");
-    constCons2064 = (IStrategoTerm)termFactory.makeListCons(trans.const4506, (IStrategoList)trans.constCons2063);
-    const4507 = termFactory.makeString("break-to-label");
-    constCons2065 = (IStrategoTerm)termFactory.makeListCons(trans.const4507, (IStrategoList)trans.constCons2064);
-    const4508 = termFactory.makeString("innermost-scope");
-    constCons2066 = (IStrategoTerm)termFactory.makeListCons(trans.const4508, (IStrategoList)trans.constCons2065);
-    const4509 = termFactory.makeString("reverse-bagof");
-    constCons2067 = (IStrategoTerm)termFactory.makeListCons(trans.const4509, (IStrategoList)trans.constCons2066);
-    const4510 = termFactory.makeString("aux");
-    constCons2068 = (IStrategoTerm)termFactory.makeListCons(trans.const4510, (IStrategoList)trans.constCons2067);
-    const4511 = termFactory.makeString("undefine");
-    constCons2069 = (IStrategoTerm)termFactory.makeListCons(trans.const4511, (IStrategoList)trans.constCons2068);
-    const4512 = termFactory.makeString("new");
-    constCons2070 = (IStrategoTerm)termFactory.makeListCons(trans.const4512, (IStrategoList)trans.constCons2069);
-    const4513 = termFactory.makeString("bigchain");
-    constCons2071 = (IStrategoTerm)termFactory.makeListCons(trans.const4513, (IStrategoList)trans.constCons2070);
-    const4514 = termFactory.makeString("chain");
-    constCons2072 = (IStrategoTerm)termFactory.makeListCons(trans.const4514, (IStrategoList)trans.constCons2071);
-    const4515 = termFactory.makeString("continue");
-    constCons2073 = (IStrategoTerm)termFactory.makeListCons(trans.const4515, (IStrategoList)trans.constCons2072);
-    const4516 = termFactory.makeString("break-bp");
-    constCons2074 = (IStrategoTerm)termFactory.makeListCons(trans.const4516, (IStrategoList)trans.constCons2073);
-    const4517 = termFactory.makeString("break");
-    constCons2075 = (IStrategoTerm)termFactory.makeListCons(trans.const4517, (IStrategoList)trans.constCons2074);
-    constCons2076 = (IStrategoTerm)termFactory.makeListCons(trans.const4508, (IStrategoList)trans.constCons2075);
-    const4518 = termFactory.makeString("all-keys");
-    constCons2077 = (IStrategoTerm)termFactory.makeListCons(trans.const4518, (IStrategoList)trans.constCons2076);
-    const4519 = termFactory.makeString("bigbagof");
-    constCons2078 = (IStrategoTerm)termFactory.makeListCons(trans.const4519, (IStrategoList)trans.constCons2077);
-    const4520 = termFactory.makeString("bagof");
-    constCons2079 = (IStrategoTerm)termFactory.makeListCons(trans.const4520, (IStrategoList)trans.constCons2078);
-    const4521 = termFactory.makeString("once");
-    constCons2080 = (IStrategoTerm)termFactory.makeListCons(trans.const4521, (IStrategoList)trans.constCons2079);
-    const4522 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'get-asts-affected-by-renaming'");
-    const4523 = termFactory.makeString("\n                     ");
-    const4524 = termFactory.makeString("parsing failed for: '");
-    const4525 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'declared-in-generated-file'");
-    const4526 = termFactory.makeString("\n        ");
-    const4527 = termFactory.makeString(" can not be edited");
-    constCons2081 = (IStrategoTerm)termFactory.makeListCons(trans.const4527, (IStrategoList)trans.constNil4);
-    const4528 = termFactory.makeString("Name in ");
-    const4529 = termFactory.makeString("Ext");
-    const4530 = termFactory.makeString("External declaration can not be edited");
-    constCons2082 = (IStrategoTerm)termFactory.makeListCons(trans.const4530, (IStrategoList)trans.constNil4);
-    const4531 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in strategy 'dirs-with-generated-files'");
-    const4532 = termFactory.makeString("/include");
-    constCons2083 = (IStrategoTerm)termFactory.makeListCons(trans.const4532, (IStrategoList)trans.constNil4);
-    const4533 = termFactory.makeString("/lib");
-    constCons2084 = (IStrategoTerm)termFactory.makeListCons(trans.const4533, (IStrategoList)trans.constNil4);
-    const4534 = termFactory.makeString("/lib-refactoring");
-    constCons2085 = (IStrategoTerm)termFactory.makeListCons(trans.const4534, (IStrategoList)trans.constNil4);
-    const4535 = termFactory.makeString(".generated.str");
+    constCons1966 = (IStrategoTerm)termFactory.makeListCons(trans.constDR_DUMMY0, (IStrategoList)trans.constNil3);
+    const4264 = termFactory.makeString("99705");
+    const4265 = termFactory.makeString("ProjectDir");
+    const4266 = termFactory.makeString("-231360");
+    const4267 = termFactory.makeString("libstratego-lib");
+    constImport0 = termFactory.makeAppl(Main._consImport_1, new IStrategoTerm[]{trans.const4267});
+    const4268 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'get-source-files'");
+    const4269 = termFactory.makeString("\n           ");
+    const4270 = termFactory.makeString("/");
+    const4271 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in strategy 'spoofax-dirs'");
+    const4272 = termFactory.makeString("\n                 ");
+    const4273 = termFactory.makeString("trans");
+    constCons1967 = (IStrategoTerm)termFactory.makeListCons(trans.const4273, (IStrategoList)trans.constNil3);
+    const4274 = termFactory.makeString(".svn");
+    constCons1968 = (IStrategoTerm)termFactory.makeListCons(trans.const4274, (IStrategoList)trans.constCons1967);
+    const4275 = termFactory.makeString(".settings");
+    constCons1969 = (IStrategoTerm)termFactory.makeListCons(trans.const4275, (IStrategoList)trans.constCons1968);
+    const4276 = termFactory.makeString(".externalToolBuilders");
+    constCons1970 = (IStrategoTerm)termFactory.makeListCons(trans.const4276, (IStrategoList)trans.constCons1969);
+    const4277 = termFactory.makeString(".cache");
+    constCons1971 = (IStrategoTerm)termFactory.makeListCons(trans.const4277, (IStrategoList)trans.constCons1970);
+    const4278 = termFactory.makeString("utils");
+    constCons1972 = (IStrategoTerm)termFactory.makeListCons(trans.const4278, (IStrategoList)trans.constCons1971);
+    const4279 = termFactory.makeString("syntax");
+    constCons1973 = (IStrategoTerm)termFactory.makeListCons(trans.const4279, (IStrategoList)trans.constCons1972);
+    const4280 = termFactory.makeString("META-INF");
+    constCons1974 = (IStrategoTerm)termFactory.makeListCons(trans.const4280, (IStrategoList)trans.constCons1973);
+    const4281 = termFactory.makeString("include");
+    constCons1975 = (IStrategoTerm)termFactory.makeListCons(trans.const4281, (IStrategoList)trans.constCons1974);
+    const4282 = termFactory.makeString("icons");
+    constCons1976 = (IStrategoTerm)termFactory.makeListCons(trans.const4282, (IStrategoList)trans.constCons1975);
+    const4283 = termFactory.makeString("editor");
+    constCons1977 = (IStrategoTerm)termFactory.makeListCons(trans.const4283, (IStrategoList)trans.constCons1976);
+    const4284 = termFactory.makeString("bin");
+    constCons1978 = (IStrategoTerm)termFactory.makeListCons(trans.const4284, (IStrategoList)trans.constCons1977);
+    const4285 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'mk-binding-violation-message'");
+    const4286 = termFactory.makeString("\n                                 ");
+    const4287 = termFactory.makeString("'");
+    constCons1979 = (IStrategoTerm)termFactory.makeListCons(trans.const4287, (IStrategoList)trans.constNil3);
+    const4288 = termFactory.makeString("Variabele captures detected for '");
+    const4289 = termFactory.makeString("spt");
+    const4290 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'get-dependend-renamings'");
+    const4291 = termFactory.makeString("\n       ");
+    const4292 = termFactory.makeString("-");
+    const4293 = termFactory.makeString("bigfold");
+    constCons1980 = (IStrategoTerm)termFactory.makeListCons(trans.const4293, (IStrategoList)trans.constNil3);
+    const4294 = termFactory.makeString("fold");
+    constCons1981 = (IStrategoTerm)termFactory.makeListCons(trans.const4294, (IStrategoList)trans.constCons1980);
+    const4295 = termFactory.makeString("throw");
+    constCons1982 = (IStrategoTerm)termFactory.makeListCons(trans.const4295, (IStrategoList)trans.constCons1981);
+    const4296 = termFactory.makeString("continue-to-label");
+    constCons1983 = (IStrategoTerm)termFactory.makeListCons(trans.const4296, (IStrategoList)trans.constCons1982);
+    const4297 = termFactory.makeString("break-to-label");
+    constCons1984 = (IStrategoTerm)termFactory.makeListCons(trans.const4297, (IStrategoList)trans.constCons1983);
+    const4298 = termFactory.makeString("innermost-scope");
+    constCons1985 = (IStrategoTerm)termFactory.makeListCons(trans.const4298, (IStrategoList)trans.constCons1984);
+    const4299 = termFactory.makeString("reverse-bagof");
+    constCons1986 = (IStrategoTerm)termFactory.makeListCons(trans.const4299, (IStrategoList)trans.constCons1985);
+    const4300 = termFactory.makeString("aux");
+    constCons1987 = (IStrategoTerm)termFactory.makeListCons(trans.const4300, (IStrategoList)trans.constCons1986);
+    const4301 = termFactory.makeString("undefine");
+    constCons1988 = (IStrategoTerm)termFactory.makeListCons(trans.const4301, (IStrategoList)trans.constCons1987);
+    const4302 = termFactory.makeString("new");
+    constCons1989 = (IStrategoTerm)termFactory.makeListCons(trans.const4302, (IStrategoList)trans.constCons1988);
+    const4303 = termFactory.makeString("bigchain");
+    constCons1990 = (IStrategoTerm)termFactory.makeListCons(trans.const4303, (IStrategoList)trans.constCons1989);
+    const4304 = termFactory.makeString("chain");
+    constCons1991 = (IStrategoTerm)termFactory.makeListCons(trans.const4304, (IStrategoList)trans.constCons1990);
+    const4305 = termFactory.makeString("continue");
+    constCons1992 = (IStrategoTerm)termFactory.makeListCons(trans.const4305, (IStrategoList)trans.constCons1991);
+    const4306 = termFactory.makeString("break-bp");
+    constCons1993 = (IStrategoTerm)termFactory.makeListCons(trans.const4306, (IStrategoList)trans.constCons1992);
+    const4307 = termFactory.makeString("break");
+    constCons1994 = (IStrategoTerm)termFactory.makeListCons(trans.const4307, (IStrategoList)trans.constCons1993);
+    constCons1995 = (IStrategoTerm)termFactory.makeListCons(trans.const4298, (IStrategoList)trans.constCons1994);
+    const4308 = termFactory.makeString("all-keys");
+    constCons1996 = (IStrategoTerm)termFactory.makeListCons(trans.const4308, (IStrategoList)trans.constCons1995);
+    const4309 = termFactory.makeString("bigbagof");
+    constCons1997 = (IStrategoTerm)termFactory.makeListCons(trans.const4309, (IStrategoList)trans.constCons1996);
+    const4310 = termFactory.makeString("bagof");
+    constCons1998 = (IStrategoTerm)termFactory.makeListCons(trans.const4310, (IStrategoList)trans.constCons1997);
+    const4311 = termFactory.makeString("once");
+    constCons1999 = (IStrategoTerm)termFactory.makeListCons(trans.const4311, (IStrategoList)trans.constCons1998);
+    const4312 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'get-asts-affected-by-renaming'");
+    const4313 = termFactory.makeString("\n                     ");
+    const4314 = termFactory.makeString("parsing failed for: '");
+    const4315 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'declared-in-generated-file'");
+    const4316 = termFactory.makeString("\n        ");
+    const4317 = termFactory.makeString(" can not be edited");
+    constCons2000 = (IStrategoTerm)termFactory.makeListCons(trans.const4317, (IStrategoList)trans.constNil3);
+    const4318 = termFactory.makeString("Name in ");
+    const4319 = termFactory.makeString("Ext");
+    const4320 = termFactory.makeString("External declaration can not be edited");
+    constCons2001 = (IStrategoTerm)termFactory.makeListCons(trans.const4320, (IStrategoList)trans.constNil3);
+    const4321 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in strategy 'dirs-with-generated-files'");
+    const4322 = termFactory.makeString("/include");
+    constCons2002 = (IStrategoTerm)termFactory.makeListCons(trans.const4322, (IStrategoList)trans.constNil3);
+    const4323 = termFactory.makeString("/lib");
+    constCons2003 = (IStrategoTerm)termFactory.makeListCons(trans.const4323, (IStrategoList)trans.constNil3);
+    const4324 = termFactory.makeString("/lib-refactoring");
+    constCons2004 = (IStrategoTerm)termFactory.makeListCons(trans.const4324, (IStrategoList)trans.constNil3);
+    const4325 = termFactory.makeString(".generated.str");
     constStrategoSugarTbl = new ImportTerm(termFactory, trans.class, "/trans/", "Stratego-Sugar.tbl");
     constStrategoSugarTbl0 = new ImportTerm(termFactory, trans.class, "/trans/", "Stratego-Sugar.tbl");
     constStrategoSugarTbl1 = new ImportTerm(termFactory, trans.class, "/trans/", "Stratego-Sugar.tbl");
     constStrategoSugarGeneratedPpAf = new ImportTerm(termFactory, trans.class, "/trans/", "Stratego-Sugar.generated.pp.af");
     constStrategoSugarPpAf = new ImportTerm(termFactory, trans.class, "/trans/", "Stratego-Sugar.pp.af");
-    const4536 = termFactory.makeInt(100);
-    const4537 = termFactory.makeString("IsImported");
-    const4538 = termFactory.makeString("-597601");
-    const4539 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'open-wildcard-import'");
-    const4540 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'import-cache-path'");
-    const4541 = termFactory.makeString("/.cache");
-    constCons2086 = (IStrategoTerm)termFactory.makeListCons(trans.const4541, (IStrategoList)trans.constNil4);
-    const4542 = termFactory.makeString("+");
-    const4543 = termFactory.makeString("\\");
-    const4544 = termFactory.makeString(":");
-    const4545 = termFactory.makeString("\n            ");
-    const4546 = termFactory.makeString(".sig");
-    constCons2087 = (IStrategoTerm)termFactory.makeListCons(trans.const4546, (IStrategoList)trans.constNil4);
-    const4547 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'import-cache-path'");
-    const4548 = termFactory.makeString("Stratego-Sugar");
+    const4326 = termFactory.makeInt(100);
+    const4327 = termFactory.makeString("IsImported");
+    const4328 = termFactory.makeString("-597601");
+    const4329 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'open-wildcard-import'");
+    const4330 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'import-cache-path'");
+    const4331 = termFactory.makeString("/.cache");
+    constCons2005 = (IStrategoTerm)termFactory.makeListCons(trans.const4331, (IStrategoList)trans.constNil3);
+    const4332 = termFactory.makeString("+");
+    const4333 = termFactory.makeString("\\");
+    const4334 = termFactory.makeString(":");
+    const4335 = termFactory.makeString("\n            ");
+    const4336 = termFactory.makeString(".sig");
+    constCons2006 = (IStrategoTerm)termFactory.makeListCons(trans.const4336, (IStrategoList)trans.constNil3);
+    const4337 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'import-cache-path'");
+    const4338 = termFactory.makeString("Stratego-Sugar");
     constMARKER0 = termFactory.makeAppl(Main._consMARKER_0, NO_TERMS);
-    constCons2088 = (IStrategoTerm)termFactory.makeListCons(trans.constMARKER0, (IStrategoList)trans.constNil4);
-    const4549 = termFactory.makeString("BACKGROUNDED");
+    constCons2007 = (IStrategoTerm)termFactory.makeListCons(trans.constMARKER0, (IStrategoList)trans.constNil3);
+    const4339 = termFactory.makeString("BACKGROUNDED");
     constFail0 = termFactory.makeAppl(Main._consFail_0, NO_TERMS);
-    const4550 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'extract-meta-expr-escapes'");
-    const4551 = termFactory.makeInt(47);
-    const4552 = termFactory.makeString("SourceDir");
-    const4553 = termFactory.makeString("1354");
-    const4554 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'analyze-ast'");
-    const4555 = termFactory.makeString("\n               ");
-    const4556 = termFactory.makeString("CurrentDir");
-    const4557 = termFactory.makeString("-237042");
-    const4558 = termFactory.makeString("/.disable-global-analysis");
-    constCons2089 = (IStrategoTerm)termFactory.makeListCons(trans.const4558, (IStrategoList)trans.constNil4);
-    const4559 = termFactory.makeString("NoAnalysis");
-    const4560 = termFactory.makeString("-546490");
-    const4561 = termFactory.makeString("/.warn-global-analysis");
-    constCons2090 = (IStrategoTerm)termFactory.makeListCons(trans.const4561, (IStrategoList)trans.constNil4);
-    const4562 = termFactory.makeString("WarnAnalysis");
-    const4563 = termFactory.makeString("-504485");
-    const4564 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'analyze-ast'");
-    const4565 = termFactory.makeString("DecoratedAst");
-    const4566 = termFactory.makeString("-581518");
-    const4567 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'remove-quote'");
-    const4568 = termFactory.makeString("DeclareCookie");
-    const4569 = termFactory.makeString("-783129");
-    const4570 = termFactory.makeString("Declaration");
-    const4571 = termFactory.makeString("-415135");
-    const4572 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'declare-definition'");
-    const4573 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'redeclare-definition'");
+    const4340 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'extract-meta-expr-escapes'");
+    const4341 = termFactory.makeInt(47);
+    const4342 = termFactory.makeString("SourceDir");
+    const4343 = termFactory.makeString("1354");
+    const4344 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'analyze-ast'");
+    const4345 = termFactory.makeString("\n               ");
+    const4346 = termFactory.makeString("CurrentDir");
+    const4347 = termFactory.makeString("-237042");
+    const4348 = termFactory.makeString("/.disable-global-analysis");
+    constCons2008 = (IStrategoTerm)termFactory.makeListCons(trans.const4348, (IStrategoList)trans.constNil3);
+    const4349 = termFactory.makeString("NoAnalysis");
+    const4350 = termFactory.makeString("-546490");
+    const4351 = termFactory.makeString("/.warn-global-analysis");
+    constCons2009 = (IStrategoTerm)termFactory.makeListCons(trans.const4351, (IStrategoList)trans.constNil3);
+    const4352 = termFactory.makeString("WarnAnalysis");
+    const4353 = termFactory.makeString("-504485");
+    const4354 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'analyze-ast'");
+    const4355 = termFactory.makeString("DecoratedAst");
+    const4356 = termFactory.makeString("-581518");
+    const4357 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'remove-quote'");
+    const4358 = termFactory.makeString("DeclareCookie");
+    const4359 = termFactory.makeString("-783129");
+    const4360 = termFactory.makeString("Declaration");
+    const4361 = termFactory.makeString("-415135");
+    const4362 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'declare-definition'");
+    const4363 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'redeclare-definition'");
     constCritical0 = termFactory.makeAppl(Main._consCritical_0, NO_TERMS);
-    const4574 = termFactory.makeString("Internal error: with clause failed unexpectedly in strategy 'declare-globals-top'");
-    const4575 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'declare-globals'");
-    const4576 = termFactory.makeString("IsImportedFailed");
-    const4577 = termFactory.makeString("-26001");
-    const4578 = termFactory.makeString("rtree");
-    const4579 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'open-import'");
-    const4580 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'resolve-import-decl'");
-    const4581 = termFactory.makeString(".str");
-    constCons2091 = (IStrategoTerm)termFactory.makeListCons(trans.const4581, (IStrategoList)trans.constNil4);
-    constCons2092 = (IStrategoTerm)termFactory.makeListCons(trans.const4471, (IStrategoList)trans.constNil4);
-    const4582 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in strategy 'load-include-properties'");
-    const4583 = termFactory.makeString("/.settings/org.strategoxt.imp.editors.stratego.prefs");
-    constCons2093 = (IStrategoTerm)termFactory.makeListCons(trans.const4583, (IStrategoList)trans.constNil4);
-    const4584 = termFactory.makeString("MemoizeIncludeProperties");
-    const4585 = termFactory.makeString("-64933");
-    const4586 = termFactory.makeInt(32);
-    constCons2094 = (IStrategoTerm)termFactory.makeListCons(trans.const4586, (IStrategoList)trans.constNil4);
-    const4587 = termFactory.makeString("src/syntax");
-    constCons2095 = (IStrategoTerm)termFactory.makeListCons(trans.const4587, (IStrategoList)trans.constNil4);
-    const4588 = termFactory.makeString("syn");
-    constCons2096 = (IStrategoTerm)termFactory.makeListCons(trans.const4588, (IStrategoList)trans.constCons2095);
-    constCons2097 = (IStrategoTerm)termFactory.makeListCons(trans.const4489, (IStrategoList)trans.constCons2096);
-    const4589 = termFactory.makeString("src");
-    constCons2098 = (IStrategoTerm)termFactory.makeListCons(trans.const4589, (IStrategoList)trans.constCons2097);
-    const4590 = termFactory.makeString("lib");
-    constCons2099 = (IStrategoTerm)termFactory.makeListCons(trans.const4590, (IStrategoList)trans.constCons2098);
-    constCons2100 = (IStrategoTerm)termFactory.makeListCons(trans.const4483, (IStrategoList)trans.constCons2099);
-    constCons2101 = (IStrategoTerm)termFactory.makeListCons(trans.const4472, (IStrategoList)trans.constCons2100);
-    const4591 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in strategy 'default-include-paths'");
-    const4592 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'expand-relative-path'");
-    const4593 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'resolve-import-path'");
-    const4594 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'remove-stratego-bodies'");
-    const4595 = termFactory.makeTuple();
-    const4596 = termFactory.makeInt(2);
-    const4597 = termFactory.makeInt(1);
-    constCons2102 = (IStrategoTerm)termFactory.makeListCons(trans.const4506, (IStrategoList)trans.constNil4);
-    constCons2103 = (IStrategoTerm)termFactory.makeListCons(trans.const4507, (IStrategoList)trans.constCons2102);
-    constCons2104 = (IStrategoTerm)termFactory.makeListCons(trans.const4513, (IStrategoList)trans.constNil4);
-    constCons2105 = (IStrategoTerm)termFactory.makeListCons(trans.const4514, (IStrategoList)trans.constCons2104);
-    constCons2106 = (IStrategoTerm)termFactory.makeListCons(trans.const4515, (IStrategoList)trans.constCons2105);
-    constCons2107 = (IStrategoTerm)termFactory.makeListCons(trans.const4516, (IStrategoList)trans.constCons2106);
-    constCons2108 = (IStrategoTerm)termFactory.makeListCons(trans.const4517, (IStrategoList)trans.constCons2107);
-    constCons2109 = (IStrategoTerm)termFactory.makeListCons(trans.const4508, (IStrategoList)trans.constCons2108);
-    constCons2110 = (IStrategoTerm)termFactory.makeListCons(trans.const4518, (IStrategoList)trans.constCons2109);
-    constCons2111 = (IStrategoTerm)termFactory.makeListCons(trans.const4519, (IStrategoList)trans.constCons2110);
-    constCons2112 = (IStrategoTerm)termFactory.makeListCons(trans.const4520, (IStrategoList)trans.constCons2111);
-    constCons2113 = (IStrategoTerm)termFactory.makeListCons(trans.const4521, (IStrategoList)trans.constCons2112);
-    const4598 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'declare-dynrule'");
-    const4599 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in strategy 'declare-dr-rule'");
-    const4600 = termFactory.makeString("\n         ");
-    const4601 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'dr-scope-declare-cookies'");
-    const4602 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'declare-bodies'");
-    constCons2114 = (IStrategoTerm)termFactory.makeListCons(trans.const4568, (IStrategoList)trans.constNil4);
-    const4603 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'declare-let-definition'");
-    const4604 = termFactory.makeString("OuterCookie");
-    const4605 = termFactory.makeString("-802723");
-    const4606 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'scope-variables'");
-    const4607 = termFactory.makeString("-670577");
-    const4608 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'declare-svar'");
-    const4609 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'declare-tvar'");
-    const4610 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'declare-var'");
-    const4611 = termFactory.makeString("ContentProposals");
-    const4612 = termFactory.makeString("-535431");
-    const4613 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'propose-completion'");
-    const4614 = termFactory.makeString(", ");
-    const4615 = termFactory.makeString("()");
-    constCons2115 = (IStrategoTerm)termFactory.makeListCons(trans.const4615, (IStrategoList)trans.constNil4);
-    const4616 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'signature-to-proposal'");
-    const4617 = termFactory.makeString("t");
-    constCons2116 = (IStrategoTerm)termFactory.makeListCons(trans.const4472, (IStrategoList)trans.constNil4);
-    const4618 = termFactory.makeString("s");
-    const4619 = termFactory.makeString("(|");
-    const4620 = termFactory.makeString("|");
-    const4621 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'global-constraint-error'");
-    const4622 = termFactory.makeString("\n                  ");
-    const4623 = termFactory.makeString("' not defined");
-    constCons2117 = (IStrategoTerm)termFactory.makeListCons(trans.const4623, (IStrategoList)trans.constNil4);
-    const4624 = termFactory.makeString("Strategy or rule '");
-    const4625 = termFactory.makeString("\n                ");
-    const4626 = termFactory.makeString(" not declared");
-    constCons2118 = (IStrategoTerm)termFactory.makeListCons(trans.const4626, (IStrategoList)trans.constNil4);
-    const4627 = termFactory.makeString("Constructor ");
-    const4628 = termFactory.makeString("Unable to import '");
-    const4629 = termFactory.makeString("\n              ");
-    const4630 = termFactory.makeString("Dynamic rule '");
-    const4631 = termFactory.makeString("\n                                       ");
-    const4632 = termFactory.makeString("Conflicts with external definition of '");
-    const4633 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'constraint-error'");
-    const4634 = termFactory.makeString("\n          ");
-    const4635 = termFactory.makeString("' is not declared");
-    constCons2119 = (IStrategoTerm)termFactory.makeListCons(trans.const4635, (IStrategoList)trans.constNil4);
-    const4636 = termFactory.makeString("Variable '");
-    const4637 = termFactory.makeString("IsNoConflict");
-    const4638 = termFactory.makeString("17917");
-    const4639 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'constraint-error'");
-    const4640 = termFactory.makeString("\n                              ");
-    const4641 = termFactory.makeString("No external strategy or rule '");
-    const4642 = termFactory.makeString("\n                         ");
-    const4643 = termFactory.makeString("Conflicts with strategy '");
-    const4644 = termFactory.makeString("\n                           ");
-    const4645 = termFactory.makeString("\n                               ");
-    const4646 = termFactory.makeString("Conflicts with constructor ");
-    const4647 = termFactory.makeString("Match symbol in build pattern");
-    const4648 = termFactory.makeString("Build symbol in match pattern");
-    const4649 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'constraint-warning'");
-    const4650 = termFactory.makeString("' may be bound already");
-    constCons2120 = (IStrategoTerm)termFactory.makeListCons(trans.const4650, (IStrategoList)trans.constNil4);
-    const4651 = termFactory.makeString("\n                                  ");
-    const4652 = termFactory.makeString("()' instead");
-    constCons2121 = (IStrategoTerm)termFactory.makeListCons(trans.const4652, (IStrategoList)trans.constNil4);
-    const4653 = termFactory.makeString("Unparenthesized constructor: use '");
-    const4654 = termFactory.makeString("Should be '!");
-    const4655 = termFactory.makeString("Use 'import libjava-front' instead");
-    const4656 = termFactory.makeString("Module name does not correspond to file name");
-    constCons2122 = (IStrategoTerm)termFactory.makeListCons(trans.const4656, (IStrategoList)trans.constNil4);
-    const4657 = termFactory.makeString("../");
-    const4658 = termFactory.makeString("Relative path in import");
-    constCons2123 = (IStrategoTerm)termFactory.makeListCons(trans.const4658, (IStrategoList)trans.constNil4);
-    const4659 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'editor-analyze'");
-    const4660 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'editor-complete'");
-    const4661 = termFactory.makeString("</pre>");
-    constCons2124 = (IStrategoTerm)termFactory.makeListCons(trans.const4661, (IStrategoList)trans.constNil4);
-    const4662 = termFactory.makeString("<pre>");
-    const4663 = termFactory.makeString("aterm");
-    const4664 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'generate-aterm'");
-    const4665 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'generate-desugared-aterm'");
+    const4364 = termFactory.makeString("Internal error: with clause failed unexpectedly in strategy 'declare-globals-top'");
+    const4365 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'declare-globals'");
+    const4366 = termFactory.makeString("IsImportedFailed");
+    const4367 = termFactory.makeString("-26001");
+    const4368 = termFactory.makeString("rtree");
+    const4369 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'open-import'");
+    const4370 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'resolve-import-decl'");
+    const4371 = termFactory.makeString(".str");
+    constCons2010 = (IStrategoTerm)termFactory.makeListCons(trans.const4371, (IStrategoList)trans.constNil3);
+    constCons2011 = (IStrategoTerm)termFactory.makeListCons(trans.const4261, (IStrategoList)trans.constNil3);
+    const4372 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in strategy 'load-include-properties'");
+    const4373 = termFactory.makeString("/.settings/org.strategoxt.imp.editors.stratego.prefs");
+    constCons2012 = (IStrategoTerm)termFactory.makeListCons(trans.const4373, (IStrategoList)trans.constNil3);
+    const4374 = termFactory.makeString("MemoizeIncludeProperties");
+    const4375 = termFactory.makeString("-64933");
+    const4376 = termFactory.makeInt(32);
+    constCons2013 = (IStrategoTerm)termFactory.makeListCons(trans.const4376, (IStrategoList)trans.constNil3);
+    const4377 = termFactory.makeString("src/syntax");
+    constCons2014 = (IStrategoTerm)termFactory.makeListCons(trans.const4377, (IStrategoList)trans.constNil3);
+    const4378 = termFactory.makeString("syn");
+    constCons2015 = (IStrategoTerm)termFactory.makeListCons(trans.const4378, (IStrategoList)trans.constCons2014);
+    constCons2016 = (IStrategoTerm)termFactory.makeListCons(trans.const4279, (IStrategoList)trans.constCons2015);
+    const4379 = termFactory.makeString("src");
+    constCons2017 = (IStrategoTerm)termFactory.makeListCons(trans.const4379, (IStrategoList)trans.constCons2016);
+    const4380 = termFactory.makeString("lib");
+    constCons2018 = (IStrategoTerm)termFactory.makeListCons(trans.const4380, (IStrategoList)trans.constCons2017);
+    constCons2019 = (IStrategoTerm)termFactory.makeListCons(trans.const4273, (IStrategoList)trans.constCons2018);
+    constCons2020 = (IStrategoTerm)termFactory.makeListCons(trans.const4262, (IStrategoList)trans.constCons2019);
+    const4381 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in strategy 'default-include-paths'");
+    const4382 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'expand-relative-path'");
+    const4383 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'resolve-import-path'");
+    const4384 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'remove-stratego-bodies'");
+    const4385 = termFactory.makeTuple();
+    const4386 = termFactory.makeInt(2);
+    const4387 = termFactory.makeInt(1);
+    constCons2021 = (IStrategoTerm)termFactory.makeListCons(trans.const4296, (IStrategoList)trans.constNil3);
+    constCons2022 = (IStrategoTerm)termFactory.makeListCons(trans.const4297, (IStrategoList)trans.constCons2021);
+    constCons2023 = (IStrategoTerm)termFactory.makeListCons(trans.const4303, (IStrategoList)trans.constNil3);
+    constCons2024 = (IStrategoTerm)termFactory.makeListCons(trans.const4304, (IStrategoList)trans.constCons2023);
+    constCons2025 = (IStrategoTerm)termFactory.makeListCons(trans.const4305, (IStrategoList)trans.constCons2024);
+    constCons2026 = (IStrategoTerm)termFactory.makeListCons(trans.const4306, (IStrategoList)trans.constCons2025);
+    constCons2027 = (IStrategoTerm)termFactory.makeListCons(trans.const4307, (IStrategoList)trans.constCons2026);
+    constCons2028 = (IStrategoTerm)termFactory.makeListCons(trans.const4298, (IStrategoList)trans.constCons2027);
+    constCons2029 = (IStrategoTerm)termFactory.makeListCons(trans.const4308, (IStrategoList)trans.constCons2028);
+    constCons2030 = (IStrategoTerm)termFactory.makeListCons(trans.const4309, (IStrategoList)trans.constCons2029);
+    constCons2031 = (IStrategoTerm)termFactory.makeListCons(trans.const4310, (IStrategoList)trans.constCons2030);
+    constCons2032 = (IStrategoTerm)termFactory.makeListCons(trans.const4311, (IStrategoList)trans.constCons2031);
+    const4388 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'declare-dynrule'");
+    const4389 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in strategy 'declare-dr-rule'");
+    const4390 = termFactory.makeString("\n         ");
+    const4391 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'dr-scope-declare-cookies'");
+    const4392 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'declare-bodies'");
+    constCons2033 = (IStrategoTerm)termFactory.makeListCons(trans.const4358, (IStrategoList)trans.constNil3);
+    const4393 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'declare-let-definition'");
+    const4394 = termFactory.makeString("OuterCookie");
+    const4395 = termFactory.makeString("-802723");
+    const4396 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'scope-variables'");
+    const4397 = termFactory.makeString("-670577");
+    const4398 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'declare-svar'");
+    const4399 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'declare-tvar'");
+    const4400 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'declare-var'");
+    const4401 = termFactory.makeString("ContentProposals");
+    const4402 = termFactory.makeString("-535431");
+    const4403 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'propose-completion'");
+    const4404 = termFactory.makeString(", ");
+    const4405 = termFactory.makeString("()");
+    constCons2034 = (IStrategoTerm)termFactory.makeListCons(trans.const4405, (IStrategoList)trans.constNil3);
+    const4406 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'signature-to-proposal'");
+    const4407 = termFactory.makeString("t");
+    constCons2035 = (IStrategoTerm)termFactory.makeListCons(trans.const4262, (IStrategoList)trans.constNil3);
+    const4408 = termFactory.makeString("s");
+    const4409 = termFactory.makeString("(|");
+    const4410 = termFactory.makeString("|");
+    const4411 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'global-constraint-error'");
+    const4412 = termFactory.makeString("\n                  ");
+    const4413 = termFactory.makeString("' not defined");
+    constCons2036 = (IStrategoTerm)termFactory.makeListCons(trans.const4413, (IStrategoList)trans.constNil3);
+    const4414 = termFactory.makeString("Strategy or rule '");
+    const4415 = termFactory.makeString("\n                ");
+    const4416 = termFactory.makeString(" not declared");
+    constCons2037 = (IStrategoTerm)termFactory.makeListCons(trans.const4416, (IStrategoList)trans.constNil3);
+    const4417 = termFactory.makeString("Constructor ");
+    const4418 = termFactory.makeString("Unable to import '");
+    const4419 = termFactory.makeString("\n              ");
+    const4420 = termFactory.makeString("Dynamic rule '");
+    const4421 = termFactory.makeString("\n                                       ");
+    const4422 = termFactory.makeString("Conflicts with external definition of '");
+    const4423 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'constraint-error'");
+    const4424 = termFactory.makeString("\n          ");
+    const4425 = termFactory.makeString("' is not declared");
+    constCons2038 = (IStrategoTerm)termFactory.makeListCons(trans.const4425, (IStrategoList)trans.constNil3);
+    const4426 = termFactory.makeString("Variable '");
+    const4427 = termFactory.makeString("IsNoConflict");
+    const4428 = termFactory.makeString("17917");
+    const4429 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'constraint-error'");
+    const4430 = termFactory.makeString("\n                              ");
+    const4431 = termFactory.makeString("No external strategy or rule '");
+    const4432 = termFactory.makeString("\n                         ");
+    const4433 = termFactory.makeString("Conflicts with strategy '");
+    const4434 = termFactory.makeString("\n                           ");
+    const4435 = termFactory.makeString("\n                               ");
+    const4436 = termFactory.makeString("Conflicts with constructor ");
+    const4437 = termFactory.makeString("Match symbol in build pattern");
+    const4438 = termFactory.makeString("Build symbol in match pattern");
+    const4439 = termFactory.makeString("Internal error: escaped term in string quotation is not a string in rule 'constraint-warning'");
+    const4440 = termFactory.makeString("' may be bound already");
+    constCons2039 = (IStrategoTerm)termFactory.makeListCons(trans.const4440, (IStrategoList)trans.constNil3);
+    const4441 = termFactory.makeString("\n                                  ");
+    const4442 = termFactory.makeString("()' instead");
+    constCons2040 = (IStrategoTerm)termFactory.makeListCons(trans.const4442, (IStrategoList)trans.constNil3);
+    const4443 = termFactory.makeString("Unparenthesized constructor: use '");
+    const4444 = termFactory.makeString("Should be '!");
+    const4445 = termFactory.makeString("Use 'import libjava-front' instead");
+    const4446 = termFactory.makeString("Module name does not correspond to file name");
+    constCons2041 = (IStrategoTerm)termFactory.makeListCons(trans.const4446, (IStrategoList)trans.constNil3);
+    const4447 = termFactory.makeString("../");
+    const4448 = termFactory.makeString("Relative path in import");
+    constCons2042 = (IStrategoTerm)termFactory.makeListCons(trans.const4448, (IStrategoList)trans.constNil3);
+    const4449 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'editor-analyze'");
+    const4450 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'editor-complete'");
+    const4451 = termFactory.makeString("</pre>");
+    constCons2043 = (IStrategoTerm)termFactory.makeListCons(trans.const4451, (IStrategoList)trans.constNil3);
+    const4452 = termFactory.makeString("<pre>");
+    const4453 = termFactory.makeString("aterm");
+    const4454 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'generate-aterm'");
+    const4455 = termFactory.makeString("Internal error: with clause failed unexpectedly in rule 'generate-desugared-aterm'");
   }
 
   public static void registerInterop(org.spoofax.interpreter.core.IContext context, Context compiledContext)

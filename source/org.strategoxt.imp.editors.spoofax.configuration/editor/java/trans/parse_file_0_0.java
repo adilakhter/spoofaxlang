@@ -22,11 +22,11 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("parse_file_0_0");
-    Fail87641:
+    Fail22833:
     { 
       term = parse_spoofaxconfiguration_file_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail87641;
+        break Fail22833;
       context.popOnSuccess();
       if(true)
         return term;

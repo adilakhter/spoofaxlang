@@ -23,36 +23,36 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("constraint_error_bad_build_0_0");
-    Fail23309:
+    Fail21833:
     { 
-      IStrategoTerm m_4820 = null;
-      term = collect_1_0.instance.invoke(context, term, lifted6937.instance);
+      IStrategoTerm u_4266 = null;
+      term = collect_1_0.instance.invoke(context, term, lifted6666.instance);
       if(term == null)
-        break Fail23309;
-      term = filter_1_0.instance.invoke(context, term, lifted6938.instance);
+        break Fail21833;
+      term = filter_1_0.instance.invoke(context, term, lifted6667.instance);
       if(term == null)
-        break Fail23309;
-      term = map_1_0.instance.invoke(context, term, lifted6939.instance);
+        break Fail21833;
+      term = map_1_0.instance.invoke(context, term, lifted6668.instance);
       if(term == null)
-        break Fail23309;
-      m_4820 = term;
-      IStrategoTerm term12645 = term;
-      Success12525:
+        break Fail21833;
+      u_4266 = term;
+      IStrategoTerm term11936 = term;
+      Success11816:
       { 
-        Fail23310:
+        Fail21834:
         { 
           if(term.getTermType() != IStrategoTerm.LIST || !((IStrategoList)term).isEmpty())
-            break Fail23310;
+            break Fail21834;
           { 
             if(true)
-              break Fail23309;
+              break Fail21833;
             if(true)
-              break Success12525;
+              break Success11816;
           }
         }
-        term = term12645;
+        term = term11936;
       }
-      term = m_4820;
+      term = u_4266;
       context.popOnSuccess();
       if(true)
         return term;

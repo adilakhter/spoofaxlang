@@ -20,13 +20,13 @@ import java.lang.ref.WeakReference;
 { 
   public static aux_$No$Analysis_0_2 instance = new aux_$No$Analysis_0_2();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm s_4859, IStrategoTerm t_4859)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm a_4306, IStrategoTerm b_4306)
   { 
-    Fail23556:
+    Fail22080:
     { 
       if(term.getTermType() != IStrategoTerm.STRING || !"-546490".equals(((IStrategoString)term).stringValue()))
-        break Fail23556;
-      term = s_4859;
+        break Fail22080;
+      term = a_4306;
       if(true)
         return term;
     }

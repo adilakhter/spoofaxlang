@@ -23,57 +23,57 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("verify_local_directories_exists_0_0");
-    Fail87608:
+    Fail22800:
     { 
-      IStrategoTerm term47241 = term;
-      Success47232:
+      IStrategoTerm term12154 = term;
+      Success12145:
       { 
-        Fail87609:
+        Fail22801:
         { 
           if(term.getTermType() != IStrategoTerm.LIST || !((IStrategoList)term).isEmpty())
-            break Fail87609;
-          term = trans.constNil14;
+            break Fail22801;
+          term = trans.constNil4;
           if(true)
-            break Success47232;
+            break Success12145;
         }
-        term = term47241;
-        IStrategoTerm g_17559 = null;
-        IStrategoTerm h_17559 = null;
-        IStrategoTerm l_17559 = null;
+        term = term12154;
+        IStrategoTerm j_4615 = null;
+        IStrategoTerm k_4615 = null;
+        IStrategoTerm o_4615 = null;
         if(term.getTermType() != IStrategoTerm.LIST || ((IStrategoList)term).isEmpty())
-          break Fail87608;
-        g_17559 = ((IStrategoList)term).head();
-        h_17559 = ((IStrategoList)term).tail();
-        IStrategoTerm term47242 = term;
-        Success47233:
+          break Fail22800;
+        j_4615 = ((IStrategoList)term).head();
+        k_4615 = ((IStrategoList)term).tail();
+        IStrategoTerm term12155 = term;
+        Success12146:
         { 
-          Fail87610:
+          Fail22802:
           { 
             if(term.getTermType() != IStrategoTerm.LIST || !((IStrategoList)term).isEmpty())
-              break Fail87610;
+              break Fail22802;
             { 
               if(true)
-                break Fail87608;
+                break Fail22800;
               if(true)
-                break Success47233;
+                break Success12146;
             }
           }
-          term = term47242;
+          term = term12155;
         }
-        term = verify_local_directory_exist_0_0.instance.invoke(context, g_17559);
+        term = verify_local_directory_exist_0_0.instance.invoke(context, j_4615);
         if(term == null)
-          break Fail87608;
-        l_17559 = term;
-        term = this.invoke(context, h_17559);
+          break Fail22800;
+        o_4615 = term;
+        term = this.invoke(context, k_4615);
         if(term == null)
-          break Fail87608;
-        term = termFactory.makeTuple(l_17559, term);
+          break Fail22800;
+        term = termFactory.makeTuple(o_4615, term);
         term = conc_0_0.instance.invoke(context, term);
         if(term == null)
-          break Fail87608;
+          break Fail22800;
         term = flatten_list_0_0.instance.invoke(context, term);
         if(term == null)
-          break Fail87608;
+          break Fail22800;
       }
       context.popOnSuccess();
       if(true)

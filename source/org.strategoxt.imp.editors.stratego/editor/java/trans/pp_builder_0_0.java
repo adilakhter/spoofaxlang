@@ -24,19 +24,19 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("pp_builder_0_0");
-    Fail22802:
+    Fail21326:
     { 
-      IStrategoTerm a_4730 = null;
+      IStrategoTerm i_4176 = null;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 5)
-        break Fail22802;
-      a_4730 = term.getSubterm(0);
-      term = debug_1_0.instance.invoke(context, a_4730, lifted6747.instance);
+        break Fail21326;
+      i_4176 = term.getSubterm(0);
+      term = debug_1_0.instance.invoke(context, i_4176, lifted6476.instance);
       if(term == null)
-        break Fail22802;
+        break Fail21326;
       term = pp_stratego_string_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22802;
-      term = termFactory.makeTuple(trans.const4466, term);
+        break Fail21326;
+      term = termFactory.makeTuple(trans.const4256, term);
       context.popOnSuccess();
       if(true)
         return term;

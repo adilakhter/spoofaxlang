@@ -24,56 +24,56 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("numbered_arguments_0_0");
-    Fail23223:
+    Fail21747:
     { 
-      IStrategoTerm y_4809 = null;
-      TermReference z_4809 = new TermReference();
+      IStrategoTerm g_4256 = null;
+      TermReference h_4256 = new TermReference();
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-        break Fail23223;
-      y_4809 = term.getSubterm(0);
-      if(z_4809.value == null)
-        z_4809.value = term.getSubterm(1);
+        break Fail21747;
+      g_4256 = term.getSubterm(0);
+      if(h_4256.value == null)
+        h_4256.value = term.getSubterm(1);
       else
-        if(z_4809.value != term.getSubterm(1) && !z_4809.value.match(term.getSubterm(1)))
-          break Fail23223;
-      IStrategoTerm term12551 = term;
-      Success12443:
+        if(h_4256.value != term.getSubterm(1) && !h_4256.value.match(term.getSubterm(1)))
+          break Fail21747;
+      IStrategoTerm term11842 = term;
+      Success11734:
       { 
-        Fail23224:
+        Fail21748:
         { 
-          IStrategoTerm a_4810 = null;
-          a_4810 = term;
-          term = termFactory.makeTuple(y_4809, trans.const4597);
+          IStrategoTerm i_4256 = null;
+          i_4256 = term;
+          term = termFactory.makeTuple(g_4256, trans.const4387);
           term = gt_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail23224;
-          term = a_4810;
+            break Fail21748;
+          term = i_4256;
           { 
-            IStrategoTerm h_4810 = null;
-            term = inc_0_0.instance.invoke(context, y_4809);
+            IStrategoTerm p_4256 = null;
+            term = inc_0_0.instance.invoke(context, g_4256);
             if(term == null)
-              break Fail23223;
-            term = termFactory.makeTuple(trans.const4597, term);
+              break Fail21747;
+            term = termFactory.makeTuple(trans.const4387, term);
             term = range_0_0.instance.invoke(context, term);
             if(term == null)
-              break Fail23223;
-            lifted6929 lifted69290 = new lifted6929();
-            lifted69290.z_4809 = z_4809;
-            term = map_1_0.instance.invoke(context, term, lifted69290);
+              break Fail21747;
+            lifted6658 lifted66580 = new lifted6658();
+            lifted66580.h_4256 = h_4256;
+            term = map_1_0.instance.invoke(context, term, lifted66580);
             if(term == null)
-              break Fail23223;
-            h_4810 = term;
-            term = separate_by_0_1.instance.invoke(context, h_4810, trans.const4614);
+              break Fail21747;
+            p_4256 = term;
+            term = separate_by_0_1.instance.invoke(context, p_4256, trans.const4404);
             if(term == null)
-              break Fail23223;
+              break Fail21747;
             if(true)
-              break Success12443;
+              break Success11734;
           }
         }
-        term = term12551;
-        if(z_4809.value == null)
-          break Fail23223;
-        term = (IStrategoTerm)termFactory.makeListCons(z_4809.value, (IStrategoList)trans.constNil4);
+        term = term11842;
+        if(h_4256.value == null)
+          break Fail21747;
+        term = (IStrategoTerm)termFactory.makeListCons(h_4256.value, (IStrategoList)trans.constNil3);
       }
       context.popOnSuccess();
       if(true)

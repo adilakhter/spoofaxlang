@@ -20,23 +20,23 @@ import java.lang.ref.WeakReference;
 { 
   public static term_at_position_0_1 instance = new term_at_position_0_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm z_4759)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm h_4206)
   { 
     context.push("term_at_position_0_1");
-    Fail22960:
+    Fail21484:
     { 
-      TermReference b_4760 = new TermReference();
-      IStrategoTerm c_4760 = null;
-      c_4760 = term;
-      lifted6823 lifted68230 = new lifted6823();
-      lifted68230.b_4760 = b_4760;
-      term = at_position_1_1.instance.invoke(context, term, lifted68230, z_4759);
+      TermReference j_4206 = new TermReference();
+      IStrategoTerm k_4206 = null;
+      k_4206 = term;
+      lifted6552 lifted65520 = new lifted6552();
+      lifted65520.j_4206 = j_4206;
+      term = at_position_1_1.instance.invoke(context, term, lifted65520, h_4206);
       if(term == null)
-        break Fail22960;
-      term = c_4760;
-      if(b_4760.value == null)
-        break Fail22960;
-      term = b_4760.value;
+        break Fail21484;
+      term = k_4206;
+      if(j_4206.value == null)
+        break Fail21484;
+      term = j_4206.value;
       context.popOnSuccess();
       if(true)
         return term;

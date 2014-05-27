@@ -18,40 +18,22 @@ import java.lang.ref.WeakReference;
 
 @SuppressWarnings("all") final class lifted6779 extends Strategy 
 { 
-  TermReference t_4738;
-
-  TermReference u_4738;
+  public static final lifted6779 instance = new lifted6779();
 
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
-    Fail24146:
+    Fail22375:
     { 
-      IStrategoTerm term12202 = term;
-      Success12798:
-      { 
-        Fail24147:
-        { 
-          if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-            break Fail24147;
-          if(t_4738.value == null)
-            t_4738.value = term.getSubterm(0);
-          else
-            if(t_4738.value != term.getSubterm(0) && !t_4738.value.match(term.getSubterm(0)))
-              break Fail24147;
-          if(u_4738.value == null)
-            u_4738.value = term.getSubterm(1);
-          else
-            if(u_4738.value != term.getSubterm(1) && !u_4738.value.match(term.getSubterm(1)))
-              break Fail24147;
-          { 
-            if(true)
-              break Fail24146;
-            if(true)
-              break Success12798;
-          }
-        }
-        term = term12202;
-      }
+      IStrategoTerm r_4317 = null;
+      IStrategoTerm a_4318 = null;
+      if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
+        break Fail22375;
+      a_4318 = term.getSubterm(0);
+      IStrategoTerm arg7939 = term.getSubterm(1);
+      r_4317 = arg7939;
+      term = aux_$Declare$Cookie_0_2.instance.invoke(context, a_4318, arg7939, r_4317);
+      if(term == null)
+        break Fail22375;
       if(true)
         return term;
     }

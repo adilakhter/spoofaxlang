@@ -20,22 +20,22 @@ import java.lang.ref.WeakReference;
 { 
   public static substitute_single_0_2 instance = new substitute_single_0_2();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm ref_y_4727, IStrategoTerm ref_z_4727)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm ref_g_4174, IStrategoTerm ref_h_4174)
   { 
-    TermReference y_4727 = new TermReference(ref_y_4727);
-    TermReference z_4727 = new TermReference(ref_z_4727);
+    TermReference g_4174 = new TermReference(ref_g_4174);
+    TermReference h_4174 = new TermReference(ref_h_4174);
     context.push("substitute_single_0_2");
-    Fail22795:
+    Fail21319:
     { 
-      IStrategoTerm a_4728 = null;
-      a_4728 = term;
-      term = a_4728;
-      lifted6737 lifted67370 = new lifted6737();
-      lifted67370.y_4727 = y_4727;
-      lifted67370.z_4727 = z_4727;
-      term = topdown_1_0.instance.invoke(context, term, lifted67370);
+      IStrategoTerm i_4174 = null;
+      i_4174 = term;
+      term = i_4174;
+      lifted6466 lifted64660 = new lifted6466();
+      lifted64660.g_4174 = g_4174;
+      lifted64660.h_4174 = h_4174;
+      term = topdown_1_0.instance.invoke(context, term, lifted64660);
       if(term == null)
-        break Fail22795;
+        break Fail21319;
       context.popOnSuccess();
       if(true)
         return term;

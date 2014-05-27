@@ -19,30 +19,30 @@ import java.lang.ref.WeakReference;
 { 
   public static $Entity_2_0 instance = new $Entity_2_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy e_17576, Strategy f_17576)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy h_4632, Strategy i_4632)
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("Entity_2_0");
-    Fail87731:
+    Fail22923:
     { 
-      IStrategoTerm r_17675 = null;
-      IStrategoTerm p_17675 = null;
-      IStrategoTerm q_17675 = null;
-      IStrategoTerm s_17675 = null;
+      IStrategoTerm u_4731 = null;
+      IStrategoTerm s_4731 = null;
+      IStrategoTerm t_4731 = null;
+      IStrategoTerm v_4731 = null;
       if(term.getTermType() != IStrategoTerm.APPL || Main._consEntity_2 != ((IStrategoAppl)term).getConstructor())
-        break Fail87731;
-      p_17675 = term.getSubterm(0);
-      q_17675 = term.getSubterm(1);
-      IStrategoList annos2679 = term.getAnnotations();
-      r_17675 = annos2679;
-      term = e_17576.invoke(context, p_17675);
+        break Fail22923;
+      s_4731 = term.getSubterm(0);
+      t_4731 = term.getSubterm(1);
+      IStrategoList annos700 = term.getAnnotations();
+      u_4731 = annos700;
+      term = h_4632.invoke(context, s_4731);
       if(term == null)
-        break Fail87731;
-      s_17675 = term;
-      term = f_17576.invoke(context, q_17675);
+        break Fail22923;
+      v_4731 = term;
+      term = i_4632.invoke(context, t_4731);
       if(term == null)
-        break Fail87731;
-      term = termFactory.annotateTerm(termFactory.makeAppl(Main._consEntity_2, new IStrategoTerm[]{s_17675, term}), checkListAnnos(termFactory, r_17675));
+        break Fail22923;
+      term = termFactory.annotateTerm(termFactory.makeAppl(Main._consEntity_2, new IStrategoTerm[]{v_4731, term}), checkListAnnos(termFactory, u_4731));
       context.popOnSuccess();
       if(true)
         return term;

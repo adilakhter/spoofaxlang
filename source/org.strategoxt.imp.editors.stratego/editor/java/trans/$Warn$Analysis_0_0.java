@@ -23,35 +23,35 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("WarnAnalysis_0_0");
-    Fail23529:
+    Fail22053:
     { 
-      TermReference q_4854 = new TermReference();
-      TermReference r_4854 = new TermReference();
-      IStrategoTerm u_4854 = null;
-      IStrategoTerm w_4854 = null;
-      IStrategoTerm x_4854 = null;
-      if(r_4854.value == null)
-        r_4854.value = term;
+      TermReference y_4300 = new TermReference();
+      TermReference z_4300 = new TermReference();
+      IStrategoTerm c_4301 = null;
+      IStrategoTerm e_4301 = null;
+      IStrategoTerm f_4301 = null;
+      if(z_4300.value == null)
+        z_4300.value = term;
       else
-        if(r_4854.value != term && !r_4854.value.match(term))
-          break Fail23529;
-      if(q_4854.value == null)
-        q_4854.value = term;
+        if(z_4300.value != term && !z_4300.value.match(term))
+          break Fail22053;
+      if(y_4300.value == null)
+        y_4300.value = term;
       else
-        if(q_4854.value != term && !q_4854.value.match(term))
-          break Fail23529;
-      w_4854 = term;
-      u_4854 = trans.const4562;
-      x_4854 = w_4854;
-      term = dr_lookup_rule_0_2.instance.invoke(context, x_4854, u_4854, trans.constCons2047);
+        if(y_4300.value != term && !y_4300.value.match(term))
+          break Fail22053;
+      e_4301 = term;
+      c_4301 = trans.const4352;
+      f_4301 = e_4301;
+      term = dr_lookup_rule_0_2.instance.invoke(context, f_4301, c_4301, trans.constCons1966);
       if(term == null)
-        break Fail23529;
-      lifted7020 lifted70200 = new lifted7020();
-      lifted70200.q_4854 = q_4854;
-      lifted70200.r_4854 = r_4854;
-      term = fetch_elem_1_0.instance.invoke(context, term, lifted70200);
+        break Fail22053;
+      lifted6749 lifted67490 = new lifted6749();
+      lifted67490.y_4300 = y_4300;
+      lifted67490.z_4300 = z_4300;
+      term = fetch_elem_1_0.instance.invoke(context, term, lifted67490);
       if(term == null)
-        break Fail23529;
+        break Fail22053;
       context.popOnSuccess();
       if(true)
         return term;

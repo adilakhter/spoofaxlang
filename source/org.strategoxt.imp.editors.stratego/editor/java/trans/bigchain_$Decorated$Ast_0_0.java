@@ -24,35 +24,35 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("bigchain_DecoratedAst_0_0");
-    Fail23492:
+    Fail22016:
     { 
-      IStrategoTerm w_4847 = null;
-      IStrategoTerm y_4847 = null;
-      y_4847 = term;
-      Success12603:
+      IStrategoTerm e_4294 = null;
+      IStrategoTerm g_4294 = null;
+      g_4294 = term;
+      Success11894:
       { 
-        Fail23493:
+        Fail22017:
         { 
-          IStrategoTerm z_4847 = null;
-          IStrategoTerm b_4848 = null;
-          IStrategoTerm c_4848 = null;
-          b_4848 = term;
-          z_4847 = trans.const4565;
-          c_4848 = b_4848;
-          term = dr_lookup_all_rules_0_2.instance.invoke(context, c_4848, z_4847, trans.constCons2047);
+          IStrategoTerm h_4294 = null;
+          IStrategoTerm j_4294 = null;
+          IStrategoTerm k_4294 = null;
+          j_4294 = term;
+          h_4294 = trans.const4355;
+          k_4294 = j_4294;
+          term = dr_lookup_all_rules_0_2.instance.invoke(context, k_4294, h_4294, trans.constCons1966);
           if(term == null)
-            break Fail23493;
+            break Fail22017;
           if(true)
-            break Success12603;
+            break Success11894;
         }
-        term = trans.constNil4;
+        term = trans.constNil3;
       }
-      w_4847 = term;
-      term = y_4847;
-      term = termFactory.makeTuple(w_4847, term);
-      term = foldl_1_0.instance.invoke(context, term, lifted7005.instance);
+      e_4294 = term;
+      term = g_4294;
+      term = termFactory.makeTuple(e_4294, term);
+      term = foldl_1_0.instance.invoke(context, term, lifted6734.instance);
       if(term == null)
-        break Fail23492;
+        break Fail22016;
       context.popOnSuccess();
       if(true)
         return term;

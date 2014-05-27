@@ -23,44 +23,44 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("bagof_NoAnalysis_0_0");
-    Fail23553:
+    Fail22077:
     { 
-      TermReference c_4859 = new TermReference();
-      TermReference d_4859 = new TermReference();
-      if(d_4859.value == null)
-        d_4859.value = term;
+      TermReference k_4305 = new TermReference();
+      TermReference l_4305 = new TermReference();
+      if(l_4305.value == null)
+        l_4305.value = term;
       else
-        if(d_4859.value != term && !d_4859.value.match(term))
-          break Fail23553;
-      if(c_4859.value == null)
-        c_4859.value = term;
+        if(l_4305.value != term && !l_4305.value.match(term))
+          break Fail22077;
+      if(k_4305.value == null)
+        k_4305.value = term;
       else
-        if(c_4859.value != term && !c_4859.value.match(term))
-          break Fail23553;
-      Success12621:
+        if(k_4305.value != term && !k_4305.value.match(term))
+          break Fail22077;
+      Success11912:
       { 
-        Fail23554:
+        Fail22078:
         { 
-          IStrategoTerm g_4859 = null;
-          IStrategoTerm i_4859 = null;
-          IStrategoTerm j_4859 = null;
-          i_4859 = term;
-          g_4859 = trans.const4559;
-          j_4859 = i_4859;
-          term = dr_lookup_rule_0_2.instance.invoke(context, j_4859, g_4859, trans.constCons2047);
+          IStrategoTerm o_4305 = null;
+          IStrategoTerm q_4305 = null;
+          IStrategoTerm r_4305 = null;
+          q_4305 = term;
+          o_4305 = trans.const4349;
+          r_4305 = q_4305;
+          term = dr_lookup_rule_0_2.instance.invoke(context, r_4305, o_4305, trans.constCons1966);
           if(term == null)
-            break Fail23554;
+            break Fail22078;
           if(true)
-            break Success12621;
+            break Success11912;
         }
-        term = trans.constNil4;
+        term = trans.constNil3;
       }
-      lifted7028 lifted70280 = new lifted7028();
-      lifted70280.c_4859 = c_4859;
-      lifted70280.d_4859 = d_4859;
-      term = filter_1_0.instance.invoke(context, term, lifted70280);
+      lifted6757 lifted67570 = new lifted6757();
+      lifted67570.k_4305 = k_4305;
+      lifted67570.l_4305 = l_4305;
+      term = filter_1_0.instance.invoke(context, term, lifted67570);
       if(term == null)
-        break Fail23553;
+        break Fail22077;
       context.popOnSuccess();
       if(true)
         return term;

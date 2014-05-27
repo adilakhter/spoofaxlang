@@ -24,60 +24,60 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("get_asts_affected_by_renaming_0_0");
-    Fail22867:
+    Fail21391:
     { 
-      IStrategoTerm b_4746 = null;
-      TermReference c_4746 = new TermReference();
-      IStrategoTerm d_4746 = null;
-      IStrategoTerm e_4746 = null;
-      IStrategoTerm f_4746 = null;
-      IStrategoTerm g_4746 = null;
+      IStrategoTerm j_4192 = null;
+      TermReference k_4192 = new TermReference();
+      IStrategoTerm l_4192 = null;
+      IStrategoTerm m_4192 = null;
+      IStrategoTerm n_4192 = null;
+      IStrategoTerm o_4192 = null;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 3)
-        break Fail22867;
-      b_4746 = term.getSubterm(0);
-      if(c_4746.value == null)
-        c_4746.value = term.getSubterm(1);
+        break Fail21391;
+      j_4192 = term.getSubterm(0);
+      if(k_4192.value == null)
+        k_4192.value = term.getSubterm(1);
       else
-        if(c_4746.value != term.getSubterm(1) && !c_4746.value.match(term.getSubterm(1)))
-          break Fail22867;
-      e_4746 = term.getSubterm(2);
-      Success12185:
+        if(k_4192.value != term.getSubterm(1) && !k_4192.value.match(term.getSubterm(1)))
+          break Fail21391;
+      m_4192 = term.getSubterm(2);
+      Success11476:
       { 
-        Fail22868:
+        Fail21392:
         { 
-          IStrategoTerm i_4746 = null;
-          i_4746 = term;
-          term = is_global_ref_0_0.instance.invoke(context, b_4746);
+          IStrategoTerm q_4192 = null;
+          q_4192 = term;
+          term = is_global_ref_0_0.instance.invoke(context, j_4192);
           if(term == null)
-            break Fail22868;
-          term = i_4746;
+            break Fail21392;
+          term = q_4192;
           { 
-            lifted6797 lifted67970 = new lifted6797();
-            lifted67970.c_4746 = c_4746;
-            term = get_affected_stratego_asts_1_0.instance.invoke(context, term, lifted67970);
+            lifted6526 lifted65260 = new lifted6526();
+            lifted65260.k_4192 = k_4192;
+            term = get_affected_stratego_asts_1_0.instance.invoke(context, term, lifted65260);
             if(term == null)
-              break Fail22867;
+              break Fail21391;
             if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-              break Fail22867;
-            d_4746 = term.getSubterm(0);
-            g_4746 = term.getSubterm(1);
-            term = analyze_names_0_0.instance.invoke(context, d_4746);
+              break Fail21391;
+            l_4192 = term.getSubterm(0);
+            o_4192 = term.getSubterm(1);
+            term = analyze_names_0_0.instance.invoke(context, l_4192);
             if(term == null)
-              break Fail22867;
-            f_4746 = term;
+              break Fail21391;
+            n_4192 = term;
             if(true)
-              break Success12185;
+              break Success11476;
           }
         }
-        term = (IStrategoTerm)termFactory.makeListCons(e_4746, (IStrategoList)trans.constNil4);
-        f_4746 = term;
-        term = trans.constNil4;
-        g_4746 = trans.constNil4;
+        term = (IStrategoTerm)termFactory.makeListCons(m_4192, (IStrategoList)trans.constNil3);
+        n_4192 = term;
+        term = trans.constNil3;
+        o_4192 = trans.constNil3;
       }
-      term = map_1_0.instance.invoke(context, g_4746, lifted6799.instance);
+      term = map_1_0.instance.invoke(context, o_4192, lifted6528.instance);
       if(term == null)
-        break Fail22867;
-      term = termFactory.makeTuple(f_4746, term);
+        break Fail21391;
+      term = termFactory.makeTuple(n_4192, term);
       context.popOnSuccess();
       if(true)
         return term;

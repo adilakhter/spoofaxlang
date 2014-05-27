@@ -24,20 +24,20 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("resugar_Let_0_0");
-    Fail22812:
+    Fail21336:
     { 
-      IStrategoTerm b_4733 = null;
-      IStrategoTerm c_4733 = null;
+      IStrategoTerm j_4179 = null;
+      IStrategoTerm k_4179 = null;
       if(term.getTermType() != IStrategoTerm.APPL || Main._consRec_2 != ((IStrategoAppl)term).getConstructor())
-        break Fail22812;
-      b_4733 = term.getSubterm(0);
-      c_4733 = term.getSubterm(1);
+        break Fail21336;
+      j_4179 = term.getSubterm(0);
+      k_4179 = term.getSubterm(1);
       term = origin_term_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22812;
+        break Fail21336;
       if(term.getTermType() != IStrategoTerm.APPL || Main._consLet_2 != ((IStrategoAppl)term).getConstructor())
-        break Fail22812;
-      term = termFactory.makeAppl(Main._consLet_2, new IStrategoTerm[]{b_4733, c_4733});
+        break Fail21336;
+      term = termFactory.makeAppl(Main._consLet_2, new IStrategoTerm[]{j_4179, k_4179});
       context.popOnSuccess();
       if(true)
         return term;

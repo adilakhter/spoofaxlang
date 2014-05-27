@@ -23,46 +23,46 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("is_constructor_0_0");
-    Fail23061:
+    Fail21585:
     { 
-      IStrategoTerm term12393 = term;
-      Success12318:
+      IStrategoTerm term11684 = term;
+      Success11609:
       { 
-        Fail23062:
+        Fail21586:
         { 
           if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-            break Fail23062;
+            break Fail21586;
           term = $Declare$Cookie_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail23062;
+            break Fail21586;
           term = $Declaration_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail23062;
+            break Fail21586;
           if(true)
-            break Success12318;
+            break Success11609;
         }
-        term = declaration_of_0_0.instance.invoke(context, term12393);
+        term = declaration_of_0_0.instance.invoke(context, term11684);
         if(term == null)
-          break Fail23061;
+          break Fail21585;
       }
-      IStrategoTerm term12394 = term;
-      IStrategoConstructor cons589 = term.getTermType() == IStrategoTerm.APPL ? ((IStrategoAppl)term).getConstructor() : null;
-      Success12319:
+      IStrategoTerm term11685 = term;
+      IStrategoConstructor cons545 = term.getTermType() == IStrategoTerm.APPL ? ((IStrategoAppl)term).getConstructor() : null;
+      Success11610:
       { 
-        if(cons589 == Main._consOpDecl_2)
+        if(cons545 == Main._consOpDecl_2)
         { 
-          Fail23063:
+          Fail21587:
           { 
             if(true)
-              break Success12319;
+              break Success11610;
           }
-          term = term12394;
+          term = term11685;
         }
-        if(cons589 == Main._consExtOpDecl_2)
+        if(cons545 == Main._consExtOpDecl_2)
         { }
         else
         { 
-          break Fail23061;
+          break Fail21585;
         }
       }
       context.popOnSuccess();

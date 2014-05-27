@@ -24,102 +24,102 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("get_dependend_renamings_0_0");
-    Fail22864:
+    Fail21388:
     { 
-      IStrategoTerm p_4743 = null;
-      TermReference q_4743 = new TermReference();
-      TermReference r_4743 = new TermReference();
-      TermReference s_4743 = new TermReference();
-      IStrategoTerm t_4743 = null;
-      IStrategoTerm u_4743 = null;
-      IStrategoTerm v_4743 = null;
-      IStrategoTerm w_4743 = null;
-      v_4743 = term;
+      IStrategoTerm x_4189 = null;
+      TermReference y_4189 = new TermReference();
+      TermReference z_4189 = new TermReference();
+      TermReference a_4190 = new TermReference();
+      IStrategoTerm b_4190 = null;
+      IStrategoTerm c_4190 = null;
+      IStrategoTerm d_4190 = null;
+      IStrategoTerm e_4190 = null;
+      d_4190 = term;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-        break Fail22864;
-      p_4743 = term.getSubterm(0);
-      if(s_4743.value == null)
-        s_4743.value = term.getSubterm(1);
+        break Fail21388;
+      x_4189 = term.getSubterm(0);
+      if(a_4190.value == null)
+        a_4190.value = term.getSubterm(1);
       else
-        if(s_4743.value != term.getSubterm(1) && !s_4743.value.match(term.getSubterm(1)))
-          break Fail22864;
-      term = p_4743;
-      IStrategoList annos705 = term.getAnnotations();
-      if(annos705.getTermType() != IStrategoTerm.LIST || ((IStrategoList)annos705).isEmpty())
-        break Fail22864;
-      if(r_4743.value == null)
-        r_4743.value = ((IStrategoList)annos705).head();
+        if(a_4190.value != term.getSubterm(1) && !a_4190.value.match(term.getSubterm(1)))
+          break Fail21388;
+      term = x_4189;
+      IStrategoList annos677 = term.getAnnotations();
+      if(annos677.getTermType() != IStrategoTerm.LIST || ((IStrategoList)annos677).isEmpty())
+        break Fail21388;
+      if(z_4189.value == null)
+        z_4189.value = ((IStrategoList)annos677).head();
       else
-        if(r_4743.value != ((IStrategoList)annos705).head() && !r_4743.value.match(((IStrategoList)annos705).head()))
-          break Fail22864;
-      IStrategoTerm arg8133 = ((IStrategoList)annos705).tail();
-      if(arg8133.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg8133).isEmpty())
-        break Fail22864;
-      Success12184:
+        if(z_4189.value != ((IStrategoList)annos677).head() && !z_4189.value.match(((IStrategoList)annos677).head()))
+          break Fail21388;
+      IStrategoTerm arg7666 = ((IStrategoList)annos677).tail();
+      if(arg7666.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg7666).isEmpty())
+        break Fail21388;
+      Success11475:
       { 
-        Fail22865:
+        Fail21389:
         { 
-          IStrategoTerm x_4743 = null;
-          x_4743 = term;
-          if(r_4743.value == null)
-            break Fail22865;
-          term = $Declaration_0_0.instance.invoke(context, r_4743.value);
+          IStrategoTerm f_4190 = null;
+          f_4190 = term;
+          if(z_4189.value == null)
+            break Fail21389;
+          term = $Declaration_0_0.instance.invoke(context, z_4189.value);
           if(term == null)
-            break Fail22865;
+            break Fail21389;
           if(term.getTermType() != IStrategoTerm.APPL || Main._consRDecT_3 != ((IStrategoAppl)term).getConstructor())
-            break Fail22865;
-          if(q_4743.value == null)
-            q_4743.value = term.getSubterm(0);
+            break Fail21389;
+          if(y_4189.value == null)
+            y_4189.value = term.getSubterm(0);
           else
-            if(q_4743.value != term.getSubterm(0) && !q_4743.value.match(term.getSubterm(0)))
-              break Fail22865;
-          term = x_4743;
+            if(y_4189.value != term.getSubterm(0) && !y_4189.value.match(term.getSubterm(0)))
+              break Fail21389;
+          term = f_4190;
           { 
-            IStrategoTerm z_4745 = null;
-            IStrategoTerm a_4746 = null;
+            IStrategoTerm h_4192 = null;
+            IStrategoTerm i_4192 = null;
             term = prefixes_dynrules_0_0.instance.invoke(context, term);
             if(term == null)
-              break Fail22864;
-            lifted6795 lifted67950 = new lifted6795();
-            lifted67950.q_4743 = q_4743;
-            lifted67950.r_4743 = r_4743;
-            term = map_1_0.instance.invoke(context, term, lifted67950);
+              break Fail21388;
+            lifted6524 lifted65240 = new lifted6524();
+            lifted65240.y_4189 = y_4189;
+            lifted65240.z_4189 = z_4189;
+            term = map_1_0.instance.invoke(context, term, lifted65240);
             if(term == null)
-              break Fail22864;
-            t_4743 = term;
+              break Fail21388;
+            b_4190 = term;
             term = prefixes_dynrules_0_0.instance.invoke(context, term);
             if(term == null)
-              break Fail22864;
-            lifted6796 lifted67960 = new lifted6796();
-            lifted67960.s_4743 = s_4743;
-            lifted67960.r_4743 = r_4743;
-            term = map_1_0.instance.invoke(context, term, lifted67960);
+              break Fail21388;
+            lifted6525 lifted65250 = new lifted6525();
+            lifted65250.a_4190 = a_4190;
+            lifted65250.z_4189 = z_4189;
+            term = map_1_0.instance.invoke(context, term, lifted65250);
             if(term == null)
-              break Fail22864;
-            u_4743 = term;
-            a_4746 = term;
-            term = termFactory.makeTuple(t_4743, u_4743);
+              break Fail21388;
+            c_4190 = term;
+            i_4192 = term;
+            term = termFactory.makeTuple(b_4190, c_4190);
             term = zip_0_0.instance.invoke(context, term);
             if(term == null)
-              break Fail22864;
-            z_4745 = term;
-            term = a_4746;
-            if(q_4743.value == null || (r_4743.value == null || s_4743.value == null))
-              break Fail22864;
-            IStrategoList list194;
-            list194 = checkListTail(z_4745);
-            if(list194 == null)
-              break Fail22864;
-            term = (IStrategoTerm)termFactory.makeListCons(termFactory.makeTuple(termFactory.annotateTerm(q_4743.value, checkListAnnos(termFactory, (IStrategoTerm)termFactory.makeListCons(r_4743.value, (IStrategoList)trans.constNil4))), s_4743.value), list194);
-            w_4743 = term;
+              break Fail21388;
+            h_4192 = term;
+            term = i_4192;
+            if(y_4189.value == null || (z_4189.value == null || a_4190.value == null))
+              break Fail21388;
+            IStrategoList list183;
+            list183 = checkListTail(h_4192);
+            if(list183 == null)
+              break Fail21388;
+            term = (IStrategoTerm)termFactory.makeListCons(termFactory.makeTuple(termFactory.annotateTerm(y_4189.value, checkListAnnos(termFactory, (IStrategoTerm)termFactory.makeListCons(z_4189.value, (IStrategoList)trans.constNil3))), a_4190.value), list183);
+            e_4190 = term;
             if(true)
-              break Success12184;
+              break Success11475;
           }
         }
-        term = (IStrategoTerm)termFactory.makeListCons(v_4743, (IStrategoList)trans.constNil4);
-        w_4743 = term;
+        term = (IStrategoTerm)termFactory.makeListCons(d_4190, (IStrategoList)trans.constNil3);
+        e_4190 = term;
       }
-      term = w_4743;
+      term = e_4190;
       context.popOnSuccess();
       if(true)
         return term;

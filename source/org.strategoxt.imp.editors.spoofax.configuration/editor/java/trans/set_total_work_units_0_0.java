@@ -21,11 +21,11 @@ import java.lang.ref.WeakReference;
 
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
-    Fail87707:
+    Fail22899:
     { 
       term = context.invokePrimitive("SSL_EXT_set_total_work_units", term, NO_STRATEGIES, NO_TERMS);
       if(term == null)
-        break Fail87707;
+        break Fail22899;
       if(true)
         return term;
     }

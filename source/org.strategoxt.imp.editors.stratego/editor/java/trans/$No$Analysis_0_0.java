@@ -23,35 +23,35 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("NoAnalysis_0_0");
-    Fail23555:
+    Fail22079:
     { 
-      TermReference k_4859 = new TermReference();
-      TermReference l_4859 = new TermReference();
-      IStrategoTerm o_4859 = null;
-      IStrategoTerm q_4859 = null;
-      IStrategoTerm r_4859 = null;
-      if(l_4859.value == null)
-        l_4859.value = term;
+      TermReference s_4305 = new TermReference();
+      TermReference t_4305 = new TermReference();
+      IStrategoTerm w_4305 = null;
+      IStrategoTerm y_4305 = null;
+      IStrategoTerm z_4305 = null;
+      if(t_4305.value == null)
+        t_4305.value = term;
       else
-        if(l_4859.value != term && !l_4859.value.match(term))
-          break Fail23555;
-      if(k_4859.value == null)
-        k_4859.value = term;
+        if(t_4305.value != term && !t_4305.value.match(term))
+          break Fail22079;
+      if(s_4305.value == null)
+        s_4305.value = term;
       else
-        if(k_4859.value != term && !k_4859.value.match(term))
-          break Fail23555;
-      q_4859 = term;
-      o_4859 = trans.const4559;
-      r_4859 = q_4859;
-      term = dr_lookup_rule_0_2.instance.invoke(context, r_4859, o_4859, trans.constCons2047);
+        if(s_4305.value != term && !s_4305.value.match(term))
+          break Fail22079;
+      y_4305 = term;
+      w_4305 = trans.const4349;
+      z_4305 = y_4305;
+      term = dr_lookup_rule_0_2.instance.invoke(context, z_4305, w_4305, trans.constCons1966);
       if(term == null)
-        break Fail23555;
-      lifted7029 lifted70290 = new lifted7029();
-      lifted70290.k_4859 = k_4859;
-      lifted70290.l_4859 = l_4859;
-      term = fetch_elem_1_0.instance.invoke(context, term, lifted70290);
+        break Fail22079;
+      lifted6758 lifted67580 = new lifted6758();
+      lifted67580.s_4305 = s_4305;
+      lifted67580.t_4305 = t_4305;
+      term = fetch_elem_1_0.instance.invoke(context, term, lifted67580);
       if(term == null)
-        break Fail23555;
+        break Fail22079;
       context.popOnSuccess();
       if(true)
         return term;

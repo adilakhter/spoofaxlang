@@ -20,57 +20,57 @@ import java.lang.ref.WeakReference;
 { 
   public static parent_at_position_0_1 instance = new parent_at_position_0_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm w_4898)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm e_4345)
   { 
     context.push("parent_at_position_0_1");
-    Fail22961:
+    Fail21485:
     { 
-      IStrategoTerm term12307 = term;
-      Success12238:
+      IStrategoTerm term11598 = term;
+      Success11529:
       { 
-        Fail22962:
+        Fail21486:
         { 
-          IStrategoTerm k_4760 = null;
-          IStrategoTerm l_4760 = null;
-          l_4760 = term;
-          term = w_4898;
+          IStrategoTerm s_4206 = null;
+          IStrategoTerm t_4206 = null;
+          t_4206 = term;
+          term = e_4345;
           if(term.getTermType() != IStrategoTerm.LIST || ((IStrategoList)term).isEmpty())
-            break Fail22962;
-          k_4760 = ((IStrategoList)term).head();
-          IStrategoTerm arg8162 = ((IStrategoList)term).tail();
-          if(arg8162.getTermType() != IStrategoTerm.LIST || ((IStrategoList)arg8162).isEmpty())
-            break Fail22962;
-          IStrategoTerm arg8164 = ((IStrategoList)arg8162).tail();
-          if(arg8164.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg8164).isEmpty())
-            break Fail22962;
-          term = subterm_at_0_1.instance.invoke(context, l_4760, k_4760);
+            break Fail21486;
+          s_4206 = ((IStrategoList)term).head();
+          IStrategoTerm arg7695 = ((IStrategoList)term).tail();
+          if(arg7695.getTermType() != IStrategoTerm.LIST || ((IStrategoList)arg7695).isEmpty())
+            break Fail21486;
+          IStrategoTerm arg7697 = ((IStrategoList)arg7695).tail();
+          if(arg7697.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg7697).isEmpty())
+            break Fail21486;
+          term = subterm_at_0_1.instance.invoke(context, t_4206, s_4206);
           if(term == null)
-            break Fail22962;
+            break Fail21486;
           if(true)
-            break Success12238;
+            break Success11529;
         }
-        term = term12307;
-        IStrategoTerm e_4760 = null;
-        IStrategoTerm f_4760 = null;
-        IStrategoTerm g_4760 = null;
-        g_4760 = term;
-        term = w_4898;
+        term = term11598;
+        IStrategoTerm m_4206 = null;
+        IStrategoTerm n_4206 = null;
+        IStrategoTerm o_4206 = null;
+        o_4206 = term;
+        term = e_4345;
         if(term.getTermType() != IStrategoTerm.LIST || ((IStrategoList)term).isEmpty())
-          break Fail22961;
-        f_4760 = ((IStrategoList)term).head();
-        IStrategoTerm arg8165 = ((IStrategoList)term).tail();
-        e_4760 = arg8165;
-        if(arg8165.getTermType() != IStrategoTerm.LIST || ((IStrategoList)arg8165).isEmpty())
-          break Fail22961;
-        IStrategoTerm arg8167 = ((IStrategoList)arg8165).tail();
-        if(arg8167.getTermType() != IStrategoTerm.LIST || ((IStrategoList)arg8167).isEmpty())
-          break Fail22961;
-        term = subterm_at_0_1.instance.invoke(context, g_4760, f_4760);
+          break Fail21485;
+        n_4206 = ((IStrategoList)term).head();
+        IStrategoTerm arg7698 = ((IStrategoList)term).tail();
+        m_4206 = arg7698;
+        if(arg7698.getTermType() != IStrategoTerm.LIST || ((IStrategoList)arg7698).isEmpty())
+          break Fail21485;
+        IStrategoTerm arg7700 = ((IStrategoList)arg7698).tail();
+        if(arg7700.getTermType() != IStrategoTerm.LIST || ((IStrategoList)arg7700).isEmpty())
+          break Fail21485;
+        term = subterm_at_0_1.instance.invoke(context, o_4206, n_4206);
         if(term == null)
-          break Fail22961;
-        term = this.invoke(context, term, e_4760);
+          break Fail21485;
+        term = this.invoke(context, term, m_4206);
         if(term == null)
-          break Fail22961;
+          break Fail21485;
       }
       context.popOnSuccess();
       if(true)

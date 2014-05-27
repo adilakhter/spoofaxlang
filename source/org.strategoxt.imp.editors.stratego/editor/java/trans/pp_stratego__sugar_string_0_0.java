@@ -24,21 +24,21 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("pp_stratego__sugar_string_0_0");
-    Fail22907:
+    Fail21431:
     { 
-      IStrategoTerm j_4751 = null;
-      IStrategoTerm k_4751 = null;
-      IStrategoTerm p_4751 = null;
-      j_4751 = term;
-      k_4751 = trans.constStrategoSugarGeneratedPpAf;
-      term = (IStrategoTerm)termFactory.makeListCons(k_4751, termFactory.makeListCons(trans.constStrategoSugarPpAf, (IStrategoList)trans.constNil4));
-      term = ast2abox_0_1.instance.invoke(context, j_4751, term);
+      IStrategoTerm r_4197 = null;
+      IStrategoTerm s_4197 = null;
+      IStrategoTerm x_4197 = null;
+      r_4197 = term;
+      s_4197 = trans.constStrategoSugarGeneratedPpAf;
+      term = (IStrategoTerm)termFactory.makeListCons(s_4197, termFactory.makeListCons(trans.constStrategoSugarPpAf, (IStrategoList)trans.constNil3));
+      term = ast2abox_0_1.instance.invoke(context, r_4197, term);
       if(term == null)
-        break Fail22907;
-      p_4751 = term;
-      term = box2text_string_0_1.instance.invoke(context, p_4751, trans.const4536);
+        break Fail21431;
+      x_4197 = term;
+      term = box2text_string_0_1.instance.invoke(context, x_4197, trans.const4326);
       if(term == null)
-        break Fail22907;
+        break Fail21431;
       context.popOnSuccess();
       if(true)
         return term;

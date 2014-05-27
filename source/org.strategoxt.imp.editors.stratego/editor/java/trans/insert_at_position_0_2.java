@@ -20,35 +20,35 @@ import java.lang.ref.WeakReference;
 { 
   public static insert_at_position_0_2 instance = new insert_at_position_0_2();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm e_4721, IStrategoTerm ref_f_4721)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm m_4167, IStrategoTerm ref_n_4167)
   { 
-    TermReference f_4721 = new TermReference(ref_f_4721);
+    TermReference n_4167 = new TermReference(ref_n_4167);
     context.push("insert_at_position_0_2");
-    Fail22749:
+    Fail21273:
     { 
-      TermReference g_4721 = new TermReference();
-      IStrategoTerm h_4721 = null;
-      IStrategoTerm i_4721 = null;
-      i_4721 = term;
-      term = init_0_0.instance.invoke(context, e_4721);
+      TermReference o_4167 = new TermReference();
+      IStrategoTerm p_4167 = null;
+      IStrategoTerm q_4167 = null;
+      q_4167 = term;
+      term = init_0_0.instance.invoke(context, m_4167);
       if(term == null)
-        break Fail22749;
-      h_4721 = term;
-      term = last_0_0.instance.invoke(context, e_4721);
+        break Fail21273;
+      p_4167 = term;
+      term = last_0_0.instance.invoke(context, m_4167);
       if(term == null)
-        break Fail22749;
-      if(g_4721.value == null)
-        g_4721.value = term;
+        break Fail21273;
+      if(o_4167.value == null)
+        o_4167.value = term;
       else
-        if(g_4721.value != term && !g_4721.value.match(term))
-          break Fail22749;
-      term = i_4721;
-      lifted6721 lifted67210 = new lifted6721();
-      lifted67210.g_4721 = g_4721;
-      lifted67210.f_4721 = f_4721;
-      term = at_position_1_1.instance.invoke(context, term, lifted67210, h_4721);
+        if(o_4167.value != term && !o_4167.value.match(term))
+          break Fail21273;
+      term = q_4167;
+      lifted6450 lifted64500 = new lifted6450();
+      lifted64500.o_4167 = o_4167;
+      lifted64500.n_4167 = n_4167;
+      term = at_position_1_1.instance.invoke(context, term, lifted64500, p_4167);
       if(term == null)
-        break Fail22749;
+        break Fail21273;
       context.popOnSuccess();
       if(true)
         return term;

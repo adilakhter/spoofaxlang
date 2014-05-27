@@ -19,16 +19,16 @@ import java.lang.ref.WeakReference;
 { 
   public static throw_get_config_reference_1_1 instance = new throw_get_config_reference_1_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy e_17577, IStrategoTerm d_17577)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy h_4633, IStrategoTerm g_4633)
   { 
     context.push("throw_get_config_reference_1_1");
-    Fail87760:
+    Fail22952:
     { 
-      IStrategoTerm g_17577 = null;
-      g_17577 = term;
-      term = dr_throw_1_2.instance.invoke(context, g_17577, e_17577, d_17577, trans.const17869);
+      IStrategoTerm j_4633 = null;
+      j_4633 = term;
+      term = dr_throw_1_2.instance.invoke(context, j_4633, h_4633, g_4633, trans.const4482);
       if(term == null)
-        break Fail87760;
+        break Fail22952;
       context.popOnSuccess();
       if(true)
         return term;

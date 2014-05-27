@@ -20,29 +20,29 @@ import java.lang.ref.WeakReference;
 { 
   public static apply_rename_refactoring_2_2 instance = new apply_rename_refactoring_2_2();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy r_4740, Strategy s_4740, IStrategoTerm l_4740, IStrategoTerm m_4740)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy z_4186, Strategy a_4187, IStrategoTerm t_4186, IStrategoTerm u_4186)
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("apply_rename_refactoring_2_2");
-    Fail22848:
+    Fail21372:
     { 
-      IStrategoTerm n_4740 = null;
-      IStrategoTerm o_4740 = null;
-      IStrategoTerm p_4740 = null;
-      IStrategoTerm q_4740 = null;
-      IStrategoTerm v_4740 = null;
-      n_4740 = term;
-      v_4740 = n_4740;
-      term = (IStrategoTerm)termFactory.makeListCons(termFactory.makeTuple(l_4740, m_4740), (IStrategoList)trans.constNil4);
-      term = apply_rename_refactoring_2_1.instance.invoke(context, v_4740, r_4740, s_4740, term);
+      IStrategoTerm v_4186 = null;
+      IStrategoTerm w_4186 = null;
+      IStrategoTerm x_4186 = null;
+      IStrategoTerm y_4186 = null;
+      IStrategoTerm d_4187 = null;
+      v_4186 = term;
+      d_4187 = v_4186;
+      term = (IStrategoTerm)termFactory.makeListCons(termFactory.makeTuple(t_4186, u_4186), (IStrategoList)trans.constNil3);
+      term = apply_rename_refactoring_2_1.instance.invoke(context, d_4187, z_4186, a_4187, term);
       if(term == null)
-        break Fail22848;
+        break Fail21372;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 3)
-        break Fail22848;
-      o_4740 = term.getSubterm(0);
-      p_4740 = term.getSubterm(1);
-      q_4740 = term.getSubterm(2);
-      term = termFactory.makeTuple(o_4740, p_4740, q_4740);
+        break Fail21372;
+      w_4186 = term.getSubterm(0);
+      x_4186 = term.getSubterm(1);
+      y_4186 = term.getSubterm(2);
+      term = termFactory.makeTuple(w_4186, x_4186, y_4186);
       context.popOnSuccess();
       if(true)
         return term;

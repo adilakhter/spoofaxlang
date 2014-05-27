@@ -1,20 +1,20 @@
-C:\spoofaxlang-mysvn\repo\trunk\org.strategoxt.imp.editors.stratego\editor\java/trans/Main.java: \
-	C:\spoofaxlang-mysvn\repo\trunk\org.strategoxt.imp.editors.stratego/lib-refactoring/fetch.str \
-	C:/spoofaxlang-mysvn/repo/trunk/org.strategoxt.imp.editors.stratego/trans/refactoring/remove-debug.str \
-	C:/spoofaxlang-mysvn/repo/trunk/org.strategoxt.imp.editors.stratego/trans/refactoring/extract.str \
-	C:/spoofaxlang-mysvn/repo/trunk/org.strategoxt.imp.editors.stratego/trans/refactoring/inline.str \
-	C:/spoofaxlang-mysvn/repo/trunk/org.strategoxt.imp.editors.stratego/trans/refactoring/helpers/builders.str \
-	C:/spoofaxlang-mysvn/repo/trunk/org.strategoxt.imp.editors.stratego/trans/refactoring/format.str \
-	C:/spoofaxlang-mysvn/repo/trunk/org.strategoxt.imp.editors.stratego/trans/refactoring/helpers/semantic-checks.str \
-	C:/spoofaxlang-mysvn/repo/trunk/org.strategoxt.imp.editors.stratego/trans/refactoring/helpers/multi-file-support.str \
-	C:\spoofaxlang-mysvn\repo\trunk\org.strategoxt.imp.editors.stratego/lib-refactoring/files.str \
-	C:\spoofaxlang-mysvn\repo\trunk\org.strategoxt.imp.editors.stratego/lib-refactoring/namebinding-preservation.str \
-	C:\spoofaxlang-mysvn\repo\trunk\org.strategoxt.imp.editors.stratego/lib-refactoring/consistency-preservation.str \
-	C:\spoofaxlang-mysvn\repo\trunk\org.strategoxt.imp.editors.stratego/lib-refactoring/generic-rename.str \
-	C:/spoofaxlang-mysvn/repo/trunk/org.strategoxt.imp.editors.stratego/trans/refactoring/rename.str \
-	C:\spoofaxlang-mysvn\repo\trunk\org.strategoxt.imp.editors.stratego/lib/editor-common.generated.str \
-	C:/spoofaxlang-mysvn/repo/trunk/org.strategoxt.imp.editors.stratego/trans/desugar.str \
-	C:/spoofaxlang-mysvn/repo/trunk/org.strategoxt.imp.editors.stratego/trans/sourcedir.str \
+C:\spoofaxlang\source\org.strategoxt.imp.editors.stratego\editor\java/trans/Main.java: \
+	C:\spoofaxlang\source\org.strategoxt.imp.editors.stratego/lib-refactoring/fetch.str \
+	C:/spoofaxlang/source/org.strategoxt.imp.editors.stratego/trans/refactoring/remove-debug.str \
+	C:/spoofaxlang/source/org.strategoxt.imp.editors.stratego/trans/refactoring/extract.str \
+	C:/spoofaxlang/source/org.strategoxt.imp.editors.stratego/trans/refactoring/inline.str \
+	C:/spoofaxlang/source/org.strategoxt.imp.editors.stratego/trans/refactoring/helpers/builders.str \
+	C:/spoofaxlang/source/org.strategoxt.imp.editors.stratego/trans/refactoring/format.str \
+	C:/spoofaxlang/source/org.strategoxt.imp.editors.stratego/trans/refactoring/helpers/semantic-checks.str \
+	C:/spoofaxlang/source/org.strategoxt.imp.editors.stratego/trans/refactoring/helpers/multi-file-support.str \
+	C:\spoofaxlang\source\org.strategoxt.imp.editors.stratego/lib-refactoring/files.str \
+	C:\spoofaxlang\source\org.strategoxt.imp.editors.stratego/lib-refactoring/namebinding-preservation.str \
+	C:\spoofaxlang\source\org.strategoxt.imp.editors.stratego/lib-refactoring/consistency-preservation.str \
+	C:\spoofaxlang\source\org.strategoxt.imp.editors.stratego/lib-refactoring/generic-rename.str \
+	C:/spoofaxlang/source/org.strategoxt.imp.editors.stratego/trans/refactoring/rename.str \
+	C:\spoofaxlang\source\org.strategoxt.imp.editors.stratego/lib/editor-common.generated.str \
+	C:/spoofaxlang/source/org.strategoxt.imp.editors.stratego/trans/desugar.str \
+	C:/spoofaxlang/source/org.strategoxt.imp.editors.stratego/trans/sourcedir.str \
 	 \
-	C:/spoofaxlang-mysvn/repo/trunk/org.strategoxt.imp.editors.stratego/trans/analysis.str \
-	C:\spoofaxlang-mysvn\repo\trunk\org.strategoxt.imp.editors.stratego\trans/stratego_sugar.str
+	C:/spoofaxlang/source/org.strategoxt.imp.editors.stratego/trans/analysis.str \
+	C:\spoofaxlang\source\org.strategoxt.imp.editors.stratego\trans/stratego_sugar.str

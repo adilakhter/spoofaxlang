@@ -23,40 +23,40 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("bagof_Declaration_0_0");
-    Fail23605:
+    Fail22129:
     { 
-      TermReference p_4867 = new TermReference();
-      TermReference q_4867 = new TermReference();
-      if(q_4867.value == null)
-        q_4867.value = term;
+      TermReference x_4313 = new TermReference();
+      TermReference y_4313 = new TermReference();
+      if(y_4313.value == null)
+        y_4313.value = term;
       else
-        if(q_4867.value != term && !q_4867.value.match(term))
-          break Fail23605;
-      if(p_4867.value == null)
-        p_4867.value = term;
+        if(y_4313.value != term && !y_4313.value.match(term))
+          break Fail22129;
+      if(x_4313.value == null)
+        x_4313.value = term;
       else
-        if(p_4867.value != term && !p_4867.value.match(term))
-          break Fail23605;
-      Success12635:
+        if(x_4313.value != term && !x_4313.value.match(term))
+          break Fail22129;
+      Success11926:
       { 
-        Fail23606:
+        Fail22130:
         { 
-          IStrategoTerm u_4867 = null;
-          u_4867 = term;
-          term = dr_lookup_rule_0_2.instance.invoke(context, u_4867, trans.const4570, q_4867.value);
+          IStrategoTerm c_4314 = null;
+          c_4314 = term;
+          term = dr_lookup_rule_0_2.instance.invoke(context, c_4314, trans.const4360, y_4313.value);
           if(term == null)
-            break Fail23606;
+            break Fail22130;
           if(true)
-            break Success12635;
+            break Success11926;
         }
-        term = trans.constNil4;
+        term = trans.constNil3;
       }
-      lifted7046 lifted70460 = new lifted7046();
-      lifted70460.p_4867 = p_4867;
-      lifted70460.q_4867 = q_4867;
-      term = filter_1_0.instance.invoke(context, term, lifted70460);
+      lifted6775 lifted67750 = new lifted6775();
+      lifted67750.x_4313 = x_4313;
+      lifted67750.y_4313 = y_4313;
+      term = filter_1_0.instance.invoke(context, term, lifted67750);
       if(term == null)
-        break Fail23605;
+        break Fail22129;
       context.popOnSuccess();
       if(true)
         return term;

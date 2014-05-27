@@ -23,22 +23,22 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     ITermFactory termFactory = context.getFactory();
-    Fail22792:
+    Fail21316:
     { 
-      IStrategoTerm j_4727 = null;
-      IStrategoTerm k_4727 = null;
+      IStrategoTerm r_4173 = null;
+      IStrategoTerm s_4173 = null;
       if(term.getTermType() != IStrategoTerm.APPL || Main._consVarDec_2 != ((IStrategoAppl)term).getConstructor())
-        break Fail22792;
-      IStrategoTerm arg8108 = term.getSubterm(0);
-      j_4727 = arg8108;
-      IStrategoList annos702 = arg8108.getAnnotations();
-      if(annos702.getTermType() != IStrategoTerm.LIST || ((IStrategoList)annos702).isEmpty())
-        break Fail22792;
-      k_4727 = ((IStrategoList)annos702).head();
-      IStrategoTerm arg8109 = ((IStrategoList)annos702).tail();
-      if(arg8109.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg8109).isEmpty())
-        break Fail22792;
-      term = termFactory.makeAppl(Main._consVar_1, new IStrategoTerm[]{termFactory.annotateTerm(j_4727, checkListAnnos(termFactory, (IStrategoTerm)termFactory.makeListCons(k_4727, (IStrategoList)trans.constNil4)))});
+        break Fail21316;
+      IStrategoTerm arg7641 = term.getSubterm(0);
+      r_4173 = arg7641;
+      IStrategoList annos674 = arg7641.getAnnotations();
+      if(annos674.getTermType() != IStrategoTerm.LIST || ((IStrategoList)annos674).isEmpty())
+        break Fail21316;
+      s_4173 = ((IStrategoList)annos674).head();
+      IStrategoTerm arg7642 = ((IStrategoList)annos674).tail();
+      if(arg7642.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg7642).isEmpty())
+        break Fail21316;
+      term = termFactory.makeAppl(Main._consVar_1, new IStrategoTerm[]{termFactory.annotateTerm(r_4173, checkListAnnos(termFactory, (IStrategoTerm)termFactory.makeListCons(s_4173, (IStrategoList)trans.constNil3)))});
       if(true)
         return term;
     }

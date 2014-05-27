@@ -20,12 +20,12 @@ import java.lang.ref.WeakReference;
 { 
   public static undefine_$Declare$Cookie_0_1 instance = new undefine_$Declare$Cookie_0_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm i_4868)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm q_4314)
   { 
-    Fail23610:
+    Fail22134:
     { 
       if(true)
-        break Fail23610;
+        break Fail22134;
       if(true)
         return term;
     }

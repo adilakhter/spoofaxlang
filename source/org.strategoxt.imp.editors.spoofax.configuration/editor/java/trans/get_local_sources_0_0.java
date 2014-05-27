@@ -23,71 +23,71 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("get_local_sources_0_0");
-    Fail87574:
+    Fail22766:
     { 
-      IStrategoTerm term47219 = term;
-      Success47211:
+      IStrategoTerm term12132 = term;
+      Success12124:
       { 
-        Fail87575:
+        Fail22767:
         { 
           if(term.getTermType() != IStrategoTerm.LIST || !((IStrategoList)term).isEmpty())
-            break Fail87575;
-          term = trans.constNil14;
+            break Fail22767;
+          term = trans.constNil4;
           if(true)
-            break Success47211;
+            break Success12124;
         }
-        term = term47219;
-        IStrategoTerm g_17556 = null;
-        IStrategoTerm h_17556 = null;
-        IStrategoTerm i_17556 = null;
-        IStrategoTerm j_17556 = null;
-        IStrategoTerm k_17556 = null;
-        IStrategoTerm n_17556 = null;
+        term = term12132;
+        IStrategoTerm j_4612 = null;
+        IStrategoTerm k_4612 = null;
+        IStrategoTerm l_4612 = null;
+        IStrategoTerm m_4612 = null;
+        IStrategoTerm n_4612 = null;
+        IStrategoTerm q_4612 = null;
         if(term.getTermType() != IStrategoTerm.LIST || ((IStrategoList)term).isEmpty())
-          break Fail87574;
-        IStrategoTerm arg29976 = ((IStrategoList)term).head();
-        if(arg29976.getTermType() != IStrategoTerm.APPL || Main._consSource_2 != ((IStrategoAppl)arg29976).getConstructor())
-          break Fail87574;
-        g_17556 = arg29976.getSubterm(0);
-        h_17556 = arg29976.getSubterm(1);
-        i_17556 = ((IStrategoList)term).tail();
-        n_17556 = term;
-        IStrategoTerm term47220 = term;
-        Success47212:
+          break Fail22766;
+        IStrategoTerm arg8001 = ((IStrategoList)term).head();
+        if(arg8001.getTermType() != IStrategoTerm.APPL || Main._consSource_2 != ((IStrategoAppl)arg8001).getConstructor())
+          break Fail22766;
+        j_4612 = arg8001.getSubterm(0);
+        k_4612 = arg8001.getSubterm(1);
+        l_4612 = ((IStrategoList)term).tail();
+        q_4612 = term;
+        IStrategoTerm term12133 = term;
+        Success12125:
         { 
-          Fail87576:
+          Fail22768:
           { 
-            term = (IStrategoTerm)termFactory.makeListCons(termFactory.makeTuple(g_17556, h_17556), (IStrategoList)trans.constNil14);
-            j_17556 = term;
-            term = this.invoke(context, i_17556);
+            term = (IStrategoTerm)termFactory.makeListCons(termFactory.makeTuple(j_4612, k_4612), (IStrategoList)trans.constNil4);
+            m_4612 = term;
+            term = this.invoke(context, l_4612);
             if(term == null)
-              break Fail87576;
-            term = termFactory.makeTuple(term, j_17556);
+              break Fail22768;
+            term = termFactory.makeTuple(term, m_4612);
             term = conc_0_0.instance.invoke(context, term);
             if(term == null)
-              break Fail87576;
-            k_17556 = term;
+              break Fail22768;
+            n_4612 = term;
             if(true)
-              break Success47212;
+              break Success12125;
           }
-          term = term47220;
-          IStrategoTerm l_17556 = null;
-          IStrategoTerm m_17556 = null;
-          IStrategoTerm r_17556 = null;
-          l_17556 = term;
+          term = term12133;
+          IStrategoTerm o_4612 = null;
+          IStrategoTerm p_4612 = null;
+          IStrategoTerm u_4612 = null;
+          o_4612 = term;
           term = context.invokePrimitive("SSL_stacktrace_get_all_frame_names", term, NO_STRATEGIES, NO_TERMS);
           if(term == null)
-            break Fail87574;
-          m_17556 = term;
-          r_17556 = l_17556;
-          term = report_with_failure_0_2.instance.invoke(context, r_17556, trans.const17848, m_17556);
+            break Fail22766;
+          p_4612 = term;
+          u_4612 = o_4612;
+          term = report_with_failure_0_2.instance.invoke(context, u_4612, trans.const4461, p_4612);
           if(term == null)
-            break Fail87574;
+            break Fail22766;
         }
-        term = n_17556;
-        if(k_17556 == null)
-          break Fail87574;
-        term = k_17556;
+        term = q_4612;
+        if(n_4612 == null)
+          break Fail22766;
+        term = n_4612;
       }
       context.popOnSuccess();
       if(true)

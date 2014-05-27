@@ -20,18 +20,18 @@ import java.lang.ref.WeakReference;
 { 
   public static aux_$Outer$Cookie_0_2 instance = new aux_$Outer$Cookie_0_2();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm s_4889, IStrategoTerm t_4889)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm a_4336, IStrategoTerm b_4336)
   { 
-    Fail23737:
+    Fail22261:
     { 
-      IStrategoTerm u_4889 = null;
+      IStrategoTerm c_4336 = null;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-        break Fail23737;
-      IStrategoTerm arg8452 = term.getSubterm(0);
-      if(arg8452.getTermType() != IStrategoTerm.STRING || !"-802723".equals(((IStrategoString)arg8452).stringValue()))
-        break Fail23737;
-      u_4889 = term.getSubterm(1);
-      term = u_4889;
+        break Fail22261;
+      IStrategoTerm arg7985 = term.getSubterm(0);
+      if(arg7985.getTermType() != IStrategoTerm.STRING || !"-802723".equals(((IStrategoString)arg7985).stringValue()))
+        break Fail22261;
+      c_4336 = term.getSubterm(1);
+      term = c_4336;
       if(true)
         return term;
     }

@@ -19,18 +19,18 @@ import java.lang.ref.WeakReference;
 { 
   public static aux_$Current$File_0_1 instance = new aux_$Current$File_0_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm y_17585)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm b_4642)
   { 
-    Fail87809:
+    Fail23001:
     { 
-      IStrategoTerm z_17585 = null;
+      IStrategoTerm c_4642 = null;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-        break Fail87809;
-      IStrategoTerm arg30025 = term.getSubterm(0);
-      if(arg30025.getTermType() != IStrategoTerm.STRING || !"99705".equals(((IStrategoString)arg30025).stringValue()))
-        break Fail87809;
-      z_17585 = term.getSubterm(1);
-      term = z_17585;
+        break Fail23001;
+      IStrategoTerm arg8050 = term.getSubterm(0);
+      if(arg8050.getTermType() != IStrategoTerm.STRING || !"99705".equals(((IStrategoString)arg8050).stringValue()))
+        break Fail23001;
+      c_4642 = term.getSubterm(1);
+      term = c_4642;
       if(true)
         return term;
     }

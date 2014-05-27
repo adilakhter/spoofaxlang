@@ -20,26 +20,26 @@ import java.lang.ref.WeakReference;
 { 
   public static fetch_up_position_1_1 instance = new fetch_up_position_1_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy z_4713, IStrategoTerm u_4713)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy h_4160, IStrategoTerm c_4160)
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("fetch_up_position_1_1");
-    Fail22701:
+    Fail21225:
     { 
-      IStrategoTerm w_4713 = null;
-      IStrategoTerm y_4713 = null;
-      w_4713 = term;
-      term = term_at_position_0_1.instance.invoke(context, u_4713, w_4713);
+      IStrategoTerm e_4160 = null;
+      IStrategoTerm g_4160 = null;
+      e_4160 = term;
+      term = term_at_position_0_1.instance.invoke(context, c_4160, e_4160);
       if(term == null)
-        break Fail22701;
-      term = termFactory.makeTuple(term, w_4713);
-      term = fetch_up_with_position_1_1.instance.invoke(context, term, z_4713, u_4713);
+        break Fail21225;
+      term = termFactory.makeTuple(term, e_4160);
+      term = fetch_up_with_position_1_1.instance.invoke(context, term, h_4160, c_4160);
       if(term == null)
-        break Fail22701;
+        break Fail21225;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-        break Fail22701;
-      y_4713 = term.getSubterm(1);
-      term = y_4713;
+        break Fail21225;
+      g_4160 = term.getSubterm(1);
+      term = g_4160;
       context.popOnSuccess();
       if(true)
         return term;

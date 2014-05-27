@@ -19,36 +19,36 @@ import java.lang.ref.WeakReference;
 { 
   public static get_all_sources_0_1 instance = new get_all_sources_0_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm ref_f_17555)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm ref_i_4611)
   { 
-    TermReference f_17555 = new TermReference(ref_f_17555);
+    TermReference i_4611 = new TermReference(ref_i_4611);
     context.push("get_all_sources_0_1");
-    Fail87572:
+    Fail22764:
     { 
-      IStrategoTerm term47210 = term;
-      Success47210:
+      IStrategoTerm term12123 = term;
+      Success12123:
       { 
-        Fail87573:
+        Fail22765:
         { 
-          term = collect_all_1_0.instance.invoke(context, term, lifted24728.instance);
+          term = collect_all_1_0.instance.invoke(context, term, lifted6843.instance);
           if(term == null)
-            break Fail87573;
+            break Fail22765;
           term = get_local_sources_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail87573;
-          lifted24729 lifted247290 = new lifted24729();
-          lifted247290.f_17555 = f_17555;
-          term = map_1_0.instance.invoke(context, term, lifted247290);
+            break Fail22765;
+          lifted6844 lifted68440 = new lifted6844();
+          lifted68440.i_4611 = i_4611;
+          term = map_1_0.instance.invoke(context, term, lifted68440);
           if(term == null)
-            break Fail87573;
+            break Fail22765;
           if(true)
-            break Success47210;
+            break Success12123;
         }
-        term = debug_1_0.instance.invoke(context, term47210, lifted24730.instance);
+        term = debug_1_0.instance.invoke(context, term12123, lifted6845.instance);
         if(term == null)
-          break Fail87572;
+          break Fail22764;
         if(true)
-          break Fail87572;
+          break Fail22764;
       }
       context.popOnSuccess();
       if(true)

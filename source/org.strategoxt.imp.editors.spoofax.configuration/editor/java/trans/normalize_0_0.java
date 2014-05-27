@@ -22,11 +22,11 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("normalize_0_0");
-    Fail87600:
+    Fail22792:
     { 
       term = alltd_1_0.instance.invoke(context, term, normalized_spxproject_reference_0_0.instance);
       if(term == null)
-        break Fail87600;
+        break Fail22792;
       context.popOnSuccess();
       if(true)
         return term;

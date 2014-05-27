@@ -19,12 +19,12 @@ import java.lang.ref.WeakReference;
 { 
   public static undefine_$Current$File_0_1 instance = new undefine_$Current$File_0_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm x_17581)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, IStrategoTerm a_4638)
   { 
-    Fail87785:
+    Fail22977:
     { 
       if(true)
-        break Fail87785;
+        break Fail22977;
       if(true)
         return term;
     }

@@ -20,43 +20,43 @@ import java.lang.ref.WeakReference;
 { 
   public static reverse_bagof_$Is$Imported$Failed_1_0 instance = new reverse_bagof_$Is$Imported$Failed_1_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy i_4880)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy q_4326)
   { 
     context.push("reverse_bagof_IsImportedFailed_1_0");
-    Fail23679:
+    Fail22203:
     { 
-      TermReference f_4880 = new TermReference();
-      TermReference g_4880 = new TermReference();
-      if(g_4880.value == null)
-        g_4880.value = term;
+      TermReference n_4326 = new TermReference();
+      TermReference o_4326 = new TermReference();
+      if(o_4326.value == null)
+        o_4326.value = term;
       else
-        if(g_4880.value != term && !g_4880.value.match(term))
-          break Fail23679;
-      if(f_4880.value == null)
-        f_4880.value = term;
+        if(o_4326.value != term && !o_4326.value.match(term))
+          break Fail22203;
+      if(n_4326.value == null)
+        n_4326.value = term;
       else
-        if(f_4880.value != term && !f_4880.value.match(term))
-          break Fail23679;
-      Success12672:
+        if(n_4326.value != term && !n_4326.value.match(term))
+          break Fail22203;
+      Success11963:
       { 
-        Fail23680:
+        Fail22204:
         { 
-          IStrategoTerm l_4880 = null;
-          l_4880 = term;
-          term = dr_lookup_rule_0_2.instance.invoke(context, l_4880, trans.const4576, g_4880.value);
+          IStrategoTerm t_4326 = null;
+          t_4326 = term;
+          term = dr_lookup_rule_0_2.instance.invoke(context, t_4326, trans.const4366, o_4326.value);
           if(term == null)
-            break Fail23680;
+            break Fail22204;
           if(true)
-            break Success12672;
+            break Success11963;
         }
-        term = trans.constNil4;
+        term = trans.constNil3;
       }
-      lifted7072 lifted70720 = new lifted7072();
-      lifted70720.f_4880 = f_4880;
-      lifted70720.g_4880 = g_4880;
-      term = reverse_filter_2_0.instance.invoke(context, term, lifted70720, i_4880);
+      lifted6801 lifted68010 = new lifted6801();
+      lifted68010.n_4326 = n_4326;
+      lifted68010.o_4326 = o_4326;
+      term = reverse_filter_2_0.instance.invoke(context, term, lifted68010, q_4326);
       if(term == null)
-        break Fail23679;
+        break Fail22203;
       context.popOnSuccess();
       if(true)
         return term;

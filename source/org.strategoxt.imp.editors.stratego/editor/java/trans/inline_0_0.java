@@ -23,39 +23,39 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("inline_0_0");
-    Fail22784:
+    Fail21308:
     { 
-      TermReference a_4726 = new TermReference();
-      IStrategoTerm b_4726 = null;
+      TermReference i_4172 = new TermReference();
+      IStrategoTerm j_4172 = null;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-        break Fail22784;
-      IStrategoTerm arg8088 = term.getSubterm(0);
-      if(a_4726.value == null)
-        a_4726.value = arg8088;
+        break Fail21308;
+      IStrategoTerm arg7621 = term.getSubterm(0);
+      if(i_4172.value == null)
+        i_4172.value = arg7621;
       else
-        if(a_4726.value != arg8088 && !a_4726.value.match(arg8088))
-          break Fail22784;
-      if(arg8088.getTermType() != IStrategoTerm.APPL || Main._consSDefT_4 != ((IStrategoAppl)arg8088).getConstructor())
-        break Fail22784;
-      IStrategoTerm arg8089 = arg8088.getSubterm(0);
-      IStrategoList annos698 = arg8089.getAnnotations();
-      if(annos698.getTermType() != IStrategoTerm.LIST || ((IStrategoList)annos698).isEmpty())
-        break Fail22784;
-      IStrategoTerm arg8090 = ((IStrategoList)annos698).tail();
-      if(arg8090.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg8090).isEmpty())
-        break Fail22784;
-      b_4726 = term.getSubterm(1);
-      term = b_4726;
-      lifted6727 lifted67270 = new lifted6727();
-      lifted67270.a_4726 = a_4726;
-      term = topdown_1_0.instance.invoke(context, term, lifted67270);
+        if(i_4172.value != arg7621 && !i_4172.value.match(arg7621))
+          break Fail21308;
+      if(arg7621.getTermType() != IStrategoTerm.APPL || Main._consSDefT_4 != ((IStrategoAppl)arg7621).getConstructor())
+        break Fail21308;
+      IStrategoTerm arg7622 = arg7621.getSubterm(0);
+      IStrategoList annos670 = arg7622.getAnnotations();
+      if(annos670.getTermType() != IStrategoTerm.LIST || ((IStrategoList)annos670).isEmpty())
+        break Fail21308;
+      IStrategoTerm arg7623 = ((IStrategoList)annos670).tail();
+      if(arg7623.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg7623).isEmpty())
+        break Fail21308;
+      j_4172 = term.getSubterm(1);
+      term = j_4172;
+      lifted6456 lifted64560 = new lifted6456();
+      lifted64560.i_4172 = i_4172;
+      term = topdown_1_0.instance.invoke(context, term, lifted64560);
       if(term == null)
-        break Fail22784;
-      lifted6729 lifted67290 = new lifted6729();
-      lifted67290.a_4726 = a_4726;
-      term = delete_elements_1_0.instance.invoke(context, term, lifted67290);
+        break Fail21308;
+      lifted6458 lifted64580 = new lifted6458();
+      lifted64580.i_4172 = i_4172;
+      term = delete_elements_1_0.instance.invoke(context, term, lifted64580);
       if(term == null)
-        break Fail22784;
+        break Fail21308;
       context.popOnSuccess();
       if(true)
         return term;

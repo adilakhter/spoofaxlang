@@ -19,17 +19,17 @@ import java.lang.ref.WeakReference;
 { 
   public static throw_config_not_found_exception_1_0 instance = new throw_config_not_found_exception_1_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy n_17558)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy q_4614)
   { 
     context.push("throw_config_not_found_exception_1_0");
-    Fail87599:
+    Fail22791:
     { 
-      term = debug_1_0.instance.invoke(context, term, lifted24738.instance);
+      term = debug_1_0.instance.invoke(context, term, lifted6853.instance);
       if(term == null)
-        break Fail87599;
-      term = n_17558.invoke(context, term);
+        break Fail22791;
+      term = q_4614.invoke(context, term);
       if(term == null)
-        break Fail87599;
+        break Fail22791;
       context.popOnSuccess();
       if(true)
         return term;

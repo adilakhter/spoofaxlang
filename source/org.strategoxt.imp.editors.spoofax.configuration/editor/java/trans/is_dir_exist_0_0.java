@@ -22,20 +22,20 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("is_dir_exist_0_0");
-    Fail87631:
+    Fail22823:
     { 
-      IStrategoTerm s_17561 = null;
-      s_17561 = term;
+      IStrategoTerm v_4617 = null;
+      v_4617 = term;
       term = file_exists_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail87631;
+        break Fail22823;
       term = filemode_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail87631;
+        break Fail22823;
       term = isdir_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail87631;
-      term = s_17561;
+        break Fail22823;
+      term = v_4617;
       context.popOnSuccess();
       if(true)
         return term;

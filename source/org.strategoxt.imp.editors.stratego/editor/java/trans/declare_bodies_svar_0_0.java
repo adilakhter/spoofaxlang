@@ -24,57 +24,57 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("declare_bodies_svar_0_0");
-    Fail23210:
+    Fail21734:
     { 
-      TermReference f_4807 = new TermReference();
-      IStrategoTerm g_4807 = null;
-      IStrategoTerm h_4807 = null;
+      TermReference n_4253 = new TermReference();
+      IStrategoTerm o_4253 = null;
+      IStrategoTerm p_4253 = null;
       if(term.getTermType() != IStrategoTerm.APPL || Main._consCallT_3 != ((IStrategoAppl)term).getConstructor())
-        break Fail23210;
-      IStrategoTerm arg8243 = term.getSubterm(0);
-      if(arg8243.getTermType() != IStrategoTerm.APPL || Main._consSVar_1 != ((IStrategoAppl)arg8243).getConstructor())
-        break Fail23210;
-      g_4807 = arg8243.getSubterm(0);
-      IStrategoTerm arg8244 = term.getSubterm(1);
-      if(arg8244.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg8244).isEmpty())
-        break Fail23210;
-      IStrategoTerm arg8245 = term.getSubterm(2);
-      if(arg8245.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg8245).isEmpty())
-        break Fail23210;
-      IStrategoTerm term12536 = term;
-      Success12433:
+        break Fail21734;
+      IStrategoTerm arg7776 = term.getSubterm(0);
+      if(arg7776.getTermType() != IStrategoTerm.APPL || Main._consSVar_1 != ((IStrategoAppl)arg7776).getConstructor())
+        break Fail21734;
+      o_4253 = arg7776.getSubterm(0);
+      IStrategoTerm arg7777 = term.getSubterm(1);
+      if(arg7777.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg7777).isEmpty())
+        break Fail21734;
+      IStrategoTerm arg7778 = term.getSubterm(2);
+      if(arg7778.getTermType() != IStrategoTerm.LIST || !((IStrategoList)arg7778).isEmpty())
+        break Fail21734;
+      IStrategoTerm term11827 = term;
+      Success11724:
       { 
-        Fail23211:
+        Fail21735:
         { 
           term = declare_cookie_of_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail23211;
-          term = termFactory.annotateTerm(g_4807, checkListAnnos(termFactory, (IStrategoTerm)termFactory.makeListCons(term, (IStrategoList)trans.constNil4)));
-          h_4807 = term;
+            break Fail21735;
+          term = termFactory.annotateTerm(o_4253, checkListAnnos(termFactory, (IStrategoTerm)termFactory.makeListCons(term, (IStrategoList)trans.constNil3)));
+          p_4253 = term;
           if(true)
-            break Success12433;
+            break Success11724;
         }
-        term = term12536;
+        term = term11827;
         term = signature_of_0_0.instance.invoke(context, term);
         if(term == null)
-          break Fail23210;
-        if(f_4807.value == null)
-          f_4807.value = term;
+          break Fail21734;
+        if(n_4253.value == null)
+          n_4253.value = term;
         else
-          if(f_4807.value != term && !f_4807.value.match(term))
-            break Fail23210;
+          if(n_4253.value != term && !n_4253.value.match(term))
+            break Fail21734;
         term = all_keys_$Declare$Cookie_0_0.instance.invoke(context, term);
         if(term == null)
-          break Fail23210;
-        lifted6915 lifted69150 = new lifted6915();
-        lifted69150.f_4807 = f_4807;
-        term = fetch_elem_1_0.instance.invoke(context, term, lifted69150);
+          break Fail21734;
+        lifted6644 lifted66440 = new lifted6644();
+        lifted66440.n_4253 = n_4253;
+        term = fetch_elem_1_0.instance.invoke(context, term, lifted66440);
         if(term == null)
-          break Fail23210;
-        term = termFactory.annotateTerm(g_4807, checkListAnnos(termFactory, (IStrategoTerm)termFactory.makeListCons(term, (IStrategoList)trans.constNil4)));
-        h_4807 = term;
+          break Fail21734;
+        term = termFactory.annotateTerm(o_4253, checkListAnnos(termFactory, (IStrategoTerm)termFactory.makeListCons(term, (IStrategoList)trans.constNil3)));
+        p_4253 = term;
       }
-      term = termFactory.makeAppl(Main._consCallT_3, new IStrategoTerm[]{termFactory.makeAppl(Main._consSVar_1, new IStrategoTerm[]{h_4807}), trans.constNil4, trans.constNil4});
+      term = termFactory.makeAppl(Main._consCallT_3, new IStrategoTerm[]{termFactory.makeAppl(Main._consSVar_1, new IStrategoTerm[]{p_4253}), trans.constNil3, trans.constNil3});
       context.popOnSuccess();
       if(true)
         return term;

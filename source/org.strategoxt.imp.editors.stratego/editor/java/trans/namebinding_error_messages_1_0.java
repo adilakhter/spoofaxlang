@@ -20,25 +20,25 @@ import java.lang.ref.WeakReference;
 { 
   public static namebinding_error_messages_1_0 instance = new namebinding_error_messages_1_0();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy c_4738)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy k_4184)
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("namebinding_error_messages_1_0");
-    Fail22833:
+    Fail21357:
     { 
-      IStrategoTerm y_4737 = null;
-      IStrategoTerm z_4737 = null;
+      IStrategoTerm g_4184 = null;
+      IStrategoTerm h_4184 = null;
       if(term.getTermType() != IStrategoTerm.TUPLE || term.getSubtermCount() != 2)
-        break Fail22833;
-      y_4737 = term.getSubterm(0);
-      z_4737 = term.getSubterm(1);
-      term = termFactory.makeTuple(y_4737, z_4737);
-      term = collect_binding_violations_1_0.instance.invoke(context, term, c_4738);
+        break Fail21357;
+      g_4184 = term.getSubterm(0);
+      h_4184 = term.getSubterm(1);
+      term = termFactory.makeTuple(g_4184, h_4184);
+      term = collect_binding_violations_1_0.instance.invoke(context, term, k_4184);
       if(term == null)
-        break Fail22833;
+        break Fail21357;
       term = map_1_0.instance.invoke(context, term, mk_binding_violation_message_0_0.instance);
       if(term == null)
-        break Fail22833;
+        break Fail21357;
       context.popOnSuccess();
       if(true)
         return term;

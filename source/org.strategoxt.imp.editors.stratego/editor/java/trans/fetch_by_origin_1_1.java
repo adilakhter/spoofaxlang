@@ -20,21 +20,21 @@ import java.lang.ref.WeakReference;
 { 
   public static fetch_by_origin_1_1 instance = new fetch_by_origin_1_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy q_4716, IStrategoTerm ref_l_4716)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy y_4162, IStrategoTerm ref_t_4162)
   { 
-    TermReference l_4716 = new TermReference(ref_l_4716);
+    TermReference t_4162 = new TermReference(ref_t_4162);
     context.push("fetch_by_origin_1_1");
-    Fail22716:
+    Fail21240:
     { 
-      IStrategoTerm m_4716 = null;
-      m_4716 = term;
-      term = m_4716;
-      lifted6697 lifted66970 = new lifted6697();
-      lifted66970.q_4716 = q_4716;
-      lifted66970.l_4716 = l_4716;
-      term = collect_one_1_0.instance.invoke(context, term, lifted66970);
+      IStrategoTerm u_4162 = null;
+      u_4162 = term;
+      term = u_4162;
+      lifted6426 lifted64260 = new lifted6426();
+      lifted64260.y_4162 = y_4162;
+      lifted64260.t_4162 = t_4162;
+      term = collect_one_1_0.instance.invoke(context, term, lifted64260);
       if(term == null)
-        break Fail22716;
+        break Fail21240;
       context.popOnSuccess();
       if(true)
         return term;

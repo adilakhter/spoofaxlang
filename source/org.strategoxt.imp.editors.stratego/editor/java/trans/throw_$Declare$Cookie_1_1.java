@@ -20,30 +20,30 @@ import java.lang.ref.WeakReference;
 { 
   public static throw_$Declare$Cookie_1_1 instance = new throw_$Declare$Cookie_1_1();
 
-  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy x_4898, IStrategoTerm y_4898)
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term, Strategy f_4345, IStrategoTerm g_4345)
   { 
     context.push("throw_DeclareCookie_1_1");
-    Fail23611:
+    Fail22135:
     { 
-      IStrategoTerm term12766 = term;
-      Success12636:
+      IStrategoTerm term12057 = term;
+      Success11927:
       { 
-        Fail23612:
+        Fail22136:
         { 
-          IStrategoTerm q_4868 = null;
-          q_4868 = term;
-          term = dr_throw_1_2.instance.invoke(context, q_4868, x_4898, y_4898, trans.const4568);
+          IStrategoTerm y_4314 = null;
+          y_4314 = term;
+          term = dr_throw_1_2.instance.invoke(context, y_4314, f_4345, g_4345, trans.const4358);
           if(term == null)
-            break Fail23612;
+            break Fail22136;
           if(true)
-            break Success12636;
+            break Success11927;
         }
-        term = term12766;
-        IStrategoTerm m_4868 = null;
-        m_4868 = term;
-        term = dr_throw_1_2.instance.invoke(context, m_4868, x_4898, y_4898, trans.const4568);
+        term = term12057;
+        IStrategoTerm u_4314 = null;
+        u_4314 = term;
+        term = dr_throw_1_2.instance.invoke(context, u_4314, f_4345, g_4345, trans.const4358);
         if(term == null)
-          break Fail23611;
+          break Fail22135;
       }
       context.popOnSuccess();
       if(true)

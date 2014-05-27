@@ -23,36 +23,36 @@ import java.lang.ref.WeakReference;
   @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
   { 
     context.push("is_unbound_svar_0_0");
-    Fail22765:
+    Fail21289:
     { 
-      IStrategoTerm s_4723 = null;
-      IStrategoTerm t_4723 = null;
-      s_4723 = term;
+      IStrategoTerm a_4170 = null;
+      IStrategoTerm b_4170 = null;
+      a_4170 = term;
       if(term.getTermType() != IStrategoTerm.APPL || Main._consCallT_3 != ((IStrategoAppl)term).getConstructor())
-        break Fail22765;
-      IStrategoTerm arg8024 = term.getSubterm(0);
-      if(arg8024.getTermType() != IStrategoTerm.APPL || Main._consSVar_1 != ((IStrategoAppl)arg8024).getConstructor())
-        break Fail22765;
-      t_4723 = arg8024.getSubterm(0);
-      term = t_4723;
-      IStrategoTerm term12151 = term;
-      Success12150:
+        break Fail21289;
+      IStrategoTerm arg7557 = term.getSubterm(0);
+      if(arg7557.getTermType() != IStrategoTerm.APPL || Main._consSVar_1 != ((IStrategoAppl)arg7557).getConstructor())
+        break Fail21289;
+      b_4170 = arg7557.getSubterm(0);
+      term = b_4170;
+      IStrategoTerm term11442 = term;
+      Success11441:
       { 
-        Fail22766:
+        Fail21290:
         { 
           term = has_annos_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail22766;
+            break Fail21290;
           { 
             if(true)
-              break Fail22765;
+              break Fail21289;
             if(true)
-              break Success12150;
+              break Success11441;
           }
         }
-        term = term12151;
+        term = term11442;
       }
-      term = s_4723;
+      term = a_4170;
       context.popOnSuccess();
       if(true)
         return term;

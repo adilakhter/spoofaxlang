@@ -24,68 +24,68 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("analyze_names_0_0");
-    Fail22808:
+    Fail21332:
     { 
-      IStrategoTerm z_4731 = null;
-      IStrategoTerm a_4732 = null;
-      IStrategoTerm b_4732 = null;
-      IStrategoTerm c_4732 = null;
-      IStrategoTerm i_4732 = null;
-      IStrategoTerm j_4732 = null;
-      IStrategoTerm l_4732 = null;
-      IStrategoTerm m_4732 = null;
-      IStrategoTerm n_4732 = null;
-      IStrategoTerm e_4732 = null;
-      IStrategoTerm f_4732 = null;
-      IStrategoTerm q_4732 = null;
-      IStrategoTerm r_4732 = null;
-      IStrategoTerm t_4732 = null;
-      IStrategoTerm u_4732 = null;
-      IStrategoTerm v_4732 = null;
-      z_4731 = term;
-      b_4732 = term;
-      term = trans.const4472;
-      c_4732 = trans.const4472;
-      l_4732 = term;
-      i_4732 = trans.const4473;
-      m_4732 = l_4732;
-      j_4732 = trans.constCons2047;
-      n_4732 = m_4732;
-      term = termFactory.makeTuple(trans.const4474, c_4732);
-      term = dr_set_rule_0_3.instance.invoke(context, n_4732, i_4732, j_4732, term);
+      IStrategoTerm h_4178 = null;
+      IStrategoTerm i_4178 = null;
+      IStrategoTerm j_4178 = null;
+      IStrategoTerm k_4178 = null;
+      IStrategoTerm q_4178 = null;
+      IStrategoTerm r_4178 = null;
+      IStrategoTerm t_4178 = null;
+      IStrategoTerm u_4178 = null;
+      IStrategoTerm v_4178 = null;
+      IStrategoTerm m_4178 = null;
+      IStrategoTerm n_4178 = null;
+      IStrategoTerm y_4178 = null;
+      IStrategoTerm z_4178 = null;
+      IStrategoTerm b_4179 = null;
+      IStrategoTerm c_4179 = null;
+      IStrategoTerm d_4179 = null;
+      h_4178 = term;
+      j_4178 = term;
+      term = trans.const4262;
+      k_4178 = trans.const4262;
+      t_4178 = term;
+      q_4178 = trans.const4263;
+      u_4178 = t_4178;
+      r_4178 = trans.constCons1966;
+      v_4178 = u_4178;
+      term = termFactory.makeTuple(trans.const4264, k_4178);
+      term = dr_set_rule_0_3.instance.invoke(context, v_4178, q_4178, r_4178, term);
       if(term == null)
-        break Fail22808;
-      term = b_4732;
-      e_4732 = b_4732;
+        break Fail21332;
+      term = j_4178;
+      m_4178 = j_4178;
       term = project_path_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail22808;
-      f_4732 = term;
-      t_4732 = term;
-      q_4732 = trans.const4475;
-      u_4732 = t_4732;
-      r_4732 = trans.constCons2047;
-      v_4732 = u_4732;
-      term = termFactory.makeTuple(trans.const4476, f_4732);
-      term = dr_set_rule_0_3.instance.invoke(context, v_4732, q_4732, r_4732, term);
+        break Fail21332;
+      n_4178 = term;
+      b_4179 = term;
+      y_4178 = trans.const4265;
+      c_4179 = b_4179;
+      z_4178 = trans.constCons1966;
+      d_4179 = c_4179;
+      term = termFactory.makeTuple(trans.const4266, n_4178);
+      term = dr_set_rule_0_3.instance.invoke(context, d_4179, y_4178, z_4178, term);
       if(term == null)
-        break Fail22808;
-      term = try_1_0.instance.invoke(context, e_4732, get_source_base_dir_0_0.instance);
+        break Fail21332;
+      term = try_1_0.instance.invoke(context, m_4178, get_source_base_dir_0_0.instance);
       if(term == null)
-        break Fail22808;
-      term = map_1_0.instance.invoke(context, z_4731, basic_desugar_top_0_0.instance);
+        break Fail21332;
+      term = map_1_0.instance.invoke(context, h_4178, basic_desugar_top_0_0.instance);
       if(term == null)
-        break Fail22808;
-      a_4732 = term;
+        break Fail21332;
+      i_4178 = term;
       term = declare_globals_0_0.instance.invoke(context, trans.constImport0);
       if(term == null)
-        break Fail22808;
-      term = ensure_imports_0_0.instance.invoke(context, a_4732);
+        break Fail21332;
+      term = ensure_imports_0_0.instance.invoke(context, i_4178);
       if(term == null)
-        break Fail22808;
-      term = analyze_names_in_asts_0_0.instance.invoke(context, a_4732);
+        break Fail21332;
+      term = analyze_names_in_asts_0_0.instance.invoke(context, i_4178);
       if(term == null)
-        break Fail22808;
+        break Fail21332;
       context.popOnSuccess();
       if(true)
         return term;

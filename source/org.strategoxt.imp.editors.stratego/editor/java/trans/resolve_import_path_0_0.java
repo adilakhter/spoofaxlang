@@ -24,49 +24,49 @@ import java.lang.ref.WeakReference;
   { 
     ITermFactory termFactory = context.getFactory();
     context.push("resolve_import_path_0_0");
-    Fail23132:
+    Fail21656:
     { 
-      TermReference y_4786 = new TermReference();
-      IStrategoTerm t_4787 = null;
-      IStrategoTerm v_4787 = null;
-      IStrategoTerm x_4787 = null;
-      if(y_4786.value == null)
-        y_4786.value = term;
+      TermReference g_4233 = new TermReference();
+      IStrategoTerm b_4234 = null;
+      IStrategoTerm d_4234 = null;
+      IStrategoTerm f_4234 = null;
+      if(g_4233.value == null)
+        g_4233.value = term;
       else
-        if(y_4786.value != term && !y_4786.value.match(term))
-          break Fail23132;
-      v_4787 = term;
-      Success12373:
+        if(g_4233.value != term && !g_4233.value.match(term))
+          break Fail21656;
+      d_4234 = term;
+      Success11664:
       { 
-        Fail23133:
+        Fail21657:
         { 
           term = load_include_paths_0_0.instance.invoke(context, term);
           if(term == null)
-            break Fail23133;
+            break Fail21657;
           if(true)
-            break Success12373;
+            break Success11664;
         }
-        term = trans.constNil4;
+        term = trans.constNil3;
       }
-      t_4787 = term;
-      term = v_4787;
+      b_4234 = term;
+      term = d_4234;
       term = default_include_paths_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail23132;
-      term = termFactory.makeTuple(t_4787, term);
+        break Fail21656;
+      term = termFactory.makeTuple(b_4234, term);
       term = conc_0_0.instance.invoke(context, term);
       if(term == null)
-        break Fail23132;
-      term = map_1_0.instance.invoke(context, term, lifted6863.instance);
+        break Fail21656;
+      term = map_1_0.instance.invoke(context, term, lifted6592.instance);
       if(term == null)
-        break Fail23132;
-      x_4787 = term;
-      term = x_4787;
-      lifted6865 lifted68650 = new lifted6865();
-      lifted68650.y_4786 = y_4786;
-      term = fetch_elem_1_0.instance.invoke(context, term, lifted68650);
+        break Fail21656;
+      f_4234 = term;
+      term = f_4234;
+      lifted6594 lifted65940 = new lifted6594();
+      lifted65940.g_4233 = g_4233;
+      term = fetch_elem_1_0.instance.invoke(context, term, lifted65940);
       if(term == null)
-        break Fail23132;
+        break Fail21656;
       context.popOnSuccess();
       if(true)
         return term;
