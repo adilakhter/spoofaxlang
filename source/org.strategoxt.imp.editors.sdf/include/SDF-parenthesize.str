@@ -1,0 +1,112 @@
+module include/SDF-parenthesize
+
+imports
+  libstratego-lib
+  include/SDF
+
+
+strategies
+  io-SDF-parenthesize =
+    io-wrap(parenthesize-SDF)
+
+  parenthesize-SDF =
+    innermost(SDFParenthesize)
+
+
+rules
+
+  SDFParenthesize :
+    comp(t_0) -> comp(Parenthetical(t_0))
+    where <(?union(_, _)
+            + ?isect(_, _)
+            + ?diff(_, _)
+            + fail)> t_0
+
+  SDFParenthesize :
+    diff(t_0, t_1) -> diff(Parenthetical(t_0), t_1)
+    where <(?union(_, _)
+            + ?isect(_, _)
+            + fail)> t_0
+
+  SDFParenthesize :
+    diff(t_0, t_1) -> diff(t_0, Parenthetical(t_1))
+    where <(?union(_, _)
+            + ?isect(_, _)
+            + ?diff(_, _)
+            + fail)> t_1
+
+  SDFParenthesize :
+    iter(t_0) -> iter(Parenthetical(t_0))
+    where <(?label(_, _)
+            + ?alt(_, _)
+            + fail)> t_0
+
+  SDFParenthesize :
+    iter-star(t_0) -> iter-star(Parenthetical(t_0))
+    where <(?label(_, _)
+            + ?alt(_, _)
+            + fail)> t_0
+
+  SDFParenthesize :
+    opt(t_0) -> opt(Parenthetical(t_0))
+    where <(?label(_, _)
+            + ?alt(_, _)
+            + fail)> t_0
+
+  SDFParenthesize :
+    alt(t_0, t_1) -> alt(Parenthetical(t_0), t_1)
+    where <(?label(_, _)
+            + ?alt(_, _)
+            + fail)> t_0
+
+  SDFParenthesize :
+    alt(t_0, t_1) -> alt(t_0, Parenthetical(t_1))
+    where <(?label(_, _) + fail)> t_1
+
+  SDFParenthesize :
+    seq(t_0, t_1) -> seq(Parenthetical(t_0), t_1)
+    where <(?alt(_, _) + fail)> t_0
+
+  SDFParenthesize :
+    seq(t_0, t_1) -> seq(t_0, Parenthetical(t_1))
+    where <(?alt(_, _) + fail)> t_1
+
+  SDFParenthesize :
+    isect(t_0, t_1) -> isect(Parenthetical(t_0), t_1)
+    where <(?union(_, _) + fail)> t_0
+
+  SDFParenthesize :
+    isect(t_0, t_1) -> isect(t_0, Parenthetical(t_1))
+    where <(?union(_, _)
+            + ?isect(_, _)
+            + fail)> t_1
+
+  SDFParenthesize :
+    non-transitive(t_0) -> non-transitive(Parenthetical(t_0))
+    where <(?non-transitive(_) + fail)> t_0
+
+  SDFParenthesize :
+    union(t_0, t_1) -> union(t_0, Parenthetical(t_1))
+    where <(?union(_, _) + fail)> t_1
+
+  SDFParenthesize :
+    conc(t_0, t_1) -> conc(Parenthetical(t_0), t_1)
+    where <(?conc(_, _) + fail)> t_0
+
+  SDFParenthesize :
+    with-arguments(t_0, t_1) -> with-arguments(Parenthetical(t_0), t_1)
+    where <(?with-arguments(_, _) + fail)> t_0
+
+  SDFParenthesize :
+    with-arguments(t_0, t_1) -> with-arguments(t_0, Parenthetical(t_1))
+    where <(?with-arguments(_, _) + fail)> t_1
+
+  SDFParenthesize :
+    conc-grammars(t_0, t_1) -> conc-grammars(t_0, Parenthetical(t_1))
+    where <(?conc-grammars(_, _) + fail)> t_1
+
+
+signature
+  constructors
+    Parenthetical : Unknown -> Unknown
+
