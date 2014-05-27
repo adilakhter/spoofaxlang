@@ -1,0 +1,16 @@
+module Case3Entity.main
+
+imports Case3Entity-Builders Case3Entity-Colorer Case3Entity-Completions Case3Entity-Folding Case3Entity-Outliner Case3Entity-References Case3Entity-Syntax
+
+language General properties
+                  
+  name          : Case3Entity
+  id            : Case3Entity
+  extends       : Root
+                  
+  description   : "Spoofax/IMP-generated editor for the Case3Entity language"
+  url           : http://strategoxt.org
+                  
+  extensions    : case3
+  table         : include/Case3Entity.tbl
+  start symbols : Start

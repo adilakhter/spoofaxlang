@@ -1,0 +1,7 @@
+[Test]
+[Foo]
+[Foo]1<entityRef-1>foo[Bar]
+[Foo]1++entityComp-1>ownedBy[Baz]
+[Foo]FooBarFooBaroneToMany-*>FooBar[FooBar]
+[Bar]
+[Baz]

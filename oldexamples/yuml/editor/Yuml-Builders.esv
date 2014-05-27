@@ -1,0 +1,22 @@
+
+module Yuml-Builders
+
+imports Yuml-Builders.generated
+
+builders
+                                                                      
+  // This file can be used for custom analysis and builder rules.     
+  //                                                                  
+  // See the imported file for a brief introduction and examples.     
+
+builders
+                                                                                              
+  provider : include/yuml.ctree                                                               
+                                                                                              
+ // observer : editor-analyze                                                                   
+                                                                                              
+  //builder  : "Generate Java code"   = generate-java (openeditor) (realtime)                   
+  builder  : "Show abstract syntax" = generate-aterm (openeditor) (realtime) (meta) (source)  
+  builder :   "Pretty-print yUML" = show-pretty-printed-yuml (openeditor) (realtime) (meta)
+                                                                                              
+ // on save  : generate-java                                                                    

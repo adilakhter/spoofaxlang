@@ -1,0 +1,10 @@
+C:\spoofaxlang\oldexamples\Case3Entity\include/case3entity.ctree: \
+	C:/spoofaxlang/oldexamples/Case3Entity/trans/prettyprint.str \
+	C:\spoofaxlang\oldexamples\Case3Entity/include/Yuml.str \
+	C:/spoofaxlang/oldexamples/Case3Entity/trans/transform2Yuml.str \
+	C:/spoofaxlang/oldexamples/Case3Entity/trans/generate.str \
+	C:/spoofaxlang/oldexamples/Case3Entity/trans/check.str \
+	 \
+	C:\spoofaxlang\oldexamples\Case3Entity/lib/editor-common.generated.str \
+	C:\spoofaxlang\oldexamples\Case3Entity/include/Case3Entity.str \
+	C:\spoofaxlang\oldexamples\Case3Entity\trans/case3entity.str

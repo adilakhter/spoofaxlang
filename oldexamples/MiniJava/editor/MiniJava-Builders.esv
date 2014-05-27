@@ -1,0 +1,25 @@
+
+module MiniJava-Builders
+
+imports MiniJava-Builders.generated
+
+builders
+                                                                      
+  // This file can be used for custom analysis and builder rules.     
+  //                                                                  
+  // See the imported file for a brief introduction and examples.     
+
+builders
+                                                                                                               
+	provider	: include/minijava.ctree                                                           
+                                                                                                               
+	observer	: editor-analyse                                                                   
+                                                                                                               
+	builder		: "Abstract syntax (selection)" = generate-aterm (openeditor) (realtime) (meta) (source)  
+    builder		: "Desugar (selection)" = desugar-aterm (openeditor) (realtime) (meta) (source) 
+	builder		: "Analysed abstract syntax (selection)" = rename-aterm (openeditor) (realtime) (meta)                                                                                                                
+	builder		: "Run" = run-in-jvm
+	
+	on save		: generate-jbc-all
+	
+	

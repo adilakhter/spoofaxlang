@@ -1,0 +1,275 @@
+Program(
+  MainClass(
+    "BinarySearch"
+  , MainMethod(
+      Void()
+    , "main"
+    , MParam(StringArray(), "a")
+    , Print(Call(New("BS"), "Start", [IntValue("20")]))
+    )
+  )
+, [ Class(
+      "BS"
+    , None()
+    , [Field("BS", Array(), "number"), Field("BS", Int(), "size")]
+    , [ Method(
+          "BS"
+        , Int()
+        , "Start"
+        , [Param(Int(), "sz")]
+        , [Var(Int(), "aux01"), Var(Int(), "aux02")]
+        , [ Assign(
+              FieldRef("BS", "aux01")
+            , Call(This("BS"), "Init", [FieldRef("BS", "sz")])
+            )
+          , Assign(
+              FieldRef("BS", "aux02")
+            , Call(This("BS"), "Print", [])
+            )
+          , If(
+              Call(This("BS"), "Search", [IntValue("8")])
+            , Print(IntValue("1"))
+            , Print(IntValue("0"))
+            )
+          , If(
+              Call(This("BS"), "Search", [IntValue("19")])
+            , Print(IntValue("1"))
+            , Print(IntValue("0"))
+            )
+          , If(
+              Call(This("BS"), "Search", [IntValue("20")])
+            , Print(IntValue("1"))
+            , Print(IntValue("0"))
+            )
+          , If(
+              Call(This("BS"), "Search", [IntValue("21")])
+            , Print(IntValue("1"))
+            , Print(IntValue("0"))
+            )
+          , If(
+              Call(This("BS"), "Search", [IntValue("37")])
+            , Print(IntValue("1"))
+            , Print(IntValue("0"))
+            )
+          , If(
+              Call(This("BS"), "Search", [IntValue("38")])
+            , Print(IntValue("1"))
+            , Print(IntValue("0"))
+            )
+          , If(
+              Call(This("BS"), "Search", [IntValue("39")])
+            , Print(IntValue("1"))
+            , Print(IntValue("0"))
+            )
+          , If(
+              Call(This("BS"), "Search", [IntValue("50")])
+            , Print(IntValue("1"))
+            , Print(IntValue("0"))
+            )
+          ]
+        , IntValue("999")
+        )
+      , Method(
+          "BS"
+        , Bool()
+        , "Search"
+        , [Param(Int(), "num")]
+        , [ Var(Bool(), "bs01")
+          , Var(Int(), "right")
+          , Var(Int(), "left")
+          , Var(Bool(), "var_cont")
+          , Var(Int(), "medium")
+          , Var(Int(), "aux01")
+          , Var(Int(), "nt")
+          ]
+        , [ Assign(FieldRef("BS", "aux01"), IntValue("0"))
+          , Assign(FieldRef("BS", "bs01"), False())
+          , Assign(FieldRef("BS", "right"), ArrayLength(FieldRef("BS", "number")))
+          , Assign(
+              FieldRef("BS", "right")
+            , Bop(MINUS(), FieldRef("BS", "right"), IntValue("1"))
+            )
+          , Assign(FieldRef("BS", "left"), IntValue("0"))
+          , Assign(FieldRef("BS", "var_cont"), True())
+          , While(
+              FieldRef("BS", "var_cont")
+            , Block(
+                [ Assign(
+                    FieldRef("BS", "medium")
+                  , Bop(PLUS(), FieldRef("BS", "left"), FieldRef("BS", "right"))
+                  )
+                , Assign(
+                    FieldRef("BS", "medium")
+                  , Call(This("BS"), "Div", [FieldRef("BS", "medium")])
+                  )
+                , Assign(
+                    FieldRef("BS", "aux01")
+                  , ArrayRef(FieldRef("BS", "number"), FieldRef("BS", "medium"))
+                  )
+                , If(
+                    Bop(LT(), FieldRef("BS", "num"), FieldRef("BS", "aux01"))
+                  , Assign(
+                      FieldRef("BS", "right")
+                    , Bop(MINUS(), FieldRef("BS", "medium"), IntValue("1"))
+                    )
+                  , Assign(
+                      FieldRef("BS", "left")
+                    , Bop(PLUS(), FieldRef("BS", "medium"), IntValue("1"))
+                    )
+                  )
+                , If(
+                    Call(
+                      This("BS")
+                    , "Compare"
+                    , [FieldRef("BS", "aux01"), FieldRef("BS", "num")]
+                    )
+                  , Assign(FieldRef("BS", "var_cont"), False())
+                  , Assign(FieldRef("BS", "var_cont"), True())
+                  )
+                , If(
+                    Bop(LT(), FieldRef("BS", "right"), FieldRef("BS", "left"))
+                  , Assign(FieldRef("BS", "var_cont"), False())
+                  , Assign(FieldRef("BS", "nt"), IntValue("0"))
+                  )
+                ]
+              )
+            )
+          , If(
+              Call(
+                This("BS")
+              , "Compare"
+              , [FieldRef("BS", "aux01"), FieldRef("BS", "num")]
+              )
+            , Assign(FieldRef("BS", "bs01"), True())
+            , Assign(FieldRef("BS", "bs01"), False())
+            )
+          ]
+        , FieldRef("BS", "bs01")
+        )
+      , Method(
+          "BS"
+        , Int()
+        , "Div"
+        , [Param(Int(), "num")]
+        , [Var(Int(), "count01"), Var(Int(), "count02"), Var(Int(), "aux03")]
+        , [ Assign(FieldRef("BS", "count01"), IntValue("0"))
+          , Assign(FieldRef("BS", "count02"), IntValue("0"))
+          , Assign(
+              FieldRef("BS", "aux03")
+            , Bop(MINUS(), FieldRef("BS", "num"), IntValue("1"))
+            )
+          , While(
+              Bop(LT(), FieldRef("BS", "count02"), FieldRef("BS", "aux03"))
+            , Block(
+                [ Assign(
+                    FieldRef("BS", "count01")
+                  , Bop(PLUS(), FieldRef("BS", "count01"), IntValue("1"))
+                  )
+                , Assign(
+                    FieldRef("BS", "count02")
+                  , Bop(PLUS(), FieldRef("BS", "count02"), IntValue("2"))
+                  )
+                ]
+              )
+            )
+          ]
+        , FieldRef("BS", "count01")
+        )
+      , Method(
+          "BS"
+        , Bool()
+        , "Compare"
+        , [Param(Int(), "num1"), Param(Int(), "num2")]
+        , [Var(Bool(), "retval"), Var(Int(), "aux02")]
+        , [ Assign(FieldRef("BS", "retval"), False())
+          , Assign(
+              FieldRef("BS", "aux02")
+            , Bop(PLUS(), FieldRef("BS", "num2"), IntValue("1"))
+            )
+          , If(
+              Bop(LT(), FieldRef("BS", "num1"), FieldRef("BS", "num2"))
+            , Assign(FieldRef("BS", "retval"), False())
+            , If(
+                Not(
+                  Bop(LT(), FieldRef("BS", "num1"), FieldRef("BS", "aux02"))
+                )
+              , Assign(FieldRef("BS", "retval"), False())
+              , Assign(FieldRef("BS", "retval"), True())
+              )
+            )
+          ]
+        , FieldRef("BS", "retval")
+        )
+      , Method(
+          "BS"
+        , Int()
+        , "Print"
+        , []
+        , [Var(Int(), "j")]
+        , [ Assign(FieldRef("BS", "j"), IntValue("1"))
+          , While(
+              Bop(LT(), FieldRef("BS", "j"), FieldRef("BS", "size"))
+            , Block(
+                [ Print(ArrayRef(FieldRef("BS", "number"), FieldRef("BS", "j")))
+                , Assign(
+                    FieldRef("BS", "j")
+                  , Bop(PLUS(), FieldRef("BS", "j"), IntValue("1"))
+                  )
+                ]
+              )
+            )
+          , Print(IntValue("99999"))
+          ]
+        , IntValue("0")
+        )
+      , Method(
+          "BS"
+        , Int()
+        , "Init"
+        , [Param(Int(), "sz")]
+        , [ Var(Int(), "j")
+          , Var(Int(), "k")
+          , Var(Int(), "aux02")
+          , Var(Int(), "aux01")
+          ]
+        , [ Assign(FieldRef("BS", "size"), FieldRef("BS", "sz"))
+          , Assign(FieldRef("BS", "number"), ArrayNew(FieldRef("BS", "sz")))
+          , Assign(FieldRef("BS", "j"), IntValue("1"))
+          , Assign(
+              FieldRef("BS", "k")
+            , Bop(PLUS(), FieldRef("BS", "size"), IntValue("1"))
+            )
+          , While(
+              Bop(LT(), FieldRef("BS", "j"), FieldRef("BS", "size"))
+            , Block(
+                [ Assign(
+                    FieldRef("BS", "aux01")
+                  , Bop(MUL(), IntValue("2"), FieldRef("BS", "j"))
+                  )
+                , Assign(
+                    FieldRef("BS", "aux02")
+                  , Bop(MINUS(), FieldRef("BS", "k"), IntValue("3"))
+                  )
+                , ArrayAssign(
+                    FieldRef("BS", "number")
+                  , FieldRef("BS", "j")
+                  , Bop(PLUS(), FieldRef("BS", "aux01"), FieldRef("BS", "aux02"))
+                  )
+                , Assign(
+                    FieldRef("BS", "j")
+                  , Bop(PLUS(), FieldRef("BS", "j"), IntValue("1"))
+                  )
+                , Assign(
+                    FieldRef("BS", "k")
+                  , Bop(MINUS(), FieldRef("BS", "k"), IntValue("1"))
+                  )
+                ]
+              )
+            )
+          ]
+        , IntValue("0")
+        )
+      ]
+    )
+  ]
+)

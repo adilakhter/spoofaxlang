@@ -1,0 +1,1 @@
+Lt(VarRef("num"), IntValue("1"))

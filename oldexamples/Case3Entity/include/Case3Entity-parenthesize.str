@@ -1,0 +1,10 @@
+module include/Case3Entity-parenthesize
+
+imports
+  libstratego-lib
+
+
+strategies
+  io-Case3Entity-parenthesize =
+    io-wrap(id)
+

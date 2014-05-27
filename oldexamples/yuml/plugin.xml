@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?eclipse version="3.0"?>
+
+<plugin>
+       <extension point="org.eclipse.imp.runtime.languageDescription">
+          <language extensions="yuml" description="Yuml" language="Yuml" derivedFrom="DynamicRoot" validator="yuml.YumlValidator" validatorClass="yuml.YumlValidator"></language>
+       </extension>
+       <extension id="yuml.parser" name="Yuml Parser" point="org.eclipse.imp.runtime.parser">
+          <parser class="yuml.YumlParseController" language="Yuml">
+          </parser>
+       </extension>    
+    </plugin>

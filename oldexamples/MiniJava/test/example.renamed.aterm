@@ -1,0 +1,12 @@
+Program(
+  MainClass(
+    "Main"
+  , MainMethod(
+      Void()
+    , "main"
+    , MParam(StringArray(), "args")
+    , Print(Call(New("Fac"), "fac", [IntValue("10")]))
+    )
+  )
+, [Class("Fac", None(), [], [])]
+)

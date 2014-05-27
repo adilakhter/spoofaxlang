@@ -1,0 +1,39 @@
+Class(
+  "MyVisitor"
+, Parent("Visitor")
+, []
+, [ Method(
+      Int()
+    , "visit"
+    , [Param(ClassType("Tree"), "n")]
+    , [Var(Int(), "nti")]
+    , [ If(
+          Call(VarRef("n"), "GetHas_Right", [])
+        , Block(
+            [ Assign(VarRef("r"), Call(VarRef("n"), "GetRight", []))
+            , Assign(
+                VarRef("nti")
+              , Call(VarRef("r"), "accept", [This()])
+              )
+            ]
+          )
+        , Assign(VarRef("nti"), IntValue("0"))
+        )
+      , Print(Call(VarRef("n"), "GetKey", []))
+      , If(
+          Call(VarRef("n"), "GetHas_Left", [])
+        , Block(
+            [ Assign(VarRef("l"), Call(VarRef("n"), "GetLeft", []))
+            , Assign(
+                VarRef("nti")
+              , Call(VarRef("l"), "accept", [This()])
+              )
+            ]
+          )
+        , Assign(VarRef("nti"), IntValue("0"))
+        )
+      ]
+    , IntValue("0")
+    )
+  ]
+)

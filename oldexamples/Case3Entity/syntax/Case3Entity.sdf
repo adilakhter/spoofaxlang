@@ -1,0 +1,47 @@
+%% Grammar for the Case3Entity language
+%% By default, based on an example "entities" syntax
+module Case3Entity
+
+imports Common
+
+exports
+  context-free start-symbols
+    Start
+    
+  context-free syntax
+    "module" ID Definition*       								-> Start {cons("Module")}
+     Entity 													-> Definition
+     "entity" ID  "{" Property* "}" 							-> Entity {cons("Entity")}
+    "entity" ID Inherits "{" Property* "}" 						-> Entity {cons("Entity")}
+     InheritOperator ID												-> Inherits{cons("Inherits")}
+    
+    ID ValueTypePropertyOp Type				    					-> Property {cons("EntityMember") }
+    ID ReferenceTypePropertyOperator ReferenceType 					-> Property {cons("EntityReference") }
+    ID ReferenceTypePropertyOperator ReferenceType InversePropertyDecl 		-> Property {cons("EntityReference") }
+    ID CompositeTypePropertyOperator ReferenceType 							-> Property {cons("EntityReference") }
+    ID CompositeTypePropertyOperator ReferenceType 	InversePropertyDecl	-> Property {cons("EntityReference") }
+    
+    "Set" "<" Type ">" 		   										-> ReferenceType{cons("Set")}
+    "List" "<" Type ">" 		   									-> ReferenceType{cons("List")}
+    Type 															-> ReferenceType
+    ID                    	        								-> Type {cons("Type")}
+    
+    
+    %%Anotation
+    "(" "inverse" "=" ReferencedProp ")"									-> InversePropertyDecl{cons("InversePropertyDecl")}
+    "(" "inverse" "=" ID "." ReferencedProp ")"							-> InversePropertyDecl{cons("InversePropertyDecl")}
+    ID																		-> ReferencedProp  
+    
+exports	
+    sorts ValueTypePropertyOp InheritOperator  CompositeTypePropertyOperator ReferenceTypePropertyOperator
+    context-free syntax
+    ValueTypePropSymbol											-> ValueTypePropertyOp {cons("ValueTypePropertyOp")}
+    ReferenceTypePropSymbol 									-> ReferenceTypePropertyOperator {cons("Reference")}
+    CompositionSymbol 											-> CompositeTypePropertyOperator {cons("Composite")}
+    InheritenceSymbol					 					    -> InheritOperator{cons("InheritenceOp")}
+    													
+	lexical syntax 
+	"::"	-> ValueTypePropSymbol
+	"->"	-> ReferenceTypePropSymbol
+	"<>"	-> CompositionSymbol
+	":"		-> InheritenceSymbol

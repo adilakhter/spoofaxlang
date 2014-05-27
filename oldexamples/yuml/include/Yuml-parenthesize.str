@@ -1,0 +1,26 @@
+module include/Yuml-parenthesize
+
+imports
+  libstratego-lib
+  include/Yuml
+
+
+strategies
+  io-Yuml-parenthesize =
+    io-wrap(parenthesize-Yuml)
+
+  parenthesize-Yuml =
+    innermost(YumlParenthesize)
+
+
+rules
+
+  YumlParenthesize :
+    CompositionOperator(t_0) -> CompositionOperator(Parenthetical(t_0))
+    where <(?AggregationOperator(_) + fail)> t_0
+
+
+signature
+  constructors
+    Parenthetical : Unknown -> Unknown
+

@@ -1,0 +1,117 @@
+definition
+
+module Common
+exports
+  sorts WATER WATERTOKEN WATERTOKENSTART WATERTOKENSEPARATOR WATERTOKENSTAR
+
+  lexical syntax
+    ~[A-Za-z0-9\_]                 -> WATERTOKENSTART     {recover}
+    WATERTOKENSTART [A-Za-z0-9\_]* -> WATERTOKEN          
+    ~[A-Za-z0-9\_\ \t\12\r\n\*]    -> WATERTOKENSEPARATOR {recover}
+    "*"                            -> WATERTOKENSTAR      {recover}
+    WATERTOKEN                     -> WATER               
+    WATERTOKENSEPARATOR            -> WATER               
+    WATERTOKENSTAR                 -> WATER               
+
+  lexical restrictions
+    WATERTOKEN -/- [A-Za-z0-9\_]
+    WATERTOKENSTAR -/- [\/]
+
+  context-free syntax
+    WATER -> LAYOUT {cons("WATER")}
+
+  (
+
+  sorts WATEREOF
+
+  lexical restrictions
+    WATEREOF -/- ~[]
+
+  lexical syntax
+    %% Lexical insertion recovery rules                                
+    "\""                                           -> INSERTOPENQUOTE7 {recover}
+    INSERTOPENQUOTE7 StringChar* "\n"              -> STRING           {cons("INSERTEND")}
+    INSERTOPENQUOTE7 StringChar* WATEREOF          -> STRING           {cons("INSERTEND")}
+    "/*"                                           -> INSERTSTART8     {recover}
+    INSERTSTART8 ( ~[\*] | CommentChar )* WATEREOF -> LAYOUT           {cons("INSERTEND")}
+                                                   -> "module"         {recover, cons("INSERTION")}
+                                                   -> "}"              {recover, cons("INSERTION")}
+                                                   -> ">"              {recover, cons("INSERTION")}
+                                                   -> ")"              {recover, cons("INSERTION")}
+
+  syntax
+    %% Kernel syntax insertion recovery rules   
+
+  )
+
+  (
+
+  lexical syntax
+    [a-zA-Z] [a-zA-Z0-9\_]*            -> ID            
+    "-"? [0-9]+                        -> INT           
+    "\"" StringChar* "\""              -> STRING        
+    ~[\"\n]                            -> StringChar    
+    "\\\""                             -> StringChar    
+    BackSlashChar                      -> StringChar    
+    "\\"                               -> BackSlashChar 
+    [\ \t\n\r]                         -> LAYOUT        
+    [\*]                               -> CommentChar   
+    "/*" ( ~[\*] | CommentChar )* "*/" -> LAYOUT        
+    "//" ~[\n\r]* [\n\r] | EOF         -> LAYOUT        
+                                       -> EOF           
+
+  lexical restrictions
+    CommentChar -/- [\/]
+    INT -/- [0-9]
+    ID -/- [a-zA-Z0-9\_]
+    EOF -/- ~[]
+    BackSlashChar -/- [\"]
+
+  context-free restrictions
+    LAYOUT? -/- [\ \t\n\r]
+    LAYOUT? -/- [\/] . [\/]
+    LAYOUT? -/- [\/] . [\*]
+
+  )
+
+module Case3Entity
+imports Common
+
+exports
+  context-free start-symbols
+    Start
+
+  context-free syntax
+    "module" ID Definition*                                            -> Start               {cons("Module")}
+    Entity                                                             -> Definition          
+    "entity" ID "{" Property* "}"                                      -> Entity              {cons("Entity")}
+    "entity" ID Inherits "{" Property* "}"                             -> Entity              {cons("Entity")}
+    InheritOperator ID                                                 -> Inherits            {cons("Inherits")}
+    ID ValueTypePropertyOp Type                                        -> Property            {cons("EntityMember")}
+    ID ReferenceTypePropertyOperator ReferenceType                     -> Property            {cons("EntityReference")}
+    ID ReferenceTypePropertyOperator ReferenceType InversePropertyDecl -> Property            {cons("EntityReference")}
+    ID CompositeTypePropertyOperator ReferenceType                     -> Property            {cons("EntityReference")}
+    ID CompositeTypePropertyOperator ReferenceType InversePropertyDecl -> Property            {cons("EntityReference")}
+    "Set" "<" Type ">"                                                 -> ReferenceType       {cons("Set")}
+    "List" "<" Type ">"                                                -> ReferenceType       {cons("List")}
+    Type                                                               -> ReferenceType       
+    ID                                                                 -> Type                {cons("Type")}
+    "(" "inverse" "=" ReferencedProp ")"                               -> InversePropertyDecl {cons("InversePropertyDecl")}
+    "(" "inverse" "=" ID "." ReferencedProp ")"                        -> InversePropertyDecl {cons("InversePropertyDecl")}
+    ID                                                                 -> ReferencedProp      
+
+exports
+  sorts ValueTypePropertyOp InheritOperator CompositeTypePropertyOperator
+        ReferenceTypePropertyOperator
+
+  context-free syntax
+    ValueTypePropSymbol     -> ValueTypePropertyOp           {cons("ValueTypePropertyOp")}
+    ReferenceTypePropSymbol -> ReferenceTypePropertyOperator {cons("Reference")}
+    CompositionSymbol       -> CompositeTypePropertyOperator {cons("Composite")}
+    InheritenceSymbol       -> InheritOperator               {cons("InheritenceOp")}
+
+  lexical syntax
+    "::" -> ValueTypePropSymbol     
+    "->" -> ReferenceTypePropSymbol 
+    "<>" -> CompositionSymbol       
+    ":"  -> InheritenceSymbol       

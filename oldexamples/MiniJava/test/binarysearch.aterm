@@ -1,0 +1,211 @@
+Program(
+  MainClass(
+    "BinarySearch"
+  , MainMethod(
+      Void()
+    , "main"
+    , MParam(StringArray(), "a")
+    , Print(Call(New("BS"), "Start", [IntValue("20")]))
+    )
+  )
+, [ Class(
+      "BS"
+    , None()
+    , [Field(Array(), "number"), Field(Int(), "size")]
+    , [ Method(
+          Int()
+        , "Start"
+        , [Param(Int(), "sz")]
+        , [Var(Int(), "aux01"), Var(Int(), "aux02")]
+        , [ Assign(
+              VarRef("aux01")
+            , Call(This(), "Init", [VarRef("sz")])
+            )
+          , Assign(VarRef("aux02"), Call(This(), "Print", []))
+          , If(
+              Call(This(), "Search", [IntValue("8")])
+            , Print(IntValue("1"))
+            , Print(IntValue("0"))
+            )
+          , If(
+              Call(This(), "Search", [IntValue("19")])
+            , Print(IntValue("1"))
+            , Print(IntValue("0"))
+            )
+          , If(
+              Call(This(), "Search", [IntValue("20")])
+            , Print(IntValue("1"))
+            , Print(IntValue("0"))
+            )
+          , If(
+              Call(This(), "Search", [IntValue("21")])
+            , Print(IntValue("1"))
+            , Print(IntValue("0"))
+            )
+          , If(
+              Call(This(), "Search", [IntValue("37")])
+            , Print(IntValue("1"))
+            , Print(IntValue("0"))
+            )
+          , If(
+              Call(This(), "Search", [IntValue("38")])
+            , Print(IntValue("1"))
+            , Print(IntValue("0"))
+            )
+          , If(
+              Call(This(), "Search", [IntValue("39")])
+            , Print(IntValue("1"))
+            , Print(IntValue("0"))
+            )
+          , If(
+              Call(This(), "Search", [IntValue("50")])
+            , Print(IntValue("1"))
+            , Print(IntValue("0"))
+            )
+          ]
+        , IntValue("999")
+        )
+      , Method(
+          Bool()
+        , "Search"
+        , [Param(Int(), "num")]
+        , [ Var(Bool(), "bs01")
+          , Var(Int(), "right")
+          , Var(Int(), "left")
+          , Var(Bool(), "var_cont")
+          , Var(Int(), "medium")
+          , Var(Int(), "aux01")
+          , Var(Int(), "nt")
+          ]
+        , [ Assign(VarRef("aux01"), IntValue("0"))
+          , Assign(VarRef("bs01"), False())
+          , Assign(VarRef("right"), ArrayLength(VarRef("number")))
+          , Assign(VarRef("right"), Sub(VarRef("right"), IntValue("1")))
+          , Assign(VarRef("left"), IntValue("0"))
+          , Assign(VarRef("var_cont"), True())
+          , While(
+              VarRef("var_cont")
+            , Block(
+                [ Assign(VarRef("medium"), Add(VarRef("left"), VarRef("right")))
+                , Assign(
+                    VarRef("medium")
+                  , Call(This(), "Div", [VarRef("medium")])
+                  )
+                , Assign(VarRef("aux01"), ArrayRef(VarRef("number"), VarRef("medium")))
+                , If(
+                    Lt(VarRef("num"), VarRef("aux01"))
+                  , Assign(VarRef("right"), Sub(VarRef("medium"), IntValue("1")))
+                  , Assign(VarRef("left"), Add(VarRef("medium"), IntValue("1")))
+                  )
+                , If(
+                    Call(This(), "Compare", [VarRef("aux01"), VarRef("num")])
+                  , Assign(VarRef("var_cont"), False())
+                  , Assign(VarRef("var_cont"), True())
+                  )
+                , If(
+                    Lt(VarRef("right"), VarRef("left"))
+                  , Assign(VarRef("var_cont"), False())
+                  , Assign(VarRef("nt"), IntValue("0"))
+                  )
+                ]
+              )
+            )
+          , If(
+              Call(This(), "Compare", [VarRef("aux01"), VarRef("num")])
+            , Assign(VarRef("bs01"), True())
+            , Assign(VarRef("bs01"), False())
+            )
+          ]
+        , VarRef("bs01")
+        )
+      , Method(
+          Int()
+        , "Div"
+        , [Param(Int(), "num")]
+        , [Var(Int(), "count01"), Var(Int(), "count02"), Var(Int(), "aux03")]
+        , [ Assign(VarRef("count01"), IntValue("0"))
+          , Assign(VarRef("count02"), IntValue("0"))
+          , Assign(VarRef("aux03"), Sub(VarRef("num"), IntValue("1")))
+          , While(
+              Lt(VarRef("count02"), VarRef("aux03"))
+            , Block(
+                [ Assign(VarRef("count01"), Add(VarRef("count01"), IntValue("1")))
+                , Assign(VarRef("count02"), Add(VarRef("count02"), IntValue("2")))
+                ]
+              )
+            )
+          ]
+        , VarRef("count01")
+        )
+      , Method(
+          Bool()
+        , "Compare"
+        , [Param(Int(), "num1"), Param(Int(), "num2")]
+        , [Var(Bool(), "retval"), Var(Int(), "aux02")]
+        , [ Assign(VarRef("retval"), False())
+          , Assign(VarRef("aux02"), Add(VarRef("num2"), IntValue("1")))
+          , If(
+              Lt(VarRef("num1"), VarRef("num2"))
+            , Assign(VarRef("retval"), False())
+            , If(
+                Not(Lt(VarRef("num1"), VarRef("aux02")))
+              , Assign(VarRef("retval"), False())
+              , Assign(VarRef("retval"), True())
+              )
+            )
+          ]
+        , VarRef("retval")
+        )
+      , Method(
+          Int()
+        , "Print"
+        , []
+        , [Var(Int(), "j")]
+        , [ Assign(VarRef("j"), IntValue("1"))
+          , While(
+              Lt(VarRef("j"), VarRef("size"))
+            , Block(
+                [ Print(ArrayRef(VarRef("number"), VarRef("j")))
+                , Assign(VarRef("j"), Add(VarRef("j"), IntValue("1")))
+                ]
+              )
+            )
+          , Print(IntValue("99999"))
+          ]
+        , IntValue("0")
+        )
+      , Method(
+          Int()
+        , "Init"
+        , [Param(Int(), "sz")]
+        , [ Var(Int(), "j")
+          , Var(Int(), "k")
+          , Var(Int(), "aux02")
+          , Var(Int(), "aux01")
+          ]
+        , [ Assign(VarRef("size"), VarRef("sz"))
+          , Assign(VarRef("number"), ArrayNew(VarRef("sz")))
+          , Assign(VarRef("j"), IntValue("1"))
+          , Assign(VarRef("k"), Add(VarRef("size"), IntValue("1")))
+          , While(
+              Lt(VarRef("j"), VarRef("size"))
+            , Block(
+                [ Assign(VarRef("aux01"), Mul(IntValue("2"), VarRef("j")))
+                , Assign(VarRef("aux02"), Sub(VarRef("k"), IntValue("3")))
+                , ArrayAssign(
+                    VarRef("number")
+                  , VarRef("j")
+                  , Add(VarRef("aux01"), VarRef("aux02"))
+                  )
+                , Assign(VarRef("j"), Add(VarRef("j"), IntValue("1")))
+                , Assign(VarRef("k"), Sub(VarRef("k"), IntValue("1")))
+                ]
+              )
+            )
+          ]
+        , IntValue("0")
+        )
+      ]
+    )
+  ]
+)

@@ -1,0 +1,16 @@
+module Yuml.main
+
+imports Yuml-Builders Yuml-Colorer Yuml-Completions Yuml-Folding Yuml-Outliner Yuml-References Yuml-Syntax
+
+language General properties
+                  
+  name          : Yuml
+  id            : yuml
+  extends       : Root
+                  
+  description   : "Spoofax/IMP-generated editor for the Yuml language"
+  url           : http://strategoxt.org
+                  
+  extensions    : yuml
+  table         : include/Yuml.tbl
+  start symbols : Yuml

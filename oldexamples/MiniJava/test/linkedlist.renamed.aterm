@@ -1,0 +1,404 @@
+Program(
+  MainClass(
+    "LinkedList"
+  , MainMethod(
+      Void()
+    , "main"
+    , MParam(StringArray(), "a")
+    , Print(Call(New("LL"), "Start", []))
+    )
+  )
+, [ Class(
+      "Element"
+    , None()
+    , [Field(Int(), "Age"), Field(Int(), "Salary"), Field(Bool(), "Married")]
+    , [ Method(
+          Bool()
+        , "Init"
+        , [Param(Int(), "v_Age"), Param(Int(), "v_Salary"), Param(Bool(), "v_Married")]
+        , []
+        , [ Assign(VarRef("Age"), VarRef("v_Age"))
+          , Assign(VarRef("Salary"), VarRef("v_Salary"))
+          , Assign(VarRef("Married"), VarRef("v_Married"))
+          ]
+        , True()
+        )
+      , Method(Int(), "GetAge", [], [], [], VarRef("Age"))
+      , Method(Int(), "GetSalary", [], [], [], VarRef("Salary"))
+      , Method(Bool(), "GetMarried", [], [], [], VarRef("Married"))
+      , Method(
+          Bool()
+        , "Equal"
+        , [Param(ClassType("Element"), "other")]
+        , [ Var(Bool(), "ret_val")
+          , Var(Int(), "aux01")
+          , Var(Int(), "aux02")
+          , Var(Int(), "nt")
+          ]
+        , [ Assign(VarRef("ret_val"), True())
+          , Assign(VarRef("aux01"), Call(VarRef("other"), "GetAge", []))
+          , If(
+              Not(
+                Call(This(), "Compare", [VarRef("aux01"), VarRef("Age")])
+              )
+            , Assign(VarRef("ret_val"), False())
+            , Block(
+                [ Assign(VarRef("aux02"), Call(VarRef("other"), "GetSalary", []))
+                , If(
+                    Not(
+                      Call(This(), "Compare", [VarRef("aux02"), VarRef("Salary")])
+                    )
+                  , Assign(VarRef("ret_val"), False())
+                  , If(
+                      VarRef("Married")
+                    , If(
+                        Not(Call(VarRef("other"), "GetMarried", []))
+                      , Assign(VarRef("ret_val"), False())
+                      , Assign(VarRef("nt"), IntValue("0"))
+                      )
+                    , If(
+                        Call(VarRef("other"), "GetMarried", [])
+                      , Assign(VarRef("ret_val"), False())
+                      , Assign(VarRef("nt"), IntValue("0"))
+                      )
+                    )
+                  )
+                ]
+              )
+            )
+          ]
+        , VarRef("ret_val")
+        )
+      , Method(
+          Bool()
+        , "Compare"
+        , [Param(Int(), "num1"), Param(Int(), "num2")]
+        , [Var(Bool(), "retval"), Var(Int(), "aux02")]
+        , [ Assign(VarRef("retval"), False())
+          , Assign(VarRef("aux02"), Add(VarRef("num2"), IntValue("1")))
+          , If(
+              Lt(VarRef("num1"), VarRef("num2"))
+            , Assign(VarRef("retval"), False())
+            , If(
+                Not(Lt(VarRef("num1"), VarRef("aux02")))
+              , Assign(VarRef("retval"), False())
+              , Assign(VarRef("retval"), True())
+              )
+            )
+          ]
+        , VarRef("retval")
+        )
+      ]
+    )
+  , Class(
+      "List"
+    , None()
+    , [ Field(ClassType("Element"), "elem")
+      , Field(ClassType("List"), "next")
+      , Field(Bool(), "end")
+      ]
+    , [ Method(
+          Bool()
+        , "Init"
+        , []
+        , []
+        , [Assign(VarRef("end"), True())]
+        , True()
+        )
+      , Method(
+          Bool()
+        , "InitNew"
+        , [ Param(ClassType("Element"), "v_elem")
+          , Param(ClassType("List"), "v_next")
+          , Param(Bool(), "v_end")
+          ]
+        , []
+        , [ Assign(VarRef("end"), VarRef("v_end"))
+          , Assign(VarRef("elem"), VarRef("v_elem"))
+          , Assign(VarRef("next"), VarRef("v_next"))
+          ]
+        , True()
+        )
+      , Method(
+          ClassType("List")
+        , "Insert"
+        , [Param(ClassType("Element"), "new_elem")]
+        , [ Var(Bool(), "ret_val")
+          , Var(ClassType("List"), "aux03")
+          , Var(ClassType("List"), "aux02")
+          ]
+        , [ Assign(VarRef("aux03"), This())
+          , Assign(VarRef("aux02"), New("List"))
+          , Assign(
+              VarRef("ret_val")
+            , Call(
+                VarRef("aux02")
+              , "InitNew"
+              , [VarRef("new_elem"), VarRef("aux03"), False()]
+              )
+            )
+          ]
+        , VarRef("aux02")
+        )
+      , Method(
+          Bool()
+        , "SetNext"
+        , [Param(ClassType("List"), "v_next")]
+        , []
+        , [Assign(VarRef("next"), VarRef("v_next"))]
+        , True()
+        )
+      , Method(
+          ClassType("List")
+        , "Delete"
+        , [Param(ClassType("Element"), "e")]
+        , [ Var(ClassType("List"), "my_head")
+          , Var(Bool(), "ret_val")
+          , Var(Bool(), "aux05")
+          , Var(ClassType("List"), "aux01")
+          , Var(ClassType("List"), "prev")
+          , Var(Bool(), "var_end")
+          , Var(ClassType("Element"), "var_elem")
+          , Var(Int(), "aux04")
+          , Var(Int(), "nt")
+          ]
+        , [ Assign(VarRef("my_head"), This())
+          , Assign(VarRef("ret_val"), False())
+          , Assign(VarRef("aux04"), Sub(IntValue("0"), IntValue("1")))
+          , Assign(VarRef("aux01"), This())
+          , Assign(VarRef("prev"), This())
+          , Assign(VarRef("var_end"), VarRef("end"))
+          , Assign(VarRef("var_elem"), VarRef("elem"))
+          , While(
+              And(Not(VarRef("var_end")), Not(VarRef("ret_val")))
+            , Block(
+                [ If(
+                    Call(VarRef("e"), "Equal", [VarRef("var_elem")])
+                  , Block(
+                      [ Assign(VarRef("ret_val"), True())
+                      , If(
+                          Lt(VarRef("aux04"), IntValue("0"))
+                        , Block(
+                            [Assign(VarRef("my_head"), Call(VarRef("aux01"), "GetNext", []))]
+                          )
+                        , Block(
+                            [ Print(Sub(IntValue("0"), IntValue("555")))
+                            , Assign(
+                                VarRef("aux05")
+                              , Call(
+                                  VarRef("prev")
+                                , "SetNext"
+                                , [Call(VarRef("aux01"), "GetNext", [])]
+                                )
+                              )
+                            , Print(Sub(IntValue("0"), IntValue("555")))
+                            ]
+                          )
+                        )
+                      ]
+                    )
+                  , Assign(VarRef("nt"), IntValue("0"))
+                  )
+                , If(
+                    Not(VarRef("ret_val"))
+                  , Block(
+                      [ Assign(VarRef("prev"), VarRef("aux01"))
+                      , Assign(VarRef("aux01"), Call(VarRef("aux01"), "GetNext", []))
+                      , Assign(VarRef("var_end"), Call(VarRef("aux01"), "GetEnd", []))
+                      , Assign(VarRef("var_elem"), Call(VarRef("aux01"), "GetElem", []))
+                      , Assign(VarRef("aux04"), IntValue("1"))
+                      ]
+                    )
+                  , Assign(VarRef("nt"), IntValue("0"))
+                  )
+                ]
+              )
+            )
+          ]
+        , VarRef("my_head")
+        )
+      , Method(
+          Int()
+        , "Search"
+        , [Param(ClassType("Element"), "e")]
+        , [ Var(Int(), "int_ret_val")
+          , Var(ClassType("List"), "aux01")
+          , Var(ClassType("Element"), "var_elem")
+          , Var(Bool(), "var_end")
+          , Var(Int(), "nt")
+          ]
+        , [ Assign(VarRef("int_ret_val"), IntValue("0"))
+          , Assign(VarRef("aux01"), This())
+          , Assign(VarRef("var_end"), VarRef("end"))
+          , Assign(VarRef("var_elem"), VarRef("elem"))
+          , While(
+              Not(VarRef("var_end"))
+            , Block(
+                [ If(
+                    Call(VarRef("e"), "Equal", [VarRef("var_elem")])
+                  , Block([Assign(VarRef("int_ret_val"), IntValue("1"))])
+                  , Assign(VarRef("nt"), IntValue("0"))
+                  )
+                , Assign(VarRef("aux01"), Call(VarRef("aux01"), "GetNext", []))
+                , Assign(VarRef("var_end"), Call(VarRef("aux01"), "GetEnd", []))
+                , Assign(VarRef("var_elem"), Call(VarRef("aux01"), "GetElem", []))
+                ]
+              )
+            )
+          ]
+        , VarRef("int_ret_val")
+        )
+      , Method(Bool(), "GetEnd", [], [], [], VarRef("end"))
+      , Method(
+          ClassType("Element")
+        , "GetElem"
+        , []
+        , []
+        , []
+        , VarRef("elem")
+        )
+      , Method(
+          ClassType("List")
+        , "GetNext"
+        , []
+        , []
+        , []
+        , VarRef("next")
+        )
+      , Method(
+          Bool()
+        , "Print"
+        , []
+        , [ Var(ClassType("List"), "aux01")
+          , Var(Bool(), "var_end")
+          , Var(ClassType("Element"), "var_elem")
+          ]
+        , [ Assign(VarRef("aux01"), This())
+          , Assign(VarRef("var_end"), VarRef("end"))
+          , Assign(VarRef("var_elem"), VarRef("elem"))
+          , While(
+              Not(VarRef("var_end"))
+            , Block(
+                [ Print(Call(VarRef("var_elem"), "GetAge", []))
+                , Assign(VarRef("aux01"), Call(VarRef("aux01"), "GetNext", []))
+                , Assign(VarRef("var_end"), Call(VarRef("aux01"), "GetEnd", []))
+                , Assign(VarRef("var_elem"), Call(VarRef("aux01"), "GetElem", []))
+                ]
+              )
+            )
+          ]
+        , True()
+        )
+      ]
+    )
+  , Class(
+      "LL"
+    , None()
+    , []
+    , [ Method(
+          Int()
+        , "Start"
+        , []
+        , [ Var(ClassType("List"), "head")
+          , Var(ClassType("List"), "last_elem")
+          , Var(Bool(), "aux01")
+          , Var(ClassType("Element"), "el01")
+          , Var(ClassType("Element"), "el02")
+          , Var(ClassType("Element"), "el03")
+          ]
+        , [ Assign(VarRef("last_elem"), New("List"))
+          , Assign(VarRef("aux01"), Call(VarRef("last_elem"), "Init", []))
+          , Assign(VarRef("head"), VarRef("last_elem"))
+          , Assign(VarRef("aux01"), Call(VarRef("head"), "Init", []))
+          , Assign(VarRef("aux01"), Call(VarRef("head"), "Print", []))
+          , Assign(VarRef("el01"), New("Element"))
+          , Assign(
+              VarRef("aux01")
+            , Call(
+                VarRef("el01")
+              , "Init"
+              , [IntValue("25"), IntValue("37000"), False()]
+              )
+            )
+          , Assign(
+              VarRef("head")
+            , Call(VarRef("head"), "Insert", [VarRef("el01")])
+            )
+          , Assign(VarRef("aux01"), Call(VarRef("head"), "Print", []))
+          , Print(IntValue("10000000"))
+          , Assign(VarRef("el01"), New("Element"))
+          , Assign(
+              VarRef("aux01")
+            , Call(
+                VarRef("el01")
+              , "Init"
+              , [IntValue("39"), IntValue("42000"), True()]
+              )
+            )
+          , Assign(VarRef("el02"), VarRef("el01"))
+          , Assign(
+              VarRef("head")
+            , Call(VarRef("head"), "Insert", [VarRef("el01")])
+            )
+          , Assign(VarRef("aux01"), Call(VarRef("head"), "Print", []))
+          , Print(IntValue("10000000"))
+          , Assign(VarRef("el01"), New("Element"))
+          , Assign(
+              VarRef("aux01")
+            , Call(
+                VarRef("el01")
+              , "Init"
+              , [IntValue("22"), IntValue("34000"), False()]
+              )
+            )
+          , Assign(
+              VarRef("head")
+            , Call(VarRef("head"), "Insert", [VarRef("el01")])
+            )
+          , Assign(VarRef("aux01"), Call(VarRef("head"), "Print", []))
+          , Assign(VarRef("el03"), New("Element"))
+          , Assign(
+              VarRef("aux01")
+            , Call(
+                VarRef("el03")
+              , "Init"
+              , [IntValue("27"), IntValue("34000"), False()]
+              )
+            )
+          , Print(Call(VarRef("head"), "Search", [VarRef("el02")]))
+          , Print(Call(VarRef("head"), "Search", [VarRef("el03")]))
+          , Print(IntValue("10000000"))
+          , Assign(VarRef("el01"), New("Element"))
+          , Assign(
+              VarRef("aux01")
+            , Call(
+                VarRef("el01")
+              , "Init"
+              , [IntValue("28"), IntValue("35000"), False()]
+              )
+            )
+          , Assign(
+              VarRef("head")
+            , Call(VarRef("head"), "Insert", [VarRef("el01")])
+            )
+          , Assign(VarRef("aux01"), Call(VarRef("head"), "Print", []))
+          , Print(IntValue("2220000"))
+          , Assign(
+              VarRef("head")
+            , Call(VarRef("head"), "Delete", [VarRef("el02")])
+            )
+          , Assign(VarRef("aux01"), Call(VarRef("head"), "Print", []))
+          , Print(IntValue("33300000"))
+          , Assign(
+              VarRef("head")
+            , Call(VarRef("head"), "Delete", [VarRef("el01")])
+            )
+          , Assign(VarRef("aux01"), Call(VarRef("head"), "Print", []))
+          , Print(IntValue("44440000"))
+          ]
+        , IntValue("0")
+        )
+      ]
+    )
+  ]
+)

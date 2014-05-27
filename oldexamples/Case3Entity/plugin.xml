@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?eclipse version="3.0"?>
+
+<plugin>
+       <extension point="org.eclipse.imp.runtime.languageDescription">
+          <language extensions="case3" description="Case3Entity" language="Case3Entity" derivedFrom="DynamicRoot" validator="Case3Entity.Case3EntityValidator" validatorClass="Case3Entity.Case3EntityValidator"></language>
+       </extension>
+       <extension id="Case3Entity.parser" name="Case3Entity Parser" point="org.eclipse.imp.runtime.parser">
+          <parser class="Case3Entity.Case3EntityParseController" language="Case3Entity">
+          </parser>
+       </extension>    
+    </plugin>

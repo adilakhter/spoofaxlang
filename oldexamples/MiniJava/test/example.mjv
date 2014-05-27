@@ -1,0 +1,19 @@
+class Main {
+
+	public static void main(String[] args) {
+		System.out.println(new Fac().fac1(10)) ;
+	}
+}
+
+class Fac {
+
+	public int fac1(int num) {
+		int num_aux ;
+		if (num < 1)  
+		 	num_aux = 1 ; 
+		else
+			num_aux = num*this.fac1(num-1) ;
+		return num_aux ;      
+	}
+}
+ 

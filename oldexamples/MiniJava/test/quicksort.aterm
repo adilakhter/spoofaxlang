@@ -1,0 +1,176 @@
+Program(
+  MainClass(
+    "QuickSort"
+  , MainMethod(
+      Void()
+    , "main"
+    , MParam(StringArray(), "a")
+    , Print(Call(New("QS"), "Start", [IntValue("10")]))
+    )
+  )
+, [ Class(
+      "QS"
+    , None()
+    , [Field(Array(), "number"), Field(Int(), "size")]
+    , [ Method(
+          Int()
+        , "Start"
+        , [Param(Int(), "sz")]
+        , [Var(Int(), "aux01")]
+        , [ Assign(
+              VarRef("aux01")
+            , Call(This(), "Init", [VarRef("sz")])
+            )
+          , Assign(VarRef("aux01"), Call(This(), "Print", []))
+          , Print(IntValue("9999"))
+          , Assign(VarRef("aux01"), Sub(VarRef("size"), IntValue("1")))
+          , Assign(
+              VarRef("aux01")
+            , Call(This(), "Sort", [IntValue("0"), VarRef("aux01")])
+            )
+          , Assign(VarRef("aux01"), Call(This(), "Print", []))
+          ]
+        , IntValue("0")
+        )
+      , Method(
+          Int()
+        , "Sort"
+        , [Param(Int(), "left"), Param(Int(), "right")]
+        , [ Var(Int(), "v")
+          , Var(Int(), "i")
+          , Var(Int(), "j")
+          , Var(Int(), "nt")
+          , Var(Int(), "t")
+          , Var(Bool(), "cont01")
+          , Var(Bool(), "cont02")
+          , Var(Int(), "aux03")
+          ]
+        , [ Assign(VarRef("t"), IntValue("0"))
+          , If(
+              Lt(VarRef("left"), VarRef("right"))
+            , Block(
+                [ Assign(VarRef("v"), ArrayRef(VarRef("number"), VarRef("right")))
+                , Assign(VarRef("i"), Sub(VarRef("left"), IntValue("1")))
+                , Assign(VarRef("j"), VarRef("right"))
+                , Assign(VarRef("cont01"), True())
+                , While(
+                    VarRef("cont01")
+                  , Block(
+                      [ Assign(VarRef("cont02"), True())
+                      , While(
+                          VarRef("cont02")
+                        , Block(
+                            [ Assign(VarRef("i"), Add(VarRef("i"), IntValue("1")))
+                            , Assign(VarRef("aux03"), ArrayRef(VarRef("number"), VarRef("i")))
+                            , If(
+                                Not(Lt(VarRef("aux03"), VarRef("v")))
+                              , Assign(VarRef("cont02"), False())
+                              , Assign(VarRef("cont02"), True())
+                              )
+                            ]
+                          )
+                        )
+                      , Assign(VarRef("cont02"), True())
+                      , While(
+                          VarRef("cont02")
+                        , Block(
+                            [ Assign(VarRef("j"), Sub(VarRef("j"), IntValue("1")))
+                            , Assign(VarRef("aux03"), ArrayRef(VarRef("number"), VarRef("j")))
+                            , If(
+                                Not(Lt(VarRef("v"), VarRef("aux03")))
+                              , Assign(VarRef("cont02"), False())
+                              , Assign(VarRef("cont02"), True())
+                              )
+                            ]
+                          )
+                        )
+                      , Assign(VarRef("t"), ArrayRef(VarRef("number"), VarRef("i")))
+                      , ArrayAssign(
+                          VarRef("number")
+                        , VarRef("i")
+                        , ArrayRef(VarRef("number"), VarRef("j"))
+                        )
+                      , ArrayAssign(VarRef("number"), VarRef("j"), VarRef("t"))
+                      , If(
+                          Lt(VarRef("j"), Add(VarRef("i"), IntValue("1")))
+                        , Assign(VarRef("cont01"), False())
+                        , Assign(VarRef("cont01"), True())
+                        )
+                      ]
+                    )
+                  )
+                , ArrayAssign(
+                    VarRef("number")
+                  , VarRef("j")
+                  , ArrayRef(VarRef("number"), VarRef("i"))
+                  )
+                , ArrayAssign(
+                    VarRef("number")
+                  , VarRef("i")
+                  , ArrayRef(VarRef("number"), VarRef("right"))
+                  )
+                , ArrayAssign(VarRef("number"), VarRef("right"), VarRef("t"))
+                , Assign(
+                    VarRef("nt")
+                  , Call(
+                      This()
+                    , "Sort"
+                    , [VarRef("left"), Sub(VarRef("i"), IntValue("1"))]
+                    )
+                  )
+                , Assign(
+                    VarRef("nt")
+                  , Call(
+                      This()
+                    , "Sort"
+                    , [Add(VarRef("i"), IntValue("1")), VarRef("right")]
+                    )
+                  )
+                ]
+              )
+            , Assign(VarRef("nt"), IntValue("0"))
+            )
+          ]
+        , IntValue("0")
+        )
+      , Method(
+          Int()
+        , "Print"
+        , []
+        , [Var(Int(), "j")]
+        , [ Assign(VarRef("j"), IntValue("0"))
+          , While(
+              Lt(VarRef("j"), VarRef("size"))
+            , Block(
+                [ Print(ArrayRef(VarRef("number"), VarRef("j")))
+                , Assign(VarRef("j"), Add(VarRef("j"), IntValue("1")))
+                ]
+              )
+            )
+          ]
+        , IntValue("0")
+        )
+      , Method(
+          Int()
+        , "Init"
+        , [Param(Int(), "sz")]
+        , []
+        , [ Assign(VarRef("size"), VarRef("sz"))
+          , Assign(VarRef("number"), ArrayNew(VarRef("sz")))
+          , ArrayAssign(VarRef("number"), IntValue("0"), IntValue("20"))
+          , ArrayAssign(VarRef("number"), IntValue("1"), IntValue("7"))
+          , ArrayAssign(VarRef("number"), IntValue("2"), IntValue("12"))
+          , ArrayAssign(VarRef("number"), IntValue("3"), IntValue("18"))
+          , ArrayAssign(VarRef("number"), IntValue("4"), IntValue("2"))
+          , ArrayAssign(VarRef("number"), IntValue("5"), IntValue("11"))
+          , ArrayAssign(VarRef("number"), IntValue("6"), IntValue("6"))
+          , ArrayAssign(VarRef("number"), IntValue("7"), IntValue("9"))
+          , ArrayAssign(VarRef("number"), IntValue("8"), IntValue("19"))
+          , ArrayAssign(VarRef("number"), IntValue("9"), IntValue("5"))
+          ]
+        , IntValue("0")
+        )
+      ]
+    )
+  ]
+)

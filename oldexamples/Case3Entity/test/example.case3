@@ -1,0 +1,17 @@
+module example
+
+// Example "Case3Entity" program (see syntax/Case3Entity.sdf for the grammar)
+entity Foo {
+      entityRef  -> Bar      // reference
+      entityComp <> Baz      // composition
+      oneToMany  -> Set<FooBar>
+    }
+    entity Bar { 
+      
+    }
+    entity Baz {
+      ownedBy -> Foo (inverse=Foo.entityComp)
+    }
+    entity Foobar : Bar {
+      
+    }

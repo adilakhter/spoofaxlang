@@ -1,0 +1,30 @@
+Module(
+  "example"
+, [ Entity("Test", [])
+  , Entity(
+      "Foo"
+    , [ EntityReference("entityRef", Reference("->"), Type("Bar"))
+      , EntityReference("entityComp", Composite("<>"), Type("Baz"))
+      , EntityReference("oneToMany", Reference("->"), List(Type("FooBar")))
+      ]
+    )
+  , Entity(
+      "Bar"
+    , [EntityReference(
+         "foo"
+       , Reference("->")
+       , Type("Foo")
+       , InversePropertyDecl("Foo", "entityRef")
+       )]
+    )
+  , Entity(
+      "Baz"
+    , [EntityReference(
+         "ownedBy"
+       , Reference("->")
+       , Type("Foo")
+       , InversePropertyDecl("Foo", "entityComp")
+       )]
+    )
+  ]
+)

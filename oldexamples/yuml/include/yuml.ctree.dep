@@ -1,0 +1,8 @@
+C:\Work\Spoofax\yuml\include/yuml.ctree: \
+	C:/Work/Spoofax/yuml/trans/prettyprint.str \
+	C:/Work/Spoofax/yuml/trans/generate.str \
+	C:/Work/Spoofax/yuml/trans/check.str \
+	 \
+	C:\Work\Spoofax\yuml/lib/editor-common.generated.str \
+	C:\Work\Spoofax\yuml/include/Yuml.str \
+	C:\Work\Spoofax\yuml\trans/yuml.str

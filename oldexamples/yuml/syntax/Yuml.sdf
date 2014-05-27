@@ -1,0 +1,95 @@
+%% Grammar for the Yuml language
+module Yuml
+
+imports Common
+
+exports
+
+  context-free start-symbols
+    Yuml
+  context-free syntax
+    YumlEntityDeclaration*						-> Yuml{cons("Yuml")}
+	Entity 										-> YumlEntityDeclaration
+	EntitiesAssociation  						-> YumlEntityDeclaration
+	MultipleEntitiesAssociation					-> YumlEntityDeclaration
+	
+	%% Entity Definition
+	"[" YumlID EntityDefinition "]"			    -> Entity{cons("YumlEntity")}
+	(EntityMemberGroup|BGColor)*			    -> EntityDefinition{cons("EntityDefinition")}
+	GroupSeperator (EntityMembers)* 		    -> EntityMemberGroup{cons("EntityMemberGroup")}
+	EntityMember (MemberSeperator EntityMember)*-> EntityMembers{cons("EntityMembers")}	
+	EntityProperty|EntityMethod 				-> EntityMember{cons("EntityMember")}
+	
+	%% Entity Relationship
+	Entity RelationshipOperator Entity 			 -> EntitiesAssociation{cons("EntitiesRelation")}
+	EntityOrEntityAssociation (Seperator EntityOrEntityAssociation)+ -> MultipleEntitiesAssociation{cons("MultipleEntitiesRelation")}
+	"[" NoteLex NoteText (BGColor)? "]" -> Entity {cons ("Note")}
+	Entity										->EntityOrEntityAssociation
+	EntitiesAssociation							->EntityOrEntityAssociation
+	%%bgcolor 
+	"{" BGColorLex ":" ID "}" -> BGColor{cons("BGColor")}
+	
+exports
+	sorts NoteText NoteLex BGColorLex Seperator Label RelationshipOperator GroupSeperator EntityProperty EntityMethod
+	context-free syntax
+		%%Seperators 
+		YumlDeclarationSeperator				->Seperator{cons("DeclarationSepeartor")}
+		EntityMemberGroupSeperator				->GroupSeperator{cons("MemberGroupSeperator")}
+		MemberSeperatorLex						->MemberSeperator{cons("MemberSeperator")}
+		%%relationship operators
+		LeftAssociation  ConnectorOperator RightAssociation 			-> RelationshipOperator{cons("AssociationOperator")}
+	 	InheritenceOpSymbol												-> RelationshipOperator{cons("InheritenceOperator")}
+	 	%% Left and Right Association
+	 	(LeftAssociationOperator|Cardinality|Label)* 	-> LeftAssociation{cons("LeftAssociation")}
+	 	(RightAssociationOperator|Cardinality|Label)* 	-> RightAssociation{cons("RightAssociation")}
+	 	%%LeftAssociationOperator	
+	 	LeftDirectionalOpSymbol							-> LeftAssociationOperator{cons("LeftDirectonalOperator")}
+		AggregationOpSymbol								-> LeftAssociationOperator{cons("AggregationOperator")}
+		CompositionOpSymbol								-> LeftAssociationOperator{cons("CompositionOperator")}
+		%%RightAssociationOperator 
+		RightDirectionalOpSymbol						-> RightAssociationOperator{cons("RightDirectionalOperator")}
+		AggregationOpSymbol								-> RightAssociationOperator{cons("AggregationOperator")}
+		CompositionOpSymbol								-> RightAssociationOperator{cons("CompositionOperator")}
+		%%Connector operators	 	 					 
+		ConntectorSymbol								-> ConnectorOperator{cons("Connector")}
+		DependencyOperator								-> ConnectorOperator{cons("Connector")}
+		%% cardinality 
+		IntegerCardinality								-> Cardinality{cons("SimpleCardinality")}
+		ZeroOrMoreSymbol								-> Cardinality{cons("SimpleCardinality")}
+		Cardinality CardinalityConnector Cardinality	-> Cardinality{cons("RangeCardinality")}
+		CardinalityConnectorLex 						-> CardinalityConnector{cons("CardinalityConnector")}
+		%% Label , Property , Method 	
+		LabelLex 									-> Label{cons("Label")}
+		PropertyLex									-> EntityProperty{cons("EntityProperty")}
+		MethodLex									-> EntityMethod{cons("EntityMethod")}
+	priorities 
+		{CompositionOpSymbol -> LeftAssociationOperator{cons("CompositionOperator")}} > {AggregationOpSymbol -> LeftAssociationOperator{cons("AggregationOperator")}}
+	lexical syntax 
+		(~[\]\n\r\t\}\{\:])+ 					-> NoteText
+		"^"										-> InheritenceOpSymbol
+		"<"										-> LeftDirectionalOpSymbol
+		 ">" 									-> RightDirectionalOpSymbol
+	 	"+" 									-> AggregationOpSymbol 
+	 	"<>" 									-> AggregationOpSymbol 
+		"-"										-> ConntectorSymbol
+	 	"-.-"									-> DependencyOperator
+		"*"										-> ZeroOrMoreSymbol
+		[0-9]+									-> IntegerCardinality
+		","										-> YumlDeclarationSeperator
+		"|"										-> EntityMemberGroupSeperator
+		[a-zA-Z][a-zA-Z0-9\_\*]*				-> LabelLex
+		"++" 									-> CompositionOpSymbol
+		LabelLex								-> PropertyLex
+		LabelLex "()"							-> MethodLex
+		";"										-> MemberSeperatorLex 
+		~[\[\]\n\r\t\}\{\:\|\*]+				-> YumlID
+		".."									-> CardinalityConnectorLex
+		"note:"|"Note:"							-> NoteLex
+		"bg" |"BG" ->BGColorLex
+	lexical restrictions
+    	AggregationOpSymbol			 -/- [\+]
+    	IntegerCardinality           -/- [0-9]
+    	LabelLex          			 -/- [a-zA-Z0-9\_\*]
+    	YumlID						 -/- [a-zA-Z0-9\_\*\ ]		
+    	
+	

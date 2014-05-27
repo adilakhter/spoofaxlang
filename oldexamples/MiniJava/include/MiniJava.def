@@ -1,0 +1,213 @@
+definition
+module MiniJava
+
+exports
+
+	sorts IntConst Id
+	
+	lexical syntax
+		
+		[0-9]+					-> INT
+		[a-zA-Z][a-zA-Z0-9\_]*	-> ID
+
+		"main"			-> MainID
+    	
+		[\ \t\n\r] 				-> LAYOUT
+		"//" ~[\n]* ([\n]|EOF) 	-> LAYOUT
+		BlockComment        	-> LAYOUT
+		
+		-> EOF
+		
+		"/*" CommPart* "*/"	-> BlockComment
+		~[\/\*]				-> CommPart 
+    	Asterisk			-> CommPart
+    	Slash				-> CommPart
+    	[\*]				-> Asterisk
+		[\/]				-> Slash
+				
+		BlockComment		-> CommPart
+		
+	lexical restrictions
+
+		INT -/- [0-9]  
+		ID -/- [a-zA-Z0-9\_]
+		
+		Asterisk -/- [\/]
+		Slash -/- [\*]
+		
+		EOF -/- ~[]
+		  
+	context-free restrictions
+    
+		LAYOUT? -/- [\ \t\n\r]
+		LAYOUT? -/- [\/].[\/]
+		LAYOUT? -/- [\/].[\*]
+		
+	lexical syntax
+		
+		"abstract" 		-> ID {reject}
+		"assert" 		-> ID {reject}
+		"boolean"	 	-> ID {reject}
+		"break" 		-> ID {reject}
+		"byte" 			-> ID {reject}
+		"case"	 		-> ID {reject}
+		"catch" 		-> ID {reject}
+		"char" 			-> ID {reject}
+		"class"		 	-> ID {reject}
+		"const" 		-> ID {reject}
+		"continue"	 	-> ID {reject}
+		"default" 		-> ID {reject}
+		"do"	 		-> ID {reject}
+		"double"	 	-> ID {reject}
+		"else" 			-> ID {reject}
+		"enum"	 		-> ID {reject}
+		"extends"	 	-> ID {reject}
+		"final" 		-> ID {reject}
+		"finally"	 	-> ID {reject}
+		"float" 		-> ID {reject}
+		"for"		 	-> ID {reject}
+		"goto"		 	-> ID {reject}
+		"if"	 		-> ID {reject}
+		"implements"	-> ID {reject}
+		"import" 		-> ID {reject}
+		"instanceof"	-> ID {reject}
+		"int" 			-> ID {reject}
+		"interface" 	-> ID {reject}
+		"long" 			-> ID {reject}
+		"native" 		-> ID {reject}
+		"new" 			-> ID {reject}
+		"package" 		-> ID {reject}
+		"private" 		-> ID {reject}
+		"protected" 	-> ID {reject}
+		"public" 		-> ID {reject}
+		"return" 		-> ID {reject}
+		"short" 		-> ID {reject}
+		"static" 		-> ID {reject}
+		"strictfp" 		-> ID {reject}
+		"super" 		-> ID {reject}
+		"switch" 		-> ID {reject}
+		"synchronized"	-> ID {reject}
+		"this" 			-> ID {reject}
+		"throw" 		-> ID {reject}
+		"throws" 		-> ID {reject}
+		"transient" 	-> ID {reject}
+		"try" 			-> ID {reject}
+		"void" 			-> ID {reject}
+		"volatile" 		-> ID {reject}
+		"while" 		-> ID {reject}	
+		
+		"true" 			-> ID {reject}
+		"false" 		-> ID {reject}
+		"null" 			-> ID {reject}	
+		
+	lexical restrictions
+		
+		"class" 
+		"public" 
+		"static"
+		"void" 
+		"main"
+		"String"
+		"return"
+		"int"
+		"boolean"
+		"else"
+		"extends"
+		 "new" -/- [A-Za-z0-9\_]
+		
+	context-free start-symbols
+    	Program
+
+	sorts
+		Program
+		MainClass
+		ClassDecl
+		MainMethod
+		MethodDecl
+		VarDecl
+		ParamDecl
+		Type
+		Statement
+		Exp
+		
+	context-free syntax %% main class
+		
+		MainClass ClassDecl* 					-> Program 		{cons("Program")}
+    	
+    	"class" ID "{" MainMethod "}"			-> MainClass	{cons("MainClass")}
+    	
+    	"public" "static" MainType MainID "(" MainParamDecl ")" "{" Statement "}" -> MainMethod {cons("MainMethod")}
+    	
+    	MainParamType ID -> MainParamDecl {cons("MParam")}
+    	 
+    	"void"			 -> MainType {cons("Void")}
+    	"String" "[" "]" -> MainParamType {cons("StringArray")}
+    	
+    context-free syntax %% classes
+    	
+    	"class" ID ParentDecl "{" FieldDecl* MethodDecl* "}"		-> ClassDecl	{cons("Class")}
+    	
+    					-> ParentDecl	{cons("None")}
+    	"extends" ID	-> ParentDecl	{cons("Parent")}
+    	
+    	"public" Type ID "(" {ParamDecl ","}* ")" "{" VarDecl* Statement* "return" Exp ";" "}" 	-> MethodDecl {cons("Method")}
+    	
+    	Type ID ";"	-> FieldDecl {cons("Field")}
+    	Type ID ";"	-> VarDecl {cons("Var")}
+    	Type ID		-> ParamDecl {cons("Param")}
+    	 
+    	"int"			-> Type {cons("Int")}
+    	"boolean"		-> Type {cons("Bool")}
+    	"int" "[" "]" 	-> Type {cons("Array")}
+    	ID				-> Type {avoid, cons("ClassType")}
+    
+    context-free syntax %% statements and expressions
+    	
+    	ID -> VarRef {cons("VarRef")}
+    	 
+    	"{" Statement* "}"									-> Statement {cons("Block")}
+    	VarRef "=" Exp ";"									-> Statement {cons("Assign")}
+    	VarRef "[" Exp "]" "=" Exp ";"						-> Statement {cons("ArrayAssign")}
+    	"if" "(" Exp ")" Statement "else" Statement			-> Statement {cons("If")}
+    	"while" "(" Exp ")" Statement						-> Statement {cons("While")}
+    	"System" "." "out" "." "println" "(" Exp ")" ";"	-> Statement {cons("Print")}
+    	 
+    	INT								-> Exp {cons("IntValue")}
+    	"true"							-> Exp {cons("True")}
+    	"false"							-> Exp {cons("False")}
+    	"this"							-> Exp {cons("This")}
+    	VarRef							-> Exp {avoid}
+		"!" Exp 						-> Exp {cons("Not")}
+    	Exp "+" Exp						-> Exp {left, cons("Add")}
+    	Exp "-" Exp						-> Exp {left, cons("Sub")}
+    	Exp "*" Exp						-> Exp {left, cons("Mul")}
+    	Exp "<" Exp						-> Exp {left, cons("Lt")}
+    	Exp "&&" Exp					-> Exp {left, cons("And")}
+    	Exp "." ID "(" {Exp ","}* ")"	-> Exp {cons("Call")}
+    	"new" "int" "[" Exp "]"			-> Exp {cons("ArrayNew")}
+    	Exp "[" IndexExp "]"			-> Exp {cons("ArrayRef")}
+    	Exp								-> IndexExp
+    	Exp "." "length"				-> Exp {cons("ArrayLength")}
+    	"new" ID "(" ")"				-> Exp {cons("New")}
+    	"(" Exp ")"						-> Exp {bracket}
+    
+    context-free priorities	
+    {
+    		Exp "[" IndexExp "]"		-> Exp
+    		Exp "." ID "(" {Exp ","}* ")"-> Exp 
+    		Exp "." "length"			 -> Exp
+       	}
+    >	"!" Exp -> Exp
+    >	{left:
+      		Exp "*" Exp -> Exp
+    	} 
+  	> 	{left:
+      		Exp "+" Exp -> Exp
+      		Exp "-" Exp -> Exp
+    	}
+    >	{left:
+      		Exp "<" Exp -> Exp
+    	}
+    >	{left:
+      		Exp "&&" Exp -> Exp
+    	}

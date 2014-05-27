@@ -1,0 +1,19 @@
+Yuml(
+  [ YumlEntity(
+      "Foo"
+    , EntityDefinition(
+        [ EntityMemberGroup(
+            MemberGroupSeperator("|")
+          , [ EntityMembers(
+                EntityMember(EntityProperty("test2"))
+              , [ (MemberSeperator(";"), EntityMember(EntityProperty("test3")))
+                , (MemberSeperator(";"), EntityMember(EntityProperty("test4")))
+                ]
+              )
+            ]
+          )
+        ]
+      )
+    )
+  ]
+)

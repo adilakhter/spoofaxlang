@@ -1,0 +1,24 @@
+module MiniJava-Completions
+
+imports MiniJava-Completions.generated
+
+completions
+                                                                   
+  // This file is used to define content completion.               
+  //                                                               
+  // See the imported file for a brief introduction and examples.  
+                                                                   
+
+completions
+                                         
+	completion template: "class " <Main> " {\n\n\tpublic static void main(String[] " <args> ") {\n\t\t<s>\n\t}\n}" (blank) 
+	completion template: "class " <C> " {\n\n\t\n}" (blank) 
+	completion template: "public " <t> " " <m> "() {\n\treturn "<e>";\n}" (blank)
+	completion template: "System.out.println(" <e> ");\n" (blank)
+	
+	completion proposer: editor-complete
+	
+	completion trigger: "extends "
+	completion trigger: "new "
+	completion trigger: "\."
+	

@@ -1,0 +1,83 @@
+Program(
+  MainClass(
+    "Main"
+  , MainMethod(
+      Void()
+    , "main"
+    , MParam(StringArray(), "args")
+    , Print(
+        Bop(
+          PLUS()
+        , Call(New("Fac"), "fac", [IntValue("10")])
+        , IntValue("1")
+        )
+      )
+    )
+  )
+, [ Class(
+      "Fac"
+    , None()
+    , [Field("Fac", Int(), "test1")]
+    , [ Method(
+          "Fac"
+        , Int()
+        , "fac"
+        , [Param(Int(), "num")]
+        , [ Var(Int(), "num_aux")
+          , Var(Int(), "test")
+          , Var(ClassType("Fac"), "fac")
+          ]
+        , [ Assign(
+              FieldRef("Fac", "test")
+            , Bop(PLUS(), FieldRef("Fac", "num"), IntValue("1"))
+            )
+          , Assign(
+              FieldRef("Fac", "test")
+            , Bop(PLUS(), IntValue("5"), IntValue("7"))
+            )
+          , If(
+              Bop(LT(), FieldRef("Fac", "num"), IntValue("1"))
+            , Assign(FieldRef("Fac", "num_aux"), IntValue("1"))
+            , Assign(
+                FieldRef("Fac", "num_aux")
+              , Bop(
+                  PLUS()
+                , Bop(
+                    MUL()
+                  , FieldRef("Fac", "num")
+                  , Call(
+                      This("Fac")
+                    , "fac"
+                    , [Bop(MINUS(), FieldRef("Fac", "num"), IntValue("1"))]
+                    )
+                  )
+                , FieldRef("Fac", "test1")
+                )
+              )
+            )
+          , Assign(
+              FieldRef("Fac", "fac")
+            , Call(
+                Call(This("Fac"), "m", [IntValue("1")])
+              , "m"
+              , [IntValue("2")]
+              )
+            )
+          ]
+        , FieldRef("Fac", "num_aux")
+        )
+      , Method(
+          "Fac"
+        , ClassType("Fac")
+        , "m"
+        , [Param(Int(), "num")]
+        , [Var(ClassType("Fac"), "f")]
+        , [ Assign(FieldRef("Fac", "f"), New("Fac"))
+          , Assign(FieldRef("Fac", "num"), IntValue("0"))
+          ]
+        , FieldRef("Fac", "f")
+        )
+      ]
+    )
+  ]
+)

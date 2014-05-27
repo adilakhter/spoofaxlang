@@ -1,0 +1,87 @@
+module Yuml
+
+signature
+  constructors
+                             : Label -> RightAssociationOperator_Cardinality_Label1
+                             : Cardinality -> RightAssociationOperator_Cardinality_Label1
+                             : RightAssociationOperator -> RightAssociationOperator_Cardinality_Label1
+                             : Label -> LeftAssociationOperator_Cardinality_Label1
+                             : Cardinality -> LeftAssociationOperator_Cardinality_Label1
+                             : LeftAssociationOperator -> LeftAssociationOperator_Cardinality_Label1
+                             : Seperator * EntityOrEntityAssociation -> Seperator_EntityOrEntityAssociation1
+                             : EntityMethod -> EntityProperty_EntityMethod1
+                             : EntityProperty -> EntityProperty_EntityMethod1
+                             : MemberSeperator * EntityMember -> MemberSeperator_EntityMember1
+                             : BGColor -> EntityMemberGroup_BGColor1
+                             : EntityMemberGroup -> EntityMemberGroup_BGColor1
+                             : String -> BGColorLex
+                             : String -> NoteLex
+                             : String -> CardinalityConnectorLex
+                             : String -> YumlID
+                             : String -> MemberSeperatorLex
+                             : String -> MethodLex
+                             : String -> PropertyLex
+                             : String -> CompositionOpSymbol
+                             : String -> LabelLex
+                             : String -> EntityMemberGroupSeperator
+                             : String -> YumlDeclarationSeperator
+                             : String -> IntegerCardinality
+                             : String -> ZeroOrMoreSymbol
+                             : String -> DependencyOperator
+                             : String -> ConntectorSymbol
+                             : String -> AggregationOpSymbol
+                             : String -> RightDirectionalOpSymbol
+                             : String -> LeftDirectionalOpSymbol
+                             : String -> InheritenceOpSymbol
+                             : String -> NoteText
+    EntityMethod             : MethodLex -> EntityMethod
+    EntityProperty           : PropertyLex -> EntityProperty
+    Label                    : LabelLex -> Label
+    CardinalityConnector     : CardinalityConnectorLex -> CardinalityConnector
+    RangeCardinality         : Cardinality * CardinalityConnector * Cardinality -> Cardinality
+    SimpleCardinality        : ZeroOrMoreSymbol -> Cardinality
+    SimpleCardinality        : IntegerCardinality -> Cardinality
+    Connector                : DependencyOperator -> ConnectorOperator
+    Connector                : ConntectorSymbol -> ConnectorOperator
+    CompositionOperator      : CompositionOpSymbol -> RightAssociationOperator
+    AggregationOperator      : AggregationOpSymbol -> RightAssociationOperator
+    RightDirectionalOperator : RightDirectionalOpSymbol -> RightAssociationOperator
+    CompositionOperator      : CompositionOpSymbol -> LeftAssociationOperator
+    AggregationOperator      : AggregationOpSymbol -> LeftAssociationOperator
+    LeftDirectonalOperator   : LeftDirectionalOpSymbol -> LeftAssociationOperator
+    RightAssociation         : List(RightAssociationOperator_Cardinality_Label1) -> RightAssociation
+    LeftAssociation          : List(LeftAssociationOperator_Cardinality_Label1) -> LeftAssociation
+    InheritenceOperator      : InheritenceOpSymbol -> RelationshipOperator
+    AssociationOperator      : LeftAssociation * ConnectorOperator * RightAssociation -> RelationshipOperator
+    MemberSeperator          : MemberSeperatorLex -> MemberSeperator
+    MemberGroupSeperator     : EntityMemberGroupSeperator -> GroupSeperator
+    DeclarationSepeartor     : YumlDeclarationSeperator -> Seperator
+    BGColor                  : BGColorLex * ID -> BGColor
+                             : EntitiesAssociation -> EntityOrEntityAssociation
+                             : Entity -> EntityOrEntityAssociation
+    MultipleEntitiesRelation : EntityOrEntityAssociation * List(Seperator_EntityOrEntityAssociation1) -> MultipleEntitiesAssociation
+    EntitiesRelation         : Entity * RelationshipOperator * Entity -> EntitiesAssociation
+    EntityMember             : EntityProperty_EntityMethod1 -> EntityMember
+    EntityMembers            : EntityMember * List(MemberSeperator_EntityMember1) -> EntityMembers
+    EntityMemberGroup        : GroupSeperator * List(EntityMembers) -> EntityMemberGroup
+    EntityDefinition         : List(EntityMemberGroup_BGColor1) -> EntityDefinition
+    Note                     : NoteLex * NoteText * Option(BGColor) -> Entity
+    YumlEntity               : YumlID * EntityDefinition -> Entity
+                             : MultipleEntitiesAssociation -> YumlEntityDeclaration
+                             : EntitiesAssociation -> YumlEntityDeclaration
+                             : Entity -> YumlEntityDeclaration
+    Yuml                     : List(YumlEntityDeclaration) -> Yuml
+                             : String -> ID
+
+
+signature
+  constructors
+    Some : a -> Option(a)
+    None : Option(a)
+
+
+signature
+  constructors
+    Cons : a * List(a) -> List(a)
+    Nil  : List(a)
+    Conc : List(a) * List(a) -> List(a)

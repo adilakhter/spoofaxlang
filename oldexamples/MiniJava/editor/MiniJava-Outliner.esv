@@ -1,0 +1,22 @@
+module MiniJava-Outliner
+
+//imports MiniJava-Outliner.generated
+
+outliner
+  
+  // This file can be used for custom outliner rules.
+  //
+  // See the imported file for a brief introduction and examples.
+  
+	Program._  
+	MainClass._
+	MainMethod._
+	MainParamDecl._
+	MainType._
+	MainParamType._
+	ClassDecl._
+    MethodDecl._
+    ParamDecl._
+	VarDecl._
+    Type._
+	

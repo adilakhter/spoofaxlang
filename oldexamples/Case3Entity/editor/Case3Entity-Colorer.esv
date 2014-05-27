@@ -1,0 +1,9 @@
+module Case3Entity-Colorer
+
+imports Case3Entity-Colorer.generated
+
+colorer
+                                                                      
+  // This file can be used for custom colorer rules.                  
+  //                                                                  
+  // See the imported file for a brief introduction and examples.     

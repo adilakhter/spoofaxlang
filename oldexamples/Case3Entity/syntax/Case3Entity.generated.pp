@@ -1,0 +1,23 @@
+[
+   Module              -- KW["module"] _1 _2,
+   Module.2:iter-star  -- _1,
+   Entity              -- KW["entity"] _1 KW["{"] _2 KW["}"],
+   Entity.2:iter-star  -- _1,
+   Entity              -- KW["entity"] _1 _2 KW["{"] _3 KW["}"],
+   Entity.3:iter-star  -- _1,
+   Inherits            -- _1 _2,
+   EntityMember        -- _1 _2 _3,
+   EntityReference     -- _1 _2 _3,
+   EntityReference     -- _1 _2 _3 _4,
+   EntityReference     -- _1 _2 _3,
+   EntityReference     -- _1 _2 _3 _4,
+   Set                 -- KW["Set"] KW["<"] _1 KW[">"],
+   List                -- KW["List"] KW["<"] _1 KW[">"],
+   Type                -- _1,
+   InversePropertyDecl -- KW["("] KW["inverse"] KW["="] _1 KW[")"],
+   InversePropertyDecl -- KW["("] KW["inverse"] KW["="] _1 KW["."] _2 KW[")"],
+   ValueTypePropertyOp -- _1,
+   Reference           -- _1,
+   Composite           -- _1,
+   InheritenceOp       -- _1
+]
