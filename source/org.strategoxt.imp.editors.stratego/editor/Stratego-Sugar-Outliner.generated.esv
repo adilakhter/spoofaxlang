@@ -1,0 +1,42 @@
+module Stratego-Sugar-Outliner.generated
+
+outliner Default outliner        
+  
+  
+  // Outliner rules indicate which syntactic constructs should be shown in the outline
+  // and quick outline views, and take one of the following forms:
+  //
+  //   <sort>.<constructor>
+  //
+  //   <sort>._
+  //
+  //   _.<constructor>
+  
+  Module.Module
+  StrategyDef.SDefT
+  FunType.FunType
+  Sort.Sort
+  Strategy.CallT
+  StringQuotation.StringQuotation1
+  StringQuotation.StringQuotation2
+  StringQuotation.StringQuotation3
+  StringQuotation.StringQuotation4
+  PreTerm.Op
+  PreTerm.OpQ
+  PreTerm.ListTail
+  Term.AnnoList
+  Strategy.CallDynamic
+  Strategy.PrimT
+  Strategy.Call
+  Strategy.Prim
+  Strategy.CongQ
+  Rule.Rule
+  RuleDec.RDec
+  RuleDec.RDecT
+  StrategyDef.ExtSDefInl
+  StrategyDef.ExtSDef
+  StrategyDef.ExtSDef
+  StrategyDef.SDef
+  RuleDef.RDef
+  RuleDef.RDefT
+  Overlay.Overlay

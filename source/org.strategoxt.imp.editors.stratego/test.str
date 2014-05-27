@@ -1,0 +1,12 @@
+module test
+
+imports libstratego-lib
+rules 
+	
+generate-java: 
+		a@(selected, a@position, ast, path, project-path) -> (filename, r)
+		with
+			r := filename;
+			filename := <guarantee-extension(|"java")> path  ;
+			t1 := filename
+			 

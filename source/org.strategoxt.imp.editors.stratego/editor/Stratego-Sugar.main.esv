@@ -1,0 +1,20 @@
+module Stratego-Sugar.main
+
+imports
+  Stratego-Sugar-Builders Stratego-Sugar-Colorer Stratego-Sugar-Folding
+  Stratego-Sugar-Outliner Stratego-Sugar-References Stratego-Sugar-Syntax
+  Stratego-Sugar-Completions
+
+language General properties
+                  
+  name          : Stratego-Sugar
+  id            : org.strategoxt.imp.editors.stratego
+  extends       : Root
+                  
+  description   : "Spoofax/IMP-generated editor for the Stratego-Sugar language"
+  url           : http://strategoxt.org
+                  
+  extensions    : str
+  table         : include/Stratego-Sugar.tbl
+  start symbols : Module
+  unmanaged table : Stratego*

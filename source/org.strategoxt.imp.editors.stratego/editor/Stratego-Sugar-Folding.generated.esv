@@ -1,0 +1,49 @@
+module Stratego-Sugar-Folding.generated
+
+folding Default folding definitions
+  
+  // Folding rules indicate which syntactic constructs can be folded,
+  // and take one of the following forms:
+  //
+  //   <sort>.<constructor>
+  //
+  //   <sort>._
+  //
+  //   _.<constructor>
+  //
+  // To indicate that an element should always be folded, add
+  // a (folded) annotation:
+  //
+  //   _.Imports (folded)
+  //
+  // To disable a folding rule defined elsewhere, add a (disabled) annotation:
+  //
+  //   Definition._ (disabled)
+  
+  Module.Module
+  Decl.Imports
+  Decl.Strategies
+  Typedid.VarDec
+  ConstType
+  ConstType.ConstType
+  ConstType
+  Strategy.Scope
+  RuleDec.RDec
+  RuleDec.RDecT
+  ListStarOfId0
+  StrategyDef.ExtSDef
+  StrategyDef.ExtSDef
+  Decl.Signature
+  Sdecl.Sorts
+  Sdecl.Constructors
+  Opdecl.OpDecl
+  Opdecl.OpDeclQ
+  Opdecl.OpDeclInj
+  Opdecl.ExtOpDecl
+  Opdecl.ExtOpDeclQ
+  Opdecl.ExtOpDeclInj
+  Decl.Rules
+  Decl.Overlays
+  Overlay.OverlayNoArgs
+  Overlay.Overlay
+  Module.Specification

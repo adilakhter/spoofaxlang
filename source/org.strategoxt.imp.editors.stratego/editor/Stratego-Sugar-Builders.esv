@@ -1,0 +1,58 @@
+
+module Stratego-Sugar-Builders
+
+imports Stratego-Sugar-Builders.generated
+
+
+builders
+                                                                                      
+  // This file can be used for custom analysis rules.                                 
+  // See the imported file for a brief introduction and examples.                     
+                                                                                       
+  provider : include/stratego_sugar.jar
+  provider : include/stratego_sugar-java.jar
+
+  observer : editor-analyze
+
+  builder : "Rename" = rename-builder (meta)
+  
+  builder: "Inline strategy" = inline-builder (meta)
+
+  builder: "Extract strategy" = extract-builder (meta)
+
+  builder: "Remove debug calls" = remove-debug-builder (meta)
+
+  builder : "Show analysed AST" =
+    generate-aterm (meta)
+
+  builder : "Show desugared AST (selection)" =
+    generate-desugared-aterm (realtime) (openeditor) (source) (meta)
+
+  builder : "Show AST (selection)" =
+    generate-aterm (source) (meta) 
+
+  builder : "PP Stratego String" =
+    pp-builder (source) (meta) 
+
+  //builder : "Test" =
+    //test-builder //(meta) 
+
+    
+refactorings 
+   
+  pretty-print: pp-stratego-string
+   
+  refactoring Id: "Rename" = rename-refactoring
+  shortcut: "org.eclipse.jdt.ui.edit.text.java.rename.element"
+  input
+    identifier : "New Name"
+  	
+  // UNDONE: experimental formatting
+  // refactoring: "Pretty-Print (Warning: Looses Comments in Selection!)" = format-refactoring (source) 
+  // shortcut: "org.eclipse.jdt.ui.edit.text.java.format"
+  
+  refactoring: "Remove debug" = remove-debug-refactoring
+
+  refactoring: "Inline" = inline-refactoring
+
+  refactoring: "Extract" = extract-refactoring (meta)

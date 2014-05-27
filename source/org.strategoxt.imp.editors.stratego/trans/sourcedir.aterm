@@ -1,0 +1,60 @@
+SDefT(
+  "get-source-base-dir"
+, []
+, []
+, SRule(
+    Rule(
+      As(
+        Var("mod")
+      , NoAnnoList(Op("Module", [Var("x"), Wld()]))
+      )
+    , Var("mod")
+    , [ WhereClause(
+          Seq(
+            BA(CallT(SVar("explode-string"), [], []), Var("x"))
+          , Seq(
+              CallT(
+                SVar("filter")
+              , [Match(NoAnnoList(Char("'/'")))]
+              , []
+              )
+            , Seq(
+                AM(CallT(SVar("length"), [], []), Var("ndirs"))
+              , Seq(
+                  CallT(SVar("CurrentDir"), [], [])
+                , Seq(
+                    CallT(SVar("explode-string"), [], [NoAnnoList(Char("'/'"))])
+                  , Seq(
+                      CallT(
+                        SVar("take")
+                      , []
+                      , [ App(
+                            CallT(SVar("subt"), [], [])
+                          , NoAnnoList(
+                              Tuple(
+                                [RootApp(CallT(SVar("length"), [], [])), Var("ndirs")]
+                              )
+                            )
+                          )
+                        ]
+                      )
+                    , Seq(
+                        AM(
+                          CallT(SVar("implode-string"), [], [NoAnnoList(Char("'/'"))])
+                        , Var("basedir")
+                        )
+                      , GenDynRules(
+                          [DynRuleAssign(DynRuleId(RDecT("SourceDir", [], [])), Var("basedir"))]
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      ]
+    )
+  )
+)

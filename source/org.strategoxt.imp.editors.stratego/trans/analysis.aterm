@@ -1,0 +1,59 @@
+SDefT(
+  "declare-globals"
+, []
+, []
+, SRule(
+    Rule(
+      NoAnnoList(
+        Op(
+          "Overlay"
+        , [Var("x"), Var("t"), Var("d")]
+        )
+      )
+    , NoAnnoList(
+        Op(
+          "Overlay"
+        , [Var("x'"), Var("t"), Var("d")]
+        )
+      )
+    , [ WithClause(
+          Seq(
+            Assign(
+              Var("cookie")
+            , RootApp(CallT(SVar("redeclare-definition"), [], []))
+            )
+          , Assign(
+              Var("x'")
+            , AnnoList(Var("x"), [Var("cookie")])
+            )
+          )
+        )
+      , WithClause(
+          Seq(
+            Assign(
+              NoAnnoList(Tuple([Var("x''"), Var("n")]))
+            , RootApp(CallT(SVar("signature-of"), [], []))
+            )
+          , Seq(
+              Assign(
+                Var("sig'")
+              , NoAnnoList(
+                  Tuple(
+                    [Var("x''"), Var("n"), NoAnnoList(Int("0"))]
+                  )
+                )
+              )
+            , GenDynRules(
+                [ SetDynRule(
+                    DynRuleId(RDecT("DeclareCookie", [], []))
+                  , Rule(Var("sig'"), Var("cookie"), [])
+                  )
+                ]
+              )
+            )
+          )
+        )
+      ]
+    )
+  )
+)

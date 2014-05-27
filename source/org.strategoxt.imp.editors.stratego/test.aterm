@@ -1,0 +1,47 @@
+Module(
+  "test"
+, [ Imports([Import("libstratego-lib")])
+  , Rules(
+      [ SDefT(
+          "generate-java"
+        , []
+        , []
+        , SRule(
+            Rule(
+              As(
+                Var("a")
+              , NoAnnoList(
+                  Tuple(
+                    [ Var("selected")
+                    , As(Var("a"), Var("position"))
+                    , Var("ast")
+                    , Var("path")
+                    , Var("project-path")
+                    ]
+                  )
+                )
+              )
+            , NoAnnoList(Tuple([Var("filename"), Var("r")]))
+            , [ WithClause(
+                  Seq(
+                    Assign(Var("r"), Var("filename"))
+                  , Seq(
+                      Assign(
+                        Var("filename")
+                      , App(
+                          CallT(SVar("guarantee-extension"), [], [NoAnnoList(Str("\"java\""))])
+                        , Var("path")
+                        )
+                      )
+                    , Assign(Var("t1"), Var("filename"))
+                    )
+                  )
+                )
+              ]
+            )
+          )
+        )
+      ]
+    )
+  ]
+)

@@ -1,0 +1,63 @@
+package trans;
+
+import org.strategoxt.stratego_lib.*;
+import org.strategoxt.stratego_lib.*;
+import org.strategoxt.stratego_sglr.*;
+import org.strategoxt.stratego_gpp.*;
+import org.strategoxt.stratego_xtc.*;
+import org.strategoxt.stratego_aterm.*;
+import org.strategoxt.strc.*;
+import org.strategoxt.java_front.*;
+import org.strategoxt.imp.editors.stratego.strategies.*;
+import org.strategoxt.lang.*;
+import org.spoofax.interpreter.terms.*;
+import static org.strategoxt.lang.Term.*;
+import org.spoofax.interpreter.library.AbstractPrimitive;
+import java.util.ArrayList;
+import java.lang.ref.WeakReference;
+
+@SuppressWarnings("all") public class chain_$Decorated$Ast_0_0 extends Strategy 
+{ 
+  public static chain_$Decorated$Ast_0_0 instance = new chain_$Decorated$Ast_0_0();
+
+  @Override public IStrategoTerm invoke(Context context, IStrategoTerm term)
+  { 
+    ITermFactory termFactory = context.getFactory();
+    context.push("chain_DecoratedAst_0_0");
+    Fail23494:
+    { 
+      IStrategoTerm h_4848 = null;
+      IStrategoTerm j_4848 = null;
+      j_4848 = term;
+      Success12604:
+      { 
+        Fail23495:
+        { 
+          IStrategoTerm k_4848 = null;
+          IStrategoTerm m_4848 = null;
+          IStrategoTerm n_4848 = null;
+          m_4848 = term;
+          k_4848 = trans.const4565;
+          n_4848 = m_4848;
+          term = dr_lookup_rule_0_2.instance.invoke(context, n_4848, k_4848, trans.constCons2047);
+          if(term == null)
+            break Fail23495;
+          if(true)
+            break Success12604;
+        }
+        term = trans.constNil4;
+      }
+      h_4848 = term;
+      term = j_4848;
+      term = termFactory.makeTuple(h_4848, term);
+      term = foldl_1_0.instance.invoke(context, term, lifted7006.instance);
+      if(term == null)
+        break Fail23494;
+      context.popOnSuccess();
+      if(true)
+        return term;
+    }
+    context.popOnFailure();
+    return null;
+  }
+}

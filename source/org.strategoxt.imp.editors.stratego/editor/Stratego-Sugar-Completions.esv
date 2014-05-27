@@ -1,0 +1,62 @@
+module Stratego-Sugar-Completions
+
+imports Stratego-Sugar-Completions.generated
+
+references
+                                                                   
+  // This file can be used for custom reference resolving rules.   
+  // See the imported file for a brief introduction and examples.
+
+  completion proposer : editor-complete
+  
+  identifier lexical : [a-zA-Z\_][a-zA-Z0-9\'\-\_]*\*?
+
+/* TODO: enable completion triggers in a later release?
+  completion trigger : "->[ \n\t]*[A-Za-z]"
+  completion trigger : "([^A-Za-z0-9_ ]) ?<" // trigger for ':= <' but not for 'a < b'
+  completion trigger : "(where|with)[ \n\t]*<"
+  completion trigger : "\[<"
+  completion trigger : "\n ?<"
+  completion trigger : "!"
+  completion trigger : "\?"
+  completion trigger : "\{\| "
+  completion trigger : ":[ \n\t]*[A-Za-z]"
+  completion trigger : ":= [A-Za-z]"
+*/
+                                                                                 
+  reference _ : editor-resolve
+
+  hover _ : editor-hover
+  
+  completion template : Strategy =
+    "if" " " <e> " then\n\t" <s> "\nend"
+      
+  completion template : Strategy = 
+    "switch" " " <s> "\n\tcase " <c> ":" " " <s> "\n\totherwise: " <id> "\nend"
+
+  completion template : Strategy =
+  	"let" "\n\t" <x> " = " <s> "\nin\n\t" <s> "\nend"
+
+  completion template : Def =
+  	"where" "\n\t" (blank)
+  	
+  completion template : Def =
+  	"with" "\n\t" (blank)
+  
+  completion template:
+    "strategies" "\n\t" (blank)
+  
+  completion template:
+    "rules" "\n\t" (blank)
+  
+  completion template : Decl =
+    "imports" "\n\t" <Module> (blank)
+  
+  completion template:
+    "signature constructors" "\n\t" (blank)
+  
+  completion template:
+    "signature sorts" "\n\t" (blank)
+
+  completion template : Module = 
+    "module " <name> "\n\nstrategies\n\n\t" 
