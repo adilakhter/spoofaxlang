@@ -23,6 +23,7 @@ imports
 	normalize/main
   
 rules
+	
 	setof-sdf-declarations = resolve-sdf-declarations
 	
 	bagof-sdf-declarations = <resolve-all-symbol-definitions-with-duplicates>(<id>, SDFDeclaration())
@@ -50,10 +51,12 @@ rules
      
 
 rules
+ 
  // Traverse AST and declare sdf definition
  //	Instead of declaring in the Global Scope
  // now it is declared in a particular Scope.
  // Here scope is defined by (Package-QName, Module-QName)
+ 
  declare-sdf-definition-main = alltd(declare-sdf-definition)
  
  declare-sdf-usage-main = alltd(declare-sdf-usage)
@@ -88,25 +91,27 @@ rules
  	declare-sdf-definition-internal:
     (prod, lhs, sort, attrs) -> <id>
     where dbg-declaration(! $[declaring sdf : [<print-as-string>prod]]| "declare.declare-sdf-definition-internal" , <debug-level-INFO>)
-    where	x  := <get-rhs-sort-name>sort
+    where	x  := <get-rhs-sort-name> sort
     where if <is-lexical-sort>sort + IsInsideLexicalSyntaxBlock then 
     				sortType :=  LEXSort()
     			else
     				sortType :=  CFSort()
     			end 		
-    where	<declare-signature>prod
+    where	<declare-signature> prod
   	// TODO FIX : enable namespace annotation. currently it is not fully supported 
   	//where	with-spxverify(<topdown(try(declare-namespace-def))> lhs	,	!"declare-sdf-definition-internal | Failed while storing namespace-def ")
-  	where	with-spxverify(
+  	where
+  			with-spxverify(
       			if <fetch-cons-name> attrs => cons then
 	      			tuple := (x, cons);
 	       			<index-symbol-definition>(tuple , SDFDeclaration() , prod ) // Needed for Sort.Cons references to the production.
 	      		end
 	    			, !"Failed while storing sort.cons references at declare.declare-sdf-definition-internal"      
      		 	)
-	 	where with-spxverify(GetEnclosingModuleName ,"Failed, since current module scope is not declared at declare.declare-sdf-definition-internal." )
-	  where	with-spxverify(
-      			 
+	 	where 
+	 		with-spxverify(GetEnclosingModuleName ,"Failed, since current module scope is not declared at declare.declare-sdf-definition-internal." )
+	  where	
+	  	with-spxverify(
       			<index-symbol-definition>(x, SDFDeclaration(),prod );
       			<index-symbol-definition>(x , SortDeclaration(), (x, sortType));
     	  		dbg-declaration(
@@ -128,8 +133,10 @@ rules
  
  declare-namespace-def:
     namespacedef(name, sort) -> <id>
-    where with-spxverify(	scoped-name  := <to-scoped-symbol> name	)
-    where <index-symbol-definition>(scoped-name, NamespaceSortDeclaration(),sort)
+    where 
+    	with-spxverify(	scoped-name  := <to-scoped-symbol> name	)
+    where 
+    	<index-symbol-definition>(scoped-name, NamespaceSortDeclaration(),sort)
 
   declare-sdf-definition:
 		lex-syntax@lexical-syntax(lex-defintions) ->lex-syntax
@@ -165,10 +172,20 @@ rules
   	
 	declare-sdf-usage: kernel-start-symbols(s*) -> kernel-start-symbols(s') where <alltd(declare-sdf-usage)>s* =>s'
     
-  declare-sdf-usage: prod(lhs, sort, attrs) -> prod( lhs' , sort, attrs) where <alltd(declare-sdf-usage)>lhs => lhs'
+  declare-sdf-usage: 
+  	prod(lhs, sort, attrs) -> prod( lhs' , sort', attrs) 
+  	where debug(!"declare sdf usage: ")
+  	where 
+  		<alltd(declare-sdf-usage)>lhs => lhs';
+  		<alltd(declare-sdf-usage)>sort=> sort'
+  	where 	
+  		<debug(!"package list: ")>(lhs' , sort')
+  		
   
-  declare-sdf-usage: prod(lhs, sort, attrs) -> prod( lhs' , sort, attrs) where <alltd(declare-sdf-usage)>lhs => lhs'
-  
+  // declare-sdf-usage: 
+  // 	prod(lhs, sort, attrs) -> prod( lhs' , sort, attrs) 
+  // 	where <alltd(declare-sdf-usage)>lhs => lhs'
+  // 
   declare-sdf-usage:
     QualifiedSort(Name(_), x) -> result 
   	where basic-sdf-desugar
@@ -177,13 +194,15 @@ rules
   
   declare-sdf-usage:
     QualifiedSort(q@QName(_), x) -> QualifiedSort(q' , x)
-    where	!q;
+    where	
+    			!q;
     			((is-declared-package;!Package(q))  
 			<+  (is-declared-module; !Module(q) ; get-enclosing-package-qname) 
-			<+  !Unresolved())=> q'
-	  where if not(!q' => Unresolved()) then 
-	  				with-spxverify( <index-sdf-usage(|q')>x , !"Indexing Qualified SDF Sort Call Sites failed. ")
-	  			end	
+			<+  !Unresolved()) => q'
+	  where 
+	  	if not(!q' => Unresolved()) then 
+	  		with-spxverify(<index-sdf-usage(|q')>x , !"Indexing Qualified SDF Sort Call Sites failed. ")
+	  	end	
 	  			
 	declare-sdf-usage:
     sort(x) -> <id>

@@ -86,6 +86,7 @@ strategies
       repeat(?label(_, <id>));
       ( 	?sort(<id>)
       	+ ?parameterized-sort(<id>, _)
+      	+ ?QualifiedSort(_,<id>)
       	+ is-string                    // applies in TemplateLang
       )
 

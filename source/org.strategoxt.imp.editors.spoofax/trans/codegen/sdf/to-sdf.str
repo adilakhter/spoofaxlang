@@ -313,8 +313,13 @@ rules
 		
 rules
 
-	to-sdf-sort: prod(lhs, sort, attrs) -> prod(lhs', sort, attrs) where lhs' := <alltd(to-sdf-sort)>lhs
-
+	to-sdf-sort: 
+		prod(lhs, sort, attrs) -> prod(lhs', sort', attrs) 
+		where 
+			lhs' := <alltd(to-sdf-sort)>lhs
+		where 
+			sort' := <alltd(to-sdf-sort)>sort
+		
   to-sdf-sort: QualifiedSort(Unresolved(), x) -> sort(x)
 
   to-sdf-sort: 
