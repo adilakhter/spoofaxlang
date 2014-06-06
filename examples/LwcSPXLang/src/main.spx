@@ -1,0 +1,62 @@
+package languages.spx.lwc
+ 
+//TODO FIX : more refactoring on stratego codes 
+module main-definition
+  context-free syntax
+    Module  -> Start
+         
+
+module main-generator
+	rules
+		 generate-java:
+	    (selected, position, ast, path, project-path) -> (filename, result)
+	    with
+	      filename := <guarantee-extension(|"java")> path;
+	      result   := <to-java> selected 
+	 
+
+module main-trans
+	imports 
+		languages.commonLang
+	
+	strategies 
+	  pp = fail	       
+	
+	strategies // analysis
+	  analyze     = desugar-all; rename-all; store-all 
+	  desugar-all = innermost(desugar)
+	  rename-all  = alltd(propose <+ rename)
+	  store-all   = topdown(try(store)) ; topdown(try(store-ref))
+	   
+	  desugar   = fail
+	  rename    = fail
+	  propose   = fail
+	  store     = fail
+	  store-ref = fail
+	  
+	  type-of = fail
+	  type-compatible = fail
+	 
+	rules // editor
+  	importing(|imp) = /*{| Imported : */ rules(Imported : imp) /* ; s |} */
+	  when-not-imported(s) :
+	  	imp -> imp
+	  	where {| Imported : if not( <Imported> imp ) then rules(Imported : imp) else debug(!"already imported: ") end |} 
+		
+	analyze-builder :
+	    (selected, position, ast, path, project-path) -> (filename, result)
+	    with
+	      editor-init;
+	      rules( CurrentFile := path);
+	      importing(|Imports(<base-filename; remove-extension> path));
+	      <analyze> ast => ast';
+	      filename := <guarantee-extension(|"aterm")> path;
+	      result   := ast' // we just return the input term
+		
+	rules	 			
+	  editor-error   = fail  
+	  editor-warning = fail
+	  editor-note    = fail
+		resolve = fail
+  	hover = fail
+  	propose = fail

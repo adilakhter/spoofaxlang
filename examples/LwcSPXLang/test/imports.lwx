@@ -1,0 +1,14 @@
+module imports
+
+imports module  
+
+entity A{
+  b : B 
+  c : C 
+}      
+
+entity C {
+  a : A
+  b : C 
+} 
+             

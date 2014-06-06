@@ -13,3 +13,5 @@ generated
 *.0
 *.t
 trans
+workspaces/entitylang-extensions/.metadata/
+workspaces/entitylang-extensions/SimpleEntityLang/include/

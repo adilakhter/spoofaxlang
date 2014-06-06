@@ -1,0 +1,16 @@
+module propertiesA
+
+imports primitives
+
+entity Blog {
+  name    : String
+  author  : User 
+  posts   : BlogPosts
+  comment : String
+  foo : User
+}
+
+entity User {
+  name : String
+}
+

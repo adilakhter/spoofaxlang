@@ -1,0 +1,147 @@
+package org.lang.spx.entitylang
+
+module function-definition
+	context-free syntax
+  	ID "(" {Param ","}* ")" ReturnType? Block -> FunctionDef {cons("FunctionDef")}
+  	ID "(" {Exp ","}* ")"                     -> FunctionCall {cons("FunctionCall")}
+    FunctionDef                               -> Definition 
+  	FunctionCall                              -> Exp
+  
+  context-free syntax 	
+  	ID ":" Type      -> Param {cons("Param")}
+  	
+  	":" Type         -> ReturnType {cons("ReturnType")}
+  	"return" Exp ";" -> Statement {cons("Return")}
+  
+  context-free syntax
+  	"<" ID ">" XmlElem* "</" ID ">" -> XmlElem {cons("XML")}
+  	
+  	XmlElem -> Exp 
+  
+   
+module function-constructors	
+	signature
+  	constructors
+  		Functions  : Namespace
+  		Returns    : Scope -> Namespace
+
+module function-transformations
+	rules
+		
+	  pp : Type(name) -> name
+		
+	  pp-sig : (name, types) -> $[[name]([<pp-types>types])]
+	  	
+	  pp-types : [] -> ""
+	  pp-types : [type] -> <pp> type
+	  pp-types : [type1,type2|types] -> $[[<pp>type1],[<pp-types>[type2|types]]]
+
+	rules // function definitions
+	
+	  type-of :
+	  	FunctionDef(name, params, Some(type), bl) -> type
+	  	
+	  type-of :
+	    FunctionDef(name, params, None(), bl) -> Type("Void")
+	  	
+	  is-function-def = 
+	  	?FunctionDef(_,_,_,_)
+	  
+	  name-of :
+	  	FunctionDef(name, params, rt, bl) -> name
+	  	
+	  arg-types :
+	  	FunctionDef(name, params, rt, bl) -> <map(?Param(_,<id>))> params
+	  	
+	  signature-of :
+	  	FunctionDef(name, params, rt, bl) -> (name, <arg-types>)
+	  	
+	  rename :
+	  	d@FunctionDef(name, params, rt, bl) -> d'
+	  	where new-scope(<all(rename-all)> d => d')
+	  	
+	  store :
+	  	d@FunctionDef(name, params, rt, bl) -> d
+	  	where <debug(!"store: "); map-declaration(|Functions())> (<signature-of>d, d)
+	  	
+	  editor-error :
+	    d@FunctionDef(name, params, rt, bl) -> (name, $[Multiple declarations for function [name]])
+	    where not(<get-unique-declaration(|Functions())> <signature-of> d)
+	    
+	rules // function call
+	
+	  signature-of :
+	  	FunctionCall(name, args) -> (name, <debug(!" args: "); map(debug(!" arg: "); type-of; debug(!" type-of: "))>args)
+			
+	  type-of :
+	    call@FunctionCall(name, args) -> type
+	    where <signature-of> call => sig;
+	      <get-declaration(|Functions())> sig => decl;
+	      <type-of> decl => type
+		
+	  editor-error :
+	  	call@FunctionCall(name, args) -> (name, $[No definition for function [<pp-sig>sig]])
+	  	where <signature-of> call => sig; not( <get-declaration(|Functions())> sig )
+	
+	  resolve :
+	  	call@FunctionCall(name, args) ->	d
+	  	where 
+	  		<signature-of;debug(!" sig: ");get-declaration(|Functions())> call => d
+	  			
+	rules // parameters
+	
+	  type-of:
+	  	Param(name, type) -> type
+		
+	  rename: 
+	  	Param(name, type) -> <annotate-scope(id)> Param(<rename-declaration(|Variables())> name, type)
+	  	
+	  store:
+	  	d@Param(name, type) -> d
+	  	where <map-declaration(|Variables())> (name, d)
+	  	
+		rules // return type
+		
+	  type-of :
+	  	ReturnType(type) -> type
+		
+	  rename :
+	  	d@ReturnType(type) -> <annotate-scope(is-function-def)> d
+	  
+	  store :
+	  	d@ReturnType(type) -> d
+	  	where <map-declaration(|Returns(<get-annotated-scope>d))> ((), d)
+	  	
+	  return-type :
+	  	scope -> <get-declaration(|Returns(scope))> ()
+	
+	  editor-error:
+	  	d@ReturnType(type) -> (type, $[Return statement missing])
+	  	where not( <is-referred(|Returns(<get-annotated-scope>d))> () )
+	  	  	 	  
+	rules // return statement 
+	
+	  rename :
+	  	stat@Return(e) -> <annotate-scope(is-function-def)> Return(e')
+	  	where <rename-all> e => e'
+	  	  
+	  store :
+	  	stat@Return(e) -> stat
+	  	where <store-reference(|Returns(<get-annotated-scope>stat))> ()
+	  	
+	  type-of :
+	  	Return(e) -> <resolve; type-of>
+	  	
+	  resolve :
+	  	Return(e) -> <get-annotated-scope; return-type>
+	
+	  editor-error :
+	  	stat@Return(e) -> (e, $[Return should have type [<pp>type'], not [<pp>type]])
+	  	where <type-of> e => type;
+	  	      <type-of> stat => type';
+	  		  not( <type-compatible> (type, type') )
+	  		  
+	  editor-error :
+	  	stat@Return(e) -> (stat, $[No return statement expected])
+	  	where not( <resolve> stat )
+		

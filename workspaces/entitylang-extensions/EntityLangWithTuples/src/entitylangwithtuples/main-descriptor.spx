@@ -1,0 +1,20 @@
+package EntityLangWithTuples
+	
+module mainDescriptor
+	 		
+imports 
+	EntityLangWithTuples.generated
+	SimpleEntityLang  
+	 		
+
+language General properties
+                  
+  name          : EntityLangWithTuples
+  extends       : Root
+                  
+  description   : "Spoofax/IMP-generated(using spoofaxlang) editor for the EntityLangWithTuples language "
+  url           : http://strategoxt.org
+                  
+  extensions    : ext
+  start symbols : Start
+	 			

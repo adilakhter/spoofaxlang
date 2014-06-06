@@ -1,0 +1,121 @@
+package languages.spx.lwc
+
+module entity-definition
+	imports languages.commonLang
+	
+	context-free syntax 
+  	Entity                          -> Definition
+    "entity" ID "{" EntityElem* "}" -> Entity {cons("Entity")}
+    ID                              -> Type {cons("Type")}
+    
+    "this"                          -> Exp {cons("This")}
+  	"this"                          -> ID {reject}
+
+module entity-constructors
+	signature constructors 
+		Entities   : Namespace
+		
+			
+module entity-transformations
+	imports languages.commonLang
+	
+	rules // entity declarations
+	
+ 		is-entity = ?Entity(_,_)
+
+	  name-of : 
+	  	Entity(name, elems) -> name
+
+	  type-of :
+	  	Entity(name, elems) -> Type(name)
+
+	  rename :
+	  	d@Entity(name, prop1*) -> d'
+	  	where new-scope( <all(rename-all)> d => d' )
+	  	
+	  store :
+	  	d@Entity(name, prop*) -> d
+	  	where <map-declaration(|Entities())> (name, d)
+	  	
+	  editor-error:
+	    Entity(name, _) -> (name, $[Multiple declarations for entity [name]])
+	    where not ( <get-unique-declaration(|Entities())> name )
+	    
+	  editor-warning:
+	  	Entity(name, _) -> (name, $[Entity [name] is never used])
+	  	where not( <is-referred(|Entities())> name )
+  	    
+	rules // types
+	
+	  store :
+	  	t@Type(name) -> t
+	  	where <store-reference(|Entities())> name
+	  	
+	  editor-error :
+	  	t@Type(name) -> (name, $[Type [name] is not declared.])
+	  	where not(<is-declared(|Entities())> name)
+	  	
+	  resolve :
+	  	Type(name) -> d
+	  	where <project-declaration(is-entity | Entities()); name-of> name => d
+	  	
+	  type-compatible :
+	  	p@(type, type) -> p
+	  	
+	  propose :
+	  	type@Type(COMPLETION(_)) -> proposals
+	  	where <project-all-declarations(?Entity(<id>,_)|Entities())> type => proposals
+	  		
+	rules // this
+		
+	  rename :
+	  	e@This() -> <annotate-scope(is-entity; name-of)> e
+		
+	  type-of :
+	  	This() -> Type(<get-annotated-scope>)
+  		
+module generate
+
+	rules
+	  to-java:
+	    Module(x, d*) ->
+	    $[ package [x];
+	       
+	       [d'*]
+	     ]
+	    with
+	      d'* := <collect(to-java)> d*
+	  
+	  to-java:
+	    Entity(x, p*) ->
+	    $[ class [x] {
+	           [p'*]
+	       }
+	     ]
+	    with
+	      p'* := <to-java> p*
+	
+	  to-java:
+	    Property(x, Type(t)) -> $[
+	      private [t] [x];
+	      
+	      public [t] get_[x] {
+	          return [x];
+	      }
+	      
+	      public void set_[x] ([t] [x]) {
+	          this.[x] = [x];    
+	      }
+	  ]
+	  
+	  to-java:
+	    Type(t) -> t
+	
+	  to-java:
+	    t* -> <map(to-java)> t*	
+	
+
+	
+	
+	
+	

@@ -52,11 +52,14 @@ rules
 
 rules
  
- // Traverse AST and declare sdf definition
- //	Instead of declaring in the Global Scope
- // now it is declared in a particular Scope.
- // Here scope is defined by (Package-QName, Module-QName)
  
+ /**
+  * Traverse AST and declare sdf definition
+  * Instead of declaring in the Global Scope
+  * now it is declared in a particular Scope.
+  * Here scope is defined by (Package-QName, Module-QName)
+  *
+  */
  declare-sdf-definition-main = alltd(declare-sdf-definition)
  
  declare-sdf-usage-main = alltd(declare-sdf-usage)
@@ -99,7 +102,7 @@ rules
     			end 		
     where	<declare-signature> prod
   	// TODO FIX : enable namespace annotation. currently it is not fully supported 
-  	//where	with-spxverify(<topdown(try(declare-namespace-def))> lhs	,	!"declare-sdf-definition-internal | Failed while storing namespace-def ")
+  	// where	with-spxverify(<topdown(try(declare-namespace-def))> lhs	,	!"declare-sdf-definition-internal | Failed while storing namespace-def ")
   	where
   			with-spxverify(
       			if <fetch-cons-name> attrs => cons then
@@ -172,17 +175,14 @@ rules
   	
 	declare-sdf-usage: kernel-start-symbols(s*) -> kernel-start-symbols(s') where <alltd(declare-sdf-usage)>s* =>s'
     
+  
   declare-sdf-usage: 
   	prod(lhs, sort, attrs) -> prod( lhs' , sort', attrs) 
   	where 
   		<alltd(declare-sdf-usage)>lhs => lhs';
   		<alltd(declare-sdf-usage)>sort=> sort'
-  		
   
-  // declare-sdf-usage: 
-  // 	prod(lhs, sort, attrs) -> prod( lhs' , sort, attrs) 
-  // 	where <alltd(declare-sdf-usage)>lhs => lhs'
-  // 
+  
   declare-sdf-usage:
     QualifiedSort(Name(_), x) -> result 
   	where basic-sdf-desugar
@@ -198,16 +198,20 @@ rules
 			<+  !Unresolved()) => q'
 	  where 
 	  	if not(!q' => Unresolved()) then 
-	  		with-spxverify(<index-sdf-usage(|q')>x , !"Indexing Qualified SDF Sort Call Sites failed. ")
+	  		with-spxverify(
+	  			<index-sdf-usage(|q')>x , !"Indexing Qualified SDF Sort Call Sites failed. ")
 	  	end	
 	  			
 	declare-sdf-usage:
     sort(x) -> <id>
     where with-spxverify( <index-sdf-usage(|Unqualified())>x , !"Indexing SDF Sort Call Sites failed. ") 
 
-	// For legacy artifacts only.
-	// It is required for import def or sdf file. currently we support parameterized sort in 
-	// a different way in spoofaxlang.
+ /**
+	* For legacy artifacts only.
+	* It is required for import def or sdf file. currently we support parameterized sort in
+	*	a different way in spoofaxlang.
+	*
+	*/
 	declare-sdf-usage:
     parameterized-sort(x, y) -> <id>
     where
@@ -216,23 +220,24 @@ rules
        	<index-sdf-usage(|Unqualified())>( text , text)
       end
 
-rules
+rules // SDF Sort lookups and indexing
+	
 	
 	index-sdf-usage(|namespace):
 		sortName-> <id>
 		where is-string
 		where if <not(verify-call-sites-already-registered(|namespace))>sortName then
 			  			<resolve-all-symbol-definitions(
-								fetch-sort-and-context
-								|(LookupAllScope(), <ALL_AS_SET>)
+									fetch-sort-and-context
+									|(LookupAllScope(), <ALL_AS_SET>)
 							)>(sortName,  SortDeclaration())
 							; is-not-empty-list 
 							;	(		(filter(?(_, _, InternalScope())); is-not-empty-list)   
 								<+	(filter(?(_, _, GlobalScope()))  ; is-not-empty-list)    
 								<+  (filter(?(_, _, PublicScope()))  ; is-not-empty-list) 
 								)
-							;	?[(s,c,t)|_] 
-							; !(s,(s,c,t))
+							;	?[(sortName,context,scopeType)|_] 
+							; !(sortName,(sortName,context,scopeType))
 							; index-sdf-usage(|namespace)
 					<+ 
 							dbg-declaration(
@@ -263,20 +268,21 @@ rules
 		where <is-string>s 
 	
 	fetch-sort-and-context: 
-		SymbolDef(p@Package(QName(_)), _ ,_, sortName, _) -> (sortName , p, resolved-from)
+		SymbolDef(qualifiedPackageName@Package(QName(_)), _ ,_, sortName, _) -> (sortName , qualifiedPackageName, resolved-from)
 		where <is-string>sortName 
 		where GetEnclosingPackageName => enclosing-package
-		where if <?p>enclosing-package then 
-						resolved-from := InternalScope()
+		where if <?qualifiedPackageName>enclosing-package then 
+						resolved-from := InternalScope() // resolved from current package
 					else
-						resolved-from := PublicScope()
+						resolved-from := PublicScope() //resolved from imported package
 					end
 
 	fetch-sort-and-context: 
-		SymbolDef(Globals(), _ ,_, sortName, _) -> (sortName , Globals(), GlobalScope())
- 		where <is-string>sortName
+		SymbolDef(Globals(), _ ,_, sortName, _) -> (sortName, Globals(), GlobalScope())
+ 		where <is-string>sortName // Resolved from Global Namespace
 	
-	fetch-sort-and-context: SymbolDef(context, k ,t, (sortName,_), is-overloaded) -> <fetch-sort-and-context>SymbolDef(context, k ,t, sortName , is-overloaded)
+	fetch-sort-and-context: 
+		SymbolDef(context, k ,t, (sortName,_), is-overloaded) -> <fetch-sort-and-context>SymbolDef(context, k ,t, sortName , is-overloaded)
 
 	verify-call-sites-already-registered(|namespace): 
 		sortName  ->  <id>

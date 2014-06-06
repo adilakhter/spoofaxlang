@@ -1,0 +1,13 @@
+package org.lang.spx.entitylang
+
+module StatementDefinition
+
+	context-free syntax
+  		Exp ":=" Exp ";"   -> Statement {cons("Assign")}
+	  	"{" Statement* "}" -> Block {cons("Block")}
+	  	Block              -> Statement
+	  	VarDecl            -> Statement
+	  	Exp ";"            -> Statement {cons("Statement")} 
+		context-free syntax
+	  	"if" "(" Exp ")" Block "else" Block -> Statement {cons("If")}
+	  	"while" "(" Exp ")" Block           -> Statement {cons("While")}

@@ -1,0 +1,15 @@
+package org.lang.spx.entitylang
+
+module resolve-service
+	rules
+			editor-resolve: 
+    	(node, position, ast, path, project-path) -> target
+    	where 
+      	<resolve> node => target 
+ 
+ 	references
+	                
+	  reference _ : editor-resolve
+	  
+	  
+	 

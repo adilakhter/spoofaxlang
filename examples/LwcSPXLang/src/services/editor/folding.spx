@@ -1,0 +1,10 @@
+package languages.spx.lwc
+
+module codefolding-service
+	
+	folding 
+		Module.Module
+  	Entity.Entity
+  	FunctionDef.FunctionDef
+	  
+		

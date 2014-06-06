@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.imp.runtime.languageDescription">
+      <language
+            extensions="com"
+            description="CommonLang"
+            language="CommonLang"
+            derivedFrom="DynamicRoot"
+            validator="org.lang.spx.commonlang.CommonLangValidator"
+            validatorClass="org.lang.spx.commonlang.CommonLangValidator"
+      ></language>
+   </extension>
+   <extension
+         id="org.lang.spx.commonlang.parser"
+         name="CommonLang Parser"
+         point="org.eclipse.imp.runtime.parser">
+      <parser
+            class="org.lang.spx.commonlang.CommonLangParseController"
+            language="CommonLang">
+      </parser>
+   </extension>    
+</plugin>

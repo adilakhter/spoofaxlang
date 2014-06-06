@@ -1,0 +1,63 @@
+package languages.spx.lwc
+
+module module-definition
+  
+  imports 
+  	languages.commonLang       
+  
+  context-free syntax
+    "module" ID Definition* -> Module {cons("Module")}
+    "imports" FILENAME      -> Definition {cons("Imports")}
+ 
+
+module module-signatures
+	signature
+  	constructors
+  	Module : Namespace 
+
+  	
+module module-trans
+	 imports languages.commonLang         
+
+	rules // modules
+		rename :
+	  	Module(name, defs) -> Module(name, defs')  
+	  	where <rename-all> defs => defs' 
+		   
+	  store :
+	   	mod@Module(name, defs) -> mod
+	   	where <map-declaration(|Module())> (name, (<CurrentFile>, mod))
+	   	   
+	   editor-error :
+	   	Module(name, defs) -> (name, $[Filename does not correspond to module name])
+	   	where <get-declaration(|Module())> name => (file, mod)
+	    where not( <base-filename; remove-extension> file => name ; <has-extension(|"lwc")> file )
+	
+	   	   
+	rules // imports
+		
+	  get-module :
+	  	Imports(name) -> ast
+	  	where <parse-lwc-file(|<CurrentFile>)> name => ast
+	  	
+	  rename :
+	  	imp@Imports(name) -> imp 
+	  	where  <get-module; rename-all> imp 
+	  	
+	  store :
+	  	imp@Imports(name) -> imp
+	  	where  <get-module; store-all> imp 
+	
+	  desugar :
+	  	imp@Imports(name) -> imp
+	  	where <get-module; desugar-all> imp
+	  	    
+	  resolve :
+	    Imports(name) -> <get-module>
+	      	  
+	  editor-error :
+	  	imp@Imports(name) -> (name, $[Module does not exist])
+	  	where not( <get-module> imp )
+	
+ 
+         

@@ -293,63 +293,95 @@ rules
 													, ! $[Save failed for SDF MIX of package : [<print-as-string> package-qname]]
 												)	
 		
-	to-sdf-mix(| mix-context) =  
-		?m@Module(QName(_));
-		<pp-sdf-import>m => sdf-import-path;
-		activate-scope(<resolve-all-of-current-scope-by-type> SortDeclaration() | m);
-		
-		// Test
-		where(is-not-empty-list);
-		nub;
-		!'imports(
+	to-sdf-mix(|mix-context) :  
+		m@Module(QName(_)) -> 'imports(
 				[	renamed-module(
           		unparameterized(sdf-import-path)
       			, renamings(
-            		<map(to-sdf-mix(|mix-context))>
+            		result
           		)
         		)
 				]
-			)	
-
+			)
+		where	 
+			activate-scope(<resolve-all-of-current-scope-by-type> SortDeclaration() | m);
+			nub;
+			filter(?(_, CFSort()));
+			is-not-empty-list;
+			map(to-sdf-mix(|mix-context)) => result
+		where
+			<pp-sdf-import>m => sdf-import-path
+			
+			
+	to-sdf-mix(|mix-context) :  
+		m@Module(QName(_)) -> 'imports(
+				['module(
+						unparameterized(<to-sdf-import-statement> m))
+				])
+		where  	
+			activate-scope(<resolve-all-of-current-scope-by-type> SortDeclaration() | m);
+			nub;
+			filter(?(_, CFSort()));
+			?[]
+				
+		
 	to-sdf-mix(|mix-context) = 
 		?(sortName ,_);
 		!symbol(sort(sortName), parameterized-sort(sortName, [sort(mix-context)]))
-		
-rules
+	
+	
+rules // rewriting qualified SORT in SDF SORT 
+	
+ /** 
+	* It checks whether the current term is a CF SORT 
+	* declared in 'context'.
+	* 
+	*  @type ensure-cf-sort: STRING -> LIST
+	*  @param context Name of the SCOPE (package or module) where sort is declared  
+	*/
+	ensure-cf-sort(|context)=
+		activate-scope(
+			results := <resolve-all-symbol-definitions(id | (LookupLocalScope(), <ALL_AS_SET>))>(<id>,  SortDeclaration())
+			| context
+		);	
+		debug(!"ensure CF sorts: ");
+		filter(?SymbolDef(_, _ ,_, (_, CFSort()), _)); is-not-empty-list
 
 	to-sdf-sort: 
 		prod(lhs, sort, attrs) -> prod(lhs', sort', attrs) 
-		where 
-			lhs' := <alltd(to-sdf-sort)>lhs
-		where 
-			sort' := <alltd(to-sdf-sort)>sort
+		where lhs' := <alltd(to-sdf-sort)>lhs
+		where sort' := <alltd(to-sdf-sort)>sort
 		
   to-sdf-sort: QualifiedSort(Unresolved(), x) -> sort(x)
 
   to-sdf-sort: 
-  	q@QualifiedSort(p@Package(QName(_)), x) -> sort'
-  	where <get-sdf-usage(|p)>x;
-  				<get-imported-package-alias>(<GetEnclosingPackageName>, p) => ctx;
-  				sort' := parameterized-sort(x, [sort(ctx)])
-			<+
-  				sort' := sort(x)	 
+  	q@QualifiedSort(p@Package(QName(_)), name) -> sort'
+  	where 
+  		<get-sdf-usage(|p)> name;
+  		<ensure-cf-sort(|p)>name;
+  		<get-imported-package-alias>(<GetEnclosingPackageName>, p) => ctx;
+  		sort' := parameterized-sort(name, [sort(ctx)])
+		<+
+  		sort' := sort(name)	 
   	
   to-sdf-sort: 
   	sort(x) -> sort'  
   	where  
-  		(s,c,t) := <get-sdf-usage(|Unqualified())>x;
+  		(sortName,context,scopeType) := <get-sdf-usage(|Unqualified())>x;
   		?(_, _, PublicScope());
-  	  if <?Module(QName(_))>c then 
-				ns:=<get-enclosing-package-qname>c
+  	  if <?Module(QName(_))>context then 
+				ns:=<get-enclosing-package-qname>context
 			else 
-				ns := c
+				ns := context
 			end;		  
+			<ensure-cf-sort(|ns)>x; 
 			ctx := <get-imported-package-alias>(<GetEnclosingPackageName>, ns);  
 		  sort' := parameterized-sort(x, [sort(ctx)])
 		<+
 			sort' := sort(x) 		
 			
-rules 
+			
+rules // normalizing and generating SDF from KEYWORD SECTION 
  	
 	keyword-sections-to-sdf:
  		keyword-sections -> sdf-sections 

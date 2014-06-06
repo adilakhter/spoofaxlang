@@ -1,0 +1,12 @@
+module entitiesA
+
+imports entitiesB 
+imports example
+
+entity A { }
+
+entity A { }
+
+entity B { }
+
+entity C { }

@@ -1,0 +1,19 @@
+module thistest
+
+entity A {
+  a : String
+  b : B
+  
+  test() {
+  	this.a := ""; 
+  }
+}
+
+entity B { 
+  a : A
+  test() {
+  	this.a.test();
+  }
+}
+
+entity String { }  

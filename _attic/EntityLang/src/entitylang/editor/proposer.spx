@@ -1,0 +1,36 @@
+package org.lang.spx.entitylang 
+
+module codecompletion-service 
+	rules 
+		editor-complete:
+			(node, position, ast, path, project-path) -> proposals
+    	where
+      	editor-init ; 
+      	rules( CurrentFile := path );
+      	<analyze> ast => ast' ;
+	  		<oncetd(where(propose => proposals))> ast' <+
+	  		<debug> ast ; ![] => proposals  	
+
+module codecompletion-triggers
+
+	completions
+	  // Semantic (identifier) completion:   
+	                                         
+	  completion proposer                  : editor-complete
+	                                         
+	  completion trigger                   : ":"
+	  
+	  
+module codecompletion-templates	
+
+	completions
+                                                                 
+	  // Syntax completion:                                          
+	                                                                 
+	  completion template : Start =      "module " <m> (blank)       
+	                                                                 
+	  completion template : Definition = "entity " <e> " {}" (blank) 
+	                                                                 
+	  completion template : Property = "" <x> " : " <T> (blank)       
+	                                                                 
+

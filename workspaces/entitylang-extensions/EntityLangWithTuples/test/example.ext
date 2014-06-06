@@ -1,0 +1,11 @@
+module example
+
+entity Y{
+	d:Int
+	e: TT 
+}
+
+
+
+
+ 

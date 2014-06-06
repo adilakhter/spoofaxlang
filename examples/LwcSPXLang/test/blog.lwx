@@ -1,0 +1,61 @@
+module blog 
+
+//imports users 
+
+entity User {
+  name : String  
+}
+         
+entity Blog {  
+  post     : BlogPost    
+  author   : User  
+  audience : User    
+  author   : User   
+   
+  comment(c : String) { 
+  	this.post.title; 
+  	this.post.comment(c); // method call on property
+  }
+}
+  
+comment(blog : Blog, c : String, d : String) { 
+  var x : Int; 
+  //var y : Int;
+  var z : String; // z is not used -> warning
+  { 
+  	var y : String; 
+    blog.comment(c); 
+    y + 1; // type error: local y is a String
+  }  
+  x := ""; // cannot assign String to Int
+  comment(blog, c, x + 0);  // resolve to function def
+  comment(blog, c, x + 0 + y);  // y not declared
+}
+
+comment2(blog : Blog, c : String, i : Int) {  
+  comment(blog,c,i);
+  comment(blog, c, "", 4) + 4; 
+}
+
+comment(blog : Blog, c : String, i : Int) { 
+  comment2(blog,c,i);
+}
+ 
+entity BlogPost {
+  blog    : Blog
+  title   : String
+  author  : User   
+  body    : String 
+  created : DateTime
+  
+  comment3(c : String) {}
+}
+
+entity String { }
+entity DateTime { }
+entity Int { }
+
+entity URL {
+  location : String
+}
+

@@ -1,0 +1,8 @@
+module example
+
+
+entity C {
+  a : A
+  b : C 
+} 
+             

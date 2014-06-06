@@ -1,0 +1,20 @@
+module functions
+
+bar(x : Int) : Int { // this is fine
+  return 3 + x;  
+}
+
+foo(x : Int) {
+  return 3 + x; // should not have return statement
+}
+
+boo(x : Int) : String { 
+  return 3 + x; // return statement should be consistent with return type
+}
+
+baz(x : Int, y : Int) : Int {   
+  // return statement missing
+}  
+
+entity Int {}
+entity String {}

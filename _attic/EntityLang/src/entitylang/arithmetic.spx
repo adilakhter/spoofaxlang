@@ -1,0 +1,41 @@
+package org.lang.spx.entitylang
+
+module arithmetic-definition
+	context-free syntax
+  	INT         -> Exp {cons("Int")}
+  	STRING      -> Exp {cons("String")}
+  	Exp "+" Exp -> Exp {cons("Plus"),assoc}
+  	Exp "*" Exp -> Exp {cons("Times"),assoc}
+  context-free priorities
+  	Exp "*" Exp -> Exp
+  	>
+  	Exp "+" Exp -> Exp
+
+//test
+
+module arithmetic-transformation 
+	rules
+		type-of :
+	  	String(x) -> Type("String")
+	  	where debug(!"type-of string: ") 
+	  	
+	  type-of :
+	  	Int(x) -> Type("Int" )
+	   
+	  type-of : 
+	  	Plus(e1, e2) -> Type("Int") 
+	  	where <type-of> e1 => Type("Int");
+	  	      <type-of> e2 => Type("Int")
+	  	      
+	  type-of : 
+	  	Times(e1, e2) -> Type("Int")
+	  	where <type-of> e1 => Type("Int");
+	  	      <type-of> e2 => Type("Int")
+	
+	  editor-error :
+	  	e@Plus(e1, e2) -> (e, $[Arguments should be of type Int])
+	  	where <type-of> e1; <type-of> e2; not(<type-of>e)
+	  	 	      
+	  editor-error :
+	  	e@Times(e1, e2) -> (e, $[Arguments should be of type Int])
+	  	where <type-of> e1; <type-of> e2; not(<type-of>e)

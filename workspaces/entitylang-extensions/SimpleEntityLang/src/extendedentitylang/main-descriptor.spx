@@ -1,0 +1,18 @@
+package ExtendedEntityLang
+	
+module mainDescriptor
+	 		
+imports ExtendedEntityLang.generated  
+	 		
+
+language General properties
+                  
+  name          : ExtendedEntityLang
+  extends       : Root
+                  
+  description   : "Spoofax/IMP-generated(using spoofaxlang) editor for the ExtendedEntityLang language "
+  url           : http://strategoxt.org
+                  
+  extensions    : ett
+  start symbols : Start
+	 			

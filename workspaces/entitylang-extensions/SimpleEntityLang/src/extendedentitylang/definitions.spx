@@ -1,0 +1,21 @@
+package ExtendedEntityLang   
+
+// Following module define the main langauge constructs for ExtendedEntityLang language
+module languageConcepts
+
+imports SimpleEntityLang
+imports SimpleEntityLang.generated
+	
+context-free syntax    
+	SimpleEntityLang.Module -> Start
+
+lexical syntax 
+	SimpleEntityLang.SID -> ID 
+	
+rules 
+	// Analyzes the current program, returning a tuple with errors, warnings, and notes;
+	// each a list of (term, message) tuples or simply (message) terms.
+	editor-analyze = fail
+		 
+		
+			

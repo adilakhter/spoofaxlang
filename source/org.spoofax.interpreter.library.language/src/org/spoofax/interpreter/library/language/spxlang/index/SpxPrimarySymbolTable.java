@@ -89,8 +89,7 @@ public class SpxPrimarySymbolTable implements INamespaceResolver , IPackageDecla
 		// if not already defined, defining this namespace
 		if (!containsNamespace(namespace)){
  			this.namespaces.put(namespace.namespaceUri().id(), namespace);
- 			System.out.println("Adding following namespace : "+ namespace);
-		}	
+ 		}	
 	}
 	
 	public void defineSymbol(IStrategoList namespaceId, SpxSymbolTableEntry symTableEntry) throws SpxSymbolTableException {
@@ -317,8 +316,6 @@ public class SpxPrimarySymbolTable implements INamespaceResolver , IPackageDecla
 	
 	private INamespace removeNamespace(INamespace nsToRemove){
 		if(nsToRemove != null){
-			System.out.println("Removing following namespace : "+ nsToRemove);
-			
 			if(nsToRemove instanceof PackageNamespace){
 				NamespaceUri internalNamespaceUri = PackageNamespace.packageInternalNamespace(nsToRemove.namespaceUri(), _facade);
 				this.namespaces.remove(internalNamespaceUri.id());

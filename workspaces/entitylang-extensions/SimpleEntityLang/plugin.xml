@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.imp.runtime.languageDescription">
+      <language
+            extensions="sim"
+            description="SimpleEntityLang"
+            language="SimpleEntityLang"
+            derivedFrom="DynamicRoot"
+            validator="SimpleEntityLang.SimpleEntityLangValidator"
+            validatorClass="SimpleEntityLang.SimpleEntityLangValidator"
+      ></language>
+   </extension>
+   <extension
+         id="SimpleEntityLang.parser"
+         name="SimpleEntityLang Parser"
+         point="org.eclipse.imp.runtime.parser">
+      <parser
+            class="SimpleEntityLang.SimpleEntityLangParseController"
+            language="SimpleEntityLang">
+      </parser>
+   </extension>    
+</plugin>

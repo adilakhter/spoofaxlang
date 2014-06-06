@@ -1,0 +1,11 @@
+module functionsProperties
+
+imports propertiesA
+
+comment(b : Blog, x : String) {
+  b.comment := x;
+}
+
+comment(b : Blog) {
+  comment(b, "3"); 
+}  

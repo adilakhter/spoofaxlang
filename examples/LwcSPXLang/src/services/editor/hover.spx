@@ -1,0 +1,10 @@
+package languages.spx.lwc
+
+module hover-service 
+	rules
+  	editor-hover: 
+  		(node, position, ast, path, project-path) -> str
+    		where <hover> node => str
+	
+	references
+		hover _     : editor-hover

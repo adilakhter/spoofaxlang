@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+	
+<project name="build.spx.main.generated" default="build-spx-packages">
+    <target name="build-spx-packages">
+        <echo>
+            Build Failed. Please compile and  generate all the artifacts first by clicking [build-all] target.
+        </echo>
+    </target>
+</project>

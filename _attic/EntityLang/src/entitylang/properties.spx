@@ -1,0 +1,49 @@
+package org.lang.spx.entitylang
+
+module property-definition
+	
+	context-free syntax
+	  Property    -> EntityElem 
+    ID ":" Type -> Property {cons("Property")}
+  	Exp "." ID  -> Exp {cons("PropertyAccess")}
+
+
+module property-constructors 
+	signature 
+  	constructors
+	  	Entities   : Namespace
+	  	Properties : String -> Namespace
+
+module property-transformations
+	rules // property declarations 
+	 
+	  name-of: 
+	  	Property(name, type) -> name
+	  	
+	  type-of :
+	  	Property(name, type) -> type
+	
+	  rename: 
+	  	d@Property(name, type) -> <annotate-scope(is-entity; name-of)> d 
+	  
+	  store:
+	  	d@Property(name, type) -> d
+	  	where <map-declaration(|Properties(<get-annotated-scope> d))> (name, d)
+	  
+	  editor-error:
+	    d@Property(name, _) -> (name, $[Multiple declarations for property [name]])
+	    where not ( <get-unique-declaration(|Properties(<get-annotated-scope> d))> name )
+
+	rules // property access
+	
+	   type-of :
+	   	 PropertyAccess(e, name) -> <type-of> d
+	   	 where debug(!"type-of property access: "); <type-of> e => type;  debug(!"  type of e:");
+	   	       <get-declaration(|Properties(<resolve; debug(!"resolved: ")> type))> name => d
+	   	       ; debug(!"  declaration: ")
+	   	 
+	   editor-error :
+	   	 e@PropertyAccess(e', name) -> (name, $[[<pp>type] does not have a property [name]])
+	   	 where <type-of> e' => type; not( <type-of> e )
+
+		

@@ -1,0 +1,60 @@
+module(
+  unparameterized("Concepts")
+, [imports([module(unparameterized("SPXCommon"))])]
+, [ exports(
+      context-free-syntax(
+        [ prod(
+            [lit("\"concepts\""), iter-star(sort("ConceptDef"))]
+          , sort("ConceptSection")
+          , attrs(
+              [term(
+                 default(appl(unquoted("cons"), [fun(quoted("\"Concepts\""))]))
+               )]
+            )
+          )
+        , prod(
+            [lit("\"concepts\"")]
+          , sort("ModuleName")
+          , attrs([reject()])
+          )
+        , prod(
+            [lit("\"concept\""), sort("ID"), lit("\":\""), sort("Rule")]
+          , sort("ConceptDef")
+          , attrs(
+              [term(
+                 default(appl(unquoted("cons"), [fun(quoted("\"ConceptDef\""))]))
+               )]
+            )
+          )
+        , prod(
+            [lit("\"rule\""), sort("Rule"), lit("\":\""), iter-star(sort("ID"))]
+          , sort("ConceptDef")
+          , attrs(
+              [term(
+                 default(appl(unquoted("cons"), [fun(quoted("\"RuleDef\""))]))
+               )]
+            )
+          )
+        , prod(
+            [sort("ID")]
+          , sort("Rule")
+          , attrs(
+              [term(
+                 default(appl(unquoted("cons"), [fun(quoted("\"Rule1\""))]))
+               )]
+            )
+          )
+        , prod(
+            [sort("ID"), lit("\"->\""), sort("ID")]
+          , sort("Rule")
+          , attrs(
+              [term(
+                 default(appl(unquoted("cons"), [fun(quoted("\"Rule2\""))]))
+               )]
+            )
+          )
+        ]
+      )
+    )
+  ]
+)

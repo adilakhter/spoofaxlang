@@ -1,0 +1,8 @@
+module users
+
+entity User {
+  name     : String
+  password : String 
+  homepage : URL
+}
+  

@@ -1,0 +1,295 @@
+package languages.commonLang
+	
+	module namespacelib 
+	
+		signature constructors
+			name:  String -> Annotation
+			scope: String -> Annotation
+			
+			IncludedBy: Namespace -> Namespace
+			Including:  Namespace -> Namespace
+			
+		rules // scoped renaming
+			
+			// todo: new-scope should have namespace as parameter
+			
+			/**
+			* executes the renaming strategy s in a new scope
+			* 
+			* declarations inside the new scope will hide existing declarations outside the new scope
+			* multiple declarations with the same name inside the new scope will be renamed to the same name
+			*
+			* @param renaming strategy s: a -> b
+			* @type a -> b
+			*/
+			new-scope(s) :
+				x -> y
+				where
+					<newname> x => scope ;
+					{| Renamed, RenamedInScope, CurrentScope, Scope:
+						rules (
+							CurrentScope: () -> scope
+							Scope:+ x -> scope
+						) ;
+						<s> x => y
+					|}
+					
+			/**
+			* annotates the current term with a fresh name
+			* can distinguish different namespaces
+			* remembers the renaming by storing two dynamic rules
+			* 
+			* multiple calls on the same term inside the same scope will give identical results
+			* calls inside a new scope will hide the results of calls to the same term from outer scopes
+			*
+			* @param namespace 
+			* @type a -> a
+			*/
+			rename-declaration(|namespace) : 
+				x -> x'
+				where 
+					<CurrentScope> () => scope ;
+					(
+						<RenamedInScope> (namespace, scope, x) => x' <+
+						x' := x{name(<newname> x)}
+					)
+				where rules(
+					RenamedInScope: (namespace, scope, x) -> x' 
+					Renamed: (namespace, x) -> x'
+				)
+			
+			/**
+			* annotates the current term with a new name
+			* succeeds only if rename-declaration was called before on the same term
+			* will use the same name as rename-declaration (by calling the dynamic rule stored by rename-declaration)
+			*
+			* @param namespace 
+			* @type a -> b
+			*/
+			rename-reference(|namespace) :
+				x -> x'
+				where
+					<Renamed> (namespace, x) => x'
+		
+		rules // annotate scope
+			
+			annotate-scope(s) : x -> x{scope(scope)} where project-scope(s) => scope
+			
+		rules // store declarations and references
+			
+			new-analysis(s) = {| Declared, Referred, Including, IncludedBy: s |}
+			
+			//CurrentFile = fail
+				
+			/**
+			* stores a mapping from a name to a declaration
+			* can distinguish different namespaces
+			* remembers the mapping by storing a dynamic rule
+			*
+			* @param namespace
+			* @type (a, b) -> b
+			*/
+			map-declaration(|namespace) :
+				(x, d) -> d
+				where 
+				  //file := <CurrentFile>;
+				  rules(
+					//Declared :+ (namespace, x) -> (file, d)
+					Declared :+ (namespace, x) -> d
+				  )
+				
+			map-declaration = map-declaration(|<get-annotated-scope>)
+			
+			/**
+			* stores the usage of a reference
+			* can distinguish different namespaces
+			* remembers the reference by storing a dynamic rule
+			*
+			* @param namespace
+			* @type a -> a
+			*/
+			store-reference(|namespace) :
+				x -> x
+				where rules (
+					Referred:+ (namespace, x) -> x
+				)
+		
+			store-reference = store-reference(|<get-annotated-scope>)
+			
+		rules // include namespaces
+			
+			/**
+			*
+			* example: 
+			*     store: Class(c, Parent(p), _, _) -> <id> 
+			*         where 
+			*             <store-declaration(|Classes())> c ; 
+			*             <namespace-inclusion(|Fields(c))> Fields(p) ;
+			*             <namespace-inclusion(|Methods(c))> Methods(p) 
+			*/
+			namespace-inclusion(|namespace) : 
+				included -> included
+				where rules (
+					IncludedBy:+ included -> namespace
+					Including:+ namespace -> included
+				)
+						
+		strategies // access scopes
+			
+			get-scopes = all-keys-Scope  // efficiency?
+			
+			get-scopes(s) = get-scopes ; filter(where(s))
+			
+			get-scope(s) = get-scopes ; fetch-elem(where(s))
+			
+			project-scopes(s) = get-scopes ; filter(s)
+			
+			project-scope(s) = get-scopes ; fetch-elem(s)
+			
+			in-scope(s) = where(get-scope(s))
+			
+			get-annotated-scope = get-annos ; fetch-elem(?scope(<id>))
+			
+		strategies // access inclusions
+			
+			get-included-namespaces  = get-inclusions(bagof-Including)
+			
+			get-including-namespaces = get-inclusions(bagof-IncludedBy)
+			
+			get-inclusions(s) = ![<id>] ; get-inclusions(s|[]) ; reverse 
+			
+			get-inclusions(s|temps): [] -> temps
+			 
+			get-inclusions(s|temps): 
+				[space|spaces] -> <get-inclusions(s|temps)> spaces
+				where <elem> (space, temps)
+				
+			get-inclusions(s|temps):  
+				[space|spaces] -> <get-inclusions(s|temps')> spaces
+				where
+					<s> space ;
+					get-inclusions(s|[space|temps]) => temps'
+		
+			resolve-included = ?IncludedBy(<get-included-namespaces>) <+ ?Including(<get-including-namespaces>) <+ ![<id>]
+				
+		strategies // access declarations
+			
+			/**
+			* maps a name to its declarations
+			* can distinguish different namespaces
+			* remembers the mapping by calling a dynamic rule
+			*
+			* @param namespace
+			* 
+			* @type a -> List(b)
+			*/
+			get-declarations(|namespace) = ?x ; <resolve-included> namespace ; mapconcat(!(<id>, x) ; bagof-Declared)
+			
+			/**
+			* succeeds if the current term can be mapped to a declaration
+			* can distinguish different namespaces
+			* 
+			* @param namespace
+			* 
+			* @type a -> a
+			*/
+			is-declared(|namespace) = where(get-declarations(|namespace) ; ?[_|_])
+			
+			/**
+			* maps a name to its only declaration
+			* can distinguish different namespaces
+			* 
+			* @param namespace
+			*/
+			get-unique-declaration(|namespace) = get-declarations(|namespace) ; ?[<id>]
+			
+			/**
+			* maps a name to its first declaration
+			* can distinguish different namespaces
+			* 
+			* @param namespace
+			*/
+			get-declaration(|namespace) = project-declaration(id|namespace) 
+			
+			/**
+			* maps a name to its first declaration for which strategy s holds
+			* can distinguish different namespaces
+			* 
+			* @param s: b -> c
+			* @param namespace
+			* 
+			* @type a -> b
+			*/
+			get-declaration(s|namespace) = project-declaration(where(s)|namespace)
+			
+			/**
+			* maps a name to its declarations for which strategy s holds
+			* can distinguish different namespaces
+			* 
+			* @param s: b -> c
+			* @param namespace
+			* 
+			* @type a -> List(b)
+			*/
+			get-declarations(s|namespace) = project-declarations(where(s)|namespace)
+		
+		strategies // project declarations
+			
+			/**
+			* maps a name to the first projection of its declarations
+			* can distinguish different namespaces
+			* 
+			* @param s: b -> c
+			* @param namespace
+			* 
+			* @type a -> c
+			*/
+			project-declaration(s|namespace) = debug(!"project-declarations: ");
+			  get-declarations(|namespace) ; debug(!" declarations: ") ;
+			  fetch-elem(s) 
+		
+			/**
+			* maps a name to the projections of its declarations
+			* can distinguish different namespaces
+			* 
+			* @param s: b -> c
+			* @param namespace
+			* 
+			* @type a -> List(c)
+			*/
+			project-declarations(s|namespace) = get-declarations(|namespace) ; filter(s) 
+			
+		strategies // access all declarations
+			
+			get-all-declarations(|namespace) = 
+				<resolve-included> namespace => spaces ; 
+				all-keys-Declared ; 
+				filter(where( (id, !spaces) ; elem )) ;
+				mapconcat(bagof-Declared)
+			
+			get-all-declarations(s|namespace) = project-all-declarations(where(s)|namespace) 
+		
+			project-all-declarations(s|namespace) = get-all-declarations(|namespace) ; filter(s) 
+			 
+		strategies // access references
+		
+			get-references(|namespace) = ?x ; <resolve-included> namespace ; mapconcat(!(<id>, x) ; bagof-Referred)
+			
+			is-referred(|namespace) = get-references(|namespace) ; ?[_|_]
+		
+		strategies	
+			
+			get-proposal-candidates(|namespace) = all-keys-Renamed ; filter(?(namespace, _) ; Renamed)
+			
+			store-proposal-candidates(|namespace) = get-proposal-candidates(|namespace) ; store-proposals
+			
+			store-proposals = ?x ; where (rules ( Propose : () -> x ))
+			
+			get-proposals = ( <Propose> () ; map(rm-annotations) ) <+ ![]
+			
+			get-proposals(s|namespace) = 
+				( 
+					<Propose> () ; 
+					filter(where( get-declaration(s|namespace) )) ; 
+					map(rm-annotations) 
+				) <+ ![]

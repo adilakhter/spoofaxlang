@@ -1,0 +1,24 @@
+package org.lang.spx.commonlang
+    
+module CommonConstructs
+context-free syntax
+  	ID         -> QID
+    QID "." ID -> QID {cons("QId")}
+  
+	lexical syntax
+		[a-zA-Z][a-zA-Z0-9\_]* -> ID
+    "-"? [0-9]+          -> INT
+    {ID "/"}+ 					 -> FILENAME
+    "\"" StringChar* "\"" -> STRING
+    ~[\"\n]               -> StringChar
+    "\\\""                -> StringChar
+    BackSlashChar         -> StringChar
+    "\\"                  -> BackSlashChar
+    
+    [\ \t\n\r] -> LAYOUT
+    
+    [\*]                             -> CommentChar
+    "/*" (~[\*] | CommentChar)* "*/" -> LAYOUT 
+    "//" ~[\n\r]* ([\n\r] | EOF)     -> LAYOUT
+    
+    -> EOF

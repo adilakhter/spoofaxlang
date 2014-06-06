@@ -1,0 +1,27 @@
+package languages.spx.lwc
+
+module languagedescription
+	
+	imports languages.commonLang
+	
+	language General properties
+    
+		name          : LwcSPXLang 
+  	id            : LwcSPXLang
+  	extends       : Root
+                  
+  	description   : "Spoofax/IMP-generated editor for the LwcSPXLang language"
+  	url           : http://strategoxt.org
+                  
+  	extensions    : lwx
+	  start symbols : Start             
+   
+
+		builders
+	  	provider : include/LwcSPXLang-java.jar      
+	  	
+	  	builder : "Show abstract syntax (for selection)"   = generate-aterm (openeditor) (realtime) (meta) (source)  
+ 
+  		builder  : "Analysis"  = analyze-builder (openeditor) (realtime) (meta) (source)  
+ 
+	    builder : "Generate Java code (for selection)"  = generate-java (openeditor) (realtime)

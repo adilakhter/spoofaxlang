@@ -1,0 +1,15 @@
+package org.lang.spx.entitylang
+
+module StatementTransformations
+	rules
+		 rename:
+			Block(stats) -> Block(stats')
+			where new-scope(<rename-all>stats => stats')
+	
+		editor-error:
+			s@Assign(e1, e2) -> (s, $[Cannot assign [<pp>type2] to [<pp>type1]])
+			where 
+	  		type1 := <type-of> e1;
+	  		type2 := <type-of> e2;
+	  		not( <type-compatible>(type1, type2))  
+  	

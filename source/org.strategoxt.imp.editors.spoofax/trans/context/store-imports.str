@@ -49,7 +49,6 @@ rules
 					concat-strings; 
 					newname => n
  		where 
-			<debug(!"storing alias : ~")>(i , ImportedPackageAlias() , n);
 			activate-scope(
 				<index-unique-symbol-definition> ( i , ImportedPackageAlias() , n)
 				|p

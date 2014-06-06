@@ -1,0 +1,62 @@
+package languages.spx.lwc
+
+module expression-definition
+	imports languages.commonLang
+	
+	context-free syntax
+  	"var" ID ":" Type ";" -> VarDecl {cons("VarDecl")}
+  	
+	context-free syntax
+  	ID          -> Exp {cons("VarRef")}
+  	"(" Exp ")" -> Exp {bracket}
+
+    Exp "<" Exp -> Exp {cons("LT"),non-assoc}
+
+module expression-constructors
+	
+	imports languages.commonLang
+	
+	signature
+  	constructors
+  		Variables : Namespace
+
+module expression-transformations
+	imports languages.commonLang
+	
+	rules // variable declaration
+		
+	  type-of:
+	  	VarDecl(name, type) -> type
+		
+	  rename:
+	  	d@VarDecl(name, type) -> VarDecl(name', type)
+	  	where <rename-declaration(|Variables())> name => name'
+		
+	  store:
+	  	d@VarDecl(name, type) -> d
+	  	where <map-declaration(|Variables())> (name, d)
+	  	  
+	rules // variable reference
+		
+	  hover:
+	  	e -> $[Type: [<type-of; pp>e]] 
+		
+	  rename:
+	  	VarRef(name) -> VarRef(<rename-reference(|Variables())>name)
+	  	
+	  resolve:
+	  	VarRef(name) -> <debug(!"resolve: "); get-declaration(|Variables()); debug(!" declaration: ")> name
+	  	
+	  store:
+	  	e@VarRef(name) -> e
+	  	where <store-reference(|Variables())> name
+	  	
+	  type-of:
+	  	VarRef(name) -> type
+	  	where debug(!"type-of: "); <get-declaration(|Variables()); debug(!" decls: "); type-of> name => type
+	  	;debug(!"  type:")
+	  	
+	  editor-error :
+	  	VarRef(name) -> (name, $[Variable [name] not declared])
+	  	where not( <is-declared(|Variables())> name )
+	

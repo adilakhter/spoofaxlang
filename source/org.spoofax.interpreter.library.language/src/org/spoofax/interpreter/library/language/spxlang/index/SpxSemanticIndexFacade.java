@@ -254,8 +254,6 @@ public class SpxSemanticIndexFacade {
 			IStrategoAppl ast, 
 			IStrategoAppl analyzedAst) throws IOException {
 
-		System.out.println( "Creating a new Module Declaration .  " + moduleQName);
-		
 		SpxModuleLookupTable table = this.getPersistenceManager().spxModuleTable();
 
 		IStrategoList moduleId = ModuleDeclaration.getModuleId( this, moduleQName);
@@ -324,7 +322,6 @@ public class SpxSemanticIndexFacade {
 		
 		
 		if(table.containsPackage(packageId)){
-			System.out.println( "Updating Package Declaration .  " + packageId);
 			// Package is already there in the index. Hence,just adding the Uri where 
 			// this package declaration is found.
 			table.addPackageDeclarationLocation(packageId,absFilePath);
@@ -641,7 +638,6 @@ public class SpxSemanticIndexFacade {
 		SpxPrimarySymbolTable symTable =  this.getPersistenceManager().spxSymbolTable();
 		
 		for( INamespace ns : nsFactory.newNamespaces(this) ) {  
-			System.out.println( "Trying to ADD following Namesapce " + ns.namespaceUri().id());
 			symTable.defineNamespace(ns) ; 
 		}
 	}

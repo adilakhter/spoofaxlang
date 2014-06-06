@@ -1,0 +1,10 @@
+package org.lang.spx.entitylang
+
+module codefolding-service
+	
+folding 
+	Module.Module
+	Entity.Entity
+	FunctionDef.FunctionDef
+  
+		

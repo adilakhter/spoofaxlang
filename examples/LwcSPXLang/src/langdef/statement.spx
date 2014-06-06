@@ -1,0 +1,33 @@
+package languages.spx.lwc
+
+
+module statement-definition
+	
+	imports languages.commonLang
+	context-free syntax
+  	Exp ":=" Exp ";"   -> Statement {cons("Assign")}
+  	"{" Statement* "}" -> Block {cons("Block")}
+  	Block              -> Statement
+  	VarDecl            -> Statement
+  	Exp ";"            -> Statement {cons("Statement")} 
+	context-free syntax
+  	"if" "(" Exp ")" Block "else" Block -> Statement {cons("If")}
+  	"while" "(" Exp ")" Block           -> Statement {cons("While")}
+
+module statement-signatures
+
+
+module statement-transformations
+	imports languages.commonLang
+	rules
+		 rename:
+			Block(stats) -> Block(stats')
+			where new-scope(<rename-all>stats => stats')
+	
+		editor-error:
+			s@Assign(e1, e2) -> (s, $[Cannot assign [<pp>type2] to [<pp>type1]])
+			where 
+	  		type1 := <type-of> e1;
+	  		type2 := <type-of> e2;
+	  		not( <type-compatible>(type1, type2))  
+  	 

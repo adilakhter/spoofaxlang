@@ -1,0 +1,10 @@
+package EntityLangWithTuples   
+
+// Following module define the main langauge constructs for EntityLangWithTuples language
+module languageConcepts
+	imports SimpleEntityLang
+	
+context-free syntax    
+	SimpleEntityLang.Start -> Start 
+
+	

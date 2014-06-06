@@ -1,0 +1,18 @@
+module functions
+
+imports primitives
+
+foo(x : Int) {
+  return 3 + x; // function has no return type
+}
+
+bar(x : Int) : Int { // this is fine
+  return 3 + x;        
+} 
+ 
+baz(x : Int) : Int {
+  foo(x); 
+  x := bar(x + "") + "";  
+  // function should have return statement
+}
+ 

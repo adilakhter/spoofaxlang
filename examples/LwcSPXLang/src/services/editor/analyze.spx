@@ -1,0 +1,21 @@
+package languages.spx.lwc
+
+module analyze-service
+	imports 
+  	languages.commonLang
+ 
+	rules
+		editor-analyze:
+	    (ast, path, project-path) -> (ast', errors, warnings, notes)
+	    with
+	      debug(!"Inside analyze: ");
+	      editor-init;
+	      rules( CurrentFile := path );
+		  	<analyze> ast => ast';
+	      <collect-all(editor-error,   conc)> ast' => errors;
+	      <collect-all(editor-warning, conc)> ast' => warnings;
+	      <collect-all(editor-note,    conc)> ast' => notes
+
+module analyze-observer 
+	builders
+		observer : editor-analyze         

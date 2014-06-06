@@ -1,0 +1,396 @@
+Module(
+  "blog"
+, [ Entity("User", [Property("name", Type("String")){scope("User")}])
+  , Entity(
+      "Blog"
+    , [ Property("post", Type("BlogPost")){scope("Blog")}
+      , Property("author", Type("User")){scope("Blog")}
+      , Property("audience", Type("User")){scope("Blog")}
+      , Property("author", Type("User")){scope("Blog")}
+      , MethodDef(
+          "comment"
+        , [Param("c"{name("c38")}, Type("String")){ scope(
+                                                      MethodDef(
+                                                        "comment"
+                                                      , [Param("c", Type("String"))]
+                                                      , None()
+                                                      , Block(
+                                                          [ Statement(PropertyAccess(PropertyAccess(This(), "post"), "title"))
+                                                          , Statement(
+                                                              MethodCall(PropertyAccess(This(), "post"), "comment", [VarRef("c")])
+                                                            )
+                                                          ]
+                                                        )
+                                                      )
+                                                    )
+                                                  }]
+        , None()
+        , Block(
+            [ Statement(PropertyAccess(PropertyAccess(This(){scope("Blog")}, "post"), "title"))
+            , Statement(
+                MethodCall(PropertyAccess(This(){scope("Blog")}, "post"), "comment", [VarRef("c"{name("c38")})])
+              )
+            ]
+          )
+        ){scope("Blog")}
+      ]
+    )
+  , FunctionDef(
+      "comment"
+    , [ Param("blog"{name("blog21")}, Type("Blog")){ scope(
+                                                       FunctionDef(
+                                                         "comment"
+                                                       , [ Param("blog", Type("Blog"))
+                                                         , Param("c", Type("String"))
+                                                         , Param("d", Type("String"))
+                                                         ]
+                                                       , None()
+                                                       , Block(
+                                                           [ VarDecl("x", Type("Int"))
+                                                           , VarDecl("z", Type("String"))
+                                                           , Block(
+                                                               [ VarDecl("y", Type("String"))
+                                                               , Statement(MethodCall(VarRef("blog"), "comment", [VarRef("c")]))
+                                                               , Statement(Plus(VarRef("y"), Int("1")))
+                                                               ]
+                                                             )
+                                                           , Assign(VarRef("x"), String(""""))
+                                                           , Statement(
+                                                               FunctionCall(
+                                                                 "comment"
+                                                               , [VarRef("blog"), VarRef("c"), Plus(VarRef("x"), Int("0"))]
+                                                               )
+                                                             )
+                                                           , Statement(
+                                                               FunctionCall(
+                                                                 "comment"
+                                                               , [ VarRef("blog")
+                                                                 , VarRef("c")
+                                                                 , Plus(Plus(VarRef("x"), Int("0")), VarRef("y"))
+                                                                 ]
+                                                               )
+                                                             )
+                                                           ]
+                                                         )
+                                                       )
+                                                     )
+                                                   }
+      , Param("c"{name("c39")}, Type("String")){ scope(
+                                                   FunctionDef(
+                                                     "comment"
+                                                   , [ Param("blog", Type("Blog"))
+                                                     , Param("c", Type("String"))
+                                                     , Param("d", Type("String"))
+                                                     ]
+                                                   , None()
+                                                   , Block(
+                                                       [ VarDecl("x", Type("Int"))
+                                                       , VarDecl("z", Type("String"))
+                                                       , Block(
+                                                           [ VarDecl("y", Type("String"))
+                                                           , Statement(MethodCall(VarRef("blog"), "comment", [VarRef("c")]))
+                                                           , Statement(Plus(VarRef("y"), Int("1")))
+                                                           ]
+                                                         )
+                                                       , Assign(VarRef("x"), String(""""))
+                                                       , Statement(
+                                                           FunctionCall(
+                                                             "comment"
+                                                           , [VarRef("blog"), VarRef("c"), Plus(VarRef("x"), Int("0"))]
+                                                           )
+                                                         )
+                                                       , Statement(
+                                                           FunctionCall(
+                                                             "comment"
+                                                           , [ VarRef("blog")
+                                                             , VarRef("c")
+                                                             , Plus(Plus(VarRef("x"), Int("0")), VarRef("y"))
+                                                             ]
+                                                           )
+                                                         )
+                                                       ]
+                                                     )
+                                                   )
+                                                 )
+                                               }
+      , Param("d"{name("d7")}, Type("String")){ scope(
+                                                  FunctionDef(
+                                                    "comment"
+                                                  , [ Param("blog", Type("Blog"))
+                                                    , Param("c", Type("String"))
+                                                    , Param("d", Type("String"))
+                                                    ]
+                                                  , None()
+                                                  , Block(
+                                                      [ VarDecl("x", Type("Int"))
+                                                      , VarDecl("z", Type("String"))
+                                                      , Block(
+                                                          [ VarDecl("y", Type("String"))
+                                                          , Statement(MethodCall(VarRef("blog"), "comment", [VarRef("c")]))
+                                                          , Statement(Plus(VarRef("y"), Int("1")))
+                                                          ]
+                                                        )
+                                                      , Assign(VarRef("x"), String(""""))
+                                                      , Statement(
+                                                          FunctionCall(
+                                                            "comment"
+                                                          , [VarRef("blog"), VarRef("c"), Plus(VarRef("x"), Int("0"))]
+                                                          )
+                                                        )
+                                                      , Statement(
+                                                          FunctionCall(
+                                                            "comment"
+                                                          , [ VarRef("blog")
+                                                            , VarRef("c")
+                                                            , Plus(Plus(VarRef("x"), Int("0")), VarRef("y"))
+                                                            ]
+                                                          )
+                                                        )
+                                                      ]
+                                                    )
+                                                  )
+                                                )
+                                              }
+      ]
+    , None()
+    , Block(
+        [ VarDecl("x"{name("x9")}, Type("Int"))
+        , VarDecl("z"{name("z7")}, Type("String"))
+        , Block(
+            [ VarDecl("y"{name("y7")}, Type("String"))
+            , Statement(MethodCall(VarRef("blog"{name("blog21")}), "comment", [VarRef("c"{name("c39")})]))
+            , Statement(Plus(VarRef("y"{name("y7")}), Int("1")))
+            ]
+          )
+        , Assign(VarRef("x"{name("x9")}), String("\"\""))
+        , Statement(
+            FunctionCall(
+              "comment"
+            , [VarRef("blog"{name("blog21")}), VarRef("c"{name("c39")}), Plus(VarRef("x"{name("x9")}), Int("0"))]
+            )
+          )
+        , Statement(
+            FunctionCall(
+              "comment"
+            , [ VarRef("blog"{name("blog21")})
+              , VarRef("c"{name("c39")})
+              , Plus(Plus(VarRef("x"{name("x9")}), Int("0")), VarRef("y"))
+              ]
+            )
+          )
+        ]
+      )
+    )
+  , FunctionDef(
+      "comment2"
+    , [ Param("blog"{name("blog22")}, Type("Blog")){ scope(
+                                                       FunctionDef(
+                                                         "comment2"
+                                                       , [ Param("blog", Type("Blog"))
+                                                         , Param("c", Type("String"))
+                                                         , Param("i", Type("Int"))
+                                                         ]
+                                                       , None()
+                                                       , Block(
+                                                           [ Statement(
+                                                               FunctionCall(
+                                                                 "comment"
+                                                               , [VarRef("blog"), VarRef("c"), VarRef("i")]
+                                                               )
+                                                             )
+                                                           , Statement(
+                                                               Plus(
+                                                                 FunctionCall(
+                                                                   "comment"
+                                                                 , [VarRef("blog"), VarRef("c"), String(""""), Int("4")]
+                                                                 )
+                                                               , Int("4")
+                                                               )
+                                                             )
+                                                           ]
+                                                         )
+                                                       )
+                                                     )
+                                                   }
+      , Param("c"{name("c40")}, Type("String")){ scope(
+                                                   FunctionDef(
+                                                     "comment2"
+                                                   , [ Param("blog", Type("Blog"))
+                                                     , Param("c", Type("String"))
+                                                     , Param("i", Type("Int"))
+                                                     ]
+                                                   , None()
+                                                   , Block(
+                                                       [ Statement(
+                                                           FunctionCall(
+                                                             "comment"
+                                                           , [VarRef("blog"), VarRef("c"), VarRef("i")]
+                                                           )
+                                                         )
+                                                       , Statement(
+                                                           Plus(
+                                                             FunctionCall(
+                                                               "comment"
+                                                             , [VarRef("blog"), VarRef("c"), String(""""), Int("4")]
+                                                             )
+                                                           , Int("4")
+                                                           )
+                                                         )
+                                                       ]
+                                                     )
+                                                   )
+                                                 )
+                                               }
+      , Param("i"{name("i14")}, Type("Int")){ scope(
+                                                FunctionDef(
+                                                  "comment2"
+                                                , [ Param("blog", Type("Blog"))
+                                                  , Param("c", Type("String"))
+                                                  , Param("i", Type("Int"))
+                                                  ]
+                                                , None()
+                                                , Block(
+                                                    [ Statement(
+                                                        FunctionCall(
+                                                          "comment"
+                                                        , [VarRef("blog"), VarRef("c"), VarRef("i")]
+                                                        )
+                                                      )
+                                                    , Statement(
+                                                        Plus(
+                                                          FunctionCall(
+                                                            "comment"
+                                                          , [VarRef("blog"), VarRef("c"), String(""""), Int("4")]
+                                                          )
+                                                        , Int("4")
+                                                        )
+                                                      )
+                                                    ]
+                                                  )
+                                                )
+                                              )
+                                            }
+      ]
+    , None()
+    , Block(
+        [ Statement(
+            FunctionCall(
+              "comment"
+            , [VarRef("blog"{name("blog22")}), VarRef("c"{name("c40")}), VarRef("i"{name("i14")})]
+            )
+          )
+        , Statement(
+            Plus(
+              FunctionCall(
+                "comment"
+              , [VarRef("blog"{name("blog22")}), VarRef("c"{name("c40")}), String("\"\""), Int("4")]
+              )
+            , Int("4")
+            )
+          )
+        ]
+      )
+    )
+  , FunctionDef(
+      "comment"
+    , [ Param("blog"{name("blog23")}, Type("Blog")){ scope(
+                                                       FunctionDef(
+                                                         "comment"
+                                                       , [ Param("blog", Type("Blog"))
+                                                         , Param("c", Type("String"))
+                                                         , Param("i", Type("Int"))
+                                                         ]
+                                                       , None()
+                                                       , Block(
+                                                           [ Statement(
+                                                               FunctionCall(
+                                                                 "comment2"
+                                                               , [VarRef("blog"), VarRef("c"), VarRef("i")]
+                                                               )
+                                                             )
+                                                           ]
+                                                         )
+                                                       )
+                                                     )
+                                                   }
+      , Param("c"{name("c41")}, Type("String")){ scope(
+                                                   FunctionDef(
+                                                     "comment"
+                                                   , [ Param("blog", Type("Blog"))
+                                                     , Param("c", Type("String"))
+                                                     , Param("i", Type("Int"))
+                                                     ]
+                                                   , None()
+                                                   , Block(
+                                                       [ Statement(
+                                                           FunctionCall(
+                                                             "comment2"
+                                                           , [VarRef("blog"), VarRef("c"), VarRef("i")]
+                                                           )
+                                                         )
+                                                       ]
+                                                     )
+                                                   )
+                                                 )
+                                               }
+      , Param("i"{name("i15")}, Type("Int")){ scope(
+                                                FunctionDef(
+                                                  "comment"
+                                                , [ Param("blog", Type("Blog"))
+                                                  , Param("c", Type("String"))
+                                                  , Param("i", Type("Int"))
+                                                  ]
+                                                , None()
+                                                , Block(
+                                                    [ Statement(
+                                                        FunctionCall(
+                                                          "comment2"
+                                                        , [VarRef("blog"), VarRef("c"), VarRef("i")]
+                                                        )
+                                                      )
+                                                    ]
+                                                  )
+                                                )
+                                              )
+                                            }
+      ]
+    , None()
+    , Block(
+        [ Statement(
+            FunctionCall(
+              "comment2"
+            , [VarRef("blog"{name("blog23")}), VarRef("c"{name("c41")}), VarRef("i"{name("i15")})]
+            )
+          )
+        ]
+      )
+    )
+  , Entity(
+      "BlogPost"
+    , [ Property("blog", Type("Blog")){scope("BlogPost")}
+      , Property("title", Type("String")){scope("BlogPost")}
+      , Property("author", Type("User")){scope("BlogPost")}
+      , Property("body", Type("String")){scope("BlogPost")}
+      , Property("created", Type("DateTime")){scope("BlogPost")}
+      , MethodDef(
+          "comment3"
+        , [Param("c"{name("c42")}, Type("String")){ scope(
+                                                      MethodDef(
+                                                        "comment3"
+                                                      , [Param("c", Type("String"))]
+                                                      , None()
+                                                      , Block([])
+                                                      )
+                                                    )
+                                                  }]
+        , None()
+        , Block([])
+        ){scope("BlogPost")}
+      ]
+    )
+  , Entity("String", [])
+  , Entity("DateTime", [])
+  , Entity("Int", [])
+  , Entity("URL", [Property("location", Type("String")){scope("URL")}])
+  ]
+)

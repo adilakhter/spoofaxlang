@@ -1,0 +1,72 @@
+package org.lang.spx.entitylang
+
+module method-definition
+
+context-free syntax
+  	ID "(" {Param ","}* ")" ReturnType? Block -> MethodDef {cons("MethodDef")}
+  	Exp "." ID "(" {Exp ","}* ")"             -> MethodCall {cons("MethodCall")}
+    MethodDef                                 -> EntityElem
+  	MethodCall                                -> Exp
+
+
+module method-signatures 
+	signature
+  	constructors
+  		Methods    : Scope -> Namespace
+  		
+module mehtod-transformations  		
+
+rules
+	 		 
+type-of: MethodDef(name, params, Some(type), bl) -> type
+  	
+is-function-def = ?MethodDef(_,_,_,_) 
+  
+	  name-of: 
+	  	MethodDef(name, params, rt, bl) -> name
+  	
+	  arg-types :
+	  	MethodDef(name, params, rt, bl) -> <map(?Param(_,<id>))> params
+	  	
+	  signature-of :
+	  	MethodDef(name, params, rt, bl) -> (name, <arg-types>)
+	  	 
+	  rename:
+	  	d@MethodDef(name, params, rt, bl) -> <annotate-scope(is-entity; name-of)> d'
+	  	where 
+	  	  new-scope(<all(rename-all)> d => d')
+  	
+	  store: 
+	  	d@MethodDef(name, params, rt, bl) -> d
+	  	where 
+	  	  <map-declaration(|Methods(<get-annotated-scope>d))> (<signature-of>d, d)
+	  	
+	  editor-error:
+	    d@MethodDef(name, params, rt, bl) -> (name, $[Multiple declarations for function [name]])
+	    where 
+	      not(<signature-of; get-unique-declaration(|Methods(<get-annotated-scope> d))> d)
+	  	  	   		
+	rules // method calls
+	   
+	  namespace-of:
+	  	MethodCall(e, name, args) -> Methods(<type-of; name-of> e)
+	  	
+	  signature-of:
+	  	MethodCall(e, name, args) -> (name, <map(type-of)>args)
+		 
+	  type-of:
+	  	call@MethodCall(e, name, args) -> type
+	  	where 
+	  	  signature-of; get-declaration(|<namespace-of>call); debug(!"method call type: ") => type
+	  	  
+	  type-of:
+	  	e@MethodCall(e1, name, args) -> type
+	  	where <get-declaration(|Methods(<get-annotated-scope>e))> <signature-of> e => type
+	  	
+	  editor-error:
+	  	e@MethodCall(e1,name,args) -> (name, $[No method [<pp-sig>sig] declared for [<pp>type]])
+	  	where 
+	  	  <type-of> e1 => type;
+	  	  <signature-of> e => sig;
+	  	  not(<type-of>e)
+	

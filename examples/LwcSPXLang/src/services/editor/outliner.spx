@@ -1,0 +1,12 @@
+package languages.spx.lwc
+
+module outline-service
+
+	outliner 
+		Module.Module
+  	Entity.Entity
+ 		FunctionDef.FunctionDef
+  	FunctionCall.FunctionCall
+  	XmlElem.XML
+  	Statement.If
+  	Statement.While

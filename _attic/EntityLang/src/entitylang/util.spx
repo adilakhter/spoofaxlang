@@ -1,0 +1,71 @@
+package org.lang.spx.entitylang
+
+module common-strategies
+imports 
+	org.lang.spx.commonlang
+imports
+	  libstratego-lib
+	  libstratego-sglr
+	  libstratego-gpp 
+
+	
+	rules 
+		// Prints the abstract syntax ATerm of a selection.
+  	generate-aterm:
+    	(selected, position, ast, path, project-path) -> (filename, result)
+   	  with
+      	filename := <guarantee-extension(|"aterm")> path;
+      	result   := selected // we just return the input term
+      
+  	// todo: reusable resolve strategy for imports
+       
+  	// todo: factor out parse caching strategy
+  
+	parse-lwc-file(|path) =
+  		resolve-import(|path); parse-lwc-file 
+
+ 	parse-lwc-file-cached =
+   		 parse-lwc-file-cached(|<CurrentFile>)
+  	  	
+  	parse-lwc-file-cached(|path) =
+  			parse-file-cached(resolve-import(|path), parse-lwc-file)
+
+  	resolve-import(|modpath) :
+  			x -> $[[<project-path>]/[<dirname> modpath]/[x].lwc]
+  	
+  	// lookup module in same module as importing module
+  	// todo: this can be more sophisticated involving search paths
+  	  
+  	parse-file-cached(resolve-path, parse-file) :
+  		name -> ast
+  		where
+  	  	path       := <resolve-path> name;
+      	cache-path := <import-cache-path> path;
+      	debug(!"  cache-path: ");
+      	if <is-newer> (cache-path, path) then
+	        ast := <ReadFromFile> cache-path
+      	else
+        	ast := <parse-file> path;
+        	if <file-exists> path then
+          	// Only cache if on filesystem (e.g., ignore libstratego-lib)
+          	<WriteToBinaryFile> (cache-path, ast)
+        	end
+      	end
+
+  	open-import-lwc(resolve-path, parse-file, record-declarations):
+    	import -> import
+    	where
+      	if not(!import => COMPLETION(_)) then
+      		path := <resolve-path> import;
+        	if not(<IsImported> path) then
+          	debug(!"  not imported: ");
+          	rules( IsImported: path );
+          	ast := <parse-file-cached(resolve-path, parse-file)> import;
+          	{| CurrentFile:
+            	rules(CurrentFile := path);
+            	<record-declarations> ast
+          	|}
+        	else
+          	debug(!"  already imported: ")
+        	end
+      	end

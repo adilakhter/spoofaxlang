@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?eclipse version="3.0"?>
+
+<plugin>
+       <extension point="org.eclipse.imp.runtime.languageDescription">
+          <language extensions="lwx" description="LwcSPXLang" language="LwcSPXLang" derivedFrom="DynamicRoot" validator="LwcSPXLang.LwcSPXLangValidator" validatorClass="LwcSPXLang.LwcSPXLangValidator"></language>
+       </extension>
+       <extension id="LwcSPXLang.parser" name="LwcSPXLang Parser" point="org.eclipse.imp.runtime.parser">
+          <parser class="LwcSPXLang.LwcSPXLangParseController" language="LwcSPXLang">
+          </parser>
+       </extension>    
+    </plugin>

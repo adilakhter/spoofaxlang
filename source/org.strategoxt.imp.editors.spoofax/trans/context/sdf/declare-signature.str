@@ -80,6 +80,7 @@ rules
  		; ![]
 
 strategies
+	
 	// Returns right hand side of the production. In case of A -> B, it retunrs B.
 	get-rhs-sort-name =
 			try(?cf(<id>)	+ ?lex(<id>));

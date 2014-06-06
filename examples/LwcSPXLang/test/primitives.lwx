@@ -1,0 +1,7 @@
+module primitives
+
+entity String{}
+
+entity Int{}
+
+entity Bool{}

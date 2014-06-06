@@ -1,0 +1,4 @@
+package ExtendedEntityLang;
+
+public class ExtendedEntityLangParseController extends ExtendedEntityLangParseControllerGenerated 
+{ }

@@ -90,7 +90,7 @@ rules  //global checks
 
   context-free-syntax-warning:
     sort(x) -> (x, $[No definition for '[x]'])
-    where require(	verify-sdf-symbol-declaration-exists)
+    where require(verify-sdf-symbol-declaration-exists)
 
 	context-free-syntax-sort-error:
     q@QualifiedSort(Unresolved(), x) -> (q, $[Unknown namesapce(package/module) is referred. No definition for '[x]'])
