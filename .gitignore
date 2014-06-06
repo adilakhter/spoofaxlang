@@ -15,3 +15,7 @@ generated
 trans
 workspaces/entitylang-extensions/.metadata/
 workspaces/entitylang-extensions/SimpleEntityLang/include/
+_attic/CommonLang/include/
+_attic/EntityLang/include/
+examples/LwcSPXLang/include/
+workspaces/entitylang-extensions/EntityLangWithTuples/include/
