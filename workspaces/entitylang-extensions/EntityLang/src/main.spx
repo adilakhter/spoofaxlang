@@ -1,0 +1,40 @@
+package org.lang.EntityLang
+
+module Main
+
+context-free syntax
+    Module  -> Start 
+
+
+module MainAnalysis
+rules 
+	analyze = desugar-all; rename-all; store-all
+
+strategies 
+	desugar-all = innermost(desugar)
+	rename-all  = alltd(propose <+ rename)
+	store-all   = topdown(try(store)); topdown(try(store-ref))
+  
+rules 
+	desugar   = fail
+  	rename    = fail
+  	propose   = fail
+  
+  	store     = fail
+  	store-ref = fail
+  
+  	type-of = fail
+  	type-compatible = fail  
+rules 
+	pp = fail
+	resolve =fail	     
+
+
+
+module MainStaticChecker  
+rules 
+	editor-note    = fail
+	editor-error   = fail  
+  	editor-warning = fail 
+  	
+  	  	      

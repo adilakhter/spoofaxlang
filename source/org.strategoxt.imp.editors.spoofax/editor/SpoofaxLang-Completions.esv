@@ -3,20 +3,19 @@ module SpoofaxLang-Completions
 //imports SpoofaxLang-Completions.generated
 
 completions
-     // Semantic (identifier) completion:
+     
      completion proposer:      editor-complete
-     completion trigger: "imports "
-     completion trigger: "package "
-     completion trigger: "\."
      
 
 completions                    
-                   
 	completion keyword : "rules"    
 
 completions 
+	completion template : Module =
+      "module" " " <x> "\n\t\ncontext-free syntax\n\t" (blank)
 
-	completion template: "module " <m>  "\n" (blank) 
+	completion template: PackageDefinition = 
+		"package" " " <x>  "\n" "module" " " <y>"\n" (cursor) 
 	
 completions
     
@@ -34,7 +33,6 @@ completions
     completion template PlaceholderOptions : "separator" = "; separator=\"" (cursor) "\""
 
 completions
-    //Syntax completion for SDF Definition
     completion trigger:
       "->\s*[A-Za-z0-9]+\s*\{"
 
@@ -82,9 +80,6 @@ completions
 
     completion template:
       "priorities" "\n\t" (blank)
-
-    completion template : Module =
-      "module" " " <x> "\n\t\nexports\n\t" (blank)
 
     completion template:
       "lexical variables" "\n\t" (blank)

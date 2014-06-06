@@ -1,0 +1,64 @@
+package org.lang.EntityLang
+	
+module Type
+context-free syntax
+	ID        -> Type {"Type"}
+    "Int"	  -> Type {"IntegerType", prefer}
+	"String"  -> Type {"StringType" , prefer}
+ 
+
+module TypePP
+rules 
+	pp : Type(name) -> name
+	pp : IntegerType() -> "Int"
+	pp : StringType()  -> "String"
+	 
+	pp-sig : (name, types) -> $[[name]([<pp-types>types])]
+	
+rules 	
+	pp-types : [] -> ""
+	pp-types : [type] -> <pp> type
+  	pp-types : [type1,type2|types] -> $[[<pp>type1],[<pp-types>[type2|types]]]
+
+
+module TypeStore 
+rules 
+	store :
+  		t@Type(name) -> t
+  		where <store-reference(|Entities())> name
+  
+  	resolve: 
+  		Type(name) -> d
+  		where 
+  			<project-declaration(is-entity|Entities());name-of>name => d
+  			 	  	
+
+module TypeStaticChecks
+rules 
+	editor-error :
+  		t@Type(name) -> (name, $[Type [name] is not declared.])
+  		where not(<is-declared(|Entities())> name)
+
+
+module TypeEditorDef 
+colorer
+ 	Type : 66 92 217 bold 
+	_.IntegerType: 66 92 217  italic
+	_.StringType: 66 92 217  italic 
+
+rules 
+	propose: 
+		type@Type(COMPLETION(_)) -> proposals
+		where <project-all-declarations(?Entity(<id>,_)|Entities())> type => proposals	  	
+
+	hover:
+  		e -> $[Type: [<type-of; pp>e]]
+
+
+module TypeAnalysis
+rules 
+	type-of: String(x)    -> StringType()
+	
+	type-of: Int(x)       -> IntegerType()
+	
+	type-compatible: p@(type,type) -> p

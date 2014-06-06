@@ -40,7 +40,7 @@ exports
     MainID? "module" SPXModuleName Section*          -> Module {cons("Module")}
     MainID? "concept" SPXModuleName Section*         -> Module {cons("Module")}
 
-    Grammar[[SDF]] -> Section {cons("SDFSection")}
+    Grammar[[SDF]] -> Section {cons("SDFSection"), prefer}
     Decl[[STR]]    -> Section {cons("STRSection")}
     Section[[ESV]] -> Section {cons("ESVSection")}
     

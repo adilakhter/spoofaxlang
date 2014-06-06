@@ -2,14 +2,14 @@ module SpoofaxLang
 
 signature
   constructors
-    Conc                       : ListStarOfTemplateLine20 * ListPlusOfTemplateLine20 -> ListPlusOfTemplateLine20
-    Conc                       : ListPlusOfTemplateLine20 * ListStarOfTemplateLine20 -> ListPlusOfTemplateLine20
-    Conc                       : ListPlusOfTemplateLine20 * ListPlusOfTemplateLine20 -> ListPlusOfTemplateLine20
-                               : TemplateLine2 -> ListPlusOfTemplateLine20
-    Conc                       : ListStarOfTemplateLine10 * ListPlusOfTemplateLine10 -> ListPlusOfTemplateLine10
-    Conc                       : ListPlusOfTemplateLine10 * ListStarOfTemplateLine10 -> ListPlusOfTemplateLine10
-    Conc                       : ListPlusOfTemplateLine10 * ListPlusOfTemplateLine10 -> ListPlusOfTemplateLine10
-                               : TemplateLine1 -> ListPlusOfTemplateLine10
+    Conc                       : ListStarOfTemplateLine22 * ListPlusOfTemplateLine22 -> ListPlusOfTemplateLine22
+    Conc                       : ListPlusOfTemplateLine22 * ListStarOfTemplateLine22 -> ListPlusOfTemplateLine22
+    Conc                       : ListPlusOfTemplateLine22 * ListPlusOfTemplateLine22 -> ListPlusOfTemplateLine22
+                               : TemplateLine2 -> ListPlusOfTemplateLine22
+    Conc                       : ListStarOfTemplateLine12 * ListPlusOfTemplateLine12 -> ListPlusOfTemplateLine12
+    Conc                       : ListPlusOfTemplateLine12 * ListStarOfTemplateLine12 -> ListPlusOfTemplateLine12
+    Conc                       : ListPlusOfTemplateLine12 * ListPlusOfTemplateLine12 -> ListPlusOfTemplateLine12
+                               : TemplateLine1 -> ListPlusOfTemplateLine12
     FollowRestriction          : Lookaheads_SDF -> KeywordRestriction
     Keywords                   : List(ID) -> Keywords
     KeywordSymbols             : List(Symbol_SDF) -> KeywordSymbols
@@ -84,7 +84,7 @@ signature
     'module                    : ModuleName_SDF -> Import_SDF
     parameterized              : ModuleId_SDF * Symbols_SDF -> ModuleName_SDF
     unparameterized            : ModuleId_SDF -> ModuleName_SDF
-                               : ListStarOfModule_SDF0 -> Definition_SDF
+                               : ListStarOfModule_SDF1 -> Definition_SDF
                                : String -> ModuleId_SDF
     production                 : Production_SDF * Production_SDF -> Renaming_SDF
     symbol                     : Symbol_SDF * Symbol_SDF -> Renaming_SDF
@@ -126,7 +126,7 @@ signature
     With                       : Strategy_STR -> Where_STR
     Where                      : Strategy_STR -> Where_STR
     APDefTerm                  : Pattern_STR * OptDotChild_STR * Term_STR * List(Where_STR) -> PatternDefBlockDef_STR
-    APDefTerm                  : Pattern_STR * OptDotChild_STR * ResultTerm_STR * ListStarOfNoWhere_STR0 -> PatternDefBlockDef_STR
+    APDefTerm                  : Pattern_STR * OptDotChild_STR * ResultTerm_STR * ListStarOfNoWhere_STR2 -> PatternDefBlockDef_STR
     ADefStrategy               : ChildDot_STR * AttributeDef_STR * Strategy_STR -> NameDefBlockDef_STR
     ADefTerm                   : ChildDot_STR * AttributeDef_STR * Term_STR * List(Where_STR) -> NameDefBlockDef_STR
     Root                       : Pattern_STR
@@ -512,8 +512,8 @@ signature
     Line                       : List(TemplatePart2) -> TemplateLine2
     Line                       : List(TemplatePart1) -> TemplateLine1
     SingleLineTemplate         : List(TemplatePartQ) -> Template
-    Template                   : ListPlusOfTemplateLine20 -> Template
-    Template                   : ListPlusOfTemplateLine10 -> Template
+    Template                   : ListPlusOfTemplateLine22 -> Template
+    Template                   : ListPlusOfTemplateLine12 -> Template
     Option                     : PlaceholderSuffix
     Plus                       : PlaceholderSuffix
     Star                       : PlaceholderSuffix

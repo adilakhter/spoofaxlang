@@ -1,0 +1,80 @@
+package org.lib.namespace
+
+module Main
+
+signature constructors
+	name:  String -> Annotation
+	scope: String -> Annotation
+	
+	IncludedBy: Namespace -> Namespace
+	Including:  Namespace -> Namespace
+
+rules // scoped renaming
+	
+	// todo: new-scope should have namespace as parameter
+	
+	/**
+	* executes the renaming strategy s in a new scope
+	* 
+	* declarations inside the new scope will hide existing declarations outside the new scope
+	* multiple declarations with the same name inside the new scope will be renamed to the same name
+	*
+	* @param renaming strategy s: a -> b
+	* @type a -> b
+	*/
+	new-scope(s) :
+		x -> y
+		where
+			<newname> x => scope ;
+			{| Renamed, RenamedInScope, CurrentScope, Scope:
+				rules (
+					CurrentScope: () -> scope
+					Scope:+ x -> scope
+				) ;
+				<s> x => y
+			|}
+		where 
+			<debug(!"new-scope")> (scope, x)
+			
+	/**
+	* annotates the current term with a fresh name
+	* can distinguish different namespaces
+	* remembers the renaming by storing two dynamic rules
+	* 
+	* multiple calls on the same term inside the same scope will give identical results
+	* calls inside a new scope will hide the results of calls to the same term from outer scopes
+	*
+	* @param namespace 
+	* @type a -> a
+	*/
+	rename-declaration(|namespace) : 
+		x -> x'
+		where 
+			<CurrentScope> () => scope ;
+			(
+				<RenamedInScope> (namespace, scope, x) => x' <+
+				x' := x{name(<newname> x)}
+			)
+		where rules(
+			RenamedInScope: (namespace, scope, x) -> x' 
+			Renamed: (namespace, x) -> x'
+		)
+	
+	/**
+	* annotates the current term with a new name
+	* succeeds only if rename-declaration was called before on the same term
+	* will use the same name as rename-declaration (by calling the dynamic rule stored by rename-declaration)
+	*
+	* @param namespace 
+	* @type a -> b
+	*/
+	rename-reference(|namespace) :
+		x -> x'
+		where
+			<Renamed> (namespace, x) => x'
+
+rules // annotate scope
+	
+	annotate-scope(s) : 
+		x -> x{scope(scope)} 
+		where project-scope(s) => scope

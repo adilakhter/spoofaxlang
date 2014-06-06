@@ -174,12 +174,9 @@ rules
     
   declare-sdf-usage: 
   	prod(lhs, sort, attrs) -> prod( lhs' , sort', attrs) 
-  	where debug(!"declare sdf usage: ")
   	where 
   		<alltd(declare-sdf-usage)>lhs => lhs';
   		<alltd(declare-sdf-usage)>sort=> sort'
-  	where 	
-  		<debug(!"package list: ")>(lhs' , sort')
   		
   
   // declare-sdf-usage: 

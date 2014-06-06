@@ -64,13 +64,13 @@ folding Default folding definitions
   SdfProduction.SdfProductionWithCons
   Grammar_SDF.context-free-syntax
   Grammar_SDF.syntax
-  ListStarOfProduction_SDF1
+  ListStarOfProduction_SDF0
   Grammar_SDF.lexical-syntax
   Grammar_SDF.context-free-syntax
   Grammar_SDF.variables
   Grammar_SDF.lexical-variables
   Grammar_SDF.priorities
-  ListStarOfPriority_SDF1
+  ListStarOfPriority_SDF0
   Priority_SDF.chain
   Group_SDF.prods-ref-group
   Group_SDF.assoc-ref-group
@@ -84,10 +84,10 @@ folding Default folding definitions
   Grammar_SDF.lexical-start-symbols
   Grammar_SDF.context-free-start-symbols
   Grammar_SDF.restrictions
-  ListStarOfRestriction_SDF1
+  ListStarOfRestriction_SDF0
   Restriction_SDF.follow
   Grammar_SDF.aliases
-  ListStarOfAlias_SDF1
+  ListStarOfAlias_SDF0
   Alias_SDF.alias
   Grammar_SDF.lexical-priorities
   Grammar_SDF.context-free-priorities
@@ -103,7 +103,7 @@ folding Default folding definitions
   Strategy_STR.Scope
   RuleDec_STR.RDec
   RuleDec_STR.RDecT
-  ListStarOfId_STR1
+  ListStarOfId_STR0
   StrategyDef_STR.ExtSDef
   StrategyDef_STR.ExtSDef
   Decl_STR.Signature
@@ -156,7 +156,7 @@ folding Default folding definitions
   Section.KeywordSection
   KeywordSymbols.KeywordSymbols
   Keywords.Keywords
-  OptKeywordRestriction1
+  OptKeywordRestriction0
   KeywordRestriction.FollowRestriction
   Module.Module
   Start.CompilationUnit

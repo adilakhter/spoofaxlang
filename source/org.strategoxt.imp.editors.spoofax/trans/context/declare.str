@@ -33,8 +33,7 @@ rules
 				{| GetEnclosingModuleName
 				 : 	
 				 		declare-current-module-scope ;
-				 	  where(<debug(!"declare-global-symbols for following scope:  ")><get-current-scope>);
-			 			with-spxverify(
+				 	  with-spxverify(
 							get-desugared-module-ast;
 							declare-internal(declare-global-symbols)
 				  	)

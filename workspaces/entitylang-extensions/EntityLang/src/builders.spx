@@ -1,0 +1,112 @@
+package org.lang.EntityLang   
+// This module acts as adapter between editor services and respective custom transformations. 
+// It specifies Stratego transformation rules to be executed for different types of editor services. 
+// See editor-services.generated.spx for a brief introduction on the available editor services.
+module builderDescriptor
+				
+	// Builders may carry out custom transformations on a file or selection.
+	builders
+		observer : editor-analyze         	                                                                          
+  
+		builder  : "Show abstract syntax (for selection)" = generate-aterm (openeditor) (realtime) (meta) (source)
+		builder  : "Analysis (for selection)" = analyze-aterm (openeditor) (realtime) (meta) (source) 
+		builder  : "Generate Java code (for selection)"   = generate-java (openeditor) (realtime)
+		builder  : "Pretty-printing (for selection)"      = prettyprint-entitylang(openeditor) (realtime)
+
+		// on save: generate-java
+					
+	// Content completion proposer and trigger is specified in the following section.
+	completions
+		completion proposer                  : editor-complete
+		completion trigger                   : ":"
+
+	// Reference resolving and hover help
+	references
+		reference _ : editor-resolve
+		hover _     : editor-hover
+
+module builderDefinition  
+	 	
+rules 
+	
+	importing(|imp) = /*{| Imported : */ rules(Imported : imp) /* ; s |} */
+	
+  	when-not-imported(s) :
+	  	imp -> imp
+	  	where {| Imported : if not( <Imported> imp ) then rules(Imported : imp) else debug(!"already imported: ") end |} 
+
+	
+  	analyze-aterm:
+    	(selected, position, ast, path, project-path) -> (filename, result)
+    	where 
+    		<debug(!"ast: ")> ast
+    	with
+      		editor-init;
+      		rules( CurrentFile := path);
+      		importing(|Imports(<base-filename; remove-extension> path));
+      		<analyze> ast => ast';
+  			filename := <guarantee-extension(|"analyzed.aterm")> path;
+      		result   := ast' 
+	
+	
+	// Transforms a selection to Java
+	generate-java:
+		(selected, position, ast, path, project-path) -> (filename, result)
+		with
+			filename := <guarantee-extension(|"java")> path;
+			result   := <to-java> selected
+	 		
+	// Prints the abstract syntax ATerm of a selection.
+	generate-aterm:
+		(selected, position, ast, path, project-path) -> (filename, result)
+		with
+			filename := <guarantee-extension(|"aterm")> path;
+			result   := selected // we just return the input term
+	
+	// Prints the abstract syntax ATerm of a selection.
+	prettyprint-entitylang:
+		(selected, position, ast, path, project-path) -> (filename, result)
+		with
+			filename := <guarantee-extension(|"pp.ent")> path;
+			result   := <pp-entitylang>selected // we just return the input term
+	
+module referenceResolver
+	
+rules
+	// Resolves a reference when the user control-clicks or presses F3 in the editor.
+  editor-resolve:
+		(node, position, ast, path, project-path) -> elem
+		where 
+			<resolve> node => elem
+	    		 
+	// Returns "hover help" information for a particular node in the editor.
+	// For references, this rule is invoked using the resolved term.
+  editor-hover:
+		(target, position, ast, path, project-path) -> result 
+		where 
+			<hover>target => result 
+
+module contentAssistant
+
+rules
+		// Completes an identifier when the user presses control-space
+		// (the completion identifier in the AST provides additional context information)
+	editor-complete:
+		(node, position, ast, path, project-path) -> proposals
+    	where
+      		editor-init ; 
+      		rules( CurrentFile := path );
+      		<analyze> ast => ast' ;
+	  		<oncetd(where(propose => proposals))> ast' <+
+	  		<debug> ast ; ![] => proposals  	
+
+rules 
+	editor-analyze:
+		(ast, path, project-path) -> (ast', errors, warnings, notes)
+    	with
+      		editor-init;
+      		rules( CurrentFile := path ); 
+	  		<analyze> ast => ast';
+      		<collect-all(editor-error,   conc)> ast' => errors;
+      		<collect-all(editor-warning, conc)> ast' => warnings;
+      		<collect-all(editor-note,    conc)> ast' => notes    

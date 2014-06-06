@@ -2060,8 +2060,8 @@ exports
 
   context-free syntax
     "templates" TemplateProduction*                      -> Section            {cons("TemplateSection")}
-    "lexical" "syntax" SdfProduction*                    -> Grammar[[SDF]]     {cons("lexical-syntax")}
-    "context-free" "syntax" SdfProduction*               -> Grammar[[SDF]]     {cons("context-free-syntax")}
+    "lexical" "syntax" SdfProduction*                    -> Grammar[[SDF]]     {cons("lexical-syntax"), avoid}
+    "context-free" "syntax" SdfProduction*               -> Grammar[[SDF]]     {cons("context-free-syntax"), avoid}
     ID "=" Symbols[[SDF]] Attributes[[SDF]]              -> SdfProduction      {cons("SdfProduction")}
     SortCons "=" Symbols[[SDF]] Attributes[[SDF]]        -> SdfProduction      {cons("SdfProductionWithCons")}
     ID "=" Template Attributes[[SDF]]                    -> TemplateProduction {cons("TemplateProduction")}
@@ -2309,7 +2309,7 @@ exports
     "package" QName Module*                  -> PackageDefinition {cons("Package")}
     MainID? "module" SPXModuleName Section*  -> Module            {cons("Module")}
     MainID? "concept" SPXModuleName Section* -> Module            {cons("Module")}
-    Grammar[[SDF]]                           -> Section           {cons("SDFSection")}
+    Grammar[[SDF]]                           -> Section           {cons("SDFSection"), prefer}
     Decl[[STR]]                              -> Section           {cons("STRSection")}
     Section[[ESV]]                           -> Section           {cons("ESVSection")}
     ImportSection                            -> Section           

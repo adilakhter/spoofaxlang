@@ -173,7 +173,11 @@ rules
 
 rules
 
-	override pp-sdf-string = fail // ensure compiler doesn't blow up
+ /**
+	* Ensures compiler doesn't blow up
+	* 
+	*/
+	override pp-sdf-string = fail 
 
   pp-sdf-string' =
     sdf-desugar;
@@ -217,10 +221,8 @@ rules
 rules
 
   // (from TemplateLang)
-
   // Allows one to write `Sort.Cons' where a production is expected.
   // (i.e. in priority sections)
-
   desugar-sdf-redux:
     simple-ref-group(ref) -> simple-group(<SortCons-to-prod> ref)
 

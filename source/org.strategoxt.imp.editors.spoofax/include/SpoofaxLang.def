@@ -2544,8 +2544,8 @@ exports
 
     %% BNF order and SDF order can't go together in the same section,
     %% because of ambiguity. "X = Y -> Z": is it "X = Y" "Z" or "X =" "Y -> Z"?
-    "lexical" "syntax"      SdfProduction* -> Grammar[[SDF]] {cons("lexical-syntax")}
-    "context-free" "syntax" SdfProduction* -> Grammar[[SDF]] {cons("context-free-syntax")}
+    "lexical" "syntax"      SdfProduction* -> Grammar[[SDF]] {cons("lexical-syntax"), avoid}
+    "context-free" "syntax" SdfProduction* -> Grammar[[SDF]] {cons("context-free-syntax"), avoid}
 
     %% syntactic sugar for SDF
     ID "=" Symbols[[SDF]] Attributes[[SDF]]       -> SdfProduction {cons("SdfProduction")}
@@ -2911,7 +2911,7 @@ exports
     MainID? "module" SPXModuleName Section*          -> Module {cons("Module")}
     MainID? "concept" SPXModuleName Section*         -> Module {cons("Module")}
 
-    Grammar[[SDF]] -> Section {cons("SDFSection")}
+    Grammar[[SDF]] -> Section {cons("SDFSection"), prefer}
     Decl[[STR]]    -> Section {cons("STRSection")}
     Section[[ESV]] -> Section {cons("ESVSection")}
     

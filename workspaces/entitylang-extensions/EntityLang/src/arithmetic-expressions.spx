@@ -1,0 +1,41 @@
+package org.lang.EntityLang
+
+module ArithmeticExpression   	
+
+context-free syntax
+  	INT         -> Exp {cons("Int")}
+  	STRING      -> Exp {cons("String")}
+  	Exp "+" Exp -> Exp {cons("Plus"),assoc}
+  	Exp "*" Exp -> Exp {cons("Times"),assoc}
+  	
+context-free priorities
+  	Exp "*" Exp -> Exp
+  	>
+  	Exp "+" Exp -> Exp
+
+
+
+module ArithExpAnalysis
+rules 
+	type-of: 
+		Plus(e1, e2) -> IntegerType()
+		where 
+			<type-of>e1 => IntegerType();
+			<type-of>e2 => IntegerType()
+	type-of: 
+		Times(e1, e2) -> IntegerType()
+		where 
+			<type-of>e1 => IntegerType();
+			<type-of>e2 => IntegerType()
+			
+module ArithExpChecks
+rules 	
+	editor-error: 
+		e@Plus(e1, e2) -> (e, $[Arguments should be of type Int])
+  		where <type-of> e1; <type-of> e2; not(<type-of>e)
+	editor-error:
+		e@Times(e1, e2) -> (e, $[Arguments should be of type Int])
+	  	where  <type-of> e1; <type-of> e2; not(<type-of>e) 	
+  	
+	
+	

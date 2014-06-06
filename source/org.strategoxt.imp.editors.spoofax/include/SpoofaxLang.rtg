@@ -155,13 +155,13 @@ regular tree grammar
     ListPlusOfSection_SDF0             -> <conc>(ListPlusOfSection_SDF0,ListStarOfSection_SDF0)
     ListPlusOfSection_SDF0             -> <conc>(ListPlusOfSection_SDF0,ListPlusOfSection_SDF0)
     ListPlusOfSection_SDF0             -> <cons>(Section_SDF,ListStarOfSection_SDF0)
-    ListStarOfModule_SDF0              -> ListPlusOfModule_SDF0
-    ListStarOfModule_SDF0              -> <nil>()
-    ListStarOfModule_SDF0              -> <conc>(ListStarOfModule_SDF0,ListStarOfModule_SDF0)
-    ListPlusOfModule_SDF0              -> <conc>(ListStarOfModule_SDF0,ListPlusOfModule_SDF0)
-    ListPlusOfModule_SDF0              -> <conc>(ListPlusOfModule_SDF0,ListStarOfModule_SDF0)
+    ListStarOfModule_SDF1              -> ListPlusOfModule_SDF0
+    ListStarOfModule_SDF1              -> <nil>()
+    ListStarOfModule_SDF1              -> <conc>(ListStarOfModule_SDF1,ListStarOfModule_SDF1)
+    ListPlusOfModule_SDF0              -> <conc>(ListStarOfModule_SDF1,ListPlusOfModule_SDF0)
+    ListPlusOfModule_SDF0              -> <conc>(ListPlusOfModule_SDF0,ListStarOfModule_SDF1)
     ListPlusOfModule_SDF0              -> <conc>(ListPlusOfModule_SDF0,ListPlusOfModule_SDF0)
-    ListPlusOfModule_SDF0              -> <cons>(Module_SDF,ListStarOfModule_SDF0)
+    ListPlusOfModule_SDF0              -> <cons>(Module_SDF,ListStarOfModule_SDF1)
     ListStarOfRenaming_SDF0            -> ListPlusOfRenaming_SDF0
     ListStarOfRenaming_SDF0            -> <nil>()
     ListStarOfRenaming_SDF0            -> <conc>(ListStarOfRenaming_SDF0,ListStarOfRenaming_SDF0)
@@ -206,13 +206,13 @@ regular tree grammar
     ListPlusOfWhere_STR0               -> <conc>(ListPlusOfWhere_STR0,ListStarOfWhere_STR0)
     ListPlusOfWhere_STR0               -> <conc>(ListPlusOfWhere_STR0,ListPlusOfWhere_STR0)
     ListPlusOfWhere_STR0               -> <cons>(Where_STR,ListStarOfWhere_STR0)
-    ListStarOfNoWhere_STR0             -> ListPlusOfNoWhere_STR0
-    ListStarOfNoWhere_STR0             -> <nil>()
-    ListStarOfNoWhere_STR0             -> <conc>(ListStarOfNoWhere_STR0,ListStarOfNoWhere_STR0)
-    ListPlusOfNoWhere_STR0             -> <conc>(ListStarOfNoWhere_STR0,ListPlusOfNoWhere_STR0)
-    ListPlusOfNoWhere_STR0             -> <conc>(ListPlusOfNoWhere_STR0,ListStarOfNoWhere_STR0)
+    ListStarOfNoWhere_STR2             -> ListPlusOfNoWhere_STR0
+    ListStarOfNoWhere_STR2             -> <nil>()
+    ListStarOfNoWhere_STR2             -> <conc>(ListStarOfNoWhere_STR2,ListStarOfNoWhere_STR2)
+    ListPlusOfNoWhere_STR0             -> <conc>(ListStarOfNoWhere_STR2,ListPlusOfNoWhere_STR0)
+    ListPlusOfNoWhere_STR0             -> <conc>(ListPlusOfNoWhere_STR0,ListStarOfNoWhere_STR2)
     ListPlusOfNoWhere_STR0             -> <conc>(ListPlusOfNoWhere_STR0,ListPlusOfNoWhere_STR0)
-    ListPlusOfNoWhere_STR0             -> <cons>(NoWhere_STR,ListStarOfNoWhere_STR0)
+    ListPlusOfNoWhere_STR0             -> <cons>(NoWhere_STR,ListStarOfNoWhere_STR2)
     ListStarOfPatternDefBlockDef_STR0  -> ListPlusOfPatternDefBlockDef_STR0
     ListStarOfPatternDefBlockDef_STR0  -> <nil>()
     ListStarOfPatternDefBlockDef_STR0  -> <conc>(ListStarOfPatternDefBlockDef_STR0,ListStarOfPatternDefBlockDef_STR0)
@@ -559,13 +559,13 @@ regular tree grammar
     ListPlusOfTemplatePart20           -> <conc>(ListPlusOfTemplatePart20,ListStarOfTemplatePart20)
     ListPlusOfTemplatePart20           -> <conc>(ListPlusOfTemplatePart20,ListPlusOfTemplatePart20)
     ListPlusOfTemplatePart20           -> <cons>(TemplatePart2,ListStarOfTemplatePart20)
-    ListStarOfTemplateLine20           -> ListPlusOfTemplateLine20
-    ListStarOfTemplateLine20           -> <nil>()
-    ListStarOfTemplateLine20           -> <conc>(ListStarOfTemplateLine20,ListStarOfTemplateLine20)
-    ListPlusOfTemplateLine20           -> <conc>(ListStarOfTemplateLine20,ListPlusOfTemplateLine20)
-    ListPlusOfTemplateLine20           -> <conc>(ListPlusOfTemplateLine20,ListStarOfTemplateLine20)
-    ListPlusOfTemplateLine20           -> <conc>(ListPlusOfTemplateLine20,ListPlusOfTemplateLine20)
-    ListPlusOfTemplateLine20           -> TemplateLine2
+    ListStarOfTemplateLine22           -> ListPlusOfTemplateLine22
+    ListStarOfTemplateLine22           -> <nil>()
+    ListStarOfTemplateLine22           -> <conc>(ListStarOfTemplateLine22,ListStarOfTemplateLine22)
+    ListPlusOfTemplateLine22           -> <conc>(ListStarOfTemplateLine22,ListPlusOfTemplateLine22)
+    ListPlusOfTemplateLine22           -> <conc>(ListPlusOfTemplateLine22,ListStarOfTemplateLine22)
+    ListPlusOfTemplateLine22           -> <conc>(ListPlusOfTemplateLine22,ListPlusOfTemplateLine22)
+    ListPlusOfTemplateLine22           -> TemplateLine2
     ListStarOfTemplatePart10           -> ListPlusOfTemplatePart10
     ListStarOfTemplatePart10           -> <nil>()
     ListStarOfTemplatePart10           -> <conc>(ListStarOfTemplatePart10,ListStarOfTemplatePart10)
@@ -573,13 +573,13 @@ regular tree grammar
     ListPlusOfTemplatePart10           -> <conc>(ListPlusOfTemplatePart10,ListStarOfTemplatePart10)
     ListPlusOfTemplatePart10           -> <conc>(ListPlusOfTemplatePart10,ListPlusOfTemplatePart10)
     ListPlusOfTemplatePart10           -> <cons>(TemplatePart1,ListStarOfTemplatePart10)
-    ListStarOfTemplateLine10           -> ListPlusOfTemplateLine10
-    ListStarOfTemplateLine10           -> <nil>()
-    ListStarOfTemplateLine10           -> <conc>(ListStarOfTemplateLine10,ListStarOfTemplateLine10)
-    ListPlusOfTemplateLine10           -> <conc>(ListStarOfTemplateLine10,ListPlusOfTemplateLine10)
-    ListPlusOfTemplateLine10           -> <conc>(ListPlusOfTemplateLine10,ListStarOfTemplateLine10)
-    ListPlusOfTemplateLine10           -> <conc>(ListPlusOfTemplateLine10,ListPlusOfTemplateLine10)
-    ListPlusOfTemplateLine10           -> TemplateLine1
+    ListStarOfTemplateLine12           -> ListPlusOfTemplateLine12
+    ListStarOfTemplateLine12           -> <nil>()
+    ListStarOfTemplateLine12           -> <conc>(ListStarOfTemplateLine12,ListStarOfTemplateLine12)
+    ListPlusOfTemplateLine12           -> <conc>(ListStarOfTemplateLine12,ListPlusOfTemplateLine12)
+    ListPlusOfTemplateLine12           -> <conc>(ListPlusOfTemplateLine12,ListStarOfTemplateLine12)
+    ListPlusOfTemplateLine12           -> <conc>(ListPlusOfTemplateLine12,ListPlusOfTemplateLine12)
+    ListPlusOfTemplateLine12           -> TemplateLine1
     ListStarOfPlaceholderOption0       -> ListPlusOfPlaceholderOption0
     ListStarOfPlaceholderOption0       -> <nil>()
     ListStarOfPlaceholderOption0       -> <conc>(ListStarOfPlaceholderOption0,ListStarOfPlaceholderOption0)
@@ -791,7 +791,7 @@ regular tree grammar
     Sections_SDF                       -> ListStarOfSection_SDF0
     Section_SDF                        -> hiddens(Grammar_SDF)
     Section_SDF                        -> exports(Grammar_SDF)
-    Definition_SDF                     -> ListStarOfModule_SDF0
+    Definition_SDF                     -> ListStarOfModule_SDF1
     ModuleId_SDF                       -> <string>
     ModuleWord_SDF                     -> <string>
     Renaming_SDF                       -> production(Production_SDF,Production_SDF)
@@ -843,7 +843,7 @@ regular tree grammar
     Where_STR                          -> With(Strategy_STR)
     Where_STR                          -> Where(Strategy_STR)
     PatternDefBlockDef_STR             -> APDefTerm(Pattern_STR,OptDotChild_STR,Term_STR,ListPlusOfWhere_STR0)
-    PatternDefBlockDef_STR             -> APDefTerm(Pattern_STR,OptDotChild_STR,ResultTerm_STR,ListStarOfNoWhere_STR0)
+    PatternDefBlockDef_STR             -> APDefTerm(Pattern_STR,OptDotChild_STR,ResultTerm_STR,ListStarOfNoWhere_STR2)
     NameDefBlockDef_STR                -> ADefStrategy(ChildDot_STR,AttributeDef_STR,Strategy_STR)
     NameDefBlockDef_STR                -> ADefTerm(ChildDot_STR,AttributeDef_STR,Term_STR,ListStarOfWhere_STR0)
     ADef_STR                           -> PatternDefBlock(AttributeType_STR,AttributeDef_STR,ListPlusOfPatternDefBlockDef_STR0)
@@ -1285,14 +1285,14 @@ regular tree grammar
     TemplatePart2                      -> Escape(<string>)
     TemplatePart2                      -> String(<string>)
     TemplateLine2                      -> Line(ListStarOfTemplatePart20)
-    Template                           -> Template(ListPlusOfTemplateLine20)
-    Template                           -> Template(ListPlusOfTemplateLine20)
+    Template                           -> Template(ListPlusOfTemplateLine22)
+    Template                           -> Template(ListPlusOfTemplateLine22)
     TemplatePart1                      -> Layout(<string>)
     TemplatePart1                      -> Escape(<string>)
     TemplatePart1                      -> String(<string>)
     TemplateLine1                      -> Line(ListStarOfTemplatePart10)
-    Template                           -> Template(ListPlusOfTemplateLine10)
-    Template                           -> Template(ListPlusOfTemplateLine10)
+    Template                           -> Template(ListPlusOfTemplateLine12)
+    Template                           -> Template(ListPlusOfTemplateLine12)
     PlaceholderOption                  -> Text(STRING)
     PlaceholderOption                  -> Separator(STRING)
     PlaceholderOption                  -> Anchor()

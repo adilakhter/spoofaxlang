@@ -171,8 +171,11 @@ rules
   
 rules
 
-	//TODO : use collect-all instead of using dynamic rule to collect all the sort name from LHS
-	find-sorts = alltd(get-sort-decl) 
+	 /**
+   * @todo use collect-all instead of using dynamic rule to collect all the sort name from LHS
+   * @todo  Support namespaces
+   */
+ 	find-sorts = alltd(get-sort-decl) 
 
 	get-sort-decl:
 		a@alt(frstSort , restSort*) -> a

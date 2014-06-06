@@ -1,0 +1,73 @@
+package org.lang.EntityLang
+
+module Module
+context-free syntax
+    "module" ID Definition* -> Module {"Module"}
+    "imports" FILENAME      -> Definition {"Imports"}
+
+
+module ModuleConstructors 
+signature constructors 
+	Module : Namespace
+
+module ModuleAnalysis 
+rules 
+	get-module :
+  		Imports(name) -> ast
+  		where <parse-entitylang-file(|<CurrentFile>)> name => ast 
+  
+	desugar :
+  		imp@Imports(name) -> imp
+  		where <get-module; desugar-all> imp
+  
+	
+module ModuleStore 
+rules 
+	store:  
+		mod@Module(name, defs) -> mod 
+		where debug 
+		where <map-declaration(|Module())> (name, (<CurrentFile>, mod))
+		
+	store :
+  		imp@Imports(name) -> imp
+  		where debug 
+	  	where  <get-module; store-all> imp
+	  	
+  	resolve :
+   		Imports(name) -> <get-module>
+   
+
+
+module ModuleRenamings
+rules 
+	rename: 
+		Module(name, defs*) -> Module(name, defs')
+		where <rename-all> defs* => defs'
+		
+	rename :
+  		imp@Imports(name) -> imp 
+  		where  <get-module; rename-all> imp 
+  
+
+module ModuleStaticChecks
+rules 
+	editor-error :
+   		Module(name, defs) -> (name, $[Filename does not correspond to module name])
+   		where <get-declaration(|Module())> name => (file, mod)
+    	where not( <base-filename; remove-extension> file => name ; <has-extension(|"ent")> file )					
+	
+	editor-error :
+  		imp@Imports(name) -> (name, $[Module does not exist])
+  		where not( <get-module> imp )
+		  			
+
+module ModuleEditorDef 
+completions
+  completion template Start :
+    "module " <m> (blank)  
+                                             
+outliner
+	Module.Module
+
+folding 
+	Module.Module 

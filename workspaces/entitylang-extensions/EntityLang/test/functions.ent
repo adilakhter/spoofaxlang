@@ -1,0 +1,18 @@
+module functions 
+
+imports primitives
+ 
+entity Posts{
+}
+
+
+def foo(x:Int):Int {
+	var x: Int; 	
+	var p: Posts;
+	
+	p := new Posts();
+	p := "test";
+		
+	return 1; 
+}  
+ 

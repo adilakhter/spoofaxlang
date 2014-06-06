@@ -72,23 +72,24 @@ rules
    			; not(ensure-is-unique)
 					
 rules
-	constraint-esv-info:  
-		sSym@StartSymbols(values*) -> err-messages*
-		where <get-esv-sorts>values*	=> sorts*
-		where
-			<get-sdf-start-symbols> <GetEnclosingPackageName> => s*; // getting all the context-free-start-symbols for the package   	
-			<filter(unknown-start-symbol-error(| sSym, s*))>sorts* => err-messages*;
-			if !err-messages* => [] then 
-				fail
-			end
 	
-	//TODO FIX : unknown start symbol error - undeterministic behavior
-	unknown-start-symbol-error(|root-symbol, start-symbols-found-in-sdf-def) : 
-		Sort(x) -> (root-symbol , $[ESV start symbol : "[<print-as-string>x]" is not defined as a SDF start symbol. However, it is automatically considered as a SDF start symbol(if the sort it valid).])
-		where 
-			<not(fetch-elem(?sort(x)))>start-symbols-found-in-sdf-def
-			   		
-  constraint-esv-warning: 
+	constraint-esv-info = fail
+	// 	where <get-esv-sorts>values*	=> sorts*
+	// 	where
+	// 		<get-sdf-start-symbols> <GetEnclosingPackageName> => s*; // getting all the context-free-start-symbols for the package   	
+	// 		<filter(unknown-start-symbol-error(| sSym, s*))>sorts* => err-messages*;
+	// 		if !err-messages* => [] then 
+	// 			fail
+	// 		end
+	// 
+	// //TODO FIX : unknown start symbol error - undeterministic behavior
+	// unknown-start-symbol-error(|root-symbol, start-symbols-found-in-sdf-def) : 
+	// 	Sort(x) -> (root-symbol , $[ESV start symbol : "[<print-as-string>x]" is not defined as a SDF start symbol. However, it is automatically considered as a SDF start symbol(if the sort it valid).])
+	// 	where 
+	// 		<not(fetch-elem(?sort(x)))>start-symbols-found-in-sdf-def
+	// 		   		
+ 
+ constraint-esv-warning: 
    	LanguageName( name ) -> (name, $[Same Language name is declared multiple times in this package.])
    	where
    			<get-languagename-declaration-sites> name =>packages*;

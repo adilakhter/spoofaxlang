@@ -28,14 +28,17 @@ rules
 			        |}
 	       )
 rules 
-	// internal utils 
-  is-declared =   one(?_{cookie} + ?SVar(_{cookie}))
+	is-declared =   one(?_{cookie} + ?SVar(_{cookie}))
   
-  // checks whether current module is compiled ( name-analyzed) or reusing symbols 
-  // from the symboltable  
+  /**
+   * checks whether current module is compiled (name-analyzed) or reusing symbols 
+   * from the symboltable
+   *
+   */  
   ensure-enclosing-module-is-compiled  = <is-a-compiled-module><GetEnclosingModuleName>     
 
 rules 
+	
 	stratego-global-constraint-error':
     c@CallT(SVar(x), s*, t*) -> (x, $[Strategy or rule '[x]' not defined])
     where 
@@ -52,11 +55,13 @@ rules
   
   stratego-global-constraint-error:
     o@Op(x, t*) -> (o, $[Constructor [x]/[<length> t*] not declared])
-    where  not(ensure-enclosing-module-is-compiled)
+    where  
+    	not(ensure-enclosing-module-is-compiled)
     where
     	require(
     			declare-cookie-of(strip-annotation)
-    	<+	<is-declared-signature(|<length> t*)>x
+    	<+	
+    			<is-declared-signature(|<length> t*)>x
   		)
 
   stratego-global-constraint-error:
@@ -69,7 +74,7 @@ rules
       <+ <is-declared-signature(|<length> t*)>x
     	)
 
-  // local check 
+  
   stratego-global-constraint-error:
     Var(x) -> (x, $[Variable '[x]' is not declared])
     where
@@ -106,8 +111,11 @@ rules
       + <declaration-of> sdef => ExtSDef(_, _, _)
       )
 
+  
   stratego-global-constraint-error:
     SDefT(x{cookie}, s*, t*, s) -> (x, $[Conflicts with external definition of '[x]'])
+    where 
+    	ensure-enclosing-module-is-compiled
     where
       require(
          <resolve-str-declaration> cookie => SDefT(_, _, _, _)
@@ -205,4 +213,4 @@ rules
     where
       <string-starts-with(|"../")> f
 
-  // TODO: overlapping signatures
+  //TODO FIX: overlapping signatures
