@@ -297,6 +297,8 @@ rules
 		?m@Module(QName(_));
 		<pp-sdf-import>m => sdf-import-path;
 		activate-scope(<resolve-all-of-current-scope-by-type> SortDeclaration() | m);
+		
+		// Test
 		where(is-not-empty-list);
 		nub;
 		!'imports(
