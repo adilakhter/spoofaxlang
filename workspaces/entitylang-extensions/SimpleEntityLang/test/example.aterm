@@ -1,1 +1,12 @@
-Module("A", [Entity("Z", [])])
+Module(
+  "A"
+, [ Entity(
+      "X"
+    , [ Property("Y", IntegerType())
+      , Property("Z", StringType())
+      , Property("A", Type("Blogs"))
+      ]
+    )
+  , Entity("Blogs", [])
+  ]
+)

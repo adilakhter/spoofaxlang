@@ -1,0 +1,10 @@
+module SimpleEntityLang-Mix[Ctx60]
+imports typeSystem
+
+          [ Type => Type[[Ctx60]] ]
+
+imports languageConcepts
+
+          [ Module     => Module[[Ctx60]]
+            Definition => Definition[[Ctx60]]
+            Property   => Property[[Ctx60]] ]

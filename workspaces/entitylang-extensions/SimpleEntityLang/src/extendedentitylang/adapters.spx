@@ -2,8 +2,7 @@ package ExtendedEntityLang
 // This module acts as adapter between editor services and respective custom transformations. 
 	// It specifies Stratego transformation rules to be executed for different types of editor services. 
 	// See editor-services.generated.spx for a brief introduction on the available editor services.
-	module builderDescriptor
-					
+	module builderDescriptor 
 		// Builders may carry out custom transformations on a file or selection.
 		builders
 			observer : editor-analyze         	                                                                          

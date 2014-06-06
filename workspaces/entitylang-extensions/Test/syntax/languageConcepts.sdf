@@ -1,0 +1,10 @@
+module languageConcepts
+
+imports Common
+imports typeSystem
+
+exports
+  context-free syntax
+    "module" SID Definition*       -> Module     {cons("Module")}
+    "entity" SID "{" Property* "}" -> Definition {cons("Entity")}
+    SID ":" Type                   -> Property   {cons("Property")}

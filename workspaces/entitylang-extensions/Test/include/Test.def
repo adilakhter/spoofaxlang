@@ -1,0 +1,94 @@
+definition
+module languageConcepts
+
+imports Common
+imports typeSystem
+
+exports
+  context-free syntax
+    "module" SID Definition*       -> Module     {cons("Module")}
+    "entity" SID "{" Property* "}" -> Definition {cons("Entity")}
+    SID ":" Type                   -> Property   {cons("Property")}
+
+module Common
+
+exports
+
+  lexical syntax
+  
+    [a-zA-Z][a-zA-Z0-9]* -> SID
+    "-"? [0-9]+          -> INT
+    
+    "\"" StringChar* "\"" -> STRING
+    ~[\"\n]               -> StringChar
+    "\\\""                -> StringChar
+    BackSlashChar         -> StringChar
+    "\\"                  -> BackSlashChar
+    
+    [\ \t\n\r] -> LAYOUT
+    
+    [\*]                             -> CommentChar
+    "/*" (~[\*] | CommentChar)* "*/" -> LAYOUT
+    "//" ~[\n\r]* ([\n\r] | EOF)     -> LAYOUT
+    
+    -> EOF
+  
+  lexical restrictions
+  
+    %% Ensure greedy matching for lexicals
+  
+    CommentChar   -/- [\/]
+    INT           -/- [0-9]
+    SID            -/- [a-zA-Z0-9\_]
+    
+    %% EOF may not be followed by any char
+    
+    EOF           -/- ~[]
+
+    %% Backslash chars in strings may not be followed by " 
+    
+    BackSlashChar -/- [\"]
+
+  context-free restrictions
+  
+    %% Ensure greedy matching for comments
+
+    LAYOUT? -/- [\ \t\n\r]
+    LAYOUT? -/- [\/].[\/]
+    LAYOUT? -/- [\/].[\*]
+
+module typeSystem
+
+imports Common
+imports languageConcepts
+
+exports
+  context-free syntax
+    SID      -> Type {cons("Type")}
+    "Int"    -> Type {cons("IntegerType"), prefer}
+    "String" -> Type {cons("StringType"), prefer}
+
+module SimpleEntityLang-Mix[Ctx60]
+imports typeSystem
+
+          [ Type => Type[[Ctx60]] ]
+
+imports languageConcepts
+
+          [ Module     => Module[[Ctx60]]
+            Definition => Definition[[Ctx60]]
+            Property   => Property[[Ctx60]] ]
+
+
+module Test
+
+imports SimpleEntityLang-Mix[SDF]
+
+exports
+
+  context-free start-symbols
+    Start
+
+  context-free syntax
+   Module[[SDF]]      -> Start
+    

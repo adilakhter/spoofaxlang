@@ -1,0 +1,112 @@
+definition
+
+module languageConcepts
+imports Common
+
+imports typeSystem
+
+exports
+  sorts WATER WATERTOKEN WATERTOKENSTART WATERTOKENSEPARATOR WATERTOKENSTAR
+
+  lexical syntax
+    ~[A-Za-z0-9\_]                 -> WATERTOKENSTART     {recover, avoid}
+    WATERTOKENSTART [A-Za-z0-9\_]* -> WATERTOKEN          
+    ~[A-Za-z0-9\_\ \t\12\r\n\*]    -> WATERTOKENSEPARATOR {recover, avoid}
+    "*"                            -> WATERTOKENSTAR      {recover, avoid}
+    WATERTOKEN                     -> WATER               
+    WATERTOKENSEPARATOR            -> WATER               
+    WATERTOKENSTAR                 -> WATER               
+                                   -> WATEREOF            
+
+  lexical restrictions
+    WATERTOKEN -/- [A-Za-z0-9\_]
+    WATERTOKENSTAR -/- [\/]
+
+  context-free syntax
+    WATER -> LAYOUT {cons("WATER")}
+
+  (
+
+  sorts WATEREOF
+
+  lexical restrictions
+    WATEREOF -/- ~[]
+
+  lexical syntax
+    %% Lexical insertion recovery rules                              
+                                                  -> "module"        {recover, cons("INSERTION")}
+                                                  -> "}"             {recover, cons("INSERTION")}
+                                                  -> "entity"        {recover, cons("INSERTION")}
+    "\""                                          -> INSERTOPENQUOTE {recover}
+    INSERTOPENQUOTE StringChar* "\n"              -> STRING          {cons("INSERTEND")}
+    INSERTOPENQUOTE StringChar* WATEREOF          -> STRING          {cons("INSERTEND")}
+    "/*"                                          -> INSERTSTART     {recover}
+    INSERTSTART ( ~[\*] | CommentChar )* WATEREOF -> LAYOUT          {cons("INSERTEND")}
+
+  syntax
+    %% Kernel syntax insertion recovery rules   
+
+  )
+
+  context-free syntax
+    "module" SID Definition*       -> Module     {cons("Module")}
+    "entity" SID "{" Property* "}" -> Definition {cons("Entity")}
+    SID ":" Type                   -> Property   {cons("Property")}
+
+module Common
+exports
+  lexical syntax
+    [a-zA-Z] [a-zA-Z0-9]*              -> SID           
+    "-"? [0-9]+                        -> INT           
+    "\"" StringChar* "\""              -> STRING        
+    ~[\"\n]                            -> StringChar    
+    "\\\""                             -> StringChar    
+    BackSlashChar                      -> StringChar    
+    "\\"                               -> BackSlashChar 
+    [\ \t\n\r]                         -> LAYOUT        
+    [\*]                               -> CommentChar   
+    "/*" ( ~[\*] | CommentChar )* "*/" -> LAYOUT        
+    "//" ~[\n\r]* [\n\r] | EOF         -> LAYOUT        
+                                       -> EOF           
+
+  lexical restrictions
+    CommentChar -/- [\/]
+    INT -/- [0-9]
+    SID -/- [a-zA-Z0-9\_]
+    EOF -/- ~[]
+    BackSlashChar -/- [\"]
+
+  context-free restrictions
+    LAYOUT? -/- [\ \t\n\r]
+    LAYOUT? -/- [\/] . [\/]
+    LAYOUT? -/- [\/] . [\*]
+
+module typeSystem
+imports Common
+
+imports languageConcepts
+
+exports
+  context-free syntax
+    SID      -> Type {cons("Type")}
+    "Int"    -> Type {cons("IntegerType"), prefer}
+    "String" -> Type {cons("StringType"), prefer}
+
+module SimpleEntityLang-Mix[Ctx60]
+imports typeSystem
+          [ Type => Type[[Ctx60]] ]
+
+imports languageConcepts
+          [ Module     => Module[[Ctx60]]
+            Definition => Definition[[Ctx60]]
+            Property   => Property[[Ctx60]] ]
+
+module Test
+imports SimpleEntityLang-Mix[SDF]
+
+exports
+  context-free start-symbols
+    Start
+
+  context-free syntax
+    Module[[SDF]] -> Start 

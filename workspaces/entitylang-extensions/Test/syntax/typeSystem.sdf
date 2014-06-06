@@ -1,0 +1,10 @@
+module typeSystem
+
+imports Common
+imports languageConcepts
+
+exports
+  context-free syntax
+    SID      -> Type {cons("Type")}
+    "Int"    -> Type {cons("IntegerType"), prefer}
+    "String" -> Type {cons("StringType"), prefer}

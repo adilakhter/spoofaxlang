@@ -1,0 +1,10 @@
+module include/Test-parenthesize
+
+imports
+  libstratego-lib
+
+
+strategies
+  io-Test-parenthesize =
+    io-wrap(id)
+

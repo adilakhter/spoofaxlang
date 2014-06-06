@@ -1,11 +1,8 @@
 package SimpleEntityLang   
 
-module identifierDefinition
+module Common
 	lexical syntax
 		[a-zA-Z][a-zA-Z0-9]* -> SID
-
-
-module literals
 	lexical syntax
 		"-"? [0-9]+           -> INT
 		"\"" StringChar* "\"" -> STRING
@@ -26,8 +23,6 @@ module literals
 		
 		BackSlashChar -/- [\"]
 
-
-module keywordDefinition
 	
 	lexical syntax 
 		"Int"					  		-> RESERVED
@@ -40,8 +35,6 @@ module keywordDefinition
 		"String"  -/- [A-Za-z0-9\_]
 
 
-
-module layout
 	lexical syntax
 		[\ \t\n\r] -> LAYOUT
 	    
@@ -62,4 +55,3 @@ module layout
 		LAYOUT? -/- [\ \t\n\r]
 		LAYOUT? -/- [\/].[\/]
 		LAYOUT? -/- [\/].[\*]		
-

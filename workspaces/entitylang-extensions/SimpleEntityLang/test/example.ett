@@ -1,3 +1,9 @@
 module A 
 
-entity Z{}
+entity X {
+	Y : Int
+	Z : String
+	A : Blogs
+}
+
+entity Blogs{}

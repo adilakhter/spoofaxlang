@@ -1,0 +1,14 @@
+%% Grammar for the Test language
+%% By default, based on an example "entities" syntax
+module Test
+
+imports SimpleEntityLang-Mix[SDF]
+
+exports
+
+  context-free start-symbols
+    Start
+
+  context-free syntax
+   Module[[SDF]]      -> Start
+    
