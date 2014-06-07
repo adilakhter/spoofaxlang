@@ -1,0 +1,14 @@
+module example
+
+imports Test/A
+
+entity A {
+	X : Int
+	Y : TypeX
+}
+
+def foo(x:Int): Int{
+	var Y: String;
+	Y := "STR";
+	return 1; 	 
+}

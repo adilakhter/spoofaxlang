@@ -1,0 +1,245 @@
+definition
+module EntityLangSimple/LexDef
+imports EntityLangSimple/layout
+ EntityLangSimple/Def
+
+
+exports
+  lexical syntax
+    [a-zA-Z] [a-zA-Z0-9]* -> EntID 
+
+  (
+
+  lexical syntax
+    "-"? [0-9]+           -> INT           
+    "\"" StringChar* "\"" -> STRING        
+    ~[\"\n]               -> StringChar    
+    "\\\""                -> StringChar    
+    BackSlashChar         -> StringChar    
+    "\\"                  -> BackSlashChar 
+
+  (
+
+  lexical restrictions
+    CommentChar -/- [\/]
+    INT -/- [0-9]
+    EntID -/- [a-zA-Z0-9\_]
+    BackSlashChar -/- [\"]
+
+  (
+
+  lexical syntax
+    "Int"    -> RESERVED 
+    "String" -> RESERVED 
+    "return" -> RESERVED 
+    "var"    -> RESERVED 
+    RESERVED -> EntID    {reject}
+
+  lexical restrictions
+    "Int" "String" "return" "var" -/- [A-Za-z0-9\_]
+
+  )
+
+  )
+
+  )
+
+module EntityLangSimple/layout
+imports EntityLangSimple/LexDef
+ EntityLangSimple/Def
+
+
+exports
+  lexical syntax
+    [\ \t\n\r]                         -> LAYOUT      
+    [\*]                               -> CommentChar 
+    "/*" ( ~[\*] | CommentChar )* "*/" -> LAYOUT      
+    "//" ~[\n\r]* [\n\r] | EOF         -> LAYOUT      
+                                       -> EOF         
+
+  (
+
+  lexical restrictions
+    EOF -/- ~[]
+
+  context-free restrictions
+    LAYOUT? -/- [\ \t\n\r]
+    LAYOUT? -/- [\/] . [\/]
+    LAYOUT? -/- [\/] . [\*]
+
+  )
+
+module EntityLangSimple/Def
+imports EntityLangSimple/layout
+ EntityLangSimple/LexDef
+
+
+exports
+  context-free syntax
+    Module -> Start 
+
+  (
+
+  context-free syntax
+    "module" EntID Definition*         -> Module     {cons("Module")}
+    "imports" FILENAME                 -> Definition {cons("Imports")}
+    Entity                             -> Definition 
+    "entity" EntID "{" EntityElem* "}" -> Entity     {cons("Entity")}
+
+  (
+
+  context-free syntax
+    Property       -> EntityElem 
+    EntID ":" Type -> Property   {cons("Property")}
+    Exp "." EntID  -> Exp        {cons("PropertyAccess")}
+
+  (
+
+  context-free syntax
+    EntID    -> Type {cons("Type")}
+    "Int"    -> Type {cons("IntegerType"), prefer}
+    "String" -> Type {cons("StringType"), prefer}
+
+  (
+
+  context-free syntax
+    Exp ":=" Exp ";"   -> Statement {cons("Assign")}
+    "{" Statement* "}" -> Block     {cons("Block")}
+    Block              -> Statement 
+    VarDecl            -> Statement 
+    Exp ";"            -> Statement {cons("Statement")}
+
+  (
+
+  context-free syntax
+    "new" EntID "(" ")" -> Exp {cons("New")}
+
+  (
+
+  context-free syntax
+    EntID       -> Exp {cons("VarRef"), prefer}
+    "(" Exp ")" -> Exp {bracket}
+    Exp "<" Exp -> Exp {cons("LT"), non-assoc}
+
+  (
+
+  context-free syntax
+    "this" -> Exp {cons("This")}
+
+  (
+
+  context-free syntax
+    INT         -> Exp {cons("Int")}
+    STRING      -> Exp {cons("String")}
+    Exp "+" Exp -> Exp {cons("Plus"), assoc}
+    Exp "*" Exp -> Exp {cons("Times"), assoc}
+
+  (
+
+  context-free priorities
+    Exp "*" Exp -> Exp  >
+    Exp "+" Exp -> Exp 
+
+  (
+
+  context-free syntax
+    "var" EntID ":" Type ";" -> VarDecl {cons("VarDecl")}
+
+  (
+
+  context-free syntax
+    "if" "(" Exp ")" Block "else" Block -> Statement {cons("If")}
+    "while" "(" Exp ")" Block           -> Statement {cons("While")}
+
+  (
+
+  context-free syntax
+    FunctionDef                                        -> Definition   
+    FunctionCall                                       -> Exp          
+    "def" EntID "(" {Param ","}* ")" ReturnType? Block -> FunctionDef  {cons("FunctionDef")}
+    EntID "(" {Exp ","}* ")"                           -> FunctionCall {cons("FunctionCall")}
+
+  (
+
+  context-free syntax
+    "return" Exp ";" -> Statement  {cons("Return")}
+    EntID ":" Type   -> Param      {cons("Param")}
+    ":" Type         -> ReturnType {cons("ReturnType")}
+
+  (
+
+  context-free syntax
+    EntID         -> QID 
+    QID "." EntID -> QID {cons("QId")}
+
+  lexical syntax
+    {EntID "/"}+ -> FILENAME 
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+module EntityLangSimple-Mix[Ctx202]
+imports EntityLangSimple/Def
+
+          [ Block        => Block[[Ctx202]]
+            Entity       => Entity[[Ctx202]]
+            Start        => Start[[Ctx202]]
+            VarDecl      => VarDecl[[Ctx202]]
+            Param        => Param[[Ctx202]]
+            Module       => Module[[Ctx202]]
+            EntityElem   => EntityElem[[Ctx202]]
+            Property     => Property[[Ctx202]]
+            FunctionDef  => FunctionDef[[Ctx202]]
+            Statement    => Statement[[Ctx202]]
+            Type         => Type[[Ctx202]]
+            Definition   => Definition[[Ctx202]]
+            QID          => QID[[Ctx202]]
+            ReturnType   => ReturnType[[Ctx202]]
+            Exp          => Exp[[Ctx202]]
+            FunctionCall => FunctionCall[[Ctx202]] ]
+
+module EntityWithPairLang/Pairs
+imports 
+
+imports EntityLangSimple-Mix[E16]
+
+exports
+  context-free syntax
+    Module[[E16]] -> Start 
+
+  context-free syntax
+    "(" Exp[[E16]] "," Exp[[E16]] ")"   -> Exp[[E16]]  {cons("NewTuple")}
+    "(" Type[[E16]] "," Type[[E16]] ")" -> Type[[E16]] {cons("TupleType")}
+
+module EntityWithPairLang
+imports EntityWithPairLang/Pairs
+
+
+exports
+  context-free start-symbols
+    Start

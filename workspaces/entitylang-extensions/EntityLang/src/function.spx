@@ -10,13 +10,13 @@ context-free syntax
   	FunctionCall                              -> Exp
 	
 	
-	"def" ID "(" {Param ","}* ")" ReturnType? Block -> FunctionDef {cons("FunctionDef")}
-  	ID "(" {Exp ","}* ")"                           -> FunctionCall {cons("FunctionCall")}
+	"def" EID "(" {Param ","}* ")" ReturnType? Block -> FunctionDef {cons("FunctionDef")}
+  	EID "(" {Exp ","}* ")"                           -> FunctionCall {cons("FunctionCall")}
     
 context-free syntax 
 	 
 	"return" Exp ";"   -> Statement {cons("Return")}
-	ID ":" Type        -> Param {cons("Param")}
+	EID ":" Type        -> Param {cons("Param")}
 	":" Type           -> ReturnType {cons("ReturnType")} 	 
       
 	

@@ -1,6 +1,12 @@
 definition
 
 module org/lang/EntityLang/ArithmeticExpression
+imports org/lang/EntityLang/Type org/lang/EntityLang/Statement
+        org/lang/EntityLang/Property org/lang/EntityLang/Module
+        org/lang/EntityLang/Main org/lang/EntityLang/Common
+        org/lang/EntityLang/Function org/lang/EntityLang/Expression
+        org/lang/EntityLang/Entity org/lang/EntityLang/CommonLex
+
 exports
   sorts WATER WATERTOKEN WATERTOKENSTART WATERTOKENSEPARATOR WATERTOKENSTAR
 
@@ -65,78 +71,48 @@ exports
 
   )
 
-module org/lang/EntityLang/ArithExpAnalysis
-
-
-module org/lang/EntityLang/ArithExpChecks
-
-
-module org/lang/EntityLang/builderDescriptor
-
-
-module org/lang/EntityLang/builderDefinition
-
-
-module org/lang/EntityLang/referenceResolver
-
-
-module org/lang/EntityLang/contentAssistant
-
-
-module org/lang/EntityLang/JavaCodeGen
-
-
-module org/lang/EntityLang/PrettyPrinter
-
-
-module org/lang/EntityLang/typeSystem
-
-
 module org/lang/EntityLang/CommonLex
+imports org/lang/EntityLang/Type org/lang/EntityLang/Statement
+        org/lang/EntityLang/Property org/lang/EntityLang/Module
+        org/lang/EntityLang/Main org/lang/EntityLang/Common
+        org/lang/EntityLang/Function org/lang/EntityLang/Expression
+        org/lang/EntityLang/Entity org/lang/EntityLang/ArithmeticExpression
+
 exports
   context-free syntax
-    ID         -> QID 
-    QID "." ID -> QID {cons("QId")}
+    EID         -> QID 
+    QID "." EID -> QID {cons("QId")}
 
   lexical syntax
-    {ID "/"}+ -> FILENAME 
-
-module org/lang/EntityLang/ImportUtil
-
+    {EID "/"}+ -> FILENAME 
 
 module org/lang/EntityLang/Entity
+imports org/lang/EntityLang/Type org/lang/EntityLang/Statement
+        org/lang/EntityLang/Property org/lang/EntityLang/Module
+        org/lang/EntityLang/Main org/lang/EntityLang/Common
+        org/lang/EntityLang/Function org/lang/EntityLang/Expression
+        org/lang/EntityLang/CommonLex org/lang/EntityLang/ArithmeticExpression
+
 exports
   context-free syntax
-    Entity                          -> Definition 
-    "entity" ID "{" EntityElem* "}" -> Entity     {cons("Entity")}
-
-module org/lang/EntityLang/EntityAnalysis
-
-
-module org/lang/EntityLang/EntityConstructors
-
-
-module org/lang/EntityLang/EntityRenamings
-
-
-module org/lang/EntityLang/EntityStorage
-
-
-module org/lang/EntityLang/EntityTypeChecks
-
-
-module org/lang/EntityLang/EntityEditorDef
-
+    Entity                           -> Definition 
+    "entity" EID "{" EntityElem* "}" -> Entity     {cons("Entity"), prefer}
 
 module org/lang/EntityLang/Expression
+imports org/lang/EntityLang/Type org/lang/EntityLang/Statement
+        org/lang/EntityLang/Property org/lang/EntityLang/Module
+        org/lang/EntityLang/Main org/lang/EntityLang/Common
+        org/lang/EntityLang/Function org/lang/EntityLang/Entity
+        org/lang/EntityLang/CommonLex org/lang/EntityLang/ArithmeticExpression
+
 exports
   context-free syntax
-    "new" ID "(" ")" -> Exp {cons("New")}
+    "new" EID "(" ")" -> Exp {cons("New")}
 
   (
 
   context-free syntax
-    ID          -> Exp {cons("VarRef"), prefer}
+    EID         -> Exp {cons("VarRef"), prefer}
     QID         -> Exp {cons("QVarRef")}
     "(" Exp ")" -> Exp {bracket}
     Exp "<" Exp -> Exp {cons("LT"), non-assoc}
@@ -146,59 +122,38 @@ exports
 
   )
 
-module org/lang/EntityLang/ExpSignatures
-
-
-module org/lang/EntityLang/ExpAnalysis
-
-
-module org/lang/EntityLang/ExpRenaming
-
-
-module org/lang/EntityLang/ExpStorage
-
-
-module org/lang/EntityLang/ExpTypeChecks
-
-
-module org/lang/EntityLang/ExpEditor
-
-
 module org/lang/EntityLang/Function
+imports org/lang/EntityLang/Type org/lang/EntityLang/Statement
+        org/lang/EntityLang/Property org/lang/EntityLang/Module
+        org/lang/EntityLang/Main org/lang/EntityLang/Common
+        org/lang/EntityLang/Expression org/lang/EntityLang/Entity
+        org/lang/EntityLang/CommonLex org/lang/EntityLang/ArithmeticExpression
+
 exports
   context-free syntax
-    FunctionDef                                     -> Definition   
-    FunctionCall                                    -> Exp          
-    "def" ID "(" {Param ","}* ")" ReturnType? Block -> FunctionDef  {cons("FunctionDef")}
-    ID "(" {Exp ","}* ")"                           -> FunctionCall {cons("FunctionCall")}
+    FunctionDef                                      -> Definition   
+    FunctionCall                                     -> Exp          
+    "def" EID "(" {Param ","}* ")" ReturnType? Block -> FunctionDef  {cons("FunctionDef")}
+    EID "(" {Exp ","}* ")"                           -> FunctionCall {cons("FunctionCall")}
 
   context-free syntax
     "return" Exp ";" -> Statement  {cons("Return")}
-    ID ":" Type      -> Param      {cons("Param")}
+    EID ":" Type     -> Param      {cons("Param")}
     ":" Type         -> ReturnType {cons("ReturnType")}
 
-module org/lang/EntityLang/FunctionConstructors
+module org/lang/EntityLang/Common
+imports org/lang/EntityLang/Type org/lang/EntityLang/Statement
+        org/lang/EntityLang/Property org/lang/EntityLang/Module
+        org/lang/EntityLang/Main org/lang/EntityLang/Function
+        org/lang/EntityLang/Expression org/lang/EntityLang/Entity
+        org/lang/EntityLang/CommonLex org/lang/EntityLang/ArithmeticExpression
 
-
-module org/lang/EntityLang/FunctionAnalysis
-
-
-module org/lang/EntityLang/FunctionStore
-
-
-module org/lang/EntityLang/FunctionRenaming
-
-
-module org/lang/EntityLang/FunctionStaticChecks
-
-
-module org/lang/EntityLang/identifierDefinition
 exports
   lexical syntax
-    [a-zA-Z] [a-zA-Z0-9]* -> ID 
+    [a-zA-Z] [a-zA-Z0-9]* -> EID 
 
-module org/lang/EntityLang/literals
-exports
+  (
+
   lexical syntax
     "-"? [0-9]+           -> INT           
     "\"" StringChar* "\"" -> STRING        
@@ -207,25 +162,29 @@ exports
     BackSlashChar         -> StringChar    
     "\\"                  -> BackSlashChar 
 
+  (
+
   lexical restrictions
     CommentChar -/- [\/]
     INT -/- [0-9]
-    ID -/- [a-zA-Z0-9\_]
+    EID -/- [a-zA-Z0-9\_]
     BackSlashChar -/- [\"]
 
-module org/lang/EntityLang/keywordDefinition
-exports
+  (
+
   lexical syntax
     "Int"    -> RESERVED 
     "String" -> RESERVED 
     "this"   -> RESERVED 
-    RESERVED -> ID       {reject}
+    RESERVED -> EID      {reject}
+
+  (
 
   lexical restrictions
     "Int" "String" -/- [A-Za-z0-9\_]
 
-module org/lang/EntityLang/layout
-exports
+  (
+
   lexical syntax
     [\ \t\n\r]                         -> LAYOUT      
     [\*]                               -> CommentChar 
@@ -245,76 +204,59 @@ exports
 
   )
 
-module org-lib-namespace-Mix[Ctx2]
+  )
 
+  )
 
-module org-lang-EntityLang-generated-Mix[Ctx0]
+  )
 
+  )
 
-module org/lang/EntityLang/mainDescriptor
-imports org-lang-EntityLang-generated-Mix[OLEG0] org-lib-namespace-Mix[OLN0]
+  )
 
 module org/lang/EntityLang/Main
+imports org/lang/EntityLang/Type org/lang/EntityLang/Statement
+        org/lang/EntityLang/Property org/lang/EntityLang/Module
+        org/lang/EntityLang/Common org/lang/EntityLang/Function
+        org/lang/EntityLang/Expression org/lang/EntityLang/Entity
+        org/lang/EntityLang/CommonLex org/lang/EntityLang/ArithmeticExpression
+
 exports
   context-free syntax
     Module -> Start 
 
-module org/lang/EntityLang/MainAnalysis
-
-
-module org/lang/EntityLang/MainStaticChecker
-
-
 module org/lang/EntityLang/Module
+imports org/lang/EntityLang/Type org/lang/EntityLang/Statement
+        org/lang/EntityLang/Property org/lang/EntityLang/Main
+        org/lang/EntityLang/Common org/lang/EntityLang/Function
+        org/lang/EntityLang/Expression org/lang/EntityLang/Entity
+        org/lang/EntityLang/CommonLex org/lang/EntityLang/ArithmeticExpression
+
 exports
   context-free syntax
-    "module" ID Definition* -> Module     {cons("Module")}
-    "imports" FILENAME      -> Definition {cons("Imports")}
-
-module org/lang/EntityLang/ModuleConstructors
-
-
-module org/lang/EntityLang/ModuleAnalysis
-
-
-module org/lang/EntityLang/ModuleStore
-
-
-module org/lang/EntityLang/ModuleRenamings
-
-
-module org/lang/EntityLang/ModuleStaticChecks
-
-
-module org/lang/EntityLang/ModuleEditorDef
-
+    "module" EID Definition* -> Module     {cons("Module")}
+    "imports" FILENAME       -> Definition {cons("Imports")}
 
 module org/lang/EntityLang/Property
+imports org/lang/EntityLang/Type org/lang/EntityLang/Statement
+        org/lang/EntityLang/Module org/lang/EntityLang/Main
+        org/lang/EntityLang/Common org/lang/EntityLang/Function
+        org/lang/EntityLang/Expression org/lang/EntityLang/Entity
+        org/lang/EntityLang/CommonLex org/lang/EntityLang/ArithmeticExpression
+
 exports
   context-free syntax
-    Property    -> EntityElem 
-    ID ":" Type -> Property   {cons("Property")}
-    Exp "." ID  -> Exp        {cons("PropertyAccess")}
-
-module org/lang/EntityLang/PropertySignatures
-
-
-module org/lang/EntityLang/PropertyAnalysis
-
-
-module org/lang/EntityLang/PropertyRenamings
-
-
-module org/lang/EntityLang/PropertyStore
-
-
-module org/lang/EntityLang/PropertyStaticChecks
-
-
-module org/lang/EntityLang/PropertyEditorDef
-
+    Property     -> EntityElem 
+    EID ":" Type -> Property   {cons("Property")}
+    Exp "." EID  -> Exp        {cons("PropertyAccess")}
 
 module org/lang/EntityLang/Statement
+imports org/lang/EntityLang/Type org/lang/EntityLang/Property
+        org/lang/EntityLang/Module org/lang/EntityLang/Main
+        org/lang/EntityLang/Common org/lang/EntityLang/Function
+        org/lang/EntityLang/Expression org/lang/EntityLang/Entity
+        org/lang/EntityLang/CommonLex org/lang/EntityLang/ArithmeticExpression
+
 exports
   context-free syntax
     Exp ":=" Exp ";"   -> Statement {cons("Assign")}
@@ -326,7 +268,7 @@ exports
   (
 
   context-free syntax
-    "var" ID ":" Type ";" -> VarDecl {cons("VarDecl")}
+    "var" EID ":" Type ";" -> VarDecl {cons("VarDecl")}
 
   context-free syntax
     "if" "(" Exp ")" Block "else" Block -> Statement {cons("If")}
@@ -334,73 +276,25 @@ exports
 
   )
 
-module org/lang/EntityLang/StatementAnalysis
-
-
-module org/lang/EntityLang/StatementStaticChecking
-
-
 module org/lang/EntityLang/Type
+imports org/lang/EntityLang/Statement org/lang/EntityLang/Property
+        org/lang/EntityLang/Module org/lang/EntityLang/Main
+        org/lang/EntityLang/Common org/lang/EntityLang/Function
+        org/lang/EntityLang/Expression org/lang/EntityLang/Entity
+        org/lang/EntityLang/CommonLex org/lang/EntityLang/ArithmeticExpression
+
 exports
   context-free syntax
-    ID       -> Type {cons("Type")}
+    EID      -> Type {cons("Type")}
     "Int"    -> Type {cons("IntegerType"), prefer}
     "String" -> Type {cons("StringType"), prefer}
 
-module org/lang/EntityLang/TypePP
-
-
-module org/lang/EntityLang/TypeStore
-
-
-module org/lang/EntityLang/TypeStaticChecks
-
-
-module org/lang/EntityLang/TypeEditorDef
-
-
-module org/lang/EntityLang/TypeAnalysis
-
-
 module EntityLang
-imports org/lang/EntityLang/TypeAnalysis org/lang/EntityLang/TypeEditorDef
-        org/lang/EntityLang/TypeStaticChecks org/lang/EntityLang/TypeStore
-        org/lang/EntityLang/TypePP org/lang/EntityLang/Type
-        org/lang/EntityLang/StatementStaticChecking
-        org/lang/EntityLang/StatementAnalysis org/lang/EntityLang/Statement
-        org/lang/EntityLang/PropertyEditorDef
-        org/lang/EntityLang/PropertyStaticChecks
-        org/lang/EntityLang/PropertyStore org/lang/EntityLang/PropertyRenamings
-        org/lang/EntityLang/PropertyAnalysis
-        org/lang/EntityLang/PropertySignatures org/lang/EntityLang/Property
-        org/lang/EntityLang/ModuleEditorDef
-        org/lang/EntityLang/ModuleStaticChecks
-        org/lang/EntityLang/ModuleRenamings org/lang/EntityLang/ModuleStore
-        org/lang/EntityLang/ModuleAnalysis
-        org/lang/EntityLang/ModuleConstructors org/lang/EntityLang/Module
-        org/lang/EntityLang/MainStaticChecker org/lang/EntityLang/MainAnalysis
-        org/lang/EntityLang/Main org/lang/EntityLang/mainDescriptor
-        org/lang/EntityLang/layout org/lang/EntityLang/keywordDefinition
-        org/lang/EntityLang/literals org/lang/EntityLang/identifierDefinition
-        org/lang/EntityLang/FunctionStaticChecks
-        org/lang/EntityLang/FunctionRenaming org/lang/EntityLang/FunctionStore
-        org/lang/EntityLang/FunctionAnalysis
-        org/lang/EntityLang/FunctionConstructors org/lang/EntityLang/Function
-        org/lang/EntityLang/ExpEditor org/lang/EntityLang/ExpTypeChecks
-        org/lang/EntityLang/ExpStorage org/lang/EntityLang/ExpRenaming
-        org/lang/EntityLang/ExpAnalysis org/lang/EntityLang/ExpSignatures
-        org/lang/EntityLang/Expression org/lang/EntityLang/EntityEditorDef
-        org/lang/EntityLang/EntityTypeChecks org/lang/EntityLang/EntityStorage
-        org/lang/EntityLang/EntityRenamings
-        org/lang/EntityLang/EntityConstructors
-        org/lang/EntityLang/EntityAnalysis org/lang/EntityLang/Entity
-        org/lang/EntityLang/ImportUtil org/lang/EntityLang/CommonLex
-        org/lang/EntityLang/typeSystem org/lang/EntityLang/PrettyPrinter
-        org/lang/EntityLang/JavaCodeGen org/lang/EntityLang/contentAssistant
-        org/lang/EntityLang/referenceResolver
-        org/lang/EntityLang/builderDefinition
-        org/lang/EntityLang/builderDescriptor org/lang/EntityLang/ArithExpChecks
-        org/lang/EntityLang/ArithExpAnalysis
+imports org/lang/EntityLang/Type org/lang/EntityLang/Statement
+        org/lang/EntityLang/Property org/lang/EntityLang/Module
+        org/lang/EntityLang/Main org/lang/EntityLang/Common
+        org/lang/EntityLang/Function org/lang/EntityLang/Expression
+        org/lang/EntityLang/Entity org/lang/EntityLang/CommonLex
         org/lang/EntityLang/ArithmeticExpression
 
 exports

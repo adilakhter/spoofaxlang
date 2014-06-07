@@ -1,0 +1,20 @@
+module EntityLangSimple-signatures 
+imports 
+	.shadowdir/EntityLangSimple/Def-signature
+	.shadowdir/EntityLangSimple/mainDescriptor-signature
+	.shadowdir/EntityLangSimple/layout-signature
+	.shadowdir/EntityLangSimple/LexDef-signature
+	.shadowdir/EntityLangSimple/syntaxConfiguration-signature
+	.shadowdir/EntityLangSimple/completionDescriptor-signature
+	.shadowdir/EntityLangSimple/colorDescriptor-signature
+	.shadowdir/EntityLangSimple/foldingDescriptor-signature
+	.shadowdir/EntityLangSimple/outlineDescriptor-signature
+	.shadowdir/EntityLangSimple/contentAssistant-signature
+	.shadowdir/EntityLangSimple/referenceResolver-signature
+	.shadowdir/EntityLangSimple/builderDefinition-signature
+	.shadowdir/EntityLangSimple/builderDescriptor-signature
+	
+imports 
+	.shadowdir/EntityLangSimple/__internal-signature
+imports 
+	.shadowdir/Globals/Signatures	 	 	

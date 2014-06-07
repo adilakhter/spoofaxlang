@@ -2,7 +2,7 @@ package org.lang.EntityLang
 
 module Module
 context-free syntax
-    "module" ID Definition* -> Module {"Module"}
+    "module" EID Definition* -> Module {"Module"}
     "imports" FILENAME      -> Definition {"Imports"}
 
 

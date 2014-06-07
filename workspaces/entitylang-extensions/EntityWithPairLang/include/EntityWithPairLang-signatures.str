@@ -1,0 +1,17 @@
+module EntityWithPairLang-signatures 
+imports 
+	.shadowdir/EntityWithPairLang/mainDescriptor-signature
+	.shadowdir/EntityWithPairLang/completionDescriptor-signature
+	.shadowdir/EntityWithPairLang/colorDescriptor-signature
+	.shadowdir/EntityWithPairLang/foldingDescriptor-signature
+	.shadowdir/EntityWithPairLang/outlineDescriptor-signature
+	.shadowdir/EntityWithPairLang/Pairs-signature
+	.shadowdir/EntityWithPairLang/contentAssistant-signature
+	.shadowdir/EntityWithPairLang/referenceResolver-signature
+	.shadowdir/EntityWithPairLang/builderDefinition-signature
+	.shadowdir/EntityWithPairLang/builderDescriptor-signature
+	
+imports 
+	.shadowdir/EntityWithPairLang/__internal-signature
+imports 
+	.shadowdir/Globals/Signatures	 	 	

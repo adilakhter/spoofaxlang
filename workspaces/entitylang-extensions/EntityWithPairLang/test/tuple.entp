@@ -1,0 +1,23 @@
+module example
+
+imports Test/A
+
+entity A {
+	X : Int
+	Y : TypeX
+	Z : (Int, Int)
+}
+
+def foo(x:Int): (Int,Int){
+	
+	var Y: (String, String);
+	var a: A;
+	
+	a := new A();
+	
+	a.A := ("Foo", "Bar");  
+	
+	Y + 2;
+	
+	return (1,1); 	
+}

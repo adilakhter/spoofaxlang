@@ -3,11 +3,11 @@ package org.lang.EntityLang
 module CommonLex
 
 context-free syntax
-  	ID         -> QID
-    QID "." ID -> QID {"QId"}
+  	EID         -> QID
+    QID "." EID -> QID {"QId"}
 
 lexical syntax
-  	{ID "/"}+ -> FILENAME
+  	{EID "/"}+ -> FILENAME
 
 
 

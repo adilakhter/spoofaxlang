@@ -1,0 +1,32 @@
+package EntityWithPairLang
+	 		
+module outlineDescriptor
+		 	
+outliner
+  
+  
+
+	 		
+module foldingDescriptor
+		 	
+folding
+  
+  
+	 			
+module colorDescriptor 
+	
+colorer
+                                                                      
+  
+	 		
+module completionDescriptor
+	 	
+completions
+                                                                   
+  // This module is used to define content completion.             
+  //                                                               
+  // See the imported file for a brief introduction and examples.  
+                                                                   
+completions
+                                             
+  

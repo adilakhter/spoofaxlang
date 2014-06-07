@@ -1,0 +1,154 @@
+definition
+
+module SimpleEntityLang/languageConcepts
+imports SimpleEntityLang/Common SimpleEntityLang/typeSystem
+
+exports
+  sorts WATER WATERTOKEN WATERTOKENSTART WATERTOKENSEPARATOR WATERTOKENSTAR
+
+  lexical syntax
+    ~[A-Za-z0-9\_]                 -> WATERTOKENSTART     {recover, avoid}
+    WATERTOKENSTART [A-Za-z0-9\_]* -> WATERTOKEN          
+    ~[A-Za-z0-9\_\ \t\12\r\n\*]    -> WATERTOKENSEPARATOR {recover, avoid}
+    "*"                            -> WATERTOKENSTAR      {recover, avoid}
+    WATERTOKEN                     -> WATER               
+    WATERTOKENSEPARATOR            -> WATER               
+    WATERTOKENSTAR                 -> WATER               
+                                   -> WATEREOF            
+
+  lexical restrictions
+    WATERTOKEN -/- [A-Za-z0-9\_]
+    WATERTOKENSTAR -/- [\/]
+
+  context-free syntax
+    WATER -> LAYOUT {cons("WATER")}
+
+  (
+
+  sorts WATEREOF
+
+  lexical restrictions
+    WATEREOF -/- ~[]
+
+  lexical syntax
+    %% Lexical insertion recovery rules                              
+                                                  -> "module"        {recover, cons("INSERTION")}
+                                                  -> "}"             {recover, cons("INSERTION")}
+                                                  -> "entity"        {recover, cons("INSERTION")}
+    "\""                                          -> INSERTOPENQUOTE {recover}
+    INSERTOPENQUOTE StringChar* "\n"              -> STRING          {cons("INSERTEND")}
+    INSERTOPENQUOTE StringChar* WATEREOF          -> STRING          {cons("INSERTEND")}
+    "/*"                                          -> INSERTSTART     {recover}
+    INSERTSTART ( ~[\*] | CommentChar )* WATEREOF -> LAYOUT          {cons("INSERTEND")}
+
+  syntax
+    %% Kernel syntax insertion recovery rules   
+
+  )
+
+  context-free syntax
+    "module" SID Definition*       -> Module     {cons("Module")}
+    "entity" SID "{" Property* "}" -> Definition {cons("Entity")}
+    SID ":" Type                   -> Property   {cons("Property")}
+
+module SimpleEntityLang/Common
+imports SimpleEntityLang/typeSystem SimpleEntityLang/languageConcepts
+
+exports
+  lexical syntax
+    [a-zA-Z] [a-zA-Z0-9]* -> SID 
+
+  (
+
+  lexical syntax
+    "-"? [0-9]+           -> INT           
+    "\"" StringChar* "\"" -> STRING        
+    ~[\"\n]               -> StringChar    
+    "\\\""                -> StringChar    
+    BackSlashChar         -> StringChar    
+    "\\"                  -> BackSlashChar 
+
+  (
+
+  lexical restrictions
+    CommentChar -/- [\/]
+    INT -/- [0-9]
+    SID -/- [a-zA-Z0-9\_]
+    BackSlashChar -/- [\"]
+
+  (
+
+  lexical syntax
+    "Int"    -> RESERVED 
+    "String" -> RESERVED 
+    RESERVED -> SID      {reject}
+
+  (
+
+  lexical restrictions
+    "Int" "String" -/- [A-Za-z0-9\_]
+
+  (
+
+  lexical syntax
+    [\ \t\n\r]                         -> LAYOUT      
+    [\*]                               -> CommentChar 
+    "/*" ( ~[\*] | CommentChar )* "*/" -> LAYOUT      
+    "//" ~[\n\r]* [\n\r] | EOF         -> LAYOUT      
+                                       -> EOF         
+
+  (
+
+  lexical restrictions
+    EOF -/- ~[]
+
+  context-free restrictions
+    LAYOUT? -/- [\ \t\n\r]
+    LAYOUT? -/- [\/] . [\/]
+    LAYOUT? -/- [\/] . [\*]
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+module SimpleEntityLang/typeSystem
+imports SimpleEntityLang/Common SimpleEntityLang/languageConcepts
+
+exports
+  context-free syntax
+    SID      -> Type {cons("Type")}
+    "Int"    -> Type {cons("IntegerType"), prefer}
+    "String" -> Type {cons("StringType"), prefer}
+
+module SimpleEntityLang-Mix[Ctx61]
+imports SimpleEntityLang/typeSystem
+          [ Type => Type[[Ctx61]] ]
+
+imports SimpleEntityLang/languageConcepts
+          [ Module     => Module[[Ctx61]]
+            Definition => Definition[[Ctx61]]
+            Property   => Property[[Ctx61]] ]
+
+module ExtendedEntityLang/languageConcepts
+imports 
+
+imports SimpleEntityLang-Mix[S2]
+
+exports
+  context-free syntax
+    Module[[S2]] -> EModule {cons("EModule")}
+
+module ExtendedEntityLang
+imports ExtendedEntityLang/languageConcepts
+
+exports
+  context-free start-symbols
+    EModule

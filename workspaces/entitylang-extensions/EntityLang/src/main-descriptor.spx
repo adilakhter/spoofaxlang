@@ -6,7 +6,7 @@ imports
 	org.lang.EntityLang.generated
 	org.lib.namespace 
 	 		
-
+// 
 language General properties
                   
   name          : EntityLang

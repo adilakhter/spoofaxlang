@@ -4,8 +4,8 @@ module Property
 
 context-free syntax
     Property    -> EntityElem 
-    ID ":" Type -> Property {"Property"}
-  	Exp "." ID  -> Exp {"PropertyAccess"} 
+    EID ":" Type -> Property {"Property"}
+  	Exp "." EID  -> Exp {"PropertyAccess"} 
 
 module PropertySignatures 
 signature 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.imp.runtime.languageDescription">
+      <language
+            extensions="els"
+            description="EntityLangSimple"
+            language="EntityLangSimple"
+            derivedFrom="DynamicRoot"
+            validator="EntityLangSimple.EntityLangSimpleValidator"
+            validatorClass="EntityLangSimple.EntityLangSimpleValidator"
+      ></language>
+   </extension>
+   <extension
+         id="EntityLangSimple.parser"
+         name="EntityLangSimple Parser"
+         point="org.eclipse.imp.runtime.parser">
+      <parser
+            class="EntityLangSimple.EntityLangSimpleParseController"
+            language="EntityLangSimple">
+      </parser>
+   </extension>    
+</plugin>

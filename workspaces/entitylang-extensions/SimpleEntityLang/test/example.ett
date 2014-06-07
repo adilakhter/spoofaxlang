@@ -4,6 +4,11 @@ entity X {
 	Y : Int
 	Z : String
 	A : Blogs
-}
+} 
 
-entity Blogs{}
+entity Blogs{
+
+	Y : Int
+	Z : String
+	A : Blogs
+}  

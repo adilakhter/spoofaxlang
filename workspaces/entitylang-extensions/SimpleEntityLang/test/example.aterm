@@ -1,12 +1,20 @@
-Module(
-  "A"
-, [ Entity(
-      "X"
-    , [ Property("Y", IntegerType())
-      , Property("Z", StringType())
-      , Property("A", Type("Blogs"))
-      ]
-    )
-  , Entity("Blogs", [])
-  ]
+EModule(
+  Module(
+    "A"
+  , [ Entity(
+        "X"
+      , [ Property("Y", IntegerType())
+        , Property("Z", StringType())
+        , Property("A", Type("Blogs"))
+        ]
+      )
+    , Entity(
+        "Blogs"
+      , [ Property("Y", IntegerType())
+        , Property("Z", StringType())
+        , Property("A", Type("Blogs"))
+        ]
+      )
+    ]
+  )
 )

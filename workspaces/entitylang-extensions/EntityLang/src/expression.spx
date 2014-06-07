@@ -3,10 +3,10 @@ package org.lang.EntityLang
 module Expression 
  
 context-free syntax  
-	"new" ID "(" ")"     -> Exp {"New"}
+	"new" EID "(" ")"     -> Exp {"New"}
 
 context-free syntax 
-	ID          -> Exp {"VarRef",prefer}
+	EID          -> Exp {"VarRef",prefer}
   	QID			-> Exp {"QVarRef"}
   	"(" Exp ")" -> Exp {bracket}
     Exp "<" Exp -> Exp {"LT",non-assoc}	

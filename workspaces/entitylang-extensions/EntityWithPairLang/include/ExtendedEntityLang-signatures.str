@@ -1,0 +1,14 @@
+module ExtendedEntityLang-signatures 
+imports 
+	.shadowdir/ExtendedEntityLang/mainDescriptor-signature
+	.shadowdir/ExtendedEntityLang/completionDescriptor-signature
+	.shadowdir/ExtendedEntityLang/colorDescriptor-signature
+	.shadowdir/ExtendedEntityLang/foldingDescriptor-signature
+	.shadowdir/ExtendedEntityLang/outlineDescriptor-signature
+	.shadowdir/ExtendedEntityLang/languageConcepts-signature
+	.shadowdir/ExtendedEntityLang/builderDescriptor-signature
+	
+imports 
+	.shadowdir/ExtendedEntityLang/__internal-signature
+imports 
+	.shadowdir/Globals/Signatures	 	 	

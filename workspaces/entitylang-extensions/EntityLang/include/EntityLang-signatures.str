@@ -27,10 +27,7 @@ imports
 	.shadowdir/org/lang/EntityLang/MainAnalysis-signature
 	.shadowdir/org/lang/EntityLang/Main-signature
 	.shadowdir/org/lang/EntityLang/mainDescriptor-signature
-	.shadowdir/org/lang/EntityLang/layout-signature
-	.shadowdir/org/lang/EntityLang/keywordDefinition-signature
-	.shadowdir/org/lang/EntityLang/literals-signature
-	.shadowdir/org/lang/EntityLang/identifierDefinition-signature
+	.shadowdir/org/lang/EntityLang/Common-signature
 	.shadowdir/org/lang/EntityLang/FunctionStaticChecks-signature
 	.shadowdir/org/lang/EntityLang/FunctionRenaming-signature
 	.shadowdir/org/lang/EntityLang/FunctionStore-signature

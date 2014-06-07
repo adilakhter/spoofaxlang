@@ -2,7 +2,7 @@ package org.lang.EntityLang
 	
 module Type
 context-free syntax
-	ID        -> Type {"Type"}
+	EID        -> Type {"Type"}
     "Int"	  -> Type {"IntegerType", prefer}
 	"String"  -> Type {"StringType" , prefer}
  

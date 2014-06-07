@@ -1,0 +1,21 @@
+module SimpleEntityLang-signatures 
+imports 
+	.shadowdir/SimpleEntityLang/mainDescriptor-signature
+	.shadowdir/SimpleEntityLang/Common-signature
+	.shadowdir/SimpleEntityLang/syntaxConfiguration-signature
+	.shadowdir/SimpleEntityLang/completionDescriptor-signature
+	.shadowdir/SimpleEntityLang/colorDescriptor-signature
+	.shadowdir/SimpleEntityLang/foldingDescriptor-signature
+	.shadowdir/SimpleEntityLang/outlineDescriptor-signature
+	.shadowdir/SimpleEntityLang/semanticAnalyzer-signature
+	.shadowdir/SimpleEntityLang/typeSystem-signature
+	.shadowdir/SimpleEntityLang/languageConcepts-signature
+	.shadowdir/SimpleEntityLang/contentAssistant-signature
+	.shadowdir/SimpleEntityLang/referenceResolver-signature
+	.shadowdir/SimpleEntityLang/builderDefinition-signature
+	.shadowdir/SimpleEntityLang/builderDescriptor-signature
+	
+imports 
+	.shadowdir/SimpleEntityLang/__internal-signature
+imports 
+	.shadowdir/Globals/Signatures	 	 	

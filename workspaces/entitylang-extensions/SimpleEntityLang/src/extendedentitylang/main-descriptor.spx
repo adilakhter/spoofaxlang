@@ -14,5 +14,5 @@ language General properties
   url           : http://strategoxt.org
                   
   extensions    : ett
-  start symbols : Start
+  start symbols : EModule 
 	 			

@@ -1,0 +1,4 @@
+package EntityWithPairLang;
+
+public class EntityWithPairLangParseController extends EntityWithPairLangParseControllerGenerated 
+{ }

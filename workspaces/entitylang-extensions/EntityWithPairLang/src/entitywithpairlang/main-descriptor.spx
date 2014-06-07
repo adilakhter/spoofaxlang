@@ -1,0 +1,16 @@
+package EntityWithPairLang
+	
+module mainDescriptor
+imports EntityWithPairLang.generated
+
+language General properties
+                  
+  name          : EntityWithPairLang
+  extends       : Root
+                  
+  description   : "Spoofax/IMP-generated(using spoofaxlang) editor for the EntityWithPairLang language "
+  url           : http://strategoxt.org
+                  
+  extensions    : entp
+  start symbols : Start
+	 			

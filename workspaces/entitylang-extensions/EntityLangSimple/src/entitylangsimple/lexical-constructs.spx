@@ -1,0 +1,64 @@
+package EntityLangSimple   
+
+module LexDef
+	lexical syntax
+		[a-zA-Z][a-zA-Z0-9]* -> EntID
+
+	lexical syntax
+		"-"? [0-9]+           -> INT
+		"\"" StringChar* "\"" -> STRING
+		~[\"\n]               -> StringChar
+		"\\\""                -> StringChar
+		
+		BackSlashChar         -> StringChar
+		"\\"                  -> BackSlashChar
+	
+	lexical restrictions
+	
+		//Ensure greedy matching for lexicals
+		CommentChar   -/- [\/]
+		INT           -/- [0-9]
+		EntID         -/- [a-zA-Z0-9\_]
+		
+		//Backslash chars in strings may not be followed by "
+		
+		BackSlashChar -/- [\"]
+
+	lexical syntax 
+		"Int"	                        -> RESERVED
+		"String"			  			-> RESERVED
+		"return"			  			-> RESERVED
+		"var"			  			    -> RESERVED
+		RESERVED 						-> EntID {reject}
+
+	lexical restrictions
+		//Ensure greedy matching for lexicals
+		"Int" 
+		"String" 
+		"return" 
+		"var"     -/- [A-Za-z0-9\_]
+
+
+
+module layout
+	lexical syntax
+		[\ \t\n\r] -> LAYOUT
+	    
+		[\*]                             -> CommentChar
+		"/*" (~[\*] | CommentChar)* "*/" -> LAYOUT
+		"//" ~[\n\r]* ([\n\r] | EOF)     -> LAYOUT   
+	    
+		-> EOF
+	  
+	lexical restrictions 
+		//Ensure greedy matching for lexicals
+		//EOF may not be followed by any char
+		EOF           -/- ~[]
+	
+	context-free restrictions 
+  
+		//Ensure greedy matching for comments
+		LAYOUT? -/- [\ \t\n\r]
+		LAYOUT? -/- [\/].[\/]
+		LAYOUT? -/- [\/].[\*]		
+

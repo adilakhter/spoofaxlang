@@ -1,0 +1,21 @@
+package EntityWithPairLang   
+
+// Following module define the main langauge constructs for EntityWithPairLang language
+module Pairs
+imports 
+	EntityLangSimple  
+	
+context-free syntax    
+	 
+	 EntityLangSimple.Module -> Start
+
+context-free syntax 
+    "(" EntityLangSimple.Exp  ","  EntityLangSimple.Exp ")" -> EntityLangSimple.Exp{"NewTuple"}
+    "(" EntityLangSimple.Type "," EntityLangSimple.Type ")" -> EntityLangSimple.Type{"TupleType"}
+
+
+
+rules 
+	editor-analyze-ext:
+		(ast, path, project-path) -> (ast, [], [], [])
+		

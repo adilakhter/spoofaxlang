@@ -1,0 +1,18 @@
+package EntityLangSimple
+	
+module mainDescriptor
+	 		
+imports EntityLangSimple.generated  
+	 		
+
+language General properties
+                  
+  name          : EntityLangSimple
+  extends       : Root
+                  
+  description   : "Spoofax/IMP-generated(using spoofaxlang) editor for the EntityLangSimple language "
+  url           : http://strategoxt.org
+                  
+  extensions    : els
+  start symbols : Start
+	 			

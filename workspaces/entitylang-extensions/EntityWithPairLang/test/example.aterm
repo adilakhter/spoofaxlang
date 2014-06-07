@@ -1,0 +1,23 @@
+Module(
+  "example"
+, [ Imports("Test/A")
+  , Entity(
+      "A"
+    , [ Property("X", IntegerType())
+      , Property("Y", Type("TypeX"))
+      , Property("Z", TupleType(IntegerType(), IntegerType()))
+      ]
+    )
+  , FunctionDef(
+      "foo"
+    , [Param("x", IntegerType())]
+    , Some(ReturnType(TupleType(IntegerType(), IntegerType())))
+    , Block(
+        [ VarDecl("Y", TupleType(StringType(), StringType()))
+        , Assign(FunctionCall("Y", []), String("\"str\""))
+        , Return(NewTuple(Int("1"), Int("1")))
+        ]
+      )
+    )
+  ]
+)

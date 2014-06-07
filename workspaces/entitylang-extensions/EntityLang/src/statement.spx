@@ -10,7 +10,7 @@ context-free syntax
   	Exp ";"            -> Statement {"Statement"}
   	 
 context-free syntax  	
-  	"var" ID ":" Type ";" -> VarDecl {"VarDecl"} 
+  	"var" EID ":" Type ";" -> VarDecl {"VarDecl"} 
 
 context-free syntax
   	"if" "(" Exp ")" Block "else" Block -> Statement {"If"}

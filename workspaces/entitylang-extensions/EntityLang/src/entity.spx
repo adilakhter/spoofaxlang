@@ -4,7 +4,7 @@ module Entity
 
 context-free syntax 
   	Entity                          -> Definition
-    "entity" ID "{" EntityElem* "}" -> Entity {"Entity"}
+    "entity" EID "{" EntityElem* "}" -> Entity {"Entity", prefer}
 
 
 module EntityAnalysis 

@@ -1,0 +1,100 @@
+package EntityLangSimple   
+
+// Following module define the main langauge constructs for EntityLangSimple language
+module Def 
+
+
+context-free syntax
+    Module  -> Start 
+	
+
+context-free syntax    
+	"module" EntID Definition* -> Module {"Module"}
+    "imports" FILENAME         -> Definition {"Imports"}
+	Entity                     -> Definition
+    "entity" EntID "{" EntityElem* "}" -> Entity {"Entity"}
+
+
+context-free syntax
+    Property      -> EntityElem 
+    EntID ":" Type   -> Property {"Property"}
+  	Exp "." EntID  -> Exp {"PropertyAccess"} 
+
+
+context-free syntax
+	EntID        -> Type {"Type"}
+    "Int"	  -> Type {"IntegerType", prefer}
+	"String"  -> Type {"StringType" , prefer}
+
+context-free syntax
+  	Exp ":=" Exp ";"   -> Statement {"Assign"}
+  	"{" Statement* "}" -> Block {"Block"}
+  	Block              -> Statement
+  	VarDecl            -> Statement
+  	Exp ";"            -> Statement {"Statement"}
+  	 
+
+context-free syntax  
+	"new" EntID "(" ")"     -> Exp {"New"}
+
+context-free syntax 
+	EntID       -> Exp {"VarRef",prefer}
+  	//QID			-> Exp {"QVarRef"}
+  	"(" Exp ")" -> Exp {bracket}
+    Exp "<" Exp -> Exp {"LT",non-assoc}	
+      	
+context-free syntax
+	"this"              -> Exp {"This"}
+	
+context-free syntax
+  	INT         -> Exp {"Int"}
+  	STRING      -> Exp {"String"}
+  	Exp "+" Exp -> Exp {"Plus",assoc}
+  	Exp "*" Exp -> Exp {"Times",assoc}
+  	
+context-free priorities
+  	Exp "*" Exp -> Exp
+  	>
+  	Exp "+" Exp -> Exp
+
+
+
+context-free syntax  	
+  	"var" EntID ":" Type ";" -> VarDecl {"VarDecl"} 
+
+context-free syntax
+  	"if" "(" Exp ")" Block "else" Block -> Statement {"If"}
+  	"while" "(" Exp ")" Block           -> Statement {"While"}
+  		
+
+context-free syntax
+	// Following Production add FunctionDef in Definition Section 
+	FunctionDef                               -> Definition 
+  	
+  	// Following Production extend Expressions of the EntityLang 
+  	FunctionCall                              -> Exp
+	
+	
+	"def" EntID "(" {Param ","}* ")" ReturnType? Block -> FunctionDef {"FunctionDef"}
+  	EntID "(" {Exp ","}* ")"                           -> FunctionCall {"FunctionCall"}
+    
+context-free syntax 
+	 
+	"return" Exp ";"   -> Statement {cons("Return")}
+	EntID ":" Type     -> Param {cons("Param")}
+	":" Type           -> ReturnType {cons("ReturnType")} 	 
+
+context-free syntax
+  	EntID         -> QID
+    QID "." EntID -> QID {"QId"}
+
+lexical syntax
+  	{EntID "/"}+ -> FILENAME
+
+
+
+rules 
+	// Analyzes the current program, returning a tuple with errors, warnings, and notes;
+	// each a list of (term, message) tuples or simply (message) terms.
+	editor-analyze:
+		(ast, path, project-path) -> (ast, [], [], [])
