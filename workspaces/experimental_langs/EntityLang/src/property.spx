@@ -1,0 +1,54 @@
+package entitylang
+
+ 
+
+module PropertySignatures 
+signature 
+	constructors
+		Properties: String -> Namespace 
+		
+		
+module PropertyAnalysis
+rules 
+	name-of: Property(name,type) -> name 
+
+	type-of: Property(name, type) -> type
+
+rules 
+	type-of: 
+		PropertyAccess (e, name) -> <type-of>d
+		where
+			debug(!"type-of property access: "); 
+			<type-of> e => type;  
+			debug(!"  type of e:");
+   	       	<get-declaration(|Properties(<resolve; debug(!"resolved: ")> type))> name => d; 
+   	       	debug(!"  declaration: ")
+   	 	
+		
+module PropertyRenamings 
+rules 
+	rename: 
+  		d@Property(name, type) -> <annotate-scope(is-entity; name-of)> d 
+  
+module PropertyStore 
+rules 
+	store:
+  		d@Property(name, type) -> d
+  		where <map-declaration(|Properties(<get-annotated-scope> d))> (name, d)
+  	
+
+module PropertyStaticChecks
+rules 
+	editor-error:
+    	d@Property(name, _) -> (name, $[Multiple declarations for property [name]])
+    	where not ( <get-unique-declaration(|Properties(<get-annotated-scope> d))> name )
+
+	editor-error :
+   	 	e@PropertyAccess(e', name) -> (name, $[[<pp>type] does not have a property [name]])
+   	 	where <type-of> e' => type; not( <type-of> e )
+
+
+module PropertyEditorDef 
+completions 
+	completion template Property : "property : Type" =
+    	<x> " : " <T> (blank)      

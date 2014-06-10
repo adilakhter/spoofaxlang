@@ -46,7 +46,9 @@ rules
 		?QName(qname-parts*)
 		;<separate-by(|seperator);concat-strings>qname-parts*
 
-
+	convert-qname(|seperator) =
+		?Name(name)
+		; !name
 
 rules
 

@@ -1,0 +1,4 @@
+package entextendedlang;
+
+public class EntityLangExtensionParseController extends EntityLangExtensionParseControllerGenerated 
+{ }

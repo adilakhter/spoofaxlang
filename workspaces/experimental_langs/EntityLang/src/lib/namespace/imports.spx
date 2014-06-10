@@ -1,0 +1,44 @@
+package org.lib.namespace
+
+module Imports
+
+rules // include namespaces
+	
+	/**
+	*
+	* example: 
+	*     store: Class(c, Parent(p), _, _) -> <id> 
+	*         where 
+	*             <store-declaration(|Classes())> c ; 
+	*             <namespace-inclusion(|Fields(c))> Fields(p) ;
+	*             <namespace-inclusion(|Methods(c))> Methods(p) 
+	*/
+	namespace-inclusion(|namespace) : 
+		included -> included
+		where rules (
+			IncludedBy:+ included -> namespace
+			Including:+ namespace -> included
+		)
+				
+
+strategies // access inclusions 
+	
+	get-included-namespaces  = get-inclusions(bagof-Including) 
+	
+	get-including-namespaces = get-inclusions(bagof-IncludedBy)
+	
+	get-inclusions(s) = ![<id>] ; get-inclusions(s|[]) ; reverse 
+	
+	get-inclusions(s|temps): [] -> temps
+	 
+	get-inclusions(s|temps): 
+		[space|spaces] -> <get-inclusions(s|temps)> spaces
+		where <elem> (space, temps)
+		
+	get-inclusions(s|temps):  
+		[space|spaces] -> <get-inclusions(s|temps')> spaces
+		where
+			<s> space ;
+			get-inclusions(s|[space|temps]) => temps'
+
+	resolve-included = ?IncludedBy(<get-included-namespaces>) <+ ?Including(<get-including-namespaces>) <+ ![<id>]

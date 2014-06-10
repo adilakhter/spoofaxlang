@@ -1,0 +1,18 @@
+module entity
+imports primitives  
+
+entity Blog {
+  name    : String
+  author  : User 
+  posts   : BlogPosts
+  comment : String
+ 
+  foo : User
+  isPublished: Bool
+}
+
+entity User {
+  name : String
+}
+
+ 

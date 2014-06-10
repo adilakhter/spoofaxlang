@@ -1,0 +1,81 @@
+package entitylang
+
+
+
+module Syntax
+
+context-free syntax
+	// Following Production add FunctionDef in Definition Section 
+	FunctionDef                               -> Definition 
+  	
+  	// Following Production extend Expressions of the EntityLang 
+  	FunctionCall                              -> Exp
+	
+	"def" ID "(" {Param ","}* ")" ReturnType? Block -> FunctionDef {cons("FunctionDef")}
+  	ID "(" {Exp ","}* ")"                           -> FunctionCall {cons("FunctionCall")}
+
+context-free syntax
+    "module" ID Definition* -> Module {"Module"}
+    "imports" FILENAME      -> Definition {"Imports"}
+
+context-free syntax 
+  	Entity                          -> Definition
+    "entity" ID "{" EntityElem* "}" -> Entity {"Entity", prefer}
+
+context-free syntax
+  	ID         -> QID
+    QID "." ID -> QID {"QId"}
+
+context-free syntax  
+	"new" ID "(" ")"     -> Exp {"New"}
+
+context-free syntax 
+	ID          -> Exp {"VarRef",prefer}
+	QID			-> Exp {"QVarRef"}
+  	"(" Exp ")" -> Exp {bracket}
+    Exp "<" Exp -> Exp {"LT",non-assoc}	
+      	
+context-free syntax
+	"this"              -> Exp {"This"}
+  		
+context-free syntax
+  	INT         -> Exp {cons("Int")}
+  	STRING      -> Exp {cons("String")}
+  	Exp "+" Exp -> Exp {cons("Plus"),assoc}
+  	Exp "*" Exp -> Exp {cons("Times"),assoc}
+  	
+context-free priorities
+  	Exp "*" Exp -> Exp
+  	>
+  	Exp "+" Exp -> Exp
+
+
+context-free syntax
+	ID        -> Type {"Type"}
+    "Int"	  -> Type {"IntegerType", prefer}
+	"String"  -> Type {"StringType" , prefer}
+ 
+context-free syntax
+  	Exp ":=" Exp ";"   -> Statement {"Assign"}
+  	"{" Statement* "}" -> Block {"Block"}
+  	Block              -> Statement
+  	VarDecl            -> Statement
+  	Exp ";"            -> Statement {"Statement"}
+  	 
+context-free syntax  	
+  	"var" ID ":" Type ";" -> VarDecl {"VarDecl"} 
+
+context-free syntax
+  	"if" "(" Exp ")" Block "else" Block -> Statement {"If"}
+  	"while" "(" Exp ")" Block           -> Statement {"While"}
+
+context-free syntax 
+	"return" Exp ";"   -> Statement {cons("Return")}
+	ID ":" Type        -> Param {cons("Param")}
+	":" Type           -> ReturnType {cons("ReturnType")} 	 
+      
+	 
+context-free syntax
+    Property    -> EntityElem 
+    ID ":" Type -> Property {"Property"}
+  	Exp "." ID  -> Exp {"PropertyAccess"}

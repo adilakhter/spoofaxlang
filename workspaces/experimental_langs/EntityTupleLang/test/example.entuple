@@ -1,0 +1,15 @@
+module example
+
+imports B
+
+entity Person{
+	name: (String,String)
+}
+
+def name(): (String,String){
+	var name : (String,String);
+	
+	name := ("foo", "bar");
+	
+	return name;
+}

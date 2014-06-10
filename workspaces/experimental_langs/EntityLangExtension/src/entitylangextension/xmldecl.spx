@@ -1,0 +1,153 @@
+package entextendedlang 
+
+
+module XmlDef
+
+context-free syntax
+	AttrName "=" AttValue -> Attribute {"Attribute"}
+	QName -> AttrName{"AttrName"}	
+
+context-free syntax 
+	"\"" DoubleQuotedPart* "\"" -> AttValue{"DoubleQuoted"}
+	"'"  SingleQuotedPart* "'" -> AttValue {"SingleQuoted"}
+	FooDoubleQuotedText -> DoubleQuotedPart {"CharDataPart"}
+    FooSingleQuotedText -> SingleQuotedPart {"CharDataPart"}
+    
+    Ref-> DoubleQuotedPart
+    Ref -> SingleQuotedPart
+    Ref -> CharDataPart
+	
+lexical syntax
+    DoubleQuotedText -> FooDoubleQuotedText
+    SingleQuotedText -> FooSingleQuotedText
+    ~[\&\<\']+ -> SingleQuotedText
+    ~[\&\<\"]+ -> DoubleQuotedText
+    
+lexical syntax 
+	[\ \t\n\13] -> WhiteSpaceChar
+
+context-free syntax 
+	CharDataPart+                 -> CharData {"Text"}
+	FooCharDataText               -> CharDataPart {"CharDataPart"}
+	"<![CDATA[" CData "]]>"       -> CharDataPart {"CDATASection"}
+	CharDataText                  -> FooCharDataText
+	  
+lexical syntax 
+	~[\<\&]+ -> CharDataText	
+
+lexical restrictions
+	CharDataText -/- ~[\<\&]
+
+context-free syntax
+	"<" ElemName Attribute* "/>" -> Element {"EmptyElement"}
+	"<" ElemName Attribute* ">" Content* "</" ElemName ">" -> Element {"Element"}
+	QName -> ElemName {cons("ElemName")}
+	
+	//module xml-names  
+context-free syntax
+	Qualifier? NCName -> QName     {"QName"}
+	NCName ":"        -> Qualifier {"Prefix"}
+	"{" NamespaceURI "}" -> Qualifier {"URIPrefix"}
+lexical syntax
+	[A-Za-z\_] [A-Za-z0-9\.\-\_]* -> NCName
+	[a-zA-Z0-9\_\-\:\/\.]+ -> NamespaceURI
+lexical restrictions
+	NCName -/- [A-Za-z0-9\.\-\_]
+	
+context-free syntax
+	"&#"  NatConst ";" -> DecCharRef{"DecCharRef"}
+	"&#x" HexConst ";" -> HexCharRef{"HexCharRef"}
+	"&"   NCName   ";" -> EntityRef  {"EntityRef"}
+	
+context-free syntax
+	DecCharRef -> CharRef
+	HexCharRef -> CharRef
+	CharRef    -> Ref
+	EntityRef  -> Ref
+
+
+lexical syntax
+	[0-9]+       -> NatConst
+	[0-9a-fA-F]+ -> HexConst
+lexical syntax
+	(~[\]] | CloseBracket | TwoCloseBrackets )* -> CData
+	"]"  -> CloseBracket
+	"]]" -> TwoCloseBrackets
+lexical restrictions
+	CloseBracket     -/- [\]]
+	TwoCloseBrackets -/- [\>]
+	CharDataToken    -/- ~[\<\&\]\ \t\n\13]
+
+// module xml-external
+context-free syntax
+	"SYSTEM" SystemLit           -> ExternalID {"SystemExternalID"}
+	"PUBLIC" PublicLit SystemLit -> ExternalID {"PublicExternalID"}
+	"PUBLIC" PublicLit           -> PublicID   {"PublicID"}
+
+lexical syntax
+	"\"" ~[\"]* "\""     -> SystemLit
+	"'"  ~[\']* "'"     -> SystemLit
+	"\"" PubIDChar* "\"" -> PublicLit
+	"'"  PubIDChar* "'" -> PublicLit
+	[a-zA-Z0-9] -> PubIDChar
+	[\ \n\13\-\'\(\)\+\,\.\/\:\=\?\;\!\*\#\@\$\_\%] -> PubIDChar
+
+//module xml-pi
+context-free syntax
+	"<?" PITarget PIChars "?>" -> PI {"PI"}
+lexical syntax
+	NCName -> PITarget
+	[Xx][Mm][Ll] -> PITarget {reject}
+	( ~[\?\>] | ( [\?] ~[\>] ) )* -> PIChars
+
+//module xml-prolog
+context-free syntax
+	XMLDecl? Misc* DocTypePrologue? -> Prologue {"Prologue"}
+	Misc* -> Epilogue {"Epilogue"}
+	Comment -> Misc {"Comment"}
+	PI      -> Misc
+
+context-free syntax
+	"<?xml" VersionInfo EncodingDecl? StandaloneDecl? "?>" -> XMLDecl {"XMLDecl"} 
+	"standalone" "=" StandaloneValue -> StandaloneDecl {"StandaloneDecl"}
+	"version"    "=" VersionValue    -> VersionInfo    {"VersionDecl"}
+	"encoding"   "=" EncodingValue   -> EncodingDecl   {"EncodingDecl"}
+	"\"" YesNo "\"" -> StandaloneValue {"Standalone"}
+	"'"  YesNo "'" -> StandaloneValue {"StandaloneSingle"}
+	"\"" EncodingName "\"" -> EncodingValue {"Encoding"}
+	"'"  EncodingName "'" -> EncodingValue {"EncodingSingle"}
+	"\"" VersionNum "\"" -> VersionValue {"Version"}
+	"'"  VersionNum "'"  -> VersionValue {"VersionSingle"}
+
+context-free syntax
+	DocTypeDecl Misc* -> DocTypePrologue {"DocTypePrologue"}
+	"<!DOCTYPE" QName ExternalID ">" -> DocTypeDecl {"DocTypeDecl"}
+
+lexical syntax
+	[a-zA-Z0-9\_\.\:\-]+ -> VersionNum
+	[A-Za-z] [A-Za-z0-9\.\_\-]* -> EncodingName
+	"yes" -> YesNo
+	"no"  -> YesNo
+
+//module xml-document
+context-free syntax
+	Prologue Element Epilogue -> Document {"Document"}
+	Element -> Content
+	Comment -> Content {"Comment"}
+	PI      -> Content
+	
+context-free syntax
+	CharData      -> Content
+	CDataSection  -> Content 
+
+
+//module xml-comments
+lexical syntax
+	"<!--" -> CommentLeft
+	"-->" -> CommentRight
+	CommentLeft CommentContent* CommentRight -> Comment
+	Dash -> CommentContent
+	~[\-] -> CommentContent
+	"-" -> Dash
+lexical restrictions
+	Dash -/- [\-]

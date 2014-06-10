@@ -1,0 +1,26 @@
+module example
+
+imports A
+
+entity User {
+  name     : String
+  password : String
+  homepage : URL
+}
+
+entity BlogPosting {
+  poster : User
+  body   : String
+}
+
+entity URL {
+  location : String
+}
+
+def foo(x:Int): Int{
+	var x: Int; 
+	
+	x:= 0;
+	
+	return x;
+} 

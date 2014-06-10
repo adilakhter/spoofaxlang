@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.imp.runtime.languageDescription">
+      <language
+            extensions="entm"
+            description="ModularEntityLang"
+            language="ModularEntityLang"
+            derivedFrom="DynamicRoot"
+            validator="ModularEntityLang.ModularEntityLangValidator"
+            validatorClass="ModularEntityLang.ModularEntityLangValidator"
+      ></language>
+   </extension>
+   <extension
+         id="ModularEntityLang.parser"
+         name="ModularEntityLang Parser"
+         point="org.eclipse.imp.runtime.parser">
+      <parser
+            class="ModularEntityLang.ModularEntityLangParseController"
+            language="ModularEntityLang">
+      </parser>
+   </extension>    
+</plugin>

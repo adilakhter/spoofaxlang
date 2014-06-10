@@ -1,0 +1,581 @@
+definition
+
+module entitylang/LexDefinition
+exports
+  sorts WATER WATERTOKEN WATERTOKENSTART WATERTOKENSEPARATOR WATERTOKENSTAR
+
+  lexical syntax
+    ~[A-Za-z0-9\_]                 -> WATERTOKENSTART     {recover, avoid}
+    WATERTOKENSTART [A-Za-z0-9\_]* -> WATERTOKEN          
+    ~[A-Za-z0-9\_\ \t\12\r\n\*]    -> WATERTOKENSEPARATOR {recover, avoid}
+    "*"                            -> WATERTOKENSTAR      {recover, avoid}
+    WATERTOKEN                     -> WATER               
+    WATERTOKENSEPARATOR            -> WATER               
+    WATERTOKENSTAR                 -> WATER               
+                                   -> WATEREOF            
+
+  lexical restrictions
+    WATERTOKEN -/- [A-Za-z0-9\_]
+    WATERTOKENSTAR -/- [\/]
+
+  context-free syntax
+    WATER -> LAYOUT {cons("WATER")}
+
+  (
+
+  sorts WATEREOF
+
+  lexical restrictions
+    WATEREOF -/- ~[]
+
+  lexical syntax
+    %% Lexical insertion recovery rules                              
+    "\""                                          -> INSERTOPENQUOTE {recover}
+    INSERTOPENQUOTE StringChar* "\n"              -> STRING          {cons("INSERTEND")}
+    INSERTOPENQUOTE StringChar* WATEREOF          -> STRING          {cons("INSERTEND")}
+    "/*"                                          -> INSERTSTART     {recover}
+    INSERTSTART ( ~[\*] | CommentChar )* WATEREOF -> LAYOUT          {cons("INSERTEND")}
+                                                  -> "def"           {recover, cons("INSERTION")}
+                                                  -> ","             {recover, cons("INSERTION")}
+                                                  -> "module"        {recover, cons("INSERTION")}
+                                                  -> "imports"       {recover, cons("INSERTION")}
+                                                  -> "entity"        {recover, cons("INSERTION")}
+                                                  -> ")"             {recover, cons("INSERTION")}
+                                                  -> "var"           {recover, cons("INSERTION")}
+                                                  -> ":"             {recover, cons("INSERTION")}
+                                                  -> "]>"            {recover, cons("INSERTION")}
+                                                  -> "]]>"           {recover, cons("INSERTION")}
+                                                  -> "<![CDATA["     {recover, cons("INSERTION")}
+                                                  -> "/>"            {recover, cons("INSERTION")}
+                                                  -> "}"             {recover, cons("INSERTION")}
+                                                  -> "&#"            {recover, cons("INSERTION")}
+                                                  -> "&#x"           {recover, cons("INSERTION")}
+                                                  -> ";"             {recover, cons("INSERTION")}
+                                                  -> "&"             {recover, cons("INSERTION")}
+                                                  -> "SYSTEM"        {recover, cons("INSERTION")}
+                                                  -> "PUBLIC"        {recover, cons("INSERTION")}
+    "\""                                          -> INSERTOPENQUOTE {recover}
+    INSERTOPENQUOTE ~[\"]* "\n"                   -> SystemLit       {cons("INSERTEND")}
+    INSERTOPENQUOTE ~[\"]* WATEREOF               -> SystemLit       {cons("INSERTEND")}
+    "'"                                           -> INSERTOPENQUOTE {recover}
+    INSERTOPENQUOTE ~[\']* "\n"                   -> SystemLit       {cons("INSERTEND")}
+    INSERTOPENQUOTE ~[\']* WATEREOF               -> SystemLit       {cons("INSERTEND")}
+    "\""                                          -> INSERTOPENQUOTE {recover}
+    INSERTOPENQUOTE PubIDChar* "\n"               -> PublicLit       {cons("INSERTEND")}
+    INSERTOPENQUOTE PubIDChar* WATEREOF           -> PublicLit       {cons("INSERTEND")}
+    "'"                                           -> INSERTOPENQUOTE {recover}
+    INSERTOPENQUOTE PubIDChar* "\n"               -> PublicLit       {cons("INSERTEND")}
+    INSERTOPENQUOTE PubIDChar* WATEREOF           -> PublicLit       {cons("INSERTEND")}
+                                                  -> "<?"            {recover, cons("INSERTION")}
+                                                  -> "?>"            {recover, cons("INSERTION")}
+                                                  -> "<?xml"         {recover, cons("INSERTION")}
+                                                  -> "standalone"    {recover, cons("INSERTION")}
+                                                  -> "version"       {recover, cons("INSERTION")}
+                                                  -> "encoding"      {recover, cons("INSERTION")}
+                                                  -> "\""            {recover, cons("INSERTION")}
+                                                  -> "'"             {recover, cons("INSERTION")}
+                                                  -> ">"             {recover, cons("INSERTION")}
+                                                  -> "<!DOCTYPE"     {recover, cons("INSERTION")}
+
+  syntax
+    %% Kernel syntax insertion recovery rules   
+
+  )
+
+  (
+
+  lexical syntax
+    [a-zA-Z] [a-zA-Z0-9]* -> ID 
+
+  (
+
+  lexical syntax
+    {ID "/"}+ -> FILENAME 
+
+  (
+
+  lexical syntax
+    "-"? [0-9]+           -> INT           
+    "\"" StringChar* "\"" -> STRING        
+    ~[\"\n]               -> StringChar    
+    "\\\""                -> StringChar    
+    BackSlashChar         -> StringChar    
+    "\\"                  -> BackSlashChar 
+
+  (
+
+  lexical restrictions
+    CommentChar -/- [\/]
+    INT -/- [0-9]
+    ID -/- [a-zA-Z0-9\_]
+    BackSlashChar -/- [\"]
+
+  (
+
+  lexical syntax
+    "Int"    -> RESERVED 
+    "String" -> RESERVED 
+    RESERVED -> ID       {reject}
+
+  (
+
+  lexical restrictions
+    "Int" "String" -/- [A-Za-z0-9\_]
+
+  (
+
+  lexical syntax
+    [\ \t\n\r]                         -> LAYOUT      
+    [\*]                               -> CommentChar 
+    "/*" ( ~[\*] | CommentChar )* "*/" -> LAYOUT      
+    "//" ~[\n\r]* [\n\r] | EOF         -> LAYOUT      
+                                       -> EOF         
+
+  (
+
+  lexical restrictions
+    EOF -/- ~[]
+
+  context-free restrictions
+    LAYOUT? -/- [\ \t\n\r]
+    LAYOUT? -/- [\/] . [\/]
+    LAYOUT? -/- [\/] . [\*]
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+module entitylang/MainDef
+exports
+  context-free syntax
+    Module -> Start 
+
+module entitylang/Syntax
+exports
+  context-free syntax
+    FunctionDef                                     -> Definition   
+    FunctionCall                                    -> Exp          
+    "def" ID "(" {Param ","}* ")" ReturnType? Block -> FunctionDef  {cons("FunctionDef")}
+    ID "(" {Exp ","}* ")"                           -> FunctionCall {cons("FunctionCall")}
+
+  (
+
+  context-free syntax
+    "module" ID Definition* -> Module     {cons("Module")}
+    "imports" FILENAME      -> Definition {cons("Imports")}
+
+  (
+
+  context-free syntax
+    Entity                          -> Definition 
+    "entity" ID "{" EntityElem* "}" -> Entity     {cons("Entity"), prefer}
+
+  (
+
+  context-free syntax
+    ID         -> QID 
+    QID "." ID -> QID {cons("QId")}
+
+  (
+
+  context-free syntax
+    "new" ID "(" ")" -> Exp {cons("New")}
+
+  (
+
+  context-free syntax
+    ID          -> Exp {cons("VarRef"), prefer}
+    QID         -> Exp {cons("QVarRef")}
+    "(" Exp ")" -> Exp {bracket}
+    Exp "<" Exp -> Exp {cons("LT"), non-assoc}
+
+  (
+
+  context-free syntax
+    "this" -> Exp {cons("This")}
+
+  (
+
+  context-free syntax
+    INT         -> Exp {cons("Int")}
+    STRING      -> Exp {cons("String")}
+    Exp "+" Exp -> Exp {cons("Plus"), assoc}
+    Exp "*" Exp -> Exp {cons("Times"), assoc}
+
+  (
+
+  context-free priorities
+    Exp "*" Exp -> Exp  >
+    Exp "+" Exp -> Exp 
+
+  (
+
+  context-free syntax
+    ID       -> Type {cons("Type")}
+    "Int"    -> Type {cons("IntegerType"), prefer}
+    "String" -> Type {cons("StringType"), prefer}
+
+  (
+
+  context-free syntax
+    Exp ":=" Exp ";"   -> Statement {cons("Assign")}
+    "{" Statement* "}" -> Block     {cons("Block")}
+    Block              -> Statement 
+    VarDecl            -> Statement 
+    Exp ";"            -> Statement {cons("Statement")}
+
+  (
+
+  context-free syntax
+    "var" ID ":" Type ";" -> VarDecl {cons("VarDecl")}
+
+  (
+
+  context-free syntax
+    "if" "(" Exp ")" Block "else" Block -> Statement {cons("If")}
+    "while" "(" Exp ")" Block           -> Statement {cons("While")}
+
+  (
+
+  context-free syntax
+    "return" Exp ";" -> Statement  {cons("Return")}
+    ID ":" Type      -> Param      {cons("Param")}
+    ":" Type         -> ReturnType {cons("ReturnType")}
+
+  context-free syntax
+    Property    -> EntityElem 
+    ID ":" Type -> Property   {cons("Property")}
+    Exp "." ID  -> Exp        {cons("PropertyAccess")}
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+module entitylang-Mix[Ctx48]
+imports entitylang/Syntax
+          [ Property     => Property[[Ctx48]]
+            ReturnType   => ReturnType[[Ctx48]]
+            Entity       => Entity[[Ctx48]]
+            Module       => Module[[Ctx48]]
+            QID          => QID[[Ctx48]]
+            EntityElem   => EntityElem[[Ctx48]]
+            Block        => Block[[Ctx48]]
+            Param        => Param[[Ctx48]]
+            Type         => Type[[Ctx48]]
+            FunctionDef  => FunctionDef[[Ctx48]]
+            VarDecl      => VarDecl[[Ctx48]]
+            FunctionCall => FunctionCall[[Ctx48]]
+            Definition   => Definition[[Ctx48]]
+            Statement    => Statement[[Ctx48]]
+            Exp          => Exp[[Ctx48]] ]
+
+imports entitylang/MainDef
+          [ Start => Start[[Ctx48]] ]
+
+imports entitylang/LexDefinition
+
+module entextendedlang/Def
+imports entitylang-Mix[E3]
+
+exports
+  context-free syntax
+    Module[[E3]]        -> Start      
+    Document            -> Exp[[E3]]  {cons("Xml")}
+    "<[" Exp[[E3]] "]>" -> Content    {cons("XmlEmbeddedExp"), prefer}
+    "Xml"               -> Type[[E3]] {cons("XmlType"), prefer}
+
+  lexical syntax
+    [\ \t\12\13\n] -> LAYOUT {prefer}
+
+module entextendedlang/XmlDef
+exports
+  context-free syntax
+    AttrName "=" AttValue -> Attribute {cons("Attribute")}
+    QName                 -> AttrName  {cons("AttrName")}
+
+  (
+
+  context-free syntax
+    "\"" DoubleQuotedPart* "\"" -> AttValue         {cons("DoubleQuoted")}
+    "'" SingleQuotedPart* "'"   -> AttValue         {cons("SingleQuoted")}
+    FooDoubleQuotedText         -> DoubleQuotedPart {cons("CharDataPart")}
+    FooSingleQuotedText         -> SingleQuotedPart {cons("CharDataPart")}
+    Ref                         -> DoubleQuotedPart 
+    Ref                         -> SingleQuotedPart 
+    Ref                         -> CharDataPart     
+
+  (
+
+  lexical syntax
+    DoubleQuotedText -> FooDoubleQuotedText 
+    SingleQuotedText -> FooSingleQuotedText 
+    ~[\&\<\']+       -> SingleQuotedText    
+    ~[\&\<\"]+       -> DoubleQuotedText    
+
+  (
+
+  lexical syntax
+    [\ \t\n\13] -> WhiteSpaceChar 
+
+  (
+
+  context-free syntax
+    CharDataPart+           -> CharData        {cons("Text")}
+    FooCharDataText         -> CharDataPart    {cons("CharDataPart")}
+    "<![CDATA[" CData "]]>" -> CharDataPart    {cons("CDATASection")}
+    CharDataText            -> FooCharDataText 
+
+  (
+
+  lexical syntax
+    ~[\<\&]+ -> CharDataText 
+
+  (
+
+  lexical restrictions
+    CharDataText -/- ~[\<\&]
+
+  (
+
+  context-free syntax
+    "<" ElemName Attribute* "/>"                           -> Element  {cons("EmptyElement")}
+    "<" ElemName Attribute* ">" Content* "</" ElemName ">" -> Element  {cons("Element")}
+    QName                                                  -> ElemName {cons("ElemName")}
+
+  (
+
+  context-free syntax
+    Qualifier? NCName    -> QName     {cons("QName")}
+    NCName ":"           -> Qualifier {cons("Prefix")}
+    "{" NamespaceURI "}" -> Qualifier {cons("URIPrefix")}
+
+  (
+
+  lexical syntax
+    [A-Za-z\_] [A-Za-z0-9\.\-\_]* -> NCName       
+    [a-zA-Z0-9\_\-\:\/\.]+        -> NamespaceURI 
+
+  (
+
+  lexical restrictions
+    NCName -/- [A-Za-z0-9\.\-\_]
+
+  (
+
+  context-free syntax
+    "&#" NatConst ";"  -> DecCharRef {cons("DecCharRef")}
+    "&#x" HexConst ";" -> HexCharRef {cons("HexCharRef")}
+    "&" NCName ";"     -> EntityRef  {cons("EntityRef")}
+
+  (
+
+  context-free syntax
+    DecCharRef -> CharRef 
+    HexCharRef -> CharRef 
+    CharRef    -> Ref     
+    EntityRef  -> Ref     
+
+  (
+
+  lexical syntax
+    [0-9]+       -> NatConst 
+    [0-9a-fA-F]+ -> HexConst 
+
+  (
+
+  lexical syntax
+    ( ~[\]] | CloseBracket | TwoCloseBrackets )* -> CData            
+    "]"                                          -> CloseBracket     
+    "]]"                                         -> TwoCloseBrackets 
+
+  (
+
+  lexical restrictions
+    CloseBracket -/- [\]]
+    TwoCloseBrackets -/- [\>]
+    CharDataToken -/- ~[\<\&\]\ \t\n\13]
+
+  (
+
+  context-free syntax
+    "SYSTEM" SystemLit           -> ExternalID {cons("SystemExternalID")}
+    "PUBLIC" PublicLit SystemLit -> ExternalID {cons("PublicExternalID")}
+    "PUBLIC" PublicLit           -> PublicID   {cons("PublicID")}
+
+  (
+
+  lexical syntax
+    "\"" ~[\"]* "\""                                -> SystemLit 
+    "'" ~[\']* "'"                                  -> SystemLit 
+    "\"" PubIDChar* "\""                            -> PublicLit 
+    "'" PubIDChar* "'"                              -> PublicLit 
+    [a-zA-Z0-9]                                     -> PubIDChar 
+    [\ \n\13\-\'\(\)\+\,\.\/\:\=\?\;\!\*\#\@\$\_\%] -> PubIDChar 
+
+  (
+
+  context-free syntax
+    "<?" PITarget PIChars "?>" -> PI {cons("PI")}
+
+  (
+
+  lexical syntax
+    NCName                        -> PITarget 
+    [Xx] [Mm] [Ll]                -> PITarget {reject}
+    ( ~[\?\>] | ( [\?] ~[\>] ) )* -> PIChars  
+
+  (
+
+  context-free syntax
+    XMLDecl? Misc* DocTypePrologue? -> Prologue {cons("Prologue")}
+    Misc*                           -> Epilogue {cons("Epilogue")}
+    Comment                         -> Misc     {cons("Comment")}
+    PI                              -> Misc     
+
+  (
+
+  context-free syntax
+    "<?xml" VersionInfo EncodingDecl? StandaloneDecl? "?>" -> XMLDecl         {cons("XMLDecl")}
+    "standalone" "=" StandaloneValue                       -> StandaloneDecl  {cons("StandaloneDecl")}
+    "version" "=" VersionValue                             -> VersionInfo     {cons("VersionDecl")}
+    "encoding" "=" EncodingValue                           -> EncodingDecl    {cons("EncodingDecl")}
+    "\"" YesNo "\""                                        -> StandaloneValue {cons("Standalone")}
+    "'" YesNo "'"                                          -> StandaloneValue {cons("StandaloneSingle")}
+    "\"" EncodingName "\""                                 -> EncodingValue   {cons("Encoding")}
+    "'" EncodingName "'"                                   -> EncodingValue   {cons("EncodingSingle")}
+    "\"" VersionNum "\""                                   -> VersionValue    {cons("Version")}
+    "'" VersionNum "'"                                     -> VersionValue    {cons("VersionSingle")}
+
+  (
+
+  context-free syntax
+    DocTypeDecl Misc*                -> DocTypePrologue {cons("DocTypePrologue")}
+    "<!DOCTYPE" QName ExternalID ">" -> DocTypeDecl     {cons("DocTypeDecl")}
+
+  (
+
+  lexical syntax
+    [a-zA-Z0-9\_\.\:\-]+        -> VersionNum   
+    [A-Za-z] [A-Za-z0-9\.\_\-]* -> EncodingName 
+    "yes"                       -> YesNo        
+    "no"                        -> YesNo        
+
+  (
+
+  context-free syntax
+    Prologue Element Epilogue -> Document {cons("Document")}
+    Element                   -> Content  
+    Comment                   -> Content  {cons("Comment")}
+    PI                        -> Content  
+
+  (
+
+  context-free syntax
+    CharData     -> Content 
+    CDataSection -> Content 
+
+  (
+
+  lexical syntax
+    "<!--"                                   -> CommentLeft    
+    "-->"                                    -> CommentRight   
+    CommentLeft CommentContent* CommentRight -> Comment        
+    Dash                                     -> CommentContent 
+    ~[\-]                                    -> CommentContent 
+    "-"                                      -> Dash           
+
+  lexical restrictions
+    Dash -/- [\-]
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+module EntityLangExtension
+imports entextendedlang/XmlDef entextendedlang/Def
+
+exports
+  context-free start-symbols
+    Start

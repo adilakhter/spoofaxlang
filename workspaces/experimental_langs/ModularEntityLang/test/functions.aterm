@@ -1,0 +1,19 @@
+Module(
+  "functions"
+, [ Imports("primitives")
+  , Entity("Posts", [])
+  , FunctionDef(
+      "foo"
+    , [Param("x", IntegerType())]
+    , Some(ReturnType(IntegerType()))
+    , Block(
+        [ VarDecl("x", IntegerType())
+        , VarDecl("p", Type("Posts"))
+        , Assign(VarRef("p"), New("Posts"))
+        , Assign(VarRef("p"), String("\"test\""))
+        , Return(Int("1"))
+        ]
+      )
+    )
+  ]
+)

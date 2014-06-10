@@ -1,0 +1,15 @@
+module EntityTupleLang-signatures 
+imports 
+	.shadowdir/org/lang/entity/tuple/TuplePP-signature
+	.shadowdir/org/lang/entity/tuple/TypeAnalysis-signature
+	.shadowdir/org/lang/entity/tuple/TupleDef-signature
+	.shadowdir/org/lang/entity/tuple/EditorDef-signature
+	.shadowdir/org/lang/entity/tuple/BuilderDef-signature
+	.shadowdir/org/lang/entity/tuple/BuilderDesc-signature
+	.shadowdir/org/lang/entity/tuple/mainDescriptor-signature
+	.shadowdir/org/lang/entity/tuple/Def-signature
+	
+imports 
+	.shadowdir/org/lang/entity/tuple/__internal-signature
+imports 
+	.shadowdir/Globals/Signatures	 	 	

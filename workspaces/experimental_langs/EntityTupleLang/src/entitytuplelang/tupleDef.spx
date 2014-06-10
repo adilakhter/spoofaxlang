@@ -1,0 +1,25 @@
+package org.lang.entity.tuple 
+
+module TupleDef
+
+imports entitylang
+
+context-free syntax
+	"(" entitylang.Exp  "," entitylang.Exp ")"  -> entitylang.Exp{"Tuple"}
+	"(" entitylang.Type "," entitylang.Type ")" -> entitylang.Type{"TupleType"} 
+	
+	
+module TypeAnalysis 
+ 
+rules
+	type-of: Tuple(e1, e2) -> TupleType(<type-of>e1 , <type-of>e2)
+	type-of: TupleType(t1, t2) -> TupleType(<type-of>t1, <type-of>t2)
+ 	
+
+
+module TuplePP
+
+rules
+	pp: TupleType(t1, t2) -> $[([<pp>t1], [<pp>t2])] 
+ 
+ 

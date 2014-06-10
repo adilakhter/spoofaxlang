@@ -128,7 +128,7 @@ rules
 					])
 		where	with-spxverify(	<add-to-compile-queue> package-typed-qname , ! "Error : Failed to add package in Compile Queue"	)
 		where compute-dependency-graph // computing dependecy graph for the current packate
-		where compile-depending-spx-artefacts
+		where compile-depending-spx-artefacts // analyzing imported libraries if required
 		where {|	GetEnclosingPackageName 
 			  	 :			<declare-current-package-scope>    package-typed-qname
 			  	 			; <compile-package-legacy-artifacts> package-typed-qname
@@ -146,7 +146,7 @@ rules
 			  		])		  
 
 rules 		  
-	compile-depending-spx-artefacts: 	// Compiles imported spx packages/modules 
+	compile-depending-spx-artefacts  : 	// Compiles imported spx packages/modules 
 		p@Package(QName(_))-> p
 		where with-spxverify(
 							get-all-usings 
@@ -155,12 +155,12 @@ rules
 						,	!" Error : Failed to compile imported packages."
 					)
 	
-	compile-depending-spx(|usedby):
+	compile-depending-spx(|usedby) :
 		p@Package(QName(_))-> p
 		where	debug-compiler(! $[----Compiling Depending SPX---- Compiling spx package [<print-as-string>] used by [<print-as-string>usedby]])
 		where	compile-spx-packages
 		
-	compile-depending-spx(|usedby):
+	compile-depending-spx(|usedby) :
 		m@Module(QName(_))-> m
 		where	debug-compiler(! $[----Compiling Depending SPX---- Compiling spx package [<print-as-string>] used by [<print-as-string>usedby]])
 		where	

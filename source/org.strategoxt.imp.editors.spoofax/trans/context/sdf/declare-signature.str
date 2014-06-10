@@ -230,9 +230,12 @@ rules
 
   get-sort-decl:  	
   	QualifiedSort(qname, x) -> <id>
-  	where qname-string := <convert-qname(|"_")>qname  
-  	where <get-sort-decl> sort( <concat-strings>[qname-string , "_",  x ])
- 
+  	where 
+  		qname-string := <convert-qname(|"_")>qname;
+  		sort-name := <concat-strings>[qname-string , "_",  x ]
+  	where 
+  		with-spxverify(rules( lhs-sort :+ _ -> sort-name))
+
  	get-sort-decl:  	
   	s@sort(x) -> s
   	where	with-spxverify(rules( lhs-sort :+ _ -> x))
@@ -242,8 +245,16 @@ rules
   	where with-spxverify(	rules( lhs-sort :+ _ -> $[Option([x])]))
 
 	get-sort-decl:
+		opt(QualifiedSort(qname, x)) -> <id>
+		where 
+			qname-string := <convert-qname(|"_")>qname;
+  		sort-name := <concat-strings>[qname-string , "_",  x ]
+  	where with-spxverify(	rules( lhs-sort :+ _ -> $[Option([sort-name])]))
+
+	get-sort-decl:
 		opt(sort(x)) -> opt(sort(x))
   	where with-spxverify(	rules( lhs-sort :+ _ -> $[Option([x])]))
+
 
 	get-sort-decl:
 		i@iter-star-sep(operand1, operand2) -> i

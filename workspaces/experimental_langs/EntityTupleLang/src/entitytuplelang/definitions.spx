@@ -1,0 +1,13 @@
+package org.lang.entity.tuple   
+
+module Def 
+imports entitylang
+
+context-free syntax    
+	entitylang.Module -> Start 
+		 
+	 
+rules
+	// Generates java codes from EntityTupleLang language.
+	to-java = fail
+	to-pp = fail

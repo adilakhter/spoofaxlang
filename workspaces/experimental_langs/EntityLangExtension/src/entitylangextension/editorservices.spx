@@ -1,0 +1,58 @@
+package entextendedlang
+	 		
+module outlineDescriptor
+		 	
+outliner
+  
+  // This file can be used for custom outliner rules.
+  //
+  // See the imported file for a brief introduction and examples.
+	Start._
+	
+
+	 		
+module foldingDescriptor
+		 	
+folding
+  
+  // This file can be used for custom folding rules.
+  //
+  // See the imported file for a brief introduction and examples.
+	Start._
+	
+	 			
+module colorDescriptor
+	
+colorer
+                                                                      
+  // This file can be used for custom colorer rules.                  
+  //                                                                  
+  // See the imported file for a brief introduction and examples.     
+colorer   
+
+	_.XmlEmbeddedExp: 0 128 0 
+	_.VarRef: 0 128 0 
+	_.XmlType: 66 92 217  italic
+	_.Type: 66 92 217  italic
+	
+   	 		
+module completionDescriptor
+	 	
+completions
+                                                                   
+  // This module is used to define content completion.             
+  //                                                               
+  // See the imported file for a brief introduction and examples.  
+                                                                   
+completions
+                                             
+  
+	 			
+module syntaxConfiguration
+	 	
+	language
+	                                                                   
+	  // This file can be used for custom syntax rules.                
+	  //                                                               
+	  // See the imported file for a brief introduction and examples.  
+

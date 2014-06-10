@@ -1,0 +1,44 @@
+package entextendedlang   
+
+// Following module define the main langauge constructs for EntityLangExtension language
+module Def 
+imports entitylang
+
+context-free syntax    
+	entitylang.Module -> Start 
+  
+	Document  -> entitylang.Exp{"Xml"}
+	"<[" entitylang.Exp "]>" -> Content{"XmlEmbeddedExp", prefer}
+
+	"Xml" -> entitylang.Type{"XmlType",prefer} 
+	
+	
+
+	
+lexical syntax
+    [\ \t\12\13\n] -> LAYOUT {prefer}
+
+
+module TypeAnalysis
+
+rules 
+	type-of: XmlEmbeddedExp(x) -> <type-of>x
+	
+	type-of: Xml(_) -> XmlType()
+
+	pp : XmlType()  -> "Xml"
+rules
+	
+	// Pretty-prints Abstract Syntax Tree to EntityLangExtension language. 
+	pp-entitylang = fail
+rules
+	// Transforming EntityLangExtension types to java types  
+	to-java = fail
+ 
+	
+rules 
+	// Analyzes the current program, returning a tuple with errors, warnings, and notes;
+	// each a list of (term, message) tuples or simply (message) terms.
+	editor-analyze_2:
+		(ast, path, project-path) -> (ast, [], [], [])
+		

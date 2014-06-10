@@ -1,79 +1,5 @@
 definition
-module EntityLangSimple/LexDef
-imports EntityLangSimple/layout
- EntityLangSimple/Def
-
-
-exports
-  lexical syntax
-    [a-zA-Z] [a-zA-Z0-9]* -> EntID 
-
-  (
-
-  lexical syntax
-    "-"? [0-9]+           -> INT           
-    "\"" StringChar* "\"" -> STRING        
-    ~[\"\n]               -> StringChar    
-    "\\\""                -> StringChar    
-    BackSlashChar         -> StringChar    
-    "\\"                  -> BackSlashChar 
-
-  (
-
-  lexical restrictions
-    CommentChar -/- [\/]
-    INT -/- [0-9]
-    EntID -/- [a-zA-Z0-9\_]
-    BackSlashChar -/- [\"]
-
-  (
-
-  lexical syntax
-    "Int"    -> RESERVED 
-    "String" -> RESERVED 
-    "return" -> RESERVED 
-    "var"    -> RESERVED 
-    RESERVED -> EntID    {reject}
-
-  lexical restrictions
-    "Int" "String" "return" "var" -/- [A-Za-z0-9\_]
-
-  )
-
-  )
-
-  )
-
-module EntityLangSimple/layout
-imports EntityLangSimple/LexDef
- EntityLangSimple/Def
-
-
-exports
-  lexical syntax
-    [\ \t\n\r]                         -> LAYOUT      
-    [\*]                               -> CommentChar 
-    "/*" ( ~[\*] | CommentChar )* "*/" -> LAYOUT      
-    "//" ~[\n\r]* [\n\r] | EOF         -> LAYOUT      
-                                       -> EOF         
-
-  (
-
-  lexical restrictions
-    EOF -/- ~[]
-
-  context-free restrictions
-    LAYOUT? -/- [\ \t\n\r]
-    LAYOUT? -/- [\/] . [\/]
-    LAYOUT? -/- [\/] . [\*]
-
-  )
-
 module EntityLangSimple/Def
-imports EntityLangSimple/layout
- EntityLangSimple/LexDef
-
-
 exports
   context-free syntax
     Module -> Start 
@@ -203,38 +129,104 @@ exports
 
   )
 
-module EntityLangSimple-Mix[Ctx202]
+module EntityLangSimple/LexDef
+exports
+  lexical syntax
+    [a-zA-Z] [a-zA-Z0-9]* -> EntID 
+
+  (
+
+  lexical syntax
+    "-"? [0-9]+           -> INT           
+    "\"" StringChar* "\"" -> STRING        
+    ~[\"\n]               -> StringChar    
+    "\\\""                -> StringChar    
+    BackSlashChar         -> StringChar    
+    "\\"                  -> BackSlashChar 
+
+  (
+
+  lexical restrictions
+    CommentChar -/- [\/]
+    INT -/- [0-9]
+    EntID -/- [a-zA-Z0-9\_]
+    BackSlashChar -/- [\"]
+
+  (
+
+  lexical syntax
+    "Int"    -> RESERVED 
+    "String" -> RESERVED 
+    "return" -> RESERVED 
+    "var"    -> RESERVED 
+    RESERVED -> EntID    {reject}
+
+  lexical restrictions
+    "Int" "String" "return" "var" -/- [A-Za-z0-9\_]
+
+  )
+
+  )
+
+  )
+
+module EntityLangSimple/layout
+exports
+  lexical syntax
+    [\ \t\n\r]                         -> LAYOUT      
+    [\*]                               -> CommentChar 
+    "/*" ( ~[\*] | CommentChar )* "*/" -> LAYOUT      
+    "//" ~[\n\r]* [\n\r] | EOF         -> LAYOUT      
+                                       -> EOF         
+
+  (
+
+  lexical restrictions
+    EOF -/- ~[]
+
+  context-free restrictions
+    LAYOUT? -/- [\ \t\n\r]
+    LAYOUT? -/- [\/] . [\/]
+    LAYOUT? -/- [\/] . [\*]
+
+  )
+
+module EntityLangSimple-Mix[Ctx2]
+imports EntityLangSimple/layout
+
+
+imports EntityLangSimple/LexDef
+
+
 imports EntityLangSimple/Def
 
-          [ Block        => Block[[Ctx202]]
-            Entity       => Entity[[Ctx202]]
-            Start        => Start[[Ctx202]]
-            VarDecl      => VarDecl[[Ctx202]]
-            Param        => Param[[Ctx202]]
-            Module       => Module[[Ctx202]]
-            EntityElem   => EntityElem[[Ctx202]]
-            Property     => Property[[Ctx202]]
-            FunctionDef  => FunctionDef[[Ctx202]]
-            Statement    => Statement[[Ctx202]]
-            Type         => Type[[Ctx202]]
-            Definition   => Definition[[Ctx202]]
-            QID          => QID[[Ctx202]]
-            ReturnType   => ReturnType[[Ctx202]]
-            Exp          => Exp[[Ctx202]]
-            FunctionCall => FunctionCall[[Ctx202]] ]
+          [ Block        => Block[[Ctx2]]
+            Entity       => Entity[[Ctx2]]
+            Start        => Start[[Ctx2]]
+            VarDecl      => VarDecl[[Ctx2]]
+            Param        => Param[[Ctx2]]
+            Module       => Module[[Ctx2]]
+            EntityElem   => EntityElem[[Ctx2]]
+            Property     => Property[[Ctx2]]
+            FunctionDef  => FunctionDef[[Ctx2]]
+            Statement    => Statement[[Ctx2]]
+            Type         => Type[[Ctx2]]
+            Definition   => Definition[[Ctx2]]
+            QID          => QID[[Ctx2]]
+            ReturnType   => ReturnType[[Ctx2]]
+            Exp          => Exp[[Ctx2]]
+            FunctionCall => FunctionCall[[Ctx2]] ]
 
 module EntityWithPairLang/Pairs
-imports 
-
-imports EntityLangSimple-Mix[E16]
+imports EntityLangSimple-Mix[E0]
 
 exports
   context-free syntax
-    Module[[E16]] -> Start 
+    Module[[E0]] -> Start 
 
   context-free syntax
-    "(" Exp[[E16]] "," Exp[[E16]] ")"   -> Exp[[E16]]  {cons("NewTuple")}
-    "(" Type[[E16]] "," Type[[E16]] ")" -> Type[[E16]] {cons("TupleType")}
+    "(" Exp[[E0]] "," Exp[[E0]] ")"   -> Exp[[E0]]  {cons("NewTuple")}
+    "(" Type[[E0]] "," Type[[E0]] ")" -> Type[[E0]] {cons("TupleType")}
 
 module EntityWithPairLang
 imports EntityWithPairLang/Pairs

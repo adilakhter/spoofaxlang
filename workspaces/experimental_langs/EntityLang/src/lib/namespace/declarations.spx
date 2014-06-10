@@ -1,0 +1,103 @@
+package org.lib.namespace
+
+module Declarations 
+
+strategies // access declarations
+	
+	/**
+	* maps a name to its declarations
+	* can distinguish different namespaces
+	* remembers the mapping by calling a dynamic rule
+	*
+	* @param namespace
+	* 
+	* @type a -> List(b)
+	*/
+	get-declarations(|namespace) = ?x ; <resolve-included> namespace ; mapconcat(!(<id>, x) ; bagof-Declared)
+	
+	/**
+	* succeeds if the current term can be mapped to a declaration
+	* can distinguish different namespaces
+	* 
+	* @param namespace
+	* 
+	* @type a -> a
+	*/
+	is-declared(|namespace) = where(get-declarations(|namespace) ; ?[_|_])
+	
+	/**
+	* maps a name to its only declaration
+	* can distinguish different namespaces
+	* 
+	* @param namespace
+	*/
+	get-unique-declaration(|namespace) = get-declarations(|namespace) ; ?[<id>]
+	
+	/**
+	* maps a name to its first declaration
+	* can distinguish different namespaces
+	* 
+	* @param namespace
+	*/
+	get-declaration(|namespace) = project-declaration(id|namespace) 
+	
+	/**
+	* maps a name to its first declaration for which strategy s holds
+	* can distinguish different namespaces
+	* 
+	* @param s: b -> c
+	* @param namespace
+	* 
+	* @type a -> b
+	*/
+	get-declaration(s|namespace) = project-declaration(where(s)|namespace)
+	
+	/**
+	* maps a name to its declarations for which strategy s holds
+	* can distinguish different namespaces
+	* 
+	* @param s: b -> c
+	* @param namespace
+	* 
+	* @type a -> List(b)
+	*/
+	get-declarations(s|namespace) = project-declarations(where(s)|namespace)
+
+strategies // project declarations
+	
+	/**
+	* maps a name to the first projection of its declarations
+	* can distinguish different namespaces
+	* 
+	* @param s: b -> c
+	* @param namespace
+	* 
+	* @type a -> c
+	*/
+	project-declaration(s|namespace) = debug(!"project-declarations: ");
+	  get-declarations(|namespace) ; debug(!" declarations: ") ; 
+	  fetch-elem(s)   
+
+	/**
+	* maps a name to the projections of its declarations
+	* can distinguish different namespaces
+	* 
+	* @param s: b -> c
+	* @param namespace
+	* 
+	* @type a -> List(c)
+	*/
+	project-declarations(s|namespace) = get-declarations(|namespace) ; filter(s) 
+	
+strategies // access all declarations
+	
+	get-all-declarations(|namespace) = 
+		<resolve-included> namespace => spaces ; 
+		all-keys-Declared ; 
+		filter(where( (id, !spaces) ; elem )) ;
+		mapconcat(bagof-Declared)
+	
+	get-all-declarations(s|namespace) = project-all-declarations(where(s)|namespace) 
+
+	project-all-declarations(s|namespace) = get-all-declarations(|namespace) ; filter(s) 
+	 

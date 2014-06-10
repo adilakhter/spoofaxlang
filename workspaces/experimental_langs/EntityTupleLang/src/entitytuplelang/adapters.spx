@@ -1,0 +1,50 @@
+package org.lang.entity.tuple   
+// This module acts as adapter between editor services and respective custom transformations. 
+	// It specifies Stratego transformation rules to be executed for different types of editor services. 
+	// See editor-services.generated.spx for a brief introduction on the available editor services.
+	module BuilderDesc
+					
+		// Builders may carry out custom transformations on a file or selection.
+		builders
+			observer : editor-analyze         	                                                                          
+	  
+			builder  : "Show abstract syntax (for selection)" = generate-aterm (openeditor) (realtime) (meta) (source)
+			builder  : "Generate Java code (for selection)"   = generate-java (openeditor) (realtime)
+			builder  : "Pretty-printing (for selection)"      = prettyprint-entitylang(openeditor) (realtime)
+
+			// on save: generate-java
+						
+		// Content completion proposer and trigger is specified in the following section.
+		completions
+			completion proposer                  : editor-complete
+			completion trigger                   : ":"
+	
+		// Reference resolving and hover help
+		references
+			reference _ : editor-resolve
+			hover _     : editor-hover
+
+module BuilderDef  
+	 	
+rules 
+	// Transforms a selection to Java
+	generate-java = fail
+	 		
+	// Prints the abstract syntax ATerm of a selection.
+	generate-aterm:
+		(selected, position, ast, path, project-path) -> (filename, result)
+		with
+			filename := <guarantee-extension(|"aterm")> path;
+			result   := selected // we just return the input term
+	
+	// Prints the abstract syntax ATerm of a selection.
+	prettyprint-entitylang = fail
+		
+module EditorDef
+	
+rules
+	// Resolves a reference when the user control-clicks or presses F3 in the editor.
+  editor-resolve = fail
+  editor-hover = fail
+  editor-complete = fail		
+			

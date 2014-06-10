@@ -6,7 +6,7 @@ package EntityWithPairLang
 					
 		// Builders may carry out custom transformations on a file or selection.
 		builders
-			observer : editor-analyze-ext         	                                                                          
+			observer : editor-analyze        	                                                                          
 	  
 			builder  : "Show abstract syntax (for selection)" = generate-aterm (openeditor) (realtime) (meta) (source)
 			builder  : "Generate Java code (for selection)"   = generate-java (openeditor) (realtime)

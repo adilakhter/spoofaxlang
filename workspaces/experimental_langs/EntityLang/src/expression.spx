@@ -1,0 +1,84 @@
+package entitylang
+
+module Expression 
+ 
+
+module ExpSignatures
+signature 
+	constructors
+		Variables : Namespace
+
+
+module ExpAnalysis
+rules 
+	type-of: 
+		Plus(e1, e2) -> IntegerType()
+		where 
+			<type-of>e1 => IntegerType();
+			<type-of>e2 => IntegerType()
+	
+	type-of: 
+		Times(e1, e2) -> IntegerType()
+		where 
+			<type-of>e1 => IntegerType();
+			<type-of>e2 => IntegerType()
+
+
+rules
+	type-of: 
+		VarDecl (name, type) -> type
+
+	type-of: 
+		New(x) -> x
+		
+	type-of:
+  		VarRef(name) -> type
+  		where 
+  			debug(!"type-of: "); 
+  			<get-declaration(|Variables()); debug(!" decls: "); type-of> name => type;
+  			debug(!"  type:")
+	type-of :
+  		This() -> Type(<get-annotated-scope>)
+  
+
+
+module ExpRenaming	
+rules 	
+	rename:
+		VarDecl(name, type) -> VarDecl(name', type)
+		where 
+			<rename-declaration(|Variables())> name => name' 	
+	rename:
+  		VarRef(name) -> VarRef(<rename-reference(|Variables())>name)
+  		
+  	rename :
+  		e@This() -> <annotate-scope(is-entity; name-of)> e
+ 
+ 
+module ExpStorage
+rules 
+	store:
+  		d@VarDecl(name, type) -> d
+  		where <map-declaration(|Variables())> (name, d)
+  	store:
+  		e@VarRef(name) -> e
+  		where <store-reference(|Variables())> name
+
+
+module ExpTypeChecks
+rules 
+	editor-error :
+  		VarRef(name) -> (name, $[Variable [name] not declared])
+  		where not( <is-declared(|Variables())> name )
+
+	editor-error: 
+		e@Plus(e1, e2) -> (e, $[Arguments should be of type Int])
+  		where <type-of> e1; <type-of> e2; not(<type-of>e)
+	editor-error:
+		e@Times(e1, e2) -> (e, $[Arguments should be of type Int])
+	  	where  <type-of> e1; <type-of> e2; not(<type-of>e) 	
+
+module ExpEditor
+colorer
+	_.This: 0 128 0 italic  
+				  

@@ -1,8 +1,6 @@
 definition
 
 module EntityLangSimple/Def
-imports EntityLangSimple/layout EntityLangSimple/LexDef
-
 exports
   sorts WATER WATERTOKEN WATERTOKENSTART WATERTOKENSEPARATOR WATERTOKENSTAR
 
@@ -186,8 +184,6 @@ exports
   )
 
 module EntityLangSimple/LexDef
-imports EntityLangSimple/layout EntityLangSimple/Def
-
 exports
   lexical syntax
     [a-zA-Z] [a-zA-Z0-9]* -> EntID 
@@ -229,8 +225,6 @@ exports
   )
 
 module EntityLangSimple/layout
-imports EntityLangSimple/LexDef EntityLangSimple/Def
-
 exports
   lexical syntax
     [\ \t\n\r]                         -> LAYOUT      

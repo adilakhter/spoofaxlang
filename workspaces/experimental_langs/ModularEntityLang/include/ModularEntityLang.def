@@ -1,0 +1,79 @@
+definition
+module ModularEntityLang/languageConcepts
+exports
+  context-free syntax
+    "module" ID Definition*       -> Start      {cons("Module")}
+    "entity" ID "{" Property* "}" -> Definition {cons("Entity")}
+    ID ":" Type                   -> Property   {cons("Property")}
+
+module ModularEntityLang/typeSystem
+exports
+  context-free syntax
+    ID       -> Type {cons("Type")}
+    "Int"    -> Type {cons("IntegerType"), prefer}
+    "String" -> Type {cons("StringType"), prefer}
+
+module ModularEntityLang/identifierDefinition
+exports
+  lexical syntax
+    [a-zA-Z] [a-zA-Z0-9]* -> ID 
+
+module ModularEntityLang/literals
+exports
+  lexical syntax
+    "-"? [0-9]+           -> INT           
+    "\"" StringChar* "\"" -> STRING        
+    ~[\"\n]               -> StringChar    
+    "\\\""                -> StringChar    
+    BackSlashChar         -> StringChar    
+    "\\"                  -> BackSlashChar 
+
+  lexical restrictions
+    CommentChar -/- [\/]
+    INT -/- [0-9]
+    ID -/- [a-zA-Z0-9\_]
+    BackSlashChar -/- [\"]
+
+module ModularEntityLang/keywordDefinition
+exports
+  lexical syntax
+    "Int"    -> RESERVED 
+    "String" -> RESERVED 
+    RESERVED -> ID       {reject}
+
+  lexical restrictions
+    "Int" "String" -/- [A-Za-z0-9\_]
+
+module ModularEntityLang/layout
+exports
+  lexical syntax
+    [\ \t\n\r]                         -> LAYOUT      
+    [\*]                               -> CommentChar 
+    "/*" ( ~[\*] | CommentChar )* "*/" -> LAYOUT      
+    "//" ~[\n\r]* [\n\r] | EOF         -> LAYOUT      
+                                       -> EOF         
+
+  (
+
+  lexical restrictions
+    EOF -/- ~[]
+
+  context-free restrictions
+    LAYOUT? -/- [\ \t\n\r]
+    LAYOUT? -/- [\/] . [\/]
+    LAYOUT? -/- [\/] . [\*]
+
+  )
+
+module ModularEntityLang
+imports ModularEntityLang/layout
+ ModularEntityLang/keywordDefinition
+ ModularEntityLang/literals
+ ModularEntityLang/identifierDefinition
+ ModularEntityLang/typeSystem
+ ModularEntityLang/languageConcepts
+
+
+exports
+  context-free start-symbols
+    Start

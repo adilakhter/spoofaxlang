@@ -1,0 +1,50 @@
+package entitylang
+
+module ImportUtil 
+
+rules 
+  parse-entitylang-file(|path) =
+  	resolve-import(|path); parse-entitylang-file
+
+  parse-entitylang-file-cached =
+    parse-entitylang-file-cached(|<CurrentFile>)
+  	  	
+  parse-entitylang-file-cached(|path) =
+  	parse-file-cached(resolve-import(|path), parse-entitylang-file)
+
+  resolve-import(|modpath) :
+  	x -> $[[<project-path>]/[<dirname> modpath]/[x].[<get-extension> modpath]]
+  	
+  parse-file-cached(resolve-path, parse-file):
+  	name -> ast
+  	where
+  	  path       := <resolve-path> name;
+      cache-path := <import-cache-path> path;
+      debug(!"  cache-path: ");
+      if <is-newer> (cache-path, path) then
+        ast := <ReadFromFile> cache-path
+      else
+        ast := <parse-file> path;
+        if <file-exists> path then
+          // Only cache if on filesystem (e.g., ignore libstratego-lib)
+          <WriteToBinaryFile> (cache-path, ast)
+        end
+      end
+
+  open-import-entitylang(resolve-path, parse-file, record-declarations):
+    import -> import
+    where
+      if not(!import => COMPLETION(_)) then
+      	path := <resolve-path> import;
+        if not(<IsImported> path) then
+          debug(!"  not imported: ");
+          rules( IsImported: path );
+          ast := <parse-file-cached(resolve-path, parse-file)> import;
+          {| CurrentFile:
+            rules(CurrentFile := path);
+            <record-declarations> ast
+          |}
+        else
+          debug(!"  already imported: ")
+        end
+      end	

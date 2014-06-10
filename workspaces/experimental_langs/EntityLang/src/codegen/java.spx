@@ -1,0 +1,46 @@
+package entitylang
+
+module JavaCodeGen
+
+rules
+	// Generates java codes from EntityLang language.
+	to-java: Module(x, d*) ->
+		$[package [x];
+      [d'*]
+		 ]
+    with
+      d'* := <to-java> d*
+  
+	to-java: Entity(x, p*) ->
+    $[class [x] {
+           [p'*]
+       }
+		]
+    with
+		p'* := <to-java> p*
+
+	to-java: Property(x, type) -> 
+		$[
+           private [<to-java>type] [x];
+      
+           public [<to-java>type] get_[x] {
+              return [x];
+           }
+      
+           public void set_[x] ([<to-java>type] [x]) {
+              this.[x] = [x];    
+           }
+		]     
+  	
+	to-java: t* -> <map(to-java)> t* 
+
+rules
+
+rules
+	// Transforming EntityLang types to java types  
+	to-java: Type(t) -> t
+ 
+	to-java: IntegerType() -> "int"
+    
+	to-java: StringType() -> "string"  
+

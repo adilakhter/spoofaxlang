@@ -1,0 +1,53 @@
+package entitylang
+
+module EntityAnalysis 
+rules 
+	is-entity = ?Entity(_,_)
+	
+	name-of: Entity(name, elems) -> name 
+	
+	type-of: Entity(name, elems) -> Type(name)
+
+
+module EntityConstructors 
+signature
+	constructors 
+		Entities : Namespace
+
+module EntityRenamings
+rules 
+	rename: 
+		d@Entity(name,prop*) -> d'
+		where
+			new-scope(<all(rename-all)>d => d')
+
+module EntityStorage 
+rules 
+	store :
+  		d@Entity(name, prop*) -> d
+  		where debug 
+  		where <map-declaration(|Entities())> (name, d)
+  
+
+module EntityTypeChecks
+rules 
+	editor-error:
+    	Entity(name, _) -> (name, $[Multiple declarations for entity [name]])
+    	where not (<get-unique-declaration(|Entities())> name )
+    
+  	editor-warning:
+  		Entity(name, _) -> (name, $[Entity [name] is never used])
+  		where not(<is-referred(|Entities())> name )
+  
+		
+module EntityEditorDef 
+outliner 
+	Entity._  
+
+folding 
+	Entity._
+
+completions 
+	completion template Definition :
+		"entity " <e> " {" (cursor) "}" (blank)  
+    

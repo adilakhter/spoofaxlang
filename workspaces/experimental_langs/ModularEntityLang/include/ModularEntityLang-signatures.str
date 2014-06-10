@@ -1,0 +1,24 @@
+module ModularEntityLang-signatures 
+imports 
+	.shadowdir/ModularEntityLang/mainDescriptor-signature
+	.shadowdir/ModularEntityLang/layout-signature
+	.shadowdir/ModularEntityLang/keywordDefinition-signature
+	.shadowdir/ModularEntityLang/literals-signature
+	.shadowdir/ModularEntityLang/identifierDefinition-signature
+	.shadowdir/ModularEntityLang/syntaxConfiguration-signature
+	.shadowdir/ModularEntityLang/completionDescriptor-signature
+	.shadowdir/ModularEntityLang/colorDescriptor-signature
+	.shadowdir/ModularEntityLang/foldingDescriptor-signature
+	.shadowdir/ModularEntityLang/outlineDescriptor-signature
+	.shadowdir/ModularEntityLang/semanticAnalyzer-signature
+	.shadowdir/ModularEntityLang/typeSystem-signature
+	.shadowdir/ModularEntityLang/languageConcepts-signature
+	.shadowdir/ModularEntityLang/contentAssistant-signature
+	.shadowdir/ModularEntityLang/referenceResolver-signature
+	.shadowdir/ModularEntityLang/builderDefinition-signature
+	.shadowdir/ModularEntityLang/builderDescriptor-signature
+	
+imports 
+	.shadowdir/ModularEntityLang/__internal-signature
+imports 
+	.shadowdir/Globals/Signatures	 	 	
