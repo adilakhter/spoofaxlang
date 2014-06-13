@@ -1,0 +1,16 @@
+module linq1
+
+imports primitives 
+
+entity SQL{
+	execute : Object
+}
+
+
+def main(): Object {
+	var sql: SQL;
+	
+	sql:= <|from x in Y select z|>;
+	
+	return sql.execute;
+} 

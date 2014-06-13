@@ -1,4 +1,4 @@
-package entextendedlang 
+package org.lang.xml 
 
 
 module XmlDef

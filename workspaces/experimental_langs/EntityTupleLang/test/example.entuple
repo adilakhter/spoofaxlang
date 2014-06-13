@@ -1,6 +1,7 @@
-module example
 
-imports B
+
+
+module example
 
 entity Person{
 	name: (String,String)
@@ -8,8 +9,11 @@ entity Person{
 
 def name(): (String,String){
 	var name : (String,String);
+	var aInt : Int;
 	
 	name := ("foo", "bar");
+	// Error: Cannot assign (String, String) to Int
+	aInt := ("foo", "bar");
 	
-	return name;
+	return 0;
 }

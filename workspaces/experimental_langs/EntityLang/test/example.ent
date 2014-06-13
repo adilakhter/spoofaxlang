@@ -1,6 +1,6 @@
 module example
 
-imports A
+imports A 
 
 entity User {
   name     : String
@@ -10,7 +10,7 @@ entity User {
 
 entity BlogPosting {
   poster : User
-  body   : String
+  body   : Content
 }
 
 entity URL {
@@ -23,4 +23,4 @@ def foo(x:Int): Int{
 	x:= 0;
 	
 	return x;
-} 
+}  

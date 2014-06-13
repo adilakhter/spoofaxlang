@@ -1,0 +1,21 @@
+module linqEmbedding
+imports primitives  
+
+entity URL {
+  location : String
+  lastAcessed: DateTime
+  isActive : Bool
+}
+entity ActiveUrls{}
+
+
+def getActiveUrls(): ActiveUrls{
+	var urls :ActiveUrls;
+		
+	urls := <| from u in URL 
+          	   select u.location, u.lastAccessed 
+			   where u.isActive
+		     |>; 
+	
+	return urls;
+}

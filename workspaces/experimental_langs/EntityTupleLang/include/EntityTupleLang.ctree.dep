@@ -5,8 +5,8 @@ C:\spoofaxlang\workspaces\experimental_langs\EntityTupleLang\include/EntityTuple
 	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/org/lang/entity/tuple/BuilderDef.rtree \
 	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/org/lang/entity/tuple/EditorDef-signature.rtree \
 	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/org/lang/entity/tuple/EditorDef.rtree \
-	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/org/lang/entity/tuple/Def-signature.rtree \
-	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/org/lang/entity/tuple/Def.rtree \
+	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/org/lang/entity/tuple/MainDef-signature.rtree \
+	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/org/lang/entity/tuple/MainDef.rtree \
 	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/org/lang/entity/tuple/mainDescriptor-signature.rtree \
 	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/org/lang/entity/tuple/generated/utils-signature.rtree \
 	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/org/lang/entity/tuple/generated/utils.rtree \
@@ -154,10 +154,10 @@ C:\spoofaxlang\workspaces\experimental_langs\EntityTupleLang\include/EntityTuple
 	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/entitylang/TypeAnalysis-signature.rtree \
 	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/entitylang/TypeAnalysis.rtree \
 	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/org/lang/entity/tuple/TupleDef.rtree \
-	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/org/lang/entity/tuple/TypeAnalysis-signature.rtree \
-	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/org/lang/entity/tuple/TypeAnalysis.rtree \
-	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/org/lang/entity/tuple/TuplePP-signature.rtree \
-	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/org/lang/entity/tuple/TuplePP.rtree \
+	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/org/lang/entity/tuple/TupleAnalysis-signature.rtree \
+	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/org/lang/entity/tuple/TupleAnalysis.rtree \
+	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/org/lang/entity/tuple/TuplePPDef-signature.rtree \
+	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/org/lang/entity/tuple/TuplePPDef.rtree \
 	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/Globals/Signatures.rtree \
 	C:/spoofaxlang/workspaces/experimental_langs/EntityTupleLang/.shadowdir/org/lang/entity/tuple/__internal-signature.rtree \
 	C:\spoofaxlang\workspaces\experimental_langs\EntityTupleLang\.shadowdir/EntityTupleLang.str

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.imp.runtime.languageDescription">
+      <language
+            extensions="tsql"
+            description="TinySQL"
+            language="TinySQL"
+            derivedFrom="DynamicRoot"
+            validator="org.lang.sql.TinySQLValidator"
+            validatorClass="org.lang.sql.TinySQLValidator"
+      ></language>
+   </extension>
+   <extension
+         id="org.lang.sql.parser"
+         name="TinySQL Parser"
+         point="org.eclipse.imp.runtime.parser">
+      <parser
+            class="org.lang.sql.TinySQLParseController"
+            language="TinySQL">
+      </parser>
+   </extension>    
+</plugin>

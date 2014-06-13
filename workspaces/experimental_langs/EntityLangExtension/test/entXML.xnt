@@ -1,0 +1,19 @@
+module entXML
+
+entity Post {
+  content : Xml 
+}
+
+def post(): Xml{
+	var blogPost : Xml;
+	var headerVar   : String;
+	
+	headerVar   := "visitor!";
+	blogPost := <html>
+	    			<body>
+		  				Welcome <[headerVar]>! <[unknown + 1]>
+					</body>
+	  			</html>;
+	
+	return blogPost;
+}

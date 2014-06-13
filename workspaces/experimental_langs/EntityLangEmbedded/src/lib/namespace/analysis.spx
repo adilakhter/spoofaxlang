@@ -1,0 +1,85 @@
+package org.lib.namespace
+
+module Analysis  
+
+
+rules // store declarations and references
+	
+	new-analysis(s) = {| Declared, Referred, Including, IncludedBy: s |}
+	
+	//CurrentFile = fail
+		
+	/**
+	* stores a mapping from a name to a declaration
+	* can distinguish different namespaces
+	* remembers the mapping by storing a dynamic rule
+	*
+	* @param namespace
+	* @type (a, b) -> b
+	*/
+	map-declaration(|namespace) :
+		(x, d) -> d
+		where 
+		  //file := <CurrentFile>;
+		  rules(
+			//Declared :+ (namespace, x) -> (file, d)
+			Declared :+ (namespace, x) -> d
+		  )
+		
+	map-declaration = map-declaration(|<get-annotated-scope>)
+	
+	/**
+	* stores the usage of a reference
+	* can distinguish different namespaces
+	* remembers the reference by storing a dynamic rule
+	*
+	* @param namespace
+	* @type a -> a
+	*/
+	store-reference(|namespace) :
+		x -> x
+		where rules (
+			Referred:+ (namespace, x) -> x
+		)
+
+	store-reference = store-reference(|<get-annotated-scope>)
+	
+strategies // access scopes
+	
+	get-scopes = all-keys-Scope  // efficiency?
+	
+	get-scopes(s) = get-scopes ; filter(where(s)) 
+	
+	get-scope(s) = get-scopes ; fetch-elem(where(s))
+	
+	project-scopes(s) = get-scopes ; filter(s)
+	
+	project-scope(s) = get-scopes ; fetch-elem(s)  
+	
+	in-scope(s) = where(get-scope(s))
+	
+	get-annotated-scope = get-annos ; fetch-elem(?scope(<id>))
+	
+		
+strategies // access references 
+
+	get-references(|namespace) = ?x ; <resolve-included> namespace ; mapconcat(!(<id>, x) ; bagof-Referred)
+	
+	is-referred(|namespace) = get-references(|namespace) ; ?[_|_]
+
+strategies	
+	
+	get-proposal-candidates(|namespace) = all-keys-Renamed ; filter(?(namespace, _) ; Renamed)
+	
+	store-proposal-candidates(|namespace) = get-proposal-candidates(|namespace) ; store-proposals
+	
+	store-proposals = ?x ; where (rules ( Propose : () -> x ))
+	
+	get-proposals = ( <Propose> () ; map(rm-annotations) ) <+ ![]
+	
+	get-proposals(s|namespace) = 
+		( 
+			<Propose> () ; 
+			filter(where( get-declaration(s|namespace) )) ; 
+			map(rm-annotations) 
+		) <+ ![]

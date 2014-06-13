@@ -1,0 +1,11 @@
+Module(
+  "tinysql1"
+, [ Entity("Object", [])
+  , FunctionDef(
+      "main"
+    , []
+    , None()
+    , Block([VarDecl("obj", Type("Object"))])
+    )
+  ]
+)

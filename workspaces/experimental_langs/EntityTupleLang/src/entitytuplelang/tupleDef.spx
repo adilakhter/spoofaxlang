@@ -9,7 +9,7 @@ context-free syntax
 	"(" entitylang.Type "," entitylang.Type ")" -> entitylang.Type{"TupleType"} 
 	
 	
-module TypeAnalysis 
+module TupleAnalysis 
  
 rules
 	type-of: Tuple(e1, e2) -> TupleType(<type-of>e1 , <type-of>e2)
@@ -17,7 +17,7 @@ rules
  	
 
 
-module TuplePP
+module TuplePPDef
 
 rules
 	pp: TupleType(t1, t2) -> $[([<pp>t1], [<pp>t2])] 

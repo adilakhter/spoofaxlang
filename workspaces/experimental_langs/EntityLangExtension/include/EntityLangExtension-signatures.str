@@ -1,6 +1,5 @@
 module EntityLangExtension-signatures 
 imports 
-	.shadowdir/entextendedlang/XmlDef-signature
 	.shadowdir/entextendedlang/mainDescriptor-signature
 	.shadowdir/entextendedlang/syntaxConfiguration-signature
 	.shadowdir/entextendedlang/completionDescriptor-signature

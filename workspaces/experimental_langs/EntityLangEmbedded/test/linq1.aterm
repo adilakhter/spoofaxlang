@@ -1,0 +1,14 @@
+Module(
+  "linq1"
+, [ Imports("primitives")
+  , Entity("SQL", [Property("execute", Type("Object"))])
+  , FunctionDef(
+      "main"
+    , []
+    , Some(ReturnType(Type("Object")))
+    , Block(
+        [VarDecl("sql", Type("SQL")), Return(PropertyAccess(VarRef("sql"), "execute"))]
+      )
+    )
+  ]
+)

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.imp.runtime.languageDescription">
+      <language
+            extensions="embt"
+            description="EntityLangEmbedded"
+            language="EntityLangEmbedded"
+            derivedFrom="DynamicRoot"
+            validator="org.lang.ent.EntityLangEmbeddedValidator"
+            validatorClass="org.lang.ent.EntityLangEmbeddedValidator"
+      ></language>
+   </extension>
+   <extension
+         id="org.lang.ent.parser"
+         name="EntityLangEmbedded Parser"
+         point="org.eclipse.imp.runtime.parser">
+      <parser
+            class="org.lang.ent.EntityLangEmbeddedParseController"
+            language="EntityLangEmbedded">
+      </parser>
+   </extension>    
+</plugin>

@@ -1,245 +1,5 @@
 definition
-module entitylang/LexDefinition
-exports
-  lexical syntax
-    [a-zA-Z] [a-zA-Z0-9]* -> ID 
-
-  (
-
-  lexical syntax
-    {ID "/"}+ -> FILENAME 
-
-  (
-
-  lexical syntax
-    "-"? [0-9]+           -> INT           
-    "\"" StringChar* "\"" -> STRING        
-    ~[\"\n]               -> StringChar    
-    "\\\""                -> StringChar    
-    BackSlashChar         -> StringChar    
-    "\\"                  -> BackSlashChar 
-
-  (
-
-  lexical restrictions
-    CommentChar -/- [\/]
-    INT -/- [0-9]
-    ID -/- [a-zA-Z0-9\_]
-    BackSlashChar -/- [\"]
-
-  (
-
-  lexical syntax
-    "Int"    -> RESERVED 
-    "String" -> RESERVED 
-    RESERVED -> ID       {reject}
-
-  (
-
-  lexical restrictions
-    "Int" "String" -/- [A-Za-z0-9\_]
-
-  (
-
-  lexical syntax
-    [\ \t\n\r]                         -> LAYOUT      
-    [\*]                               -> CommentChar 
-    "/*" ( ~[\*] | CommentChar )* "*/" -> LAYOUT      
-    "//" ~[\n\r]* [\n\r] | EOF         -> LAYOUT      
-                                       -> EOF         
-
-  (
-
-  lexical restrictions
-    EOF -/- ~[]
-
-  context-free restrictions
-    LAYOUT? -/- [\ \t\n\r]
-    LAYOUT? -/- [\/] . [\/]
-    LAYOUT? -/- [\/] . [\*]
-
-  )
-
-  )
-
-  )
-
-  )
-
-  )
-
-  )
-
-  )
-
-module entitylang/MainDef
-exports
-  context-free syntax
-    Module -> Start 
-
-module entitylang/Syntax
-exports
-  context-free syntax
-    FunctionDef                                     -> Definition   
-    FunctionCall                                    -> Exp          
-    "def" ID "(" {Param ","}* ")" ReturnType? Block -> FunctionDef  {cons("FunctionDef")}
-    ID "(" {Exp ","}* ")"                           -> FunctionCall {cons("FunctionCall")}
-
-  (
-
-  context-free syntax
-    "module" ID Definition* -> Module     {cons("Module")}
-    "imports" FILENAME      -> Definition {cons("Imports")}
-
-  (
-
-  context-free syntax
-    Entity                          -> Definition 
-    "entity" ID "{" EntityElem* "}" -> Entity     {cons("Entity"), prefer}
-
-  (
-
-  context-free syntax
-    ID         -> QID 
-    QID "." ID -> QID {cons("QId")}
-
-  (
-
-  context-free syntax
-    "new" ID "(" ")" -> Exp {cons("New")}
-
-  (
-
-  context-free syntax
-    ID          -> Exp {cons("VarRef"), prefer}
-    QID         -> Exp {cons("QVarRef")}
-    "(" Exp ")" -> Exp {bracket}
-    Exp "<" Exp -> Exp {cons("LT"), non-assoc}
-
-  (
-
-  context-free syntax
-    "this" -> Exp {cons("This")}
-
-  (
-
-  context-free syntax
-    INT         -> Exp {cons("Int")}
-    STRING      -> Exp {cons("String")}
-    Exp "+" Exp -> Exp {cons("Plus"), assoc}
-    Exp "*" Exp -> Exp {cons("Times"), assoc}
-
-  (
-
-  context-free priorities
-    Exp "*" Exp -> Exp  >
-    Exp "+" Exp -> Exp 
-
-  (
-
-  context-free syntax
-    ID       -> Type {cons("Type")}
-    "Int"    -> Type {cons("IntegerType"), prefer}
-    "String" -> Type {cons("StringType"), prefer}
-
-  (
-
-  context-free syntax
-    Exp ":=" Exp ";"   -> Statement {cons("Assign")}
-    "{" Statement* "}" -> Block     {cons("Block")}
-    Block              -> Statement 
-    VarDecl            -> Statement 
-    Exp ";"            -> Statement {cons("Statement")}
-
-  (
-
-  context-free syntax
-    "var" ID ":" Type ";" -> VarDecl {cons("VarDecl")}
-
-  (
-
-  context-free syntax
-    "if" "(" Exp ")" Block "else" Block -> Statement {cons("If")}
-    "while" "(" Exp ")" Block           -> Statement {cons("While")}
-
-  (
-
-  context-free syntax
-    "return" Exp ";" -> Statement  {cons("Return")}
-    ID ":" Type      -> Param      {cons("Param")}
-    ":" Type         -> ReturnType {cons("ReturnType")}
-
-  context-free syntax
-    Property    -> EntityElem 
-    ID ":" Type -> Property   {cons("Property")}
-    Exp "." ID  -> Exp        {cons("PropertyAccess")}
-
-  )
-
-  )
-
-  )
-
-  )
-
-  )
-
-  )
-
-  )
-
-  )
-
-  )
-
-  )
-
-  )
-
-  )
-
-  )
-
-module entitylang-Mix[Ctx48]
-imports entitylang/Syntax
-
-          [ Property     => Property[[Ctx48]]
-            ReturnType   => ReturnType[[Ctx48]]
-            Entity       => Entity[[Ctx48]]
-            Module       => Module[[Ctx48]]
-            QID          => QID[[Ctx48]]
-            EntityElem   => EntityElem[[Ctx48]]
-            Block        => Block[[Ctx48]]
-            Param        => Param[[Ctx48]]
-            Type         => Type[[Ctx48]]
-            FunctionDef  => FunctionDef[[Ctx48]]
-            VarDecl      => VarDecl[[Ctx48]]
-            FunctionCall => FunctionCall[[Ctx48]]
-            Definition   => Definition[[Ctx48]]
-            Statement    => Statement[[Ctx48]]
-            Exp          => Exp[[Ctx48]] ]
-
-imports entitylang/MainDef
-
-          [ Start => Start[[Ctx48]] ]
-
-imports entitylang/LexDefinition
-
-
-module entextendedlang/Def
-imports entitylang-Mix[E3]
-
-exports
-  context-free syntax
-    Module[[E3]]        -> Start      
-    Document            -> Exp[[E3]]  {cons("Xml")}
-    "<[" Exp[[E3]] "]>" -> Content    {cons("XmlEmbeddedExp"), prefer}
-    "Xml"               -> Type[[E3]] {cons("XmlType"), prefer}
-
-  lexical syntax
-    [\ \t\12\13\n] -> LAYOUT {prefer}
-
-module entextendedlang/XmlDef
+module org/lang/xml/XmlDef
 exports
   context-free syntax
     AttrName "=" AttValue -> Attribute {cons("Attribute")}
@@ -491,9 +251,292 @@ exports
 
   )
 
+module org-lang-xml-Mix[Ctx235]
+imports org/lang/xml/XmlDef
+
+          [ ElemName         => ElemName[[Ctx235]]
+            DocTypeDecl      => DocTypeDecl[[Ctx235]]
+            PI               => PI[[Ctx235]]
+            DecCharRef       => DecCharRef[[Ctx235]]
+            StandaloneDecl   => StandaloneDecl[[Ctx235]]
+            VersionInfo      => VersionInfo[[Ctx235]]
+            PublicID         => PublicID[[Ctx235]]
+            EntityRef        => EntityRef[[Ctx235]]
+            Epilogue         => Epilogue[[Ctx235]]
+            Document         => Document[[Ctx235]]
+            Qualifier        => Qualifier[[Ctx235]]
+            ExternalID       => ExternalID[[Ctx235]]
+            Attribute        => Attribute[[Ctx235]]
+            EncodingDecl     => EncodingDecl[[Ctx235]]
+            Prologue         => Prologue[[Ctx235]]
+            AttrName         => AttrName[[Ctx235]]
+            CharData         => CharData[[Ctx235]]
+            VersionValue     => VersionValue[[Ctx235]]
+            XMLDecl          => XMLDecl[[Ctx235]]
+            AttValue         => AttValue[[Ctx235]]
+            DocTypePrologue  => DocTypePrologue[[Ctx235]]
+            DoubleQuotedPart => DoubleQuotedPart[[Ctx235]]
+            Content          => Content[[Ctx235]]
+            HexCharRef       => HexCharRef[[Ctx235]]
+            CharDataPart     => CharDataPart[[Ctx235]]
+            SingleQuotedPart => SingleQuotedPart[[Ctx235]]
+            Ref              => Ref[[Ctx235]]
+            EncodingValue    => EncodingValue[[Ctx235]]
+            QName            => QName[[Ctx235]]
+            CharRef          => CharRef[[Ctx235]]
+            Misc             => Misc[[Ctx235]]
+            Element          => Element[[Ctx235]]
+            FooCharDataText  => FooCharDataText[[Ctx235]]
+            StandaloneValue  => StandaloneValue[[Ctx235]] ]
+
+module entitylang/LexDefinition
+exports
+  lexical syntax
+    [a-zA-Z] [a-zA-Z0-9]* -> ID 
+
+  (
+
+  lexical syntax
+    {ID "/"}+ -> FILENAME 
+
+  (
+
+  lexical syntax
+    "-"? [0-9]+           -> INT           
+    "\"" StringChar* "\"" -> STRING        
+    ~[\"\n]               -> StringChar    
+    "\\\""                -> StringChar    
+    BackSlashChar         -> StringChar    
+    "\\"                  -> BackSlashChar 
+
+  (
+
+  lexical restrictions
+    CommentChar -/- [\/]
+    INT -/- [0-9]
+    ID -/- [a-zA-Z0-9\_]
+    BackSlashChar -/- [\"]
+
+  (
+
+  lexical syntax
+    "Int"    -> RESERVED 
+    "String" -> RESERVED 
+    RESERVED -> ID       {reject}
+
+  (
+
+  lexical restrictions
+    "Int" "String" -/- [A-Za-z0-9\_]
+
+  (
+
+  lexical syntax
+    [\ \t\n\r]                         -> LAYOUT      
+    [\*]                               -> CommentChar 
+    "/*" ( ~[\*] | CommentChar )* "*/" -> LAYOUT      
+    "//" ~[\n\r]* [\n\r] | EOF         -> LAYOUT      
+                                       -> EOF         
+
+  (
+
+  lexical restrictions
+    EOF -/- ~[]
+
+  context-free restrictions
+    LAYOUT? -/- [\ \t\n\r]
+    LAYOUT? -/- [\/] . [\/]
+    LAYOUT? -/- [\/] . [\*]
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+module entitylang/MainDef
+exports
+  context-free syntax
+    Module -> Start 
+
+module entitylang/Syntax
+exports
+  context-free syntax
+    FunctionDef                                     -> Definition   
+    FunctionCall                                    -> Exp          
+    "def" ID "(" {Param ","}* ")" ReturnType? Block -> FunctionDef  {cons("FunctionDef")}
+    ID "(" {Exp ","}* ")"                           -> FunctionCall {cons("FunctionCall")}
+
+  (
+
+  context-free syntax
+    "module" ID Definition* -> Module     {cons("Module")}
+    "imports" FILENAME      -> Definition {cons("Imports")}
+
+  (
+
+  context-free syntax
+    Entity                          -> Definition 
+    "entity" ID "{" EntityElem* "}" -> Entity     {cons("Entity"), prefer}
+
+  (
+
+  context-free syntax
+    ID         -> QID 
+    QID "." ID -> QID {cons("QId")}
+
+  (
+
+  context-free syntax
+    "new" ID "(" ")" -> Exp {cons("New")}
+
+  (
+
+  context-free syntax
+    ID          -> Exp {cons("VarRef"), prefer}
+    QID         -> Exp {cons("QVarRef")}
+    "(" Exp ")" -> Exp {bracket}
+    Exp "<" Exp -> Exp {cons("LT"), non-assoc}
+
+  (
+
+  context-free syntax
+    "this" -> Exp {cons("This")}
+
+  (
+
+  context-free syntax
+    INT         -> Exp {cons("Int")}
+    STRING      -> Exp {cons("String")}
+    Exp "+" Exp -> Exp {cons("Plus"), assoc}
+    Exp "*" Exp -> Exp {cons("Times"), assoc}
+
+  (
+
+  context-free priorities
+    Exp "*" Exp -> Exp  >
+    Exp "+" Exp -> Exp 
+
+  (
+
+  context-free syntax
+    ID       -> Type {cons("Type")}
+    "Int"    -> Type {cons("IntegerType"), prefer}
+    "String" -> Type {cons("StringType"), prefer}
+
+  (
+
+  context-free syntax
+    Exp ":=" Exp ";"   -> Statement {cons("Assign")}
+    "{" Statement* "}" -> Block     {cons("Block")}
+    Block              -> Statement 
+    VarDecl            -> Statement 
+    Exp ";"            -> Statement {cons("Statement")}
+
+  (
+
+  context-free syntax
+    "var" ID ":" Type ";" -> VarDecl {cons("VarDecl")}
+
+  (
+
+  context-free syntax
+    "if" "(" Exp ")" Block "else" Block -> Statement {cons("If")}
+    "while" "(" Exp ")" Block           -> Statement {cons("While")}
+
+  (
+
+  context-free syntax
+    "return" Exp ";" -> Statement  {cons("Return")}
+    ID ":" Type      -> Param      {cons("Param")}
+    ":" Type         -> ReturnType {cons("ReturnType")}
+
+  context-free syntax
+    Property    -> EntityElem 
+    ID ":" Type -> Property   {cons("Property")}
+    Exp "." ID  -> Exp        {cons("PropertyAccess")}
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+module entitylang-Mix[Ctx234]
+imports entitylang/Syntax
+
+          [ Property     => Property[[Ctx234]]
+            ReturnType   => ReturnType[[Ctx234]]
+            Entity       => Entity[[Ctx234]]
+            Module       => Module[[Ctx234]]
+            QID          => QID[[Ctx234]]
+            EntityElem   => EntityElem[[Ctx234]]
+            Block        => Block[[Ctx234]]
+            Param        => Param[[Ctx234]]
+            Type         => Type[[Ctx234]]
+            FunctionDef  => FunctionDef[[Ctx234]]
+            VarDecl      => VarDecl[[Ctx234]]
+            FunctionCall => FunctionCall[[Ctx234]]
+            Definition   => Definition[[Ctx234]]
+            Statement    => Statement[[Ctx234]]
+            Exp          => Exp[[Ctx234]] ]
+
+imports entitylang/MainDef
+
+          [ Start => Start[[Ctx234]] ]
+
+imports entitylang/LexDefinition
+
+
+module entextendedlang/Def
+imports entitylang-Mix[E0] org-lang-xml-Mix[OLX0]
+
+exports
+  context-free syntax
+    Module[[E0]]        -> Start           
+    Document[[OLX0]]    -> Exp[[E0]]       {cons("Xml")}
+    "<[" Exp[[E0]] "]>" -> Content[[OLX0]] {cons("XmlEmbeddedExp"), prefer}
+
+  (
+
+  context-free syntax
+    "Xml" -> Type[[E0]] {cons("XmlType"), prefer}
+
+  lexical syntax
+    [\ \t\12\13\n] -> LAYOUT {prefer}
+
+  )
+
 module EntityLangExtension
-imports entextendedlang/XmlDef
- entextendedlang/Def
+imports entextendedlang/Def
 
 
 exports

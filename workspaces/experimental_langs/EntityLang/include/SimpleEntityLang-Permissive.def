@@ -1,0 +1,262 @@
+definition
+
+module entitylang/LexDefinition
+exports
+  sorts WATER WATERTOKEN WATERTOKENSTART WATERTOKENSEPARATOR WATERTOKENSTAR
+
+  lexical syntax
+    ~[A-Za-z0-9\_]                 -> WATERTOKENSTART     {recover, avoid}
+    WATERTOKENSTART [A-Za-z0-9\_]* -> WATERTOKEN          
+    ~[A-Za-z0-9\_\ \t\12\r\n\*]    -> WATERTOKENSEPARATOR {recover, avoid}
+    "*"                            -> WATERTOKENSTAR      {recover, avoid}
+    WATERTOKEN                     -> WATER               
+    WATERTOKENSEPARATOR            -> WATER               
+    WATERTOKENSTAR                 -> WATER               
+                                   -> WATEREOF            
+
+  lexical restrictions
+    WATERTOKEN -/- [A-Za-z0-9\_]
+    WATERTOKENSTAR -/- [\/]
+
+  context-free syntax
+    WATER -> LAYOUT {cons("WATER")}
+
+  (
+
+  sorts WATEREOF
+
+  lexical restrictions
+    WATEREOF -/- ~[]
+
+  lexical syntax
+    %% Lexical insertion recovery rules                              
+    "\""                                          -> INSERTOPENQUOTE {recover}
+    INSERTOPENQUOTE StringChar* "\n"              -> STRING          {cons("INSERTEND")}
+    INSERTOPENQUOTE StringChar* WATEREOF          -> STRING          {cons("INSERTEND")}
+    "/*"                                          -> INSERTSTART     {recover}
+    INSERTSTART ( ~[\*] | CommentChar )* WATEREOF -> LAYOUT          {cons("INSERTEND")}
+                                                  -> "def"           {recover, cons("INSERTION")}
+                                                  -> ","             {recover, cons("INSERTION")}
+                                                  -> "module"        {recover, cons("INSERTION")}
+                                                  -> "imports"       {recover, cons("INSERTION")}
+                                                  -> "entity"        {recover, cons("INSERTION")}
+                                                  -> ")"             {recover, cons("INSERTION")}
+                                                  -> "}"             {recover, cons("INSERTION")}
+                                                  -> "var"           {recover, cons("INSERTION")}
+                                                  -> ";"             {recover, cons("INSERTION")}
+                                                  -> ":"             {recover, cons("INSERTION")}
+
+  syntax
+    %% Kernel syntax insertion recovery rules   
+
+  )
+
+  (
+
+  lexical syntax
+    [a-zA-Z] [a-zA-Z0-9]* -> ID 
+
+  (
+
+  lexical syntax
+    {ID "/"}+ -> FILENAME 
+
+  (
+
+  lexical syntax
+    "-"? [0-9]+           -> INT           
+    "\"" StringChar* "\"" -> STRING        
+    ~[\"\n]               -> StringChar    
+    "\\\""                -> StringChar    
+    BackSlashChar         -> StringChar    
+    "\\"                  -> BackSlashChar 
+
+  (
+
+  lexical restrictions
+    CommentChar -/- [\/]
+    INT -/- [0-9]
+    ID -/- [a-zA-Z0-9\_]
+    BackSlashChar -/- [\"]
+
+  (
+
+  lexical syntax
+    "Int"    -> RESERVED 
+    "String" -> RESERVED 
+    RESERVED -> ID       {reject}
+
+  (
+
+  lexical restrictions
+    "Int" "String" -/- [A-Za-z0-9\_]
+
+  (
+
+  lexical syntax
+    [\ \t\n\r]                         -> LAYOUT      
+    [\*]                               -> CommentChar 
+    "/*" ( ~[\*] | CommentChar )* "*/" -> LAYOUT      
+    "//" ~[\n\r]* [\n\r] | EOF         -> LAYOUT      
+                                       -> EOF         
+
+  (
+
+  lexical restrictions
+    EOF -/- ~[]
+
+  context-free restrictions
+    LAYOUT? -/- [\ \t\n\r]
+    LAYOUT? -/- [\/] . [\/]
+    LAYOUT? -/- [\/] . [\*]
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+module entitylang/MainDef
+exports
+  context-free syntax
+    Module -> Start 
+
+module entitylang/Syntax
+exports
+  context-free syntax
+    FunctionDef                                     -> Definition   
+    FunctionCall                                    -> Exp          
+    "def" ID "(" {Param ","}* ")" ReturnType? Block -> FunctionDef  {cons("FunctionDef")}
+    ID "(" {Exp ","}* ")"                           -> FunctionCall {cons("FunctionCall")}
+
+  (
+
+  context-free syntax
+    "module" ID Definition* -> Module     {cons("Module")}
+    "imports" FILENAME      -> Definition {cons("Imports")}
+
+  (
+
+  context-free syntax
+    Entity                          -> Definition 
+    "entity" ID "{" EntityElem* "}" -> Entity     {cons("Entity"), prefer}
+
+  (
+
+  context-free syntax
+    ID         -> QID 
+    QID "." ID -> QID {cons("QId")}
+
+  (
+
+  context-free syntax
+    "new" ID "(" ")" -> Exp {cons("New")}
+
+  (
+
+  context-free syntax
+    ID          -> Exp {cons("VarRef"), prefer}
+    QID         -> Exp {cons("QVarRef")}
+    "(" Exp ")" -> Exp {bracket}
+    Exp "<" Exp -> Exp {cons("LT"), non-assoc}
+
+  (
+
+  context-free syntax
+    "this" -> Exp {cons("This")}
+
+  (
+
+  context-free syntax
+    INT         -> Exp {cons("Int")}
+    STRING      -> Exp {cons("String")}
+    Exp "+" Exp -> Exp {cons("Plus"), assoc}
+    Exp "*" Exp -> Exp {cons("Times"), assoc}
+
+  (
+
+  context-free priorities
+    Exp "*" Exp -> Exp  >
+    Exp "+" Exp -> Exp 
+
+  (
+
+  context-free syntax
+    ID       -> Type {cons("Type")}
+    "Int"    -> Type {cons("IntegerType"), prefer}
+    "String" -> Type {cons("StringType"), prefer}
+
+  (
+
+  context-free syntax
+    Exp ":=" Exp ";"   -> Statement {cons("Assign")}
+    "{" Statement* "}" -> Block     {cons("Block")}
+    Block              -> Statement 
+    VarDecl            -> Statement 
+    Exp ";"            -> Statement {cons("Statement")}
+
+  (
+
+  context-free syntax
+    "var" ID ":" Type ";" -> VarDecl {cons("VarDecl")}
+
+  (
+
+  context-free syntax
+    "if" "(" Exp ")" Block "else" Block -> Statement {cons("If")}
+    "while" "(" Exp ")" Block           -> Statement {cons("While")}
+
+  (
+
+  context-free syntax
+    "return" Exp ";" -> Statement  {cons("Return")}
+    ID ":" Type      -> Param      {cons("Param")}
+    ":" Type         -> ReturnType {cons("ReturnType")}
+
+  context-free syntax
+    Property    -> EntityElem 
+    ID ":" Type -> Property   {cons("Property")}
+    Exp "." ID  -> Exp        {cons("PropertyAccess")}
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+module SimpleEntityLang
+imports entitylang/Syntax entitylang/MainDef entitylang/LexDefinition
+
+exports
+  context-free start-symbols
+    Start

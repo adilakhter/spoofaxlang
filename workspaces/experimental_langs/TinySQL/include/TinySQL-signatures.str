@@ -1,0 +1,24 @@
+module TinySQL-signatures 
+imports 
+	.shadowdir/org/lang/sql/mainDescriptor-signature
+	.shadowdir/org/lang/sql/layout-signature
+	.shadowdir/org/lang/sql/keywordDefinition-signature
+	.shadowdir/org/lang/sql/literals-signature
+	.shadowdir/org/lang/sql/identifierDefinition-signature
+	.shadowdir/org/lang/sql/syntaxConfiguration-signature
+	.shadowdir/org/lang/sql/completionDescriptor-signature
+	.shadowdir/org/lang/sql/colorDescriptor-signature
+	.shadowdir/org/lang/sql/foldingDescriptor-signature
+	.shadowdir/org/lang/sql/outlineDescriptor-signature
+	.shadowdir/org/lang/sql/semanticAnalyzer-signature
+	.shadowdir/org/lang/sql/typeSystem-signature
+	.shadowdir/org/lang/sql/languageConcepts-signature
+	.shadowdir/org/lang/sql/contentAssistant-signature
+	.shadowdir/org/lang/sql/referenceResolver-signature
+	.shadowdir/org/lang/sql/builderDefinition-signature
+	.shadowdir/org/lang/sql/builderDescriptor-signature
+	
+imports 
+	.shadowdir/org/lang/sql/__internal-signature
+imports 
+	.shadowdir/Globals/Signatures	 	 	

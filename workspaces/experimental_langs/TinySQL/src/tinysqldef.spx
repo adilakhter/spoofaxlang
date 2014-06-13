@@ -1,0 +1,39 @@
+package org.lang.ql   
+
+module TinySql
+
+
+context-free syntax 
+  QueryBody FromExp           -> QueryExp {"TinySqlExp"}
+  QueryBody FromExp WhereExp  -> QueryExp {"TinySqlExp", prefer}
+  
+	
+context-free syntax	
+  "SELECT" {Exp ","}+ -> QueryBody {"Select"}
+  "FROM"   Exp        -> FromExp   {"From"}
+  "WHERE"  Exp        -> WhereExp  {"Where"}
+
+context-free syntax    
+    Ref                              -> Exp {"FieldRef", avoid}
+    Ref "." EID                      -> Exp {"QFieldRef"}
+    EID          				     -> Ref 
+    STRING                           -> Exp {"QString"}
+
+lexical syntax 
+	"WHERE" -> RESERVED 
+	"SELECT" -> RESERVED
+	"FROM" -> RESERVED
+
+	 
+module ColorDefinition 
+colorer 
+	_.Select: 139 69 19 bold  
+	_.From: 139 69 19 bold
+	_.Where: 139 69 19 bold
+	   
+	_.FieldRef: 128 128 128    italic
+	_.QFieldRef: 128 128 128   italic
+	
+		
+	
+	

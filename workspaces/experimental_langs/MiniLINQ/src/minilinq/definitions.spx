@@ -1,0 +1,35 @@
+package org.lang.ql   
+
+module LinqDef
+
+context-free syntax
+	From QueryBody             -> QueryExp{"LinqExp"}
+	From QueryBody Where       -> QueryExp{"LinqExp", prefer}
+    
+context-free syntax 
+	"select" {Exp ","}+     -> QueryBody {"Select"}
+	"from" Alias "in" Exp   -> From      {"From"}
+    "where" Exp             -> Where     {"Where"}	
+
+context-free syntax     
+    Ref                     -> Exp {"FieldRef", avoid}
+    Ref "." EID             -> Exp {"QFieldRef"}
+    EID 					-> Alias {"QAlias"} 
+    EID          			-> Ref 
+
+lexical syntax 
+	"where" -> RESERVED 
+	 
+module ColorDefinition 
+colorer 
+	_.Select: 0 128 0  
+	_.From: 0 128 0
+	_.Where: 0 128 0
+	   
+	_.FieldRef: 128 128 128    italic
+	_.QFieldRef: 128 128 128   italic
+	_.QAlias: 128 128 128      italic
+	
+	
+	
+	

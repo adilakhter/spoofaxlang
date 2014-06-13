@@ -1,0 +1,59 @@
+package org.lang.EntityLang   
+
+module Common 
+	
+	lexical syntax
+		[a-zA-Z][a-zA-Z0-9]* -> EID
+	lexical syntax
+		"-"? [0-9]+           -> INT
+		"\"" StringChar* "\"" -> STRING
+		~[\"\n]               -> StringChar
+		"\\\""                -> StringChar
+		
+		BackSlashChar         -> StringChar
+		"\\"                  -> BackSlashChar
+	
+	lexical restrictions
+	
+		//Ensure greedy matching for lexicals
+		CommentChar   -/- [\/]
+		INT           -/- [0-9]
+		EID            -/- [a-zA-Z0-9\_]
+		
+		//Backslash chars in strings may not be followed by "
+		
+		BackSlashChar -/- [\"]
+
+
+	lexical syntax 
+		"Int"					  		-> RESERVED
+		"String"			  			-> RESERVED
+		"this"  		  			    -> RESERVED
+		RESERVED 						-> EID{reject}
+
+	lexical restrictions
+		//Ensure greedy matching for lexicals
+		"Int" 
+		"String"  -/- [A-Za-z0-9\_]
+
+	lexical syntax
+		[\ \t\n\r] -> LAYOUT
+	    
+		[\*]                             -> CommentChar
+		"/*" (~[\*] | CommentChar)* "*/" -> LAYOUT
+		"//" ~[\n\r]* ([\n\r] | EOF)     -> LAYOUT   
+	    
+		-> EOF
+	  
+	lexical restrictions 
+		//Ensure greedy matching for lexicals
+		//EOF may not be followed by any char
+		EOF           -/- ~[]
+	
+	context-free restrictions 
+  
+		//Ensure greedy matching for comments
+		LAYOUT? -/- [\ \t\n\r]
+		LAYOUT? -/- [\/].[\/]
+		LAYOUT? -/- [\/].[\*]		
+

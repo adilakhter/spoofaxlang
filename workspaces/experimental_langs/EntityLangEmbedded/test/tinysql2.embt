@@ -1,0 +1,11 @@
+module tinysql2 
+
+entity Object{}
+
+def main(): Object{
+	var obj: Object;
+	
+	obj := <| SELECT location FROM URL WHERE isActive|>;
+	
+	return obj;
+}

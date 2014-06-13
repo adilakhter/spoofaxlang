@@ -1,0 +1,29 @@
+Module(
+  "linqEmbedding"
+, [ Imports("A")
+  , Entity("URL", [Property("location", StringType())])
+  , Entity("LocationSet", [])
+  , Entity("NumberList", [])
+  , FunctionDef(
+      "getLocations"
+    , []
+    , Some(ReturnType(Type("LocationSet")))
+    , Block(
+        [ VarDecl("locations", Type("LocationSet"))
+        , VarDecl("numList", Type("NumberList"))
+        , Assign(
+            VarRef("locations")
+          , QueryExp(
+              From(QAlias("u"), FieldRef("URL"))
+            , Select([QFieldRef("u", "location")])
+            )
+          )
+        , Assign(VarRef("numbers"), VarRef("u"))
+        , Statement(VarRef("in"))
+        , Statement(VarRef("numList"))
+        , Return(VarRef("locations"))
+        ]
+      )
+    )
+  ]
+)

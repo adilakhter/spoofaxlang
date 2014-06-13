@@ -12,14 +12,14 @@ strategies
   parse-entitylang-file =
     parse-file(
       strsglr-perror, strsglr-report-parse-error
-    | <import-term(include/EntityLang.tbl)>
+    | <import-term(include/SimpleEntityLang.tbl)>
     )
 
   parse-string = parse-entitylang-string 
   parse-entitylang-string = 
     parse-string( 
       strsglr-report-parse-error
-    | <import-term(include/EntityLang.tbl)>
+    | <import-term(include/SimpleEntityLang.tbl)>
     )
   
   parse-stream = parse-entitylang-stream
@@ -30,8 +30,8 @@ strategies
     )
 
   pp-entitylang-string =
-    ast2abox(|[<import-term(include/EntityLang.generated.pp.af)>,
-               <import-term(include/EntityLang.pp.af)>]); 
+    ast2abox(|[<import-term(include/SimpleEntityLang.generated.pp.af)>,
+               <import-term(include/SimpleEntityLang.pp.af)>]); 
     box2text-string(|100)
 
     

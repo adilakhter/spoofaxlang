@@ -1,0 +1,137 @@
+package org.lang.EntityLang 
+
+module Function 
+
+context-free syntax
+	// Following Production add FunctionDef in Definition Section 
+	FunctionDef                               -> Definition 
+  	
+  	// Following Production extend Expressions of the EntityLang 
+  	FunctionCall                              -> Exp
+	
+	
+	"def" EID "(" {Param ","}* ")" ReturnType? Block -> FunctionDef {cons("FunctionDef")}
+  	EID "(" {Exp ","}* ")"                           -> FunctionCall {cons("FunctionCall")}
+    
+context-free syntax 
+	 
+	"return" Exp ";"   -> Statement {cons("Return")}
+	EID ":" Type        -> Param {cons("Param")}
+	":" Type           -> ReturnType {cons("ReturnType")} 	 
+      
+	
+module FunctionConstructors 
+signature constructors
+	Functions : Namespace 
+	Returns   : Scope -> Namespace 
+	
+
+module FunctionAnalysis
+rules 	
+	is-function-def = ?FunctionDef(_,_,_,_)
+	 
+	type-of : FunctionDef(name, params, Some(type), bl) -> type 
+ 
+	type-of : FunctionDef(name, params, None(), bl) -> Type("Void")
+	
+	name-of : FunctionDef(name, params, rt, bl) -> name
+  	
+  	arg-types : FunctionDef(name, params, rt, bl) -> <map(?Param(_,<id>))> params
+  	
+  	signature-of : FunctionDef(name, params, rt, bl) -> (name, <arg-types>)
+  	
+rules 
+	type-of: Param(name,type) -> type
+
+rules 
+	signature-of :
+  		FunctionCall(name, args) -> (name, <debug(!" args: "); map(debug(!" arg: "); type-of; debug(!" type-of: "))>args)
+	  	
+	type-of :
+    	call@FunctionCall(name, args) -> type
+		where 
+			<signature-of> call => sig;
+      		<get-declaration(|Functions())> sig => decl;
+      		<type-of> decl => type
+rules 
+	
+	type-of : ReturnType(type) -> type
+	
+	type-of : Return(e) -> <resolve; type-of>
+  
+module FunctionStore 
+rules 	//function def and function calls
+	store : 
+		d@FunctionDef(name, params, rt, bl) -> d
+  		where <map-declaration(|Functions())> (<signature-of>d, d)
+  	
+  	resolve :
+  		call@FunctionCall(name, args) -> d
+  		where <signature-of; debug(!" sig: "); get-declaration(|Functions())> call => d; debug(!" decl: ")
+
+rules  // params 
+	store: 
+		d@Param(name,type) -> d 
+		where 
+			<map-declaration(|Variables())>(name, d)
+			
+rules  //retrun type and statement 
+	store :
+  		d@ReturnType(type) -> d
+  		where <map-declaration(|Returns(<get-annotated-scope>d))> ((), d)
+  
+	return-type :
+  		scope -> <get-declaration(|Returns(scope))> ()
+  	
+	store :
+  		rs@Return(e) -> rs
+  		where <store-reference(|Returns(<get-annotated-scope>rs))> ()
+  		  
+	resolve :
+  		Return(e) -> <get-annotated-scope; return-type>
+
+
+module FunctionRenaming 
+rules 
+	rename :
+  		d@FunctionDef(name, params, rt, bl) -> d'
+  		where debug(!"rename: ")
+  		where new-scope(all(rename-all)) => d'
+   
+	
+	rename: 
+  		Param(name, type) -> <annotate-scope(id)> Param(<rename-declaration(|Variables())> name, type)
+  
+rules 
+	rename :
+  		d@ReturnType(type) -> <annotate-scope(is-function-def)> d
+  
+  	rename :
+  		stat@Return(e) -> <annotate-scope(is-function-def)> Return(e')
+  		where <rename-all> e => e'
+  
+    	
+module FunctionStaticChecks 
+rules 
+	editor-error :
+    	d@FunctionDef(name, params, rt, bl) -> (name, $[Multiple declarations for function [name]])
+    	where not(<get-unique-declaration(|Functions())> <signature-of> d)
+
+	editor-error :
+  		call@FunctionCall(name, args) -> (name, $[No definition for function [<pp-sig>sig]])
+  		where <signature-of> call => sig; not( <get-declaration(|Functions())> sig )
+ 
+	editor-error:
+  		d@ReturnType(type) -> (type, $[Return statement missing])
+  		where not( <is-referred(|Returns(<get-annotated-scope>d))> () )
+
+	editor-error :
+  		stat@Return(e) -> (e, $[Return should have type [<pp>type'], not [<pp>type]])
+  		where 
+  			<type-of> e => type;
+  			<type-of> stat => type';
+  		  	not( <type-compatible> (type, type'))
+
+  	editor-error :
+  		stat@Return(e) -> (stat, $[No return statement expected])
+  		where not( <resolve> stat )

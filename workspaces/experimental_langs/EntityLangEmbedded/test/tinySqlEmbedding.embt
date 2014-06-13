@@ -1,0 +1,22 @@
+module tinySqlEmbedding
+
+imports primitives  
+
+entity URL {
+  location : String
+  lastAcessed: DateTime
+  isActive : Bool
+}
+entity ActiveUrls{}
+
+
+def main(){
+	var locations: Object;
+		
+	locations := <| SELECT location 
+			        FROM URL |>; 
+	
+	locations := <| SELECT location 
+			        FROM URL 
+			        WHERE isActive|>;
+}

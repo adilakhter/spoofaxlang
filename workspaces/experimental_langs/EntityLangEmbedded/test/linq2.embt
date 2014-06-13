@@ -1,0 +1,11 @@
+module linq1
+
+imports primitives 
+
+def main():Int{
+	var obj: Object;
+	
+	obj := <|from x in Y select z|>;
+	
+	return 0;
+} 

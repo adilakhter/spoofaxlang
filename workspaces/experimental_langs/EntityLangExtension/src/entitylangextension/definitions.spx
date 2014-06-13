@@ -2,19 +2,20 @@ package entextendedlang
 
 // Following module define the main langauge constructs for EntityLangExtension language
 module Def 
-imports entitylang
+imports 
+	entitylang
+	org.lang.xml
 
 context-free syntax    
 	entitylang.Module -> Start 
   
-	Document  -> entitylang.Exp{"Xml"}
-	"<[" entitylang.Exp "]>" -> Content{"XmlEmbeddedExp", prefer}
+	org.lang.xml.Document  -> entitylang.Exp{"Xml"}
+	
+	"<[" entitylang.Exp "]>" -> org.lang.xml.Content{"XmlEmbeddedExp", prefer}
 
-	"Xml" -> entitylang.Type{"XmlType",prefer} 
-	
-	
+context-free syntax 
+	"Xml" -> entitylang.Type{"XmlType",prefer}
 
-	
 lexical syntax
     [\ \t\12\13\n] -> LAYOUT {prefer}
 

@@ -1,0 +1,9 @@
+module tinysql1
+
+entity Object{}
+
+def main(){
+	var obj: Object;
+	
+	obj := <| SELECT x FROM y |>; 
+}

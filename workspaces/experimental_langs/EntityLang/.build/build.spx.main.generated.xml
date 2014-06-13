@@ -10,12 +10,12 @@
       <property name="package.path" location=".shadowdir/entitylang"/>
       <property name="lang.id.specific.directoy"    location="${src-gen}/entitylang"/>
       <property name="lang.id.specific.subdirectoy" value ="entitylang"/>
-      <property name="package.name"                 value = "EntityLang"/>
+      <property name="package.name"                 value = "SimpleEntityLang"/>
       <property name="package.qname"                value = "entitylang"/>
-      <property name="package.main.sdf.module"      value = "EntityLang"/>
-      <property name="package.main.str.module"      value = "EntityLang"/>
-      <property name="package.main.esv.module"      value = "EntityLang.main"/>
-      <property name="metasdfmodule"                value = "Stratego-EntityLang"/>
+      <property name="package.main.sdf.module"      value = "SimpleEntityLang"/>
+      <property name="package.main.str.module"      value = "SimpleEntityLang"/>
+      <property name="package.main.esv.module"      value = "SimpleEntityLang.main"/>
+      <property name="metasdfmodule"                value = "Stratego-SimpleEntityLang"/>
       <property name="lang.sdf.specific.params"     value = ""/>
       <property name="lang.str.specific.params"     value = ""/>
       

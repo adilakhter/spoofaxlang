@@ -9,7 +9,7 @@ imports
 // 
 language General properties
                   
-  name          : EntityLang
+  name          : ModularEntityLang
   extends       : Root
                   
   description   : "Spoofax/IMP-generated(using spoofaxlang) editor for the EntityLang language "

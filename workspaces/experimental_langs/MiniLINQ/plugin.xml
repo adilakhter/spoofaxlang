@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.imp.runtime.languageDescription">
+      <language
+            extensions="mlinq"
+            description="MiniLINQ"
+            language="MiniLINQ"
+            derivedFrom="DynamicRoot"
+            validator="org.lang.linq.MiniLINQValidator"
+            validatorClass="org.lang.linq.MiniLINQValidator"
+      ></language>
+   </extension>
+   <extension
+         id="org.lang.linq.parser"
+         name="MiniLINQ Parser"
+         point="org.eclipse.imp.runtime.parser">
+      <parser
+            class="org.lang.linq.MiniLINQParseController"
+            language="MiniLINQ">
+      </parser>
+   </extension>    
+</plugin>

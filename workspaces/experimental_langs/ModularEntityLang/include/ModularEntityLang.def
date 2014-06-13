@@ -1,25 +1,69 @@
 definition
-module ModularEntityLang/languageConcepts
+module org/lang/EntityLang/ArithmeticExpression
 exports
   context-free syntax
-    "module" ID Definition*       -> Start      {cons("Module")}
-    "entity" ID "{" Property* "}" -> Definition {cons("Entity")}
-    ID ":" Type                   -> Property   {cons("Property")}
+    INT         -> Exp {cons("Int")}
+    STRING      -> Exp {cons("String")}
+    Exp "+" Exp -> Exp {cons("Plus"), assoc}
+    Exp "*" Exp -> Exp {cons("Times"), assoc}
 
-module ModularEntityLang/typeSystem
+  context-free priorities
+    Exp "*" Exp -> Exp  >
+    Exp "+" Exp -> Exp 
+
+module org/lang/EntityLang/CommonLex
 exports
   context-free syntax
-    ID       -> Type {cons("Type")}
-    "Int"    -> Type {cons("IntegerType"), prefer}
-    "String" -> Type {cons("StringType"), prefer}
+    EID         -> QID 
+    QID "." EID -> QID {cons("QId")}
 
-module ModularEntityLang/identifierDefinition
+  lexical syntax
+    {EID "/"}+ -> FILENAME 
+
+module org/lang/EntityLang/Entity
+exports
+  context-free syntax
+    Entity                           -> Definition 
+    "entity" EID "{" EntityElem* "}" -> Entity     {cons("Entity"), prefer}
+
+module org/lang/EntityLang/Expression
+exports
+  context-free syntax
+    "new" EID "(" ")" -> Exp {cons("New")}
+
+  (
+
+  context-free syntax
+    EID         -> Exp {cons("VarRef"), prefer}
+    QID         -> Exp {cons("QVarRef")}
+    "(" Exp ")" -> Exp {bracket}
+    Exp "<" Exp -> Exp {cons("LT"), non-assoc}
+
+  context-free syntax
+    "this" -> Exp {cons("This")}
+
+  )
+
+module org/lang/EntityLang/Function
+exports
+  context-free syntax
+    FunctionDef                                      -> Definition   
+    FunctionCall                                     -> Exp          
+    "def" EID "(" {Param ","}* ")" ReturnType? Block -> FunctionDef  {cons("FunctionDef")}
+    EID "(" {Exp ","}* ")"                           -> FunctionCall {cons("FunctionCall")}
+
+  context-free syntax
+    "return" Exp ";" -> Statement  {cons("Return")}
+    EID ":" Type     -> Param      {cons("Param")}
+    ":" Type         -> ReturnType {cons("ReturnType")}
+
+module org/lang/EntityLang/Common
 exports
   lexical syntax
-    [a-zA-Z] [a-zA-Z0-9]* -> ID 
+    [a-zA-Z] [a-zA-Z0-9]* -> EID 
 
-module ModularEntityLang/literals
-exports
+  (
+
   lexical syntax
     "-"? [0-9]+           -> INT           
     "\"" StringChar* "\"" -> STRING        
@@ -28,24 +72,29 @@ exports
     BackSlashChar         -> StringChar    
     "\\"                  -> BackSlashChar 
 
+  (
+
   lexical restrictions
     CommentChar -/- [\/]
     INT -/- [0-9]
-    ID -/- [a-zA-Z0-9\_]
+    EID -/- [a-zA-Z0-9\_]
     BackSlashChar -/- [\"]
 
-module ModularEntityLang/keywordDefinition
-exports
+  (
+
   lexical syntax
     "Int"    -> RESERVED 
     "String" -> RESERVED 
-    RESERVED -> ID       {reject}
+    "this"   -> RESERVED 
+    RESERVED -> EID      {reject}
+
+  (
 
   lexical restrictions
     "Int" "String" -/- [A-Za-z0-9\_]
 
-module ModularEntityLang/layout
-exports
+  (
+
   lexical syntax
     [\ \t\n\r]                         -> LAYOUT      
     [\*]                               -> CommentChar 
@@ -65,13 +114,73 @@ exports
 
   )
 
+  )
+
+  )
+
+  )
+
+  )
+
+  )
+
+module org/lang/EntityLang/Main
+exports
+  context-free syntax
+    Module -> Start 
+
+module org/lang/EntityLang/Module
+exports
+  context-free syntax
+    "module" EID Definition* -> Module     {cons("Module")}
+    "imports" FILENAME       -> Definition {cons("Imports")}
+
+module org/lang/EntityLang/Property
+exports
+  context-free syntax
+    Property     -> EntityElem 
+    EID ":" Type -> Property   {cons("Property")}
+    Exp "." EID  -> Exp        {cons("PropertyAccess")}
+
+module org/lang/EntityLang/Statement
+exports
+  context-free syntax
+    Exp ":=" Exp ";"   -> Statement {cons("Assign")}
+    "{" Statement* "}" -> Block     {cons("Block")}
+    Block              -> Statement 
+    VarDecl            -> Statement 
+    Exp ";"            -> Statement {cons("Statement")}
+
+  (
+
+  context-free syntax
+    "var" EID ":" Type ";" -> VarDecl {cons("VarDecl")}
+
+  context-free syntax
+    "if" "(" Exp ")" Block "else" Block -> Statement {cons("If")}
+    "while" "(" Exp ")" Block           -> Statement {cons("While")}
+
+  )
+
+module org/lang/EntityLang/Type
+exports
+  context-free syntax
+    EID      -> Type {cons("Type")}
+    "Int"    -> Type {cons("IntegerType"), prefer}
+    "String" -> Type {cons("StringType"), prefer}
+
 module ModularEntityLang
-imports ModularEntityLang/layout
- ModularEntityLang/keywordDefinition
- ModularEntityLang/literals
- ModularEntityLang/identifierDefinition
- ModularEntityLang/typeSystem
- ModularEntityLang/languageConcepts
+imports org/lang/EntityLang/Type
+ org/lang/EntityLang/Statement
+ org/lang/EntityLang/Property
+ org/lang/EntityLang/Module
+ org/lang/EntityLang/Main
+ org/lang/EntityLang/Common
+ org/lang/EntityLang/Function
+ org/lang/EntityLang/Expression
+ org/lang/EntityLang/Entity
+ org/lang/EntityLang/CommonLex
+ org/lang/EntityLang/ArithmeticExpression
 
 
 exports

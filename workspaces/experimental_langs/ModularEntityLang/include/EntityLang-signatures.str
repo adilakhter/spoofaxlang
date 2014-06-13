@@ -1,5 +1,16 @@
 module EntityLang-signatures 
 imports 
+	.shadowdir/org/lang/EntityLang/mainDescriptor-signature
+	.shadowdir/org/lang/EntityLang/MainStaticChecker-signature
+	.shadowdir/org/lang/EntityLang/MainAnalysis-signature
+	.shadowdir/org/lang/EntityLang/Main-signature
+	.shadowdir/org/lang/EntityLang/ModuleEditorDef-signature
+	.shadowdir/org/lang/EntityLang/ModuleStaticChecks-signature
+	.shadowdir/org/lang/EntityLang/ModuleRenamings-signature
+	.shadowdir/org/lang/EntityLang/ModuleStore-signature
+	.shadowdir/org/lang/EntityLang/ModuleAnalysis-signature
+	.shadowdir/org/lang/EntityLang/ModuleConstructors-signature
+	.shadowdir/org/lang/EntityLang/Module-signature
 	.shadowdir/org/lang/EntityLang/TypeAnalysis-signature
 	.shadowdir/org/lang/EntityLang/TypeEditorDef-signature
 	.shadowdir/org/lang/EntityLang/TypeStaticChecks-signature
@@ -16,17 +27,6 @@ imports
 	.shadowdir/org/lang/EntityLang/PropertyAnalysis-signature
 	.shadowdir/org/lang/EntityLang/PropertySignatures-signature
 	.shadowdir/org/lang/EntityLang/Property-signature
-	.shadowdir/org/lang/EntityLang/ModuleEditorDef-signature
-	.shadowdir/org/lang/EntityLang/ModuleStaticChecks-signature
-	.shadowdir/org/lang/EntityLang/ModuleRenamings-signature
-	.shadowdir/org/lang/EntityLang/ModuleStore-signature
-	.shadowdir/org/lang/EntityLang/ModuleAnalysis-signature
-	.shadowdir/org/lang/EntityLang/ModuleConstructors-signature
-	.shadowdir/org/lang/EntityLang/Module-signature
-	.shadowdir/org/lang/EntityLang/MainStaticChecker-signature
-	.shadowdir/org/lang/EntityLang/MainAnalysis-signature
-	.shadowdir/org/lang/EntityLang/Main-signature
-	.shadowdir/org/lang/EntityLang/mainDescriptor-signature
 	.shadowdir/org/lang/EntityLang/Common-signature
 	.shadowdir/org/lang/EntityLang/FunctionStaticChecks-signature
 	.shadowdir/org/lang/EntityLang/FunctionRenaming-signature
