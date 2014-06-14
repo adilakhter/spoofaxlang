@@ -1,0 +1,31 @@
+module entlinqAndSql 
+imports primitives
+
+entity URL {
+  location : String
+  lastAcessed: DateTime
+  isActive : Bool
+}
+
+entity ActiveURLs{
+  location : String
+  lastAcessed: DateTime
+}
+
+
+def getActiveUrls():ActiveURLs{
+  var urls: ActiveURLs;
+  
+  urls := <| SELECT 
+               location,lastAcessed  
+			 FROM URL 
+			 WHERE isActive |>;
+  
+  urls := <| from u in URL  
+             select 
+              u.location,u.lastAccessed 
+			 where isActive |>;				 
+  
+  return urls;
+}
+

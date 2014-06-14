@@ -9,6 +9,7 @@ entity URL {
 }
 entity ActiveUrls{}
 
+entity ActiveURLs{}
 
 def main(){
 	var locations: Object;

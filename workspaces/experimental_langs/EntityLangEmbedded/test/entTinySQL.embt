@@ -1,0 +1,23 @@
+module entTinySQL 
+imports primitives
+
+entity URL {
+  location : String
+  lastAcessed: DateTime
+  isActive : Bool
+}
+
+entity ActiveURLs{
+  location : String
+  lastAcessed: DateTime
+}
+
+def getActiveUrls():ActiveURLs{
+  var urls: ActiveURLs;
+  urls := <| SELECT 
+               location,lastAcessed  
+			 FROM URL 
+			 WHERE isActive |>;
+  return urls;
+}
+

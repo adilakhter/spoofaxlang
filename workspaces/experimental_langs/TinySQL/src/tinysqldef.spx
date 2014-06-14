@@ -25,7 +25,7 @@ lexical syntax
 	"FROM" -> RESERVED
 
 	 
-module ColorDefinition 
+module TinySqlEditor 
 colorer 
 	_.Select: 139 69 19 bold  
 	_.From: 139 69 19 bold

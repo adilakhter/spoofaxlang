@@ -7,10 +7,12 @@ entity SQL{
 }
 
 
-def main(): Object {
+def main(): Object{
 	var sql: SQL;
 	
-	sql:= <|from x in Y select z|>;
+	sql := <|from y in X select y.z|>;
+	sql := <|SELECT z FROM Y|>;
+	
 	
 	return sql.execute;
 } 

@@ -20,3 +20,9 @@ _attic/EntityLang/include/
 examples/LwcSPXLang/include/
 workspaces/entitylang-extensions/EntityLangWithTuples/include/
 workspaces/experimental_langs/.metadata/
+*.ctree
+*.def
+*.dep
+*.af
+workspaces/experimental_langs/EntityLangEmbedded/include/
+*.aterm

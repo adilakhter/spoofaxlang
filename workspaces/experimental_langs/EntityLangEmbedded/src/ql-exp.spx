@@ -1,8 +1,11 @@
 package org.lang.EntityLang
 
 module QLExpDecl
-
-imports org.lang.ql
+imports 
+	org.lang.ql
 
 context-free syntax
 	"<|" org.lang.ql.QueryExp  "|>" -> Exp
+
+//context-free syntax //rejecting where clause 	
+	//"where" org.lang.ql.Exp  -> org.lang.ql.Where{reject}
