@@ -28,7 +28,10 @@ module Common
 	lexical syntax 
 		"Int"					  		-> RESERVED
 		"String"			  			-> RESERVED
-		"this"  		  			    -> RESERVED
+		"this"   		  			    -> RESERVED
+		"if"  		  			        -> RESERVED
+		"while"  		  			    -> RESERVED
+		
 		RESERVED 						-> EID{reject}
 
 	lexical restrictions

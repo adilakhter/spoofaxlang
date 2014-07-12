@@ -1,0 +1,15 @@
+package org.lang.mobl 
+
+module StringDef
+
+context-free syntax 
+	"\"" StringQuotedPart1* "\""    -> StringQuotation {"StringQuotation"}
+	"$(" Exp ")"                    -> StringQuotedPart1{"StringEscape"}
+	Padding                         -> Padding 
+	
+lexical syntax
+	~[\$\"]+  -> StringQuotedChars1	 
+		      -> Padding{indentpadding}
+lexical restrictions
+	StringQuotedChars1 -/- ~[\(\)\$]
+

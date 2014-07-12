@@ -1,0 +1,20 @@
+package org.lang.mobl 
+
+module TypeDef 
+
+context-free syntax
+
+    MetaAnno* "type" QId "{" EntityBodyDecl* "}"                          -> Definition {"TypeNoSuper"}
+    MetaAnno* "type" QId ":" Type "{" EntityBodyDecl* "}"                 -> Definition {"Type"}
+    
+
+context-free syntax
+	 NFType                         -> Type
+    {NFType "*"}+ "->" NFType      -> Type {"FunctionType", avoid}
+    
+    
+    QId                            -> NFType {"SimpleType"}
+    QId "<" {Type ","}* ">"        -> NFType {"GenericType"}
+    "(" {Type ","}* ")"            -> NFType {"TupleType"}
+    "[" Type "]"                   -> NFType {"ArrayType"}
+    "?"                            -> NFType {"DynamicType"}

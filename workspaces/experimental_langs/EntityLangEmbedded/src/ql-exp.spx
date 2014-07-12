@@ -1,8 +1,10 @@
 package org.lang.EntityLang
 
 module QLExpDecl
+
 imports 
 	org.lang.ql
+	
 
 context-free syntax
 	"<|" org.lang.ql.QueryExp  "|>" -> Exp

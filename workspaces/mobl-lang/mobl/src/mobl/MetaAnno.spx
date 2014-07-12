@@ -1,0 +1,15 @@
+package org.lang.mobl 
+
+module MetaAnnoDef 
+
+context-free syntax
+	"@doc" STRING                  -> MetaAnno {"DocAnno"}
+    "@when" Exp                    -> MetaAnno {"WhenAnno"}
+    "@persistable"                 -> MetaAnno {"PersistableAnno"}
+
+    "@" Exp                        -> MetaAnno {"DecoratorAnno", avoid}
+    
+context-free syntax
+	"@sync" UriPath                -> MetaAnno {"SyncEntityAnno"}	    
+
+	

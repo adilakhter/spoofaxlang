@@ -26,3 +26,5 @@ workspaces/experimental_langs/.metadata/
 *.af
 workspaces/experimental_langs/EntityLangEmbedded/include/
 *.aterm
+workspaces/mobl-lang/mobl/include/
+workspaces/mobl-lang/.metadata/

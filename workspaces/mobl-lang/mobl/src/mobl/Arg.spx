@@ -1,0 +1,8 @@
+package org.lang.mobl 
+
+module ArgDecl
+	
+context-free syntax
+	ID ":" Type                    -> FArg {"FArg"}
+    ID ":" Type "=" Exp            -> FArg {"FArgOptional"}
+

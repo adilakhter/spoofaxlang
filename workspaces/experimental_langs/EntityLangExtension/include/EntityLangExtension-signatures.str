@@ -1,13 +1,13 @@
 module EntityLangExtension-signatures 
 imports 
+	.shadowdir/entextendedlang/TypeAnalysis-signature
+	.shadowdir/entextendedlang/Def-signature
 	.shadowdir/entextendedlang/mainDescriptor-signature
 	.shadowdir/entextendedlang/syntaxConfiguration-signature
 	.shadowdir/entextendedlang/completionDescriptor-signature
 	.shadowdir/entextendedlang/colorDescriptor-signature
 	.shadowdir/entextendedlang/foldingDescriptor-signature
 	.shadowdir/entextendedlang/outlineDescriptor-signature
-	.shadowdir/entextendedlang/TypeAnalysis-signature
-	.shadowdir/entextendedlang/Def-signature
 	.shadowdir/entextendedlang/contentAssistant-signature
 	.shadowdir/entextendedlang/referenceResolver-signature
 	.shadowdir/entextendedlang/builderDefinition-signature

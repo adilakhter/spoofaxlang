@@ -1,0 +1,14 @@
+package org.lang.mobl
+
+module DataDecl
+	
+context-free syntax
+	MetaAnno* "entity" QId ":" Type "{" EntityBodyDecl* "}"  -> Definition {"Entity"}
+    MetaAnno* "entity" QId "{" EntityBodyDecl* "}"           -> Definition {"EntityNoSuper"}
+    MetaAnno* ID ":" Type "(" {Anno ","}* ")"                -> EntityBodyDecl {"Property"}
+    MetaAnno* ID ":" Type                                    -> EntityBodyDecl {"PropertyNoAnnos"}
+    FunctionDef                                              -> EntityBodyDecl
+    ID                                                       -> Anno {"SimpleAnno"}
+    "inverse" ":" ID                                         -> Anno {"InverseAnno"}
+
+

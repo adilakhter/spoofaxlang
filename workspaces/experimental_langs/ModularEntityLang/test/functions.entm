@@ -1,18 +1,32 @@
 module functions 
-
 imports primitives
- 
-entity Posts{
+
+def loadPosts(): Posts{
+	var posts: Posts;
+	var count: Int;
+	count := getPostCount();
+	
+	if (count < 0){
+		posts := new Posts();
+	}else{
+		posts := getPosts();
+	}
+	//return posts;
+	return "wrong type";
 }
 
 
-def foo(x:Int):Int {
-	var x: Int; 	
+
+
+entity Posts{
+}
+
+def getPostCount():Int{
+	return 0;
+}
+
+def getPosts(): Posts{
 	var p: Posts;
 	
-	p := new Posts();
-	p := "test";
-		
-	return 1; 
-}  
- 
+	return p;
+}

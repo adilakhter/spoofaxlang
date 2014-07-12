@@ -1,0 +1,9 @@
+package org.lang.mobl 
+
+module ModuleDef
+	
+context-free syntax
+    "module" QId Definition*         -> Start {cons("Module")}
+    "application" ID Definition*     -> Start {cons("Application")}
+
+	

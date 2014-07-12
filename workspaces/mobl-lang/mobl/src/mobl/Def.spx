@@ -1,0 +1,15 @@
+package org.lang.mobl 
+
+module DefDecl
+	 
+context-free syntax
+	"dynamic" "import" QId         -> Definition {"DynamicImport"}
+    "import" QId                   -> Definition {"Import"}
+    "load" Path                    -> Definition {"Load"}
+    "resource" Path                -> Definition {"Resource"}
+
+    "mixin" QId                    -> Definition {"Mixin"}
+    
+    
+
+	

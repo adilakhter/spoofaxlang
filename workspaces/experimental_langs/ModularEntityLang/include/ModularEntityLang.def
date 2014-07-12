@@ -86,6 +86,8 @@ exports
     "Int"    -> RESERVED 
     "String" -> RESERVED 
     "this"   -> RESERVED 
+    "if"     -> RESERVED 
+    "while"  -> RESERVED 
     RESERVED -> EID      {reject}
 
   (

@@ -1,0 +1,57 @@
+package org.lang.mobl
+module UIDef
+
+
+context-free syntax
+    MetaAnno* "screen" QId "(" {FArg ","}* ")" "{" ScreenElem* "}"          -> Definition {"ScreenNoReturnType"}
+    MetaAnno* "screen" QId "(" {FArg ","}* ")" ":" Type "{" ScreenElem* "}" -> Definition {"Screen"}
+	ControlDefinition                                                       -> Definition
+
+context-free syntax
+    MetaAnno* "control" QId "(" {FArg ","}* ")" "{" ScreenElem* "}"  -> ControlDefinition {"Control"}
+    %% Legacy
+    MetaAnno* "template" QId "(" {FArg ","}* ")" "{" ScreenElem* "}" -> ControlDefinition {deprecated("the 'template' keyword has been replaced with 'control'."),"Control"}
+    ID "(" {FArg ","}* ")"                                           -> ControlSig {"ControlSig"}
+    
+context-free syntax
+    "<" HTMLID HtmlArg* ">" ScreenElem* "</" HTMLID ">"              -> ScreenElem {"Html"}
+    "<" HTMLID HtmlArg* "/"">"                                       -> ScreenElem {"HtmlShort"}
+
+    ID "@" "<" HTMLID HtmlArg* ">" ScreenElem* "</" HTMLID ">"       -> ScreenElem {"NamedHtml"}
+    ID "@" "<" HTMLID HtmlArg* "/"">"                                -> ScreenElem {"NamedHtmlShort"}
+
+    HTMLID "=" Exp                                                   -> HtmlArg    {"HtmlArg"}
+    "databind" "=" Exp                                               -> HtmlArg    {"HtmlDatabindArg"}
+
+    ControlDefinition                                                -> ScreenElem
+
+    "var" ID ":" Type "=" Exp                                        -> ScreenElem {"VarDecl"}
+    "var" ID "=" Exp                                                 -> ScreenElem {"VarDeclInferred"}
+
+    "var" ID ":" Type "<-" Exp                                       -> ScreenElem {"DeriveDecl"}
+    "var" ID "<-" Exp                                                -> ScreenElem {"DeriveDeclInferred"}
+
+    FunctionDef                                                      -> ScreenElem
+
+    %% Deprecated
+    "init" "{" Statement* "}"                                        -> ScreenElem {"Script", deprecated("Please use 'script' instead.")}
+
+    "script" "{" Statement* "}"                                      -> ScreenElem {"Script"}
+
+    STRING                                                           -> ScreenElem {"ScreenString"}
+
+    "list" "(" LValue ":" Type "in" Exp ")" "{" ScreenElem* "}"      -> ScreenElem {"List"}
+    "list" "(" LValue "in" Exp ")" "{" ScreenElem* "}"               -> ScreenElem {"ListInferred"}
+
+    "cond" "(" Exp ")" "{" ScreenElem* "}"                            -> ScreenElem {"WhenNoElse", deprecated("Please use when instead, same syntax, different keyword")}
+    "when" "(" Exp ")" "{" ScreenElem* "}" "else" "{" ScreenElem* "}" -> ScreenElem {"When"}
+    "when" "(" Exp ")" "{" ScreenElem* "}"                            -> ScreenElem {"WhenNoElse"}
+
+    "var" ID ":" Type "=" Exp                                         -> ScreenElem {"ScreenVarDecl"}
+
+    LimitedExp "(" {NamedExp ","}* ")" "{" ScreenElem* "}"            -> ScreenElem {prefer, "ControlCall"}
+    LimitedExp "(" {NamedExp ","}* ")"                                -> ScreenElem {"ControlCallNoBody"}
+    LimitedExp "{" ScreenElem* "}"                           		  -> ScreenElem {"ControlCallNoArgs"}
+
+    Exp "." ID "(" {NamedExp ","}* ")"                                 -> ScreenElem {reject}
+    %%QId                                                              -> ScreenElem {cons("ControlCallNoArgsNoBody")}

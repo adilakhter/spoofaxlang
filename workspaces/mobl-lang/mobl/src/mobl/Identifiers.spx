@@ -1,0 +1,86 @@
+package org.lang.mobl   
+module IDDecls 
+context-free syntax
+ 	ID                               -> QId
+    QId "::" ID                      -> QId {"QId"}
+
+context-free syntax
+    "/" {UriPart "/"}*            -> UriPath {cons("UriPath")}
+
+    FILENAME  -> UriPart {cons("UriPart")}
+    ":" ID    -> UriPart {cons("UriVar")}
+
+
+context-free syntax %% Paths
+    {FILENAME "/"}+                  -> Path {"Path"}
+    "/" {FILENAME "/"}+              -> Path {"AbsolutePath"}
+    STRING                           -> Path {"QuotedPath"}
+module LexIDDecls 
+
+lexical syntax
+
+    [a-zA-Z\_\$][a-zA-Z0-9\_]* -> ID 
+    [a-zA-Z\_\$][a-zA-Z0-9\_\-]* -> HTMLID
+    %% "-"? [0-9]+            -> INT
+    [a-zA-Z\_\$\%\.][a-zA-Z0-9\_\-\.\%]* -> FILENAME
+
+lexical syntax
+    "-"? FloatDigits
+     ExponentPart? [fFdD]? -> NUMBER
+    [0-9]+ "." [0-9]*      -> FloatDigits
+    [0-9]+                 -> FloatDigits
+    [eE] SignedInteger     -> ExponentPart
+    [\+\-]? [0-9]+         -> SignedInteger
+
+    %%"-"? [0-9]+            -> NUM {reject}
+    "."                    -> FloatDigits  {reject}
+
+    "\"" StringChar* "\"" -> STRING
+    "\"\"\"" StringChar2* "\"\"\"" -> STRING
+    ~[\"\n]               -> StringChar
+    ~[\0]                 -> StringChar2
+    "\\\""                -> StringChar
+
+    [\ \t\n\r] -> LAYOUT
+
+    [\*]                             -> CommentChar
+    "/*" (~[\*] | CommentChar)* "*/" -> LAYOUT
+    "//" ~[\n\r]* ([\n\r] | EOF)     -> LAYOUT
+
+    -> EOF
+
+lexical restrictions
+
+    CommentChar -/- [\/]
+    NUMBER      -/- [0-9]
+    ID          -/- [a-zA-Z0-9\_]
+    FILENAME    -/- [a-zA-Z0-9\_\-\.\*]
+    EOF         -/- ~[]
+
+context-free restrictions
+
+    LAYOUT? -/- [\ \t\n\r]
+    LAYOUT? -/- [\/].[\/]
+    LAYOUT? -/- [\/].[\*]
+
+lexical syntax
+    "control" -> ID {reject}
+    "var" -> ID {reject}
+    "script" -> ID {reject}
+    "screen" -> ID {reject}
+    "entity" -> ID {reject}
+    "function" -> ID {reject}
+    "callback" -> ID {reject}
+    %%"sync" -> ID {reject}
+    "null" -> ID {reject}
+    "return" -> ID {reject}
+    "true" -> ID {reject}
+    "false" -> ID {reject}
+    "if" -> ID {reject}
+    "else" -> ID {reject}
+    "databind" -> HTMLID {reject}
+    "cond" -> ID {reject}
+    "when" -> ID {reject}
+    "this" -> ID {reject}
+    "javascript" -> ID {reject}
+    "$data" -> ID {reject}

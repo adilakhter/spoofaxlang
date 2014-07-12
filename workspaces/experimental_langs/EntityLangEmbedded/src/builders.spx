@@ -16,9 +16,14 @@ module builderDescriptor
 		// on save: generate-java
 					
 	// Content completion proposer and trigger is specified in the following section.
+
+
 	completions
-		completion proposer                  : editor-complete
-		completion trigger                   : ":"
+		completion proposer    : editor-complete
+		completion trigger     : ":"
+
+
+
 
 	// Reference resolving and hover help
 	references

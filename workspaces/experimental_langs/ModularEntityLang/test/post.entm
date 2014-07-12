@@ -1,0 +1,22 @@
+module post
+imports primitives
+
+entity Posts{
+}
+
+def getPosts(x:Int):Bool {
+	var p: Posts;
+	var i: Int;
+	
+	i := getPostCount();
+	
+	p := new Posts();
+	// Error:Can not assign String to Posts
+	p := "new posts";
+		
+	return "wrong type"; 
+}  
+ 
+def getPostCount():Int{
+	return 1;
+}

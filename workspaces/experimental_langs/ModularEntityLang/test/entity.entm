@@ -4,7 +4,7 @@ imports primitives
 entity Blog {
   name    : String
   author  : User 
-  posts   : BlogPosts
+  posts   : BlogPost
   comment : String
  
   foo : User
@@ -15,4 +15,13 @@ entity User {
   name : String
 }
 
- 
+entity BlogPost{
+	author:User
+	
+}
+
+entity Url{
+	location: String
+	lastAccessed: DateTime
+	isActive:Bool
+} 

@@ -10,8 +10,8 @@ context-free syntax
   	FunctionCall                              -> Exp
 	
 	
-	"def" EID "(" {Param ","}* ")" ReturnType? Block -> FunctionDef {cons("FunctionDef")}
-  	EID "(" {Exp ","}* ")"                           -> FunctionCall {cons("FunctionCall")}
+	"def" EID "(" {Param ","}* ")" ReturnType? Block -> FunctionDef {"FunctionDef"}
+  	EID "(" {Exp ","}* ")"                           -> FunctionCall {"FunctionCall"}
     
 context-free syntax 
 	 
@@ -135,3 +135,9 @@ rules
   	editor-error :
   		stat@Return(e) -> (stat, $[No return statement expected])
   		where not( <resolve> stat )
+  		
+module FunctionEditorDef 
+folding 
+	FunctionDef.FunctionDef 
+outliner 
+	FunctionDef.FunctionDef	 		
