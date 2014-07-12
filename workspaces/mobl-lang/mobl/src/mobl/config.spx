@@ -1,0 +1,24 @@
+package org.lang.mobl 
+module ConfigDef
+
+  context-free syntax
+
+    "configuration" Setting*         -> Start {"Configuration"}
+
+    "title" STRING                   -> Setting {"TitleSetting"}
+    "database" STRING                -> Setting {"DatabaseSetting"}
+    "icon" Path                      -> Setting {"IconSetting"}
+    "version" STRING                 -> Setting {"VersionSetting"}
+    "stdlib" Path                    -> Setting {"StdLibSetting"}
+    "lib" Path                       -> Setting {"LibSetting"}
+    "html" FILENAME                  -> Setting {"HtmlSetting"}
+    "output" STRING                  -> Setting {"OutputSetting"}
+    "release" "output" STRING        -> Setting {"ReleaseOutputSetting"}
+
+    "offline"                        -> Setting {"OfflineSetting"}
+    "debug"                          -> Setting {"DebugSetting"}
+    "loadingHTML" STRING             -> Setting {"LoadingHtmlSetting"}
+
+    "style" StyleVar "=" StyleExp    -> Setting {"StyleVarSetting"}
+    
+    

@@ -1,0 +1,11 @@
+package org.lang.mobl
+module ServiceDef  
+ 
+
+context-free syntax
+    MetaAnno* "service" QId "{" ServiceElem* "}"    -> Definition {"Service"}
+
+    PropVal                                         -> ServiceElem
+
+    MetaAnno* "resource" ID "(" {FArg ","}* ")" ":" Type "{" ResourceElem* "}" -> ServiceElem {"Resource"}
+    PropVal                                                                    -> ResourceElem

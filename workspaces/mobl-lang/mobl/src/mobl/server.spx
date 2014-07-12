@@ -1,0 +1,25 @@
+package org.lang.mobl
+module ServerDef 
+
+
+
+ context-free syntax %% Main
+
+    "server" ID ServerSetting* Definition* -> Start {"ServerApplication"}
+
+    "database" "host" STRING "name" STRING "username" STRING "password" STRING -> ServerSetting {"DatabaseSetting"}
+
+    "debug" -> ServerSetting {"DebugSetting"}
+
+    "@service" HttpMethod UriPath  -> MetaAnno {"ServiceAnno"}
+
+    "@socketevent" "(" STRING ")"  -> MetaAnno {"SocketEventAnno"}
+
+    "GET"        -> HttpMethod {"GetMethod"}
+    "POST"       -> HttpMethod {"PostMethod"}
+    "PUT"        -> HttpMethod {"PutMethod"}
+    "DELETE"     -> HttpMethod {"DeleteMethod"}
+
+  context-free syntax
+
+    "middleware" Exp      -> Definition {"MiddlewareUse"}

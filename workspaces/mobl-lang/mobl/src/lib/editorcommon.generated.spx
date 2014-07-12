@@ -8,30 +8,30 @@ imports
   
 strategies
 
-  parse-file = parse-mobl-file
-  parse-mobl-file =
+  parse-file = parse-entitylang-file
+  parse-entitylang-file =
     parse-file(
       strsglr-perror, strsglr-report-parse-error
-    | <import-term(include/Mobl.tbl)>
+    | <import-term(include/SimpleEntityLang.tbl)>
     )
 
-  parse-string = parse-mobl-string 
-  parse-mobl-string = 
+  parse-string = parse-entitylang-string 
+  parse-entitylang-string = 
     parse-string( 
       strsglr-report-parse-error
-    | <import-term(include/Mobl.tbl)>
+    | <import-term(include/SimpleEntityLang.tbl)>
     )
   
-  parse-stream = parse-mobl-stream
-  parse-mobl-stream =
+  parse-stream = parse-entitylang-stream
+  parse-entitylang-stream =
     parse-stream(
       strsglr-report-parse-error
-    | <import-term(include/Mobl.tbl)>
+    | <import-term(include/EntityLang.tbl)>
     )
 
-  pp-mobl-string =
-    ast2abox(|[<import-term(include/Mobl.generated.pp.af)>,
-               <import-term(include/Mobl.pp.af)>]); 
+  pp-entitylang-string =
+    ast2abox(|[<import-term(include/SimpleEntityLang.generated.pp.af)>,
+               <import-term(include/SimpleEntityLang.pp.af)>]); 
     box2text-string(|100)
 
     
@@ -135,7 +135,7 @@ strategies
   origin-equal(|t) = prim("SSL_EXT_origin_equal", <id>, t)
   
   origin-surrounding-comments =
-    prim("SSL_EXT_origin_surrounding_comments", "Mobl", <id>)
+    prim("SSL_EXT_origin_surrounding_comments", "EntityLang", <id>)
     
   origin-documentation-comment =
     origin-surrounding-comments;
@@ -214,8 +214,8 @@ signature constructors
   MARKER     : Term
 
   // Below are copies of the signatures of the terms used in example
-  // Mobl-Definitions.spx. These definitions should also be automatically 
-  // generated in the imported include/Mobl-signatures.str module. However,
+  // EntityLang-Definitions.spx. These definitions should also be automatically 
+  // generated in the imported include/EntityLang-signatures.str module. However,
   // to ensure that the example transformation doesn't break when the
   // syntax is changed, we also hard-coded them here.
           
