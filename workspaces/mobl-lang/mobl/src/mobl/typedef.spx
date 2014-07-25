@@ -18,3 +18,5 @@ context-free syntax
     "(" {Type ","}* ")"            -> NFType {"TupleType"}
     "[" Type "]"                   -> NFType {"ArrayType"}
     "?"                            -> NFType {"DynamicType"}
+
+

@@ -1,0 +1,44 @@
+package org.lang.mobl
+
+module Util 
+
+rules
+
+  lvalue-vars :
+    s -> [s]
+    where is-string
+
+  lvalue-vars :
+    LTuple(fst, rest*) -> [<lvalue-vars> fst|<map(lvalue-vars); concat> rest*]
+
+  cut-off-last-element :
+    [_] -> []
+
+  cut-off-last-element :
+    [a|k] -> [a|<cut-off-last-element> k]
+
+  setup-paths =
+    setting* := <get-configuration> $[[<ProjectPath; string-replace(|"\\", "/")>]/config.mobl]
+    ; if <fetch-elem(?StdLibSetting(stdlib-p))> setting* then
+         stdlib-path := <path-to-string; resolve-file> stdlib-p
+      else
+        stdlib-path := <concat-strings> [<plugin-path>, "/stdlib"]
+      end
+    ; path* := <filter(\ LibSetting(p) -> <path-to-string; resolve-file> p \)> setting*
+    ; if not(<fetch-elem(?OutputSetting(output-path))> setting*) then
+        output-path := $["www"]
+      end
+    ; rules(
+        IncludePaths      := [<ProjectPath>, stdlib-path, path*]
+        OutputPath        := $[[<ProjectPath>]/[<un-double-quote> output-path]]
+        ServerOutputPath  := <concat-strings> [<ProjectPath>, "/server"]
+      )
+
+  get-configuration :
+    filename -> setting*
+    where file-exists
+    with Configuration(setting*) := <parse-file <+ !Configuration([])> filename
+
+  get-configuration :
+    filename -> []
+    where not(file-exists)
