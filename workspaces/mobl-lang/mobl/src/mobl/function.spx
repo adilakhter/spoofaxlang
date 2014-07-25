@@ -1,0 +1,17 @@
+package org.lang.mobl
+
+module FunctionDef 
+
+  context-free syntax %% Logic
+
+    MetaAnno* "function" QId "(" {FArg ","}* ")" ":" Type "{" Statement* "}"           -> FunctionDef {"Function"}
+    MetaAnno* "function" QId "(" {FArg ","}* ")" "{" Statement* "}"                    -> FunctionDef {"FunctionNoReturnType"}
+    MetaAnno* "sync" "function" QId "(" {FArg ","}* ")" ":" Type "{" Statement* "}"    -> FunctionDef {"SyncFunction"}
+    MetaAnno* "sync" "function" QId "(" {FArg ","}* ")" "{" Statement* "}"             -> FunctionDef {"SyncFunctionNoReturnType"}
+
+    MetaAnno* "static" "function" QId "(" {FArg ","}* ")" ":" Type "{" Statement* "}"        -> FunctionDef {"StaticFunction"}
+    MetaAnno* "static" "function" QId "(" {FArg ","}* ")" "{" Statement* "}"                 -> FunctionDef {"StaticFunctionNoReturnType"}
+    MetaAnno* "static" "sync" "function" QId "(" {FArg ","}* ")" ":" Type "{" Statement* "}" -> FunctionDef {"StaticSyncFunction"}
+    MetaAnno* "static" "sync" "function" QId "(" {FArg ","}* ")" "{" Statement* "}"          -> FunctionDef {"StaticSyncFunctionNoReturnType"} 
+
+   

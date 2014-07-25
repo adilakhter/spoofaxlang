@@ -1,7 +1,7 @@
 package org.lang.mobl 
 module ConfigDef
 
-  context-free syntax
+context-free syntax
 
     "configuration" Setting*         -> Start {"Configuration"}
 
@@ -21,4 +21,35 @@ module ConfigDef
 
     "style" StyleVar "=" StyleExp    -> Setting {"StyleVarSetting"}
     
-    
+completions 
+	completion template : Start =
+    	"configuration"
+
+completions
+
+  completion template : Setting =
+    "debug" (blank)
+
+  completion template : Setting =
+    "offline" (blank)
+
+  completion template : Setting =
+    "stdlib " <path> (blank)
+
+  completion template : Setting =
+    "lib " <path> (blank)
+
+  completion template : Setting =
+    "title " <"My Application"> (blank)
+
+  completion template : Setting =
+    "icon " <path> (blank)
+
+  completion template : Setting =
+    "html " <index.html> (blank)
+
+  completion template : Setting =
+    "output " <"www"> (blank)
+
+  completion template : Setting =
+    "database " <"mydb"> (blank) 

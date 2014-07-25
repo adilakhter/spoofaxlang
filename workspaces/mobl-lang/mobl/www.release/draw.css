@@ -1,0 +1,177 @@
+@-webkit-keyframes slidein-fromright {
+ from {
+   -webkit-transform: translateX(100%);
+ }
+ to {
+   -webkit-transform: translateX(0%);
+ }
+}
+
+@-webkit-keyframes slideout-toleft {
+ from {
+   -webkit-transform: translateX(0%);
+ }
+ to {
+   -webkit-transform: translateX(-100%);
+ }
+}
+
+@-webkit-keyframes slidein-fromleft {
+ from {
+   -webkit-transform: translateX(-100%);
+ }
+ to {
+   -webkit-transform: translateX(0%);
+ }
+}
+
+@-webkit-keyframes slideout-toright {
+ from {
+   -webkit-transform: translateX(0%);
+ }
+ to {
+   -webkit-transform: translateX(100%);
+ }
+}
+
+body {
+  background-color: #f0f0f0;
+  font-family: Arial;
+  margin: 0;
+  padding: 0;
+  height: 640px;
+  -webkit-user-select: none;
+  /*-webkit-text-size-adjust: none;*/
+  -webkit-user-select: none;
+  overflow-x: hidden;
+}
+
+div.screen div.scroller {
+  -webkit-box-flex: 1;
+  overflow: hidden;
+}
+
+.mobl__ui__generic__headerStyle {
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(72, 100, 180)), to(rgb(32, 60, 140)));
+  background: -moz-linear-gradient(top, rgb(72, 100, 180), rgb(32, 60, 140));
+  padding: 0;
+  height: 2.3em;
+  font-size: 1.3em;
+  line-height: 2.3em;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: #477 0px 1px 1px;
+  color: white;
+  font-weight: bold;
+  margin: 0;
+  z-index: 2;
+  width: 100%;
+}
+.mobl__ui__generic__headerContainerStyle {
+  width: 150px;
+  position: absolute;
+  left: 50%;
+}
+.mobl__ui__generic__headerTextStyle {
+  position: absolute;
+  left: -75px;
+  width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mobl__ui__generic__buttonStyle {
+  font-family: Arial, Helvetica, sans-serif;
+  text-shadow: rgb(172, 200, 280) 0px 1px 0px;
+  font-weight: bold;
+  text-align: center;
+  padding: 0.5em 1em 0.5em 1em;
+  margin: 0.3em;
+  line-height: 3em;
+  color: rgb(22, 50, 130);
+  -webkit-box-shadow: 0px 0px 3px #777777;
+  -moz-box-shadow: 0px 0px 3px #777777;
+  box-shadow: 0px 0px 3px #777777;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(242, 270, 350)), to(rgb(192, 220, 300)));
+  background: -moz-linear-gradient(top, rgb(242, 270, 350), rgb(192, 220, 300));
+}
+.mobl__ui__generic__buttonPushedStyle {
+  font-family: Arial, Helvetica, sans-serif;
+  text-shadow: rgb(172, 200, 280) 0px 1px 0px;
+  font-weight: bold;
+  text-align: center;
+  padding: 0.5em 1em 0.5em 1em;
+  margin: 0.3em;
+  line-height: 3em;
+  color: rgb(22, 50, 130);
+  -webkit-box-shadow: 0px 0px 3px #777777;
+  -moz-box-shadow: 0px 0px 3px #777777;
+  box-shadow: 0px 0px 3px #777777;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(172, 200, 280)), to(rgb(122, 150, 230)));
+  background: -moz-linear-gradient(top, rgb(172, 200, 280), rgb(122, 150, 230));
+}
+.mobl__ui__generic__headerStyle .mobl__ui__generic__buttonStyle {
+  float: right;
+  font-size: 0.7em;
+  line-height: 2em;
+  padding: 0.2em 1em 0.2em 1em;
+  margin-top: 0.5em;
+  margin-left: 0;
+  margin-right: 0.4em;
+  z-index: 3;
+}
+.mobl__ui__generic__headerStyle .mobl__ui__generic__buttonPushedStyle {
+  float: right;
+  font-size: 0.7em;
+  line-height: 2em;
+  padding: 0.2em 1em 0.2em 1em;
+  margin-top: 0.5em;
+  margin-left: 0;
+  margin-right: 0.4em;
+  z-index: 3;
+}
+.mobl__ui__generic__contextMenuStyle {
+  position: absolute;
+}
+.mobl__ui__generic__contextMenuStyle .mobl__ui__generic__buttonStyle {
+  font-family: Arial, Helvetica, sans-serif;
+  text-shadow: rgb(172, 200, 280) 0px 1px 0px;
+  font-weight: bold;
+  text-align: center;
+  padding: 0.5em 0.5em 0.5em 0.5em;
+  margin: 0.1em;
+  line-height: 2em;
+  color: black;
+  -webkit-box-shadow: 0px 0px 3px #777777;
+  -moz-box-shadow: 0px 0px 3px #777777;
+  box-shadow: 0px 0px 3px #777777;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(242, 270, 350)), to(rgb(192, 220, 300)));
+  background: -moz-linear-gradient(top, rgb(242, 270, 350), rgb(192, 220, 300));
+}
+.mobl__ui__generic__contextMenuStyle .mobl__ui__generic__buttonPushedStyle {
+  font-family: Arial, Helvetica, sans-serif;
+  text-shadow: rgb(172, 200, 280) 0px 1px 0px;
+  font-weight: bold;
+  text-align: center;
+  padding: 0.5em 0.5em 0.5em 0.5em;
+  margin: 0.1em;
+  line-height: 2em;
+  color: black;
+  -webkit-box-shadow: 0px 0px 3px #777777;
+  -moz-box-shadow: 0px 0px 3px #777777;
+  box-shadow: 0px 0px 3px #777777;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(172, 200, 280)), to(rgb(122, 150, 230)));
+  background: -moz-linear-gradient(top, rgb(172, 200, 280), rgb(122, 150, 230));
+}

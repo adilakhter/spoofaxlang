@@ -1,0 +1,92 @@
+package org.lang.mobl 
+
+module StyleDef 
+
+  context-free syntax
+
+    MetaAnno* "style" StyleSelector+ "{" StyleElem* "}"    -> Definition {"Style"}
+    MetaAnno* "style" "mixin" QId "(" {StyleFArg ","}* ")" "{" StyleElem* "}"    -> Definition {"StyleMixin"}
+
+    "$" STYLEID -> StyleFArg {"StyleFArg"}
+
+    "style" StyleVar "=" StyleExp -> Definition {"StyleVarDecl"}
+
+    "$" STYLEID -> StyleVar {"StyleVar"}
+
+    MetaAnno* "external" "style" StyleSelector+ -> Definition {"ExternalStyle"}
+
+    STYLEPROPID ":" StyleExpsTL ";"  -> StyleElem {"StyleProperty"}
+    QId "(" {StyleExps ","}* ")" ";" -> StyleElem {"StyleMixinCall"}
+    QId ";" -> StyleElem {"StyleElemRecover", avoid}
+
+    QId                                       -> StyleSelector {"StyleSelector"}
+    QId ":" STYLEPROPID                       -> StyleSelector {"StyleSelectorWithPseudo"}
+    QId ":" STYLEPROPID "(" STYLEPROPID ")"   -> StyleSelector {"StyleSelectorWithPseudoArg"}
+
+    COLOR                   -> StyleExp {"Color"}
+    STYLEID                 -> StyleExp {"StyleId"}
+    STRING                  -> StyleExp {"String"}
+    NUMBER                  -> StyleExp {"Num"}
+    NUMBER Unit             -> StyleExp {"NumUnit"}
+    STYLEID "=" StyleExp    -> StyleExp {"StylePropVal"}
+    StyleVar                -> StyleExp
+    StyleExp "+" StyleExp   -> StyleExp {"StyleAdd", left}
+    StyleExp "~" StyleExp   -> StyleExp {"StyleSub", left}
+    StyleExp "*" StyleExp   -> StyleExp {"StyleMul", left}
+    StyleVar "." ID         -> StyleExp {"StyleFieldAccess"}
+    "$data" "(" Path ")"    -> StyleExp {"ImportData"}
+
+
+    %%"(" StyleExp ")"        -> StyleExp {bracket}
+
+
+    FILENAME "/" {FILENAME "/"}+         -> StyleExp {"StylePath", avoid}
+    STYLEPROPID "(" {StyleExps ","}* ")" -> StyleExp {"StyleCall"}
+
+    StyleExp+               -> StyleExps {"StyleExps", prefer}
+    {StyleExp ","}+         -> StyleExpsTL {"StyleExpsCS", prefer}
+    StyleExps               -> StyleExpsTL
+
+    "px" -> Unit {"PxUnit"}
+    "em" -> Unit {"EmUnit"}
+    "pt" -> Unit {"PtUnit"}
+    "s"  -> Unit {"SUnit"}
+    "%"  -> Unit {"PercentageUnit"}
+
+  context-free priorities
+      StyleExp "*" StyleExp -> StyleExp
+    > {
+      StyleExp "+" StyleExp -> StyleExp
+      StyleExp "~" StyleExp -> StyleExp
+    }
+
+  lexical syntax
+    [\#][0-9a-fA-F]* -> COLOR
+    [a-zA-Z\_\-][a-zA-Z0-9\_\-]+ -> STYLEPROPID
+    [a-zA-Z\_][a-zA-Z0-9\_\-]+ -> STYLEID
+
+    "px" -> STYLEID {reject}
+    "em" -> STYLEID {reject}
+    "pt" -> STYLEID {reject}
+    "mixin" -> ID {reject}
+
+  lexical restrictions
+
+    STYLEID          -/- [a-zA-Z0-9\_]
+    STYLEPROPID      -/- [a-zA-Z0-9\_]
+    COLOR            -/- [a-zA-Z0-9\_\#]
+    
+colorer 
+  _.StyleVar      : brown
+  _.StyleFArg     : brown
+
+  _.StyleFieldAccess    : brown
+  
+colorer 
+
+  _.EmUnit         : darkgreen
+  _.PercentageUnit : darkgreen
+  _.PxUnit         : darkgreen
+  _.PtUnit         : darkgreen
+  _.NumUnit        : darkgreen
+  _.Num            : darkgreen    

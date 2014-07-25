@@ -3,7 +3,17 @@ package org.lang.mobl
 module ModuleDef
 	
 context-free syntax
-    "module" QId Definition*         -> Start {cons("Module")}
-    "application" ID Definition*     -> Start {cons("Application")}
+    "module" QId Definition*         -> Module      {"Module"}
+    "application" ID Definition*     -> Application {"Application"}
+
+
+completions
+
+  completion template : Start =
+    "application " <name>
+
+  completion template : Start =
+    "module " <name>
+
 
 	

@@ -9,3 +9,18 @@ context-free syntax
 
     MetaAnno* "resource" ID "(" {FArg ","}* ")" ":" Type "{" ResourceElem* "}" -> ServiceElem {"Resource"}
     PropVal                                                                    -> ResourceElem
+completions
+
+  completion template : Definition =
+    "@service GET /" "\nfunction " <myService> "(req : Request, res : Response) {\n\t\n}" (blank)
+
+  completion template : Definition =
+    "@service PUT /" "\nfunction " <myService> "(req : Request, res : Response) {\n\t\n}" (blank)
+
+  completion template : Definition =
+    "@service POST /" "\nfunction " <myService> "(req : Request, res : Response) {\n\t\n}" (blank)
+
+  completion template : Definition =
+    "@service DELETE /" "\nfunction " <myService> "(req : Request, res : Response) {\n\t\n}" (blank)
+
+ 

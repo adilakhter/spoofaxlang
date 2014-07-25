@@ -9,12 +9,19 @@ context-free syntax
 
     FILENAME  -> UriPart {cons("UriPart")}
     ":" ID    -> UriPart {cons("UriVar")}
-
-
+colorer 
+	UriPath  : blue
+    UriPart  : blue
+	_.UriVar : darkgreen
+	
 context-free syntax %% Paths
     {FILENAME "/"}+                  -> Path {"Path"}
     "/" {FILENAME "/"}+              -> Path {"AbsolutePath"}
     STRING                           -> Path {"QuotedPath"}
+
+colorer 
+	STRING : blue
+
 module LexIDDecls 
 
 lexical syntax

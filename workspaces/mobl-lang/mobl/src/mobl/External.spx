@@ -1,6 +1,11 @@
 package org.lang.mobl
 
 module ExternalDef 
+context-free syntax 
+	"external" "var" QId ":" Type ";"                                                     -> Definition {"ExternalVarDecl"}
+
+    MetaAnno* "external" "template" QId "(" {FArg ","}* ")"                               -> Definition {deprecated("The 'template' keyword has been replaced with 'control'."),"ExternalControl"}
+
 
 context-free syntax
     MetaAnno* "external" "type" QId "{" ExternalMemberDecl* "}"                          -> Definition {"ExternalTypeNoSuper"}
@@ -11,7 +16,7 @@ context-free syntax
     MetaAnno* "function" ID "(" {FArg ","}* ")" ":" Type                   -> ExternalMemberDecl {"ExternalMethod"}
     MetaAnno* "static" "sync" "function" ID "(" {FArg ","}* ")" ":" Type   -> ExternalMemberDecl {"ExternalStaticSyncMethod"}
     MetaAnno* "sync" "function" ID "(" {FArg ","}* ")" ":" Type            -> ExternalMemberDecl {"ExternalSyncMethod"}
-    EntityBodyDecl                                                     -> ExternalMemberDecl
+    EntityBodyDecl                                                         -> ExternalMemberDecl
 
     MetaAnno* "external" "control" QId "(" {FArg ","}* ")"                                -> Definition {"ExternalControl"}
     MetaAnno* "external" "screen" QId "(" {FArg ","}* ")" ":" Type                        -> Definition {"ExternalScreen"}
@@ -19,6 +24,4 @@ context-free syntax
     MetaAnno* "external" "function" QId "(" {FArg ","}* ")" ":" Type                      -> Definition {"ExternalFunction"}
     MetaAnno* "external" "sync" "function" QId "(" {FArg ","}* ")" ":" Type               -> Definition {"ExternalSyncFunction"}
 
-    "external" "var" QId ":" Type ";"                                                     -> Definition {"ExternalVarDecl"}
-
-    MetaAnno* "external" "template" QId "(" {FArg ","}* ")"                               -> Definition {deprecated("The 'template' keyword has been replaced with 'control'."),"ExternalControl"}
+    

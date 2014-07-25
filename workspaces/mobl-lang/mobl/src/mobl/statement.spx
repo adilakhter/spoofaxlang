@@ -1,0 +1,69 @@
+package org.lang.mobl 
+
+module StatementDef 
+
+context-free syntax 
+	FunctionDef                                 -> Statement
+	
+context-free syntax %% Statements
+    "var" ID ":" Type "=" Exp ";"              -> Statement {"VarDecl"}
+    "var" ID "=" Exp ";"                       -> Statement {"VarDeclInferred"}
+
+    LValue "=" Exp ";"                          -> Statement {"Assignment"}
+    QId                                         -> LValue
+    Exp "." ID                                  -> LValue {"LFieldAccess"}
+    "(" LValue "," {LValue ","}* ")"            -> LValue {"LTuple"}
+    Exp "[" Exp "]"                             -> LValue {"LIndexer", left}
+
+    Exp ";"                                     -> Statement {"ExpStat"}
+    %%Exp                                         -> Statement {cons("ExpStat"), recover}
+
+    "if" "(" Exp ")" Statement "else" Statement -> Statement {"If"}
+    "if" "(" Exp ")" Statement                            -> Statement {"IfNoElse"}
+    "foreach" "(" LValue ":" Type "in" Exp ")" "{" Statement* "}"         -> Statement {"For"}
+    "foreach" "(" LValue "in" Exp ")" "{" Statement* "}"                  -> Statement {"ForInferred"}
+    "while" "(" Exp ")" "{" Statement* "}"                           -> Statement {"While"}
+    "{" Statement* "}"                          -> Statement {"Block"}
+
+    "for" "(" LValue ":" Type "in" Exp ")" "{" Statement* "}"         -> Statement {"For", deprecated("To avoid confusing Javascript programmers, for(... in ...) is now foreach(... in ...)")}
+    "for" "(" LValue "in" Exp ")" "{" Statement* "}"                  -> Statement {"ForInferred", deprecated("To avoid confusing Javascript programmers, for(... in ...) is now foreach(... in ...)")}
+
+    "return" Exp ";"                            -> Statement {"Return"}
+    "screen" "return" Exp ";"                   -> Statement {"ScreenReturn"}
+    "return" ";"                                -> Statement {"Return"}
+    "screen" "return" ";"                       -> Statement {"ScreenReturn"}
+    "async" "{" Statement* "}"                  -> Statement {"Async"}
+
+completions
+
+  completion template : Statement =
+    "if" "(" <e> ") {\n\t\n}" (blank)
+
+  completion template : Statement =
+    "if" "(" <e> ") {\n\t\n} else {\n\t\n}" (blank)
+
+  completion template : Statement =
+    "foreach" "(" <x> " in " <coll> ") {\n\t\n}" (blank)
+
+  completion template : Statement =
+    "var " <x> " = " <value> ";" (blank)
+
+  completion template : Statement =
+    "return " <value> ";" (blank)
+
+  completion template : Statement =
+    "screen return " <value> ";" (blank)
+    
+completions
+
+  completion template : ScreenElem =
+    "var " <x> " = " <value> (blank)
+
+  completion template : ScreenElem =
+    "list" "(" <x> " in " <coll> ") {\n\t\n}" (blank)
+
+  completion template : ScreenElem =
+    "when" "(" <e> ") {\n\t\n}" (blank)
+
+  completion template : ScreenElem =
+    "when" "(" <e> ") {\n\t\n} else {\n\t\n}" (blank)        

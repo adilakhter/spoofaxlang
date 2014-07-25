@@ -23,3 +23,8 @@ module ServerDef
   context-free syntax
 
     "middleware" Exp      -> Definition {"MiddlewareUse"}
+ 
+ completions    
+   completion template : Definition =
+    "database host " <"localhost"> " name \"dbname\" username \"user\" password \"pass\"" (blank)
+     

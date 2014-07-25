@@ -148,4 +148,19 @@ context-free syntax %% Expressions
     TermOperatorMethodId     -> MethodId
     OperatorMethodId         -> MethodId
     PostFixId                -> MethodId
-	
+completions
+
+  completion template : LimitedExp =
+    "where " <prop> " == " <value>
+
+  completion template : LimitedExp =
+    "order by " <prop> " asc"
+
+  completion template : LimitedExp =
+    "limit " <n>
+
+  completion template : LimitedExp =
+    "offset " <n>
+
+  completion template : LimitedExp =
+    "prefetch " <prop>	

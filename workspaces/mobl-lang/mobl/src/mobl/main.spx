@@ -2,3 +2,6 @@ package org.lang.mobl
 
 module Main 
 
+context-free syntax
+	Module      -> Start
+	Application -> Start 
