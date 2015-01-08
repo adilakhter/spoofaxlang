@@ -1,6 +1,6 @@
 package org.lang.mobl.generated
 		 		
-module builderDescriptor
+module BuilderDescriptor-generated
 	
 
 builders
@@ -54,7 +54,7 @@ builders
   //   on save : generate-java                                                                              	
 
 		 		
-module referenceDescriptor
+module ReferenceDescriptor-generated
 
 
 references
@@ -75,7 +75,7 @@ references
   // All semantic services may make use of the dynamic rules created by the observer.     
 
 		 		
-module outlineDescriptor
+module OutlineDescriptor-generated
 	 	
 outliner Default outliner        
   
@@ -92,7 +92,7 @@ outliner Default outliner
 	
 
 		 		
-module foldingDescriptor
+module FoldingDescriptor-generated
 	 	
 folding Default folding definitions
   
@@ -116,7 +116,7 @@ folding Default folding definitions
   
 
 		 		
-module colorDescriptor-generated
+module ColorDescriptor-generated
 		
 
 colorer
@@ -164,7 +164,7 @@ colorer Default, token-based highlighting
                                      default   = _              	
 
 		 		
-module completionDescriptor
+module CompletionDescriptor
 	 	
 
 completions
@@ -213,7 +213,7 @@ completions
   // All semantic services may make use of the dynamic rules created by the observer.     
 
 		 		
-module syntaxConfiguration
+module SyntaxConfiguration
 
 language Syntax properties (static defaults)
                                            

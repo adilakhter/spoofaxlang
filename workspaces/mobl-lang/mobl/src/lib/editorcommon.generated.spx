@@ -1,6 +1,6 @@
 package org.lang.mobl.generated
 
-module utils
+module CommonUtils
 
 imports
   libstratego-sglr
@@ -8,28 +8,28 @@ imports
   
 strategies
 
-  parse-file = parse-entitylang-file
-  parse-entitylang-file =
+  parse-file = parse-mobl-file
+  parse-mobl-file =
     parse-file(
       strsglr-perror, strsglr-report-parse-error
     | <import-term(include/Mobl.tbl)>
     )
 
-  parse-string = parse-entitylang-string 
-  parse-entitylang-string = 
+  parse-string = parse-mobl-string 
+  parse-mobl-string = 
     parse-string( 
       strsglr-report-parse-error
     | <import-term(include/Mobl.tbl)>
     )
   
-  parse-stream = parse-entitylang-stream
-  parse-entitylang-stream =
+  parse-stream = parse-mobl-stream
+  parse-mobl-stream =
     parse-stream(
       strsglr-report-parse-error
-    | <import-term(include/EntityLang.tbl)>
+    | <import-term(include/Mobl.tbl)>
     )
 
-  pp-entitylang-string =
+   pp-mobl-string =
     ast2abox(|[<import-term(include/Mobl.generated.pp.af)>,
                <import-term(include/Mobl.pp.af)>]); 
     box2text-string(|100)
@@ -135,7 +135,7 @@ strategies
   origin-equal(|t) = prim("SSL_EXT_origin_equal", <id>, t)
   
   origin-surrounding-comments =
-    prim("SSL_EXT_origin_surrounding_comments", "mobl", <id>)
+    prim("SSL_EXT_origin_surrounding_comments", "EntityLang", <id>)
     
   origin-documentation-comment =
     origin-surrounding-comments;

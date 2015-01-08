@@ -1,8 +1,6 @@
 package org.lang.mobl
 module ServerDef 
 
-
-
  context-free syntax %% Main
 
     "server" ID ServerSetting* Definition* -> Start {"ServerApplication"}

@@ -1,6 +1,6 @@
 package org.lang.mobl
 
-module PrettyPrinter
+module pp
 
 strategies
 
@@ -296,19 +296,6 @@ strategies // expressions
 
   pp-mobl-exp :
     Callback([stat]) -> $[{ [<pp-mobl-stat> stat] }]
-
-  pp-mobl-exp :
-    AnonymousControl(elem*) ->
-    $[control {
-        [<map(pp-mobl-elem); separate-by(|"\n"); concat-strings> elem*]
-      }]
-    where [_,_|_] := elem*
-
-  pp-mobl-exp :
-    AnonymousControl([]) -> $[control {}]
-
-  pp-mobl-exp :
-    AnonymousControl([elem]) -> $[control { [<pp-mobl-elem> elem] }]
 
   pp-mobl-exp :
     Var(qid) -> <pp-mobl-qid> qid

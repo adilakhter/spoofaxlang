@@ -15,8 +15,11 @@ context-free syntax
 
 
 context-free syntax // mobl-javascript integration 
-	"<javascript>" JSModule "</javascript>"     -> Definition {"Javascript"}
-	 
+	"<javascript>" JSModule "</javascript>"     -> Definition {cons("Javascript")}
+    QId "@<javascript>" JSModule "</javascript>"     -> Definition {cons("ModuleJavascript")}
+    "<javascript" "for" "=" QId ">" JSModule "</javascript>"     -> Definition {cons("JavascriptFor")}
+    QId "@<javascript" "for" "=" QId ">" JSModule "</javascript>"     -> Definition {cons("ModuleJavascriptFor")}
+ 
 	
 completions 
   completion template : Definition =

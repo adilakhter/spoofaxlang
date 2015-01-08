@@ -2,14 +2,14 @@ package org.lang.mobl
 	
 module MainDescriptor
 imports 
-	org.lang.mobl.generated	 	
+	org.lang.mobl.generated	
 		
 language General properties
                   
   name          : Mobl
   extends       : Root
                   
-  description   : "Spoofax/IMP-generated(using spoofaxlang) editor for the EntityLang language "
+  description   : "Spoofax/IMP-generated(using spoofaxlang) editor for the Mobl "
   url           : http://strategoxt.org
                   
   extensions    : mobl
