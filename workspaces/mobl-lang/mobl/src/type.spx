@@ -4,7 +4,7 @@ module TypeAnalysis
 
 strategies
 
-type-of = eq-type-of <+ ?Var(<id>); TypeOf
+  type-of = eq-type-of <+ ?Var(<id>); TypeOf
 
   type-of-lvalue :
     s -> <type-of> Var(s)

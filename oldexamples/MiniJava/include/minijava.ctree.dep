@@ -1,30 +1,30 @@
-C:\Work\Tudelft\Course\Compiler\minijava\trunk\MiniJava\include/minijava.ctree: \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/codegen/stack.str \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/codegen/expressions.str \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/codegen/statements.str \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/codegen/methods.str \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/codegen/types.str \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/codegen/fields.str \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/codegen/classes.str \
-	C:\Work\Tudelft\Course\Compiler\minijava\trunk\MiniJava/lib/jasmin/JasminXT.str \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/codegen/main.str \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/editor/complete.str \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/editor/hover.str \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/editor/resolve.str \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/normal/desugar.str \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/analysis/types/pp.str \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/analysis/types/check.str \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/analysis/names/check.str \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/analysis/types/project.str \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/analysis/types/map.str \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/analysis/names/map.str \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/analysis/names/project.str \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/analysis/names/namespaces.str \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/normal/signature.str \
+C:\spoofaxlang\oldexamples\MiniJava\include/minijava.ctree: \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/codegen/stack.str \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/codegen/expressions.str \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/codegen/statements.str \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/codegen/methods.str \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/codegen/types.str \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/codegen/fields.str \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/codegen/classes.str \
+	C:\spoofaxlang\oldexamples\MiniJava/lib/jasmin/JasminXT.str \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/codegen/main.str \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/editor/complete.str \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/editor/hover.str \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/editor/resolve.str \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/normal/desugar.str \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/analysis/types/pp.str \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/analysis/types/check.str \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/analysis/names/check.str \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/analysis/types/project.str \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/analysis/types/map.str \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/analysis/names/map.str \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/analysis/names/project.str \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/analysis/names/namespaces.str \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/normal/signature.str \
 	 \
-	C:\Work\Tudelft\Course\Compiler\minijava\trunk\MiniJava/lib/namespace.str \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/analysis/names/rename.str \
-	C:/Work/Tudelft/Course/Compiler/minijava/trunk/MiniJava/trans/analysis/main.str \
-	C:\Work\Tudelft\Course\Compiler\minijava\trunk\MiniJava/lib/editor-common.generated.str \
-	C:\Work\Tudelft\Course\Compiler\minijava\trunk\MiniJava/include/MiniJava.str \
-	C:\Work\Tudelft\Course\Compiler\minijava\trunk\MiniJava\trans/minijava.str
+	C:\spoofaxlang\oldexamples\MiniJava/lib/namespace.str \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/analysis/names/rename.str \
+	C:/spoofaxlang/oldexamples/MiniJava/trans/analysis/main.str \
+	C:\spoofaxlang\oldexamples\MiniJava/lib/editor-common.generated.str \
+	C:\spoofaxlang\oldexamples\MiniJava/include/MiniJava.str \
+	C:\spoofaxlang\oldexamples\MiniJava\trans/minijava.str

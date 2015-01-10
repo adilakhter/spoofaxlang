@@ -288,14 +288,16 @@ rules
 	mark-issues-of-files =
 		where (is-list); 
 		list-loop(
-		{	?file-path
-			;	(e, w, n) := <get-semantic-problmes-by-file>file-path	
-			;	if <is-not-empty-list> e then   
-					set-has-errors;
-					debug-compiler(!$[----FileName : [<base-filename>file-path] --- Errors : [<print-as-string>(e, w, n)]])  
-				end
-			;	<queue-mark-errors>(file-path,e, w, n)
-		})	
+			{	?file-path
+				;	(e, w, n) := <get-semantic-problmes-by-file>file-path	
+				;	if <is-not-empty-list> e then   
+						set-has-errors;
+						debug-compiler(!$[----FileName : [<base-filename>file-path] --- Errors : [<print-as-string>(e, w, n)]])  
+					end
+				// TODO FIX: Mark-errors are turned off
+				//;	<queue-mark-errors>(file-path,e, w, n)
+			}
+		)	
 		
 	// FIXME: MISSING IMPLODER ATTACHMENT WHEN COMPILED FROM ANT SCRIPT
 	// It could not find origin or term attachment while setting up the markers 
