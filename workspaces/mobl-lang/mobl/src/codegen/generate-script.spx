@@ -1,0 +1,19 @@
+package org.lang.mobl
+
+module generate-script
+
+strategies
+
+  definition-to-js :
+    ModuleJavascript(qid, mod) -> <emit>
+    $[(function(__ns) {
+      [s]
+      }([<qid-to-js> qid]));]
+    with s := <pp-mobl-string <+ debug(!"Could not pp: "); fail> mod
+
+  definition-to-js :
+    ModuleJavascriptFor(qid, _, mod) -> <emit>
+    $[(function(__ns) {
+      [s]
+      }([<qid-to-js> qid]));]
+    with s := <pp-mobl-string <+ debug(!"Could not pp: "); fail> mod

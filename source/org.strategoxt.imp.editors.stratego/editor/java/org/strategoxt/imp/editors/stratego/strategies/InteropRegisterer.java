@@ -11,8 +11,7 @@ public class InteropRegisterer extends JavaInteropRegisterer {
   public InteropRegisterer() {
     super(new Strategy[] { 
     		java_load_properties_0_0.instance,
-    		java_interpolate_environment_variables_0_0.instance,
-    		echoadil_0_0.instance,
+    		java_interpolate_environment_variables_0_0.instance
     		});
   }
 }

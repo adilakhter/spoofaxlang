@@ -29,4 +29,5 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.strategoxt.imp.editors.spoofax,
  org.strategoxt.imp.editors.spoofax.generated,
- org.strategoxt.imp.editors.spoofax.ui
+ org.strategoxt.imp.editors.spoofax.ui,
+ org.strategoxt.imp.editors.spoofax.strategies

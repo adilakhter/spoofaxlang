@@ -1,0 +1,47 @@
+package org.lang.mobl
+
+module Mobl-main
+imports
+  libstratego-lib
+  libstratego-gpp
+  libstratego-aterm
+
+strategies
+
+  // this is overwritten in Java code (the weird code is just to avoid inlining)
+  //get-plugin-path = debug(!"<still didn't work>"); editor-analyze; fail; resolve-file
+
+  //upload-files(|appid) = debug(!"<still didn't work>"); editor-analyze; fail; resolve-file
+
+  resolve-file :
+    filename -> filename
+    where <file-exists> filename
+
+  resolve-file :
+    filename -> path
+    where not(<file-exists> filename)
+        ; [path|_] := <filter(\ p -> <concat-strings> [p, "/", filename] \; file-exists)> <IncludePaths>
+
+strategies
+
+  get-doc =
+       one(?manno*)
+       ; <one(?DocAnno(doc))> manno*
+       ; <un-double-quote> doc
+    <+ !""
+
+  store-result =
+    ?t
+    ; rules ( ResultingAST := t )
+
+
+  lookup-node :
+    (path, ast) -> <find-node> (<desugar-position(normalize|ast)> path, <ResultingAST>)
+
+  find-node :
+    ([], t) -> t
+
+  find-node :
+    ([a|k], c#(ts)) -> <find-node> (k, <at-index(?result); !result> (a, ts))
+
+

@@ -1,0 +1,12 @@
+package org.lang.mobl
+
+module generate-util
+
+rules
+
+  uri-part-to-string :
+    UriPart(s) -> s
+
+  uri-part-to-string :
+    UriVar(s) -> $[:[s]]
+

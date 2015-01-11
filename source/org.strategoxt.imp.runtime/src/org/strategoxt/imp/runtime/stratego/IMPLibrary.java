@@ -33,6 +33,10 @@ public class IMPLibrary extends AbstractStrategoOperatorRegistry {
 		add(new InSelectedFragmentPrimitive());
 
 		add(new OriginLanguagePrimitive());
+		
+		add(new EchoTest());
+		add(new deltree_0_0());
+		add(new path_to_dataurl_0_0());
 	}
 
 	public String getOperatorRegistryName() {
