@@ -25,7 +25,7 @@ Require-Bundle: org.eclipse.core.runtime,
   org.spoofax.interpreter.library.language,
   org.strategoxt.strj,
   org.eclipse.core.runtime
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Export-Package: org.strategoxt.imp.editors.spoofax,
  org.strategoxt.imp.editors.spoofax.generated,

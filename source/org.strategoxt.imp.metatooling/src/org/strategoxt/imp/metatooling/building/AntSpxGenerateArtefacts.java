@@ -74,7 +74,7 @@ public class AntSpxGenerateArtefacts {
 		final String workingDirectoryArg = args[0];
 		final IResource file = EditorIOAgent.getResource(new File(workingDirectoryArg));
 		final IProject project = file.getProject();
-
+		
 		String buildStrategy = "-i"; 
 
 		if (args.length >1)
