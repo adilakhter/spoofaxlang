@@ -4,7 +4,7 @@ module Declare
 
 strategies
 
-declare-all =
+  declare-all =
     with(
       (?Module(_, def*) <+ ?Application(_, def*) <+ ?ServerApplication(_, _, def*))
       ; <filter(origin-track-forced(declare))> def*

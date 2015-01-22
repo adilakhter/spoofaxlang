@@ -18,9 +18,9 @@ rules
        ; rename-all
 	   ; add-namespace-all
 	   ; analyze-sync
-       ; debug(!"analyze-sync done: 1")  
+	   //; declare-all  
        |}
-   	; debug(!"analyze done: 1")
+   	
 
   analyze =
      ?Configuration(_)
@@ -60,8 +60,8 @@ rules
     where (<ParsedAndImported> qid
            ; rules ( Imports :+= qid )
         <+ rules ( ParsedAndImported : qid )
-         ; where(<open-import(\ path -> <resolve-file> <concat-strings> [path, ".mobl"] \, parse-file, externalize-module)> <qid-to-path> qid
-             ; <declare-all> Module(qid, <id>))
+         ; where(<open-import(\ path -> <resolve-file; debug> <concat-strings> [path, ".mobl"] \, parse-file, externalize-module)> <qid-to-path> qid
+         	 ; <declare-all> Module(qid, <id>))
          ; rules ( Imports :+= qid )
            )
 
@@ -100,6 +100,7 @@ rules
 
   externalize-module :
     Module(qid, def*) -> def2*
+    where debug(!"externalize-module:")
     with def2* := <analyze; ?Module(_, <id>); filter(origin-track-forced(definition-to-external))>
 
   externalize-module :

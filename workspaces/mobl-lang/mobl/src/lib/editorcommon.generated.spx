@@ -1,4 +1,4 @@
-package org.lang.mobl.generated
+package org.lang.mobl
 
 module CommonUtils
 
@@ -49,29 +49,34 @@ strategies
    * @param record-declarations
    *                      Performs semantic analysis on a tree
    */
-  open-import(resolve-path, parse-file, record-declarations):
-    import -> import
+ open-import(resolve-path, parse-file, externalize):
+    import -> defs
+    where debug
     where
       if not(!import => COMPLETION(_)) then
         path       := <resolve-path> import;
         cache-path := <import-cache-path> path;
-        if not(<IsImported> path) then
-          rules(
-            IsImported: path
-          );
-          ( <is-newer> (cache-path, path);
-            file := <ReadFromFile> cache-path
-          <+
-            file := <parse-file> path;
-            if <file-exists> path then
-              // Only cache if on filesystem (e.g., ignore libstratego-lib)
-              <WriteToBinaryFile> (cache-path, file)
-            end        
-          );
-          {| CurrentFile:
-            rules(CurrentFile := path);
-            <record-declarations> file
-          |}
+        if not(<CachedImport> path) then
+          if <CachedParseAst> import then
+            defs := <externalize <+ debug(!"Could not externalize: "); fail> <CachedParseAst> import
+          else
+            if <is-newer> (cache-path, path) then
+              defs := <ReadFromFile> cache-path
+              
+            else
+              	
+              defs := <parse-file; externalize <+ debug(!"Could not parse/externalize: "); fail> path;
+              if <file-exists> path then
+                // Only cache if on filesystem (e.g., ignore libstratego-lib)
+                <WriteToBinaryFile> (cache-path, defs)
+              end
+            end
+          end
+          ; rules (
+              CachedImport : path -> defs
+            )
+        else
+          defs := <CachedImport> path
         end
       end
 
@@ -83,7 +88,7 @@ strategies
         readdir;
         list-loop(
           if is-source-file then
-            <open-import(id, parse-file, record-declarations)>
+            <open-import(resolve-path, parse-file, record-declarations)>
               $[[path]/[<id>]]
           <+
             try(?one-failed)
@@ -91,6 +96,7 @@ strategies
         );
         not(!one-failed)
       end
+
   
   import-cache-path:
     full-path -> cache-path

@@ -1,18 +1,5 @@
 module EntityLangEmbedded-signatures 
 imports 
-	.shadowdir/org/lang/EntityLang/contentAssistant-signature
-	.shadowdir/org/lang/EntityLang/referenceResolver-signature
-	.shadowdir/org/lang/EntityLang/builderDefinition-signature
-	.shadowdir/org/lang/EntityLang/builderDescriptor-signature
-	.shadowdir/org/lang/EntityLang/EntityEditorDef-signature
-	.shadowdir/org/lang/EntityLang/EntityTypeChecks-signature
-	.shadowdir/org/lang/EntityLang/EntityStorage-signature
-	.shadowdir/org/lang/EntityLang/EntityRenamings-signature
-	.shadowdir/org/lang/EntityLang/EntityConstructors-signature
-	.shadowdir/org/lang/EntityLang/EntityAnalysis-signature
-	.shadowdir/org/lang/EntityLang/Entity-signature
-	.shadowdir/org/lang/EntityLang/mainDescriptor-signature
-	.shadowdir/org/lang/EntityLang/QLExpDecl-signature
 	.shadowdir/org/lang/EntityLang/TypeAnalysis-signature
 	.shadowdir/org/lang/EntityLang/TypeEditorDef-signature
 	.shadowdir/org/lang/EntityLang/TypeStaticChecks-signature
@@ -22,6 +9,7 @@ imports
 	.shadowdir/org/lang/EntityLang/StatementStaticChecking-signature
 	.shadowdir/org/lang/EntityLang/StatementAnalysis-signature
 	.shadowdir/org/lang/EntityLang/Statement-signature
+	.shadowdir/org/lang/EntityLang/QLExpDecl-signature
 	.shadowdir/org/lang/EntityLang/PropertyEditorDef-signature
 	.shadowdir/org/lang/EntityLang/PropertyStaticChecks-signature
 	.shadowdir/org/lang/EntityLang/PropertyStore-signature
@@ -39,6 +27,7 @@ imports
 	.shadowdir/org/lang/EntityLang/MainStaticChecker-signature
 	.shadowdir/org/lang/EntityLang/MainAnalysis-signature
 	.shadowdir/org/lang/EntityLang/Main-signature
+	.shadowdir/org/lang/EntityLang/mainDescriptor-signature
 	.shadowdir/org/lang/EntityLang/Common-signature
 	.shadowdir/org/lang/EntityLang/FunctionStaticChecks-signature
 	.shadowdir/org/lang/EntityLang/FunctionRenaming-signature
@@ -53,11 +42,22 @@ imports
 	.shadowdir/org/lang/EntityLang/ExpAnalysis-signature
 	.shadowdir/org/lang/EntityLang/ExpSignatures-signature
 	.shadowdir/org/lang/EntityLang/Expression-signature
+	.shadowdir/org/lang/EntityLang/EntityEditorDef-signature
+	.shadowdir/org/lang/EntityLang/EntityTypeChecks-signature
+	.shadowdir/org/lang/EntityLang/EntityStorage-signature
+	.shadowdir/org/lang/EntityLang/EntityRenamings-signature
+	.shadowdir/org/lang/EntityLang/EntityConstructors-signature
+	.shadowdir/org/lang/EntityLang/EntityAnalysis-signature
+	.shadowdir/org/lang/EntityLang/Entity-signature
 	.shadowdir/org/lang/EntityLang/ImportUtil-signature
 	.shadowdir/org/lang/EntityLang/CommonLex-signature
 	.shadowdir/org/lang/EntityLang/typeSystem-signature
 	.shadowdir/org/lang/EntityLang/PrettyPrinter-signature
 	.shadowdir/org/lang/EntityLang/JavaCodeGen-signature
+	.shadowdir/org/lang/EntityLang/contentAssistant-signature
+	.shadowdir/org/lang/EntityLang/referenceResolver-signature
+	.shadowdir/org/lang/EntityLang/builderDefinition-signature
+	.shadowdir/org/lang/EntityLang/builderDescriptor-signature
 	.shadowdir/org/lang/EntityLang/ArithExpChecks-signature
 	.shadowdir/org/lang/EntityLang/ArithExpAnalysis-signature
 	.shadowdir/org/lang/EntityLang/ArithmeticExpression-signature

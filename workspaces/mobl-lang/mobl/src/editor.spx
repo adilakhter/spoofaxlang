@@ -5,7 +5,7 @@ module IDEIntegration
 
 	// Builders may carry out custom transformations on a file or selection.
 	builders
-//		observer : editor-analyze         	                                                                          
+		observer : editor-analyze         	                                                                          
   		builder  : "Show abstract syntax (for selection)" = generate-aterm (openeditor) (realtime) (meta) (source)
   		builder  : "Desugar"     = editor-desugar (openeditor) (realtime) (meta)
   

@@ -777,6 +777,7 @@ style loadMoreStyle {
   -moz-border-radius-bottomright: 20px;
 }
 
+/*
 control stagedList(coll : Collection<?>, listCtrl : Control1<?>, initialItems : Num = 10, step : Num = 10, moreLabel : String = _("More"), moreStyle : Style = loadMoreStyle) {
   var n : Num = initialItems
   var total = coll.count()
@@ -790,7 +791,7 @@ control stagedList(coll : Collection<?>, listCtrl : Control1<?>, initialItems : 
       label(moreLabel)
     }
   }
-}
+}*/
 
 control markableList(items : [(Bool, ?)]) {
   group {
@@ -825,12 +826,13 @@ screen selectList(title : String, coll : Collection<?>, doneButtonLabel : String
   }
   markableList(items)
 }
-
+/*
 control searchList(Ent : Type<Entity<?>>, masterItem : Control1<?>, detailItem : Control1<?>, resultLimit : Num = 10, searchTermPlaceholder : String = _("Search term")) {
   var phrase = ""
   searchBox(phrase, placeholder=searchTermPlaceholder)
   masterDetail(Ent.searchPrefix(phrase) limit resultLimit, masterItem, detailItem)
 }
+*/
 
 style progressStyle {
     -webkit-border-radius: 10px;

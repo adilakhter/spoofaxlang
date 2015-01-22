@@ -4,11 +4,12 @@ module SyncAnalysis
 
 strategies
 
+  
   analyze-sync =
     topdown(try(mark-all-sync))
     ; declare-all
+    //; debug
     ; repeat(analyze-sync-code)
-    
 
   mark-all-sync :
     Function(anno*, qid, arg*, rt, stat*) -> SyncFunction(anno*, qid, arg*, rt, stat*)

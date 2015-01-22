@@ -19,7 +19,6 @@ strategies
       ; where(<pp-mobl-qid; debug(!"Now compiling: ")> qid
               ; rules ( Compiled : qid ))
       ; analyze
-      ; debug (!" Analyze done at Compile")  
       ; (?Module(_, def*) <+ ?Application(_, def*))
       ; where(alltd(compile-import-module))
       ; {| ModuleName, StyleVar
